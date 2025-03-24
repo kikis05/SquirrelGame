@@ -1,0 +1,31 @@
+[gd_scene load_steps=5 format=3 uid="uid://ctdj7k4cwb4f6"]
+
+[ext_resource type="Script" uid="uid://wpgykegedrya" path="res://entities/player/player.gd" id="1_abrql"]
+[ext_resource type="Texture2D" uid="uid://c3ihirpd8epus" path="res://icon.svg" id="1_symyc"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_abrql"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_symyc")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_sglur"]
+radius = 9.0
+height = 32.0
+
+[node name="Player" type="CharacterBody2D"]
+script = ExtResource("1_abrql")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, -16.5)
+scale = Vector2(0.15625, 0.257812)
+sprite_frames = SubResource("SpriteFrames_abrql")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -16)
+shape = SubResource("CapsuleShape2D_sglur")

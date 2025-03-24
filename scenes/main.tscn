@@ -1,10 +1,26 @@
-[gd_scene load_steps=2 format=3 uid="uid://df3pjjjqdan63"]
+[gd_scene load_steps=3 format=3 uid="uid://df3pjjjqdan63"]
 
-[ext_resource type="Texture2D" uid="uid://c3ihirpd8epus" path="res://icon.svg" id="1_o5qli"]
+[ext_resource type="PackedScene" uid="uid://ctdj7k4cwb4f6" path="res://entities/player/player.tscn" id="1_o5qli"]
+[ext_resource type="Texture2D" uid="uid://c3ihirpd8epus" path="res://icon.svg" id="2_0wfyh"]
 
 [node name="Main" type="Node"]
 
+[node name="Player" parent="." instance=ExtResource("1_o5qli")]
+position = Vector2(240, 135)
+
+[node name="OptionalCamera" type="Camera2D" parent="Player"]
+
 [node name="Icon" type="Sprite2D" parent="."]
-position = Vector2(210, 133)
-scale = Vector2(0.359375, 0.359375)
-texture = ExtResource("1_o5qli")
+position = Vector2(35, 129)
+scale = Vector2(0.203125, 1.50781)
+texture = ExtResource("2_0wfyh")
+
+[node name="Icon2" type="Sprite2D" parent="."]
+position = Vector2(443, 131)
+scale = Vector2(0.203125, 1.50781)
+texture = ExtResource("2_0wfyh")
+
+[node name="Icon3" type="Sprite2D" parent="."]
+position = Vector2(239, 4)
+scale = Vector2(2.57031, 0.191406)
+texture = ExtResource("2_0wfyh")

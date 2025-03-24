@@ -1,2 +1,2 @@
-res://README.md
 res://scenes/main.tscn
+res://entities/player/player.tscn
