@@ -1,0 +1,26 @@
+[gd_scene load_steps=4 format=3 uid="uid://yxib1bie3es5"]
+
+[ext_resource type="Texture2D" uid="uid://c3ihirpd8epus" path="res://icon.svg" id="1_v7oki"]
+[ext_resource type="Script" uid="uid://73s8e05jdqcp" path="res://bullet.gd" id="1_v8qja"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_v8qja"]
+size = Vector2(6, 6)
+
+[node name="Bullet" type="Area2D"]
+collision_mask = 0
+script = ExtResource("1_v8qja")
+speed = 800
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+visibility_layer = 2
+scale = Vector2(0.05, 0.05)
+texture = ExtResource("1_v7oki")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visibility_layer = 2
+shape = SubResource("RectangleShape2D_v8qja")
+
+[node name="DestroyBullet" type="Timer" parent="."]
+wait_time = 0.5
+
+[connection signal="timeout" from="DestroyBullet" to="." method="_on_destroy_bullet_timeout"]
