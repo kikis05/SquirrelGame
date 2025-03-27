@@ -1,7 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://ctdj7k4cwb4f6"]
+[gd_scene load_steps=7 format=3 uid="uid://ctdj7k4cwb4f6"]
 
 [ext_resource type="Script" uid="uid://wpgykegedrya" path="res://entities/player/player.gd" id="1_abrql"]
 [ext_resource type="Texture2D" uid="uid://c3ihirpd8epus" path="res://icon.svg" id="1_symyc"]
+[ext_resource type="PackedScene" uid="uid://bnubijqntw488" path="res://gun.tscn" id="3_sglur"]
+[ext_resource type="PackedScene" uid="uid://chq2g34nmenr0" path="res://sword.tscn" id="4_bls4j"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_abrql"]
 animations = [{
@@ -29,3 +31,10 @@ sprite_frames = SubResource("SpriteFrames_abrql")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, -16)
 shape = SubResource("CapsuleShape2D_sglur")
+
+[node name="Gun" parent="." instance=ExtResource("3_sglur")]
+position = Vector2(0, -10)
+
+[node name="Sword" parent="." instance=ExtResource("4_bls4j")]
+visible = false
+position = Vector2(0, -10)

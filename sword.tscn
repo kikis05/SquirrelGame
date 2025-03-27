@@ -1,0 +1,31 @@
+[gd_scene load_steps=4 format=3 uid="uid://chq2g34nmenr0"]
+
+[ext_resource type="Texture2D" uid="uid://c3ihirpd8epus" path="res://icon.svg" id="1_74bdg"]
+[ext_resource type="Script" uid="uid://btqt06qinw0p4" path="res://sword.gd" id="1_e4ynd"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_74bdg"]
+size = Vector2(11.3137, 63.6396)
+
+[node name="Sword" type="Area2D"]
+collision_mask = 0
+script = ExtResource("1_e4ynd")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(6.04077, -6.12263)
+rotation = 0.785398
+scale = Vector2(0.05, 0.3)
+texture = ExtResource("1_74bdg")
+offset = Vector2(152.173, -39.6843)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(22.0892, -11.4108)
+rotation = 0.785398
+scale = Vector2(0.5, 0.5)
+shape = SubResource("RectangleShape2D_74bdg")
+
+[node name="Marker2D" type="Marker2D" parent="."]
+position = Vector2(17, 0)
+
+[node name="slashSpeedTimer" type="Timer" parent="."]
+
+[connection signal="timeout" from="slashSpeedTimer" to="." method="_on_slash_speed_timer_timeout"]
