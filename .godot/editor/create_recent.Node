@@ -1,10 +1,13 @@
-CollisionShape2D
+CanvasLayer
 Sprite2D
+Panel
+HBoxContainer
+CollisionShape2D
 Area2D
+CharacterBody2D
 Timer
 AnimatedSprite2D
 Marker2D
 Node2D
 Camera2D
-CharacterBody2D
 Node

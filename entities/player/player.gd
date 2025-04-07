@@ -4,6 +4,9 @@ extends CharacterBody2D
 @export_range(0.0, 1.0) var friction = 0.25
 @export_range(0.0 , 1.0) var acceleration = 0.3
 
+@export var max_health: int = 6 #2 * number of acorns
+var current_health = max_health
+signal health_changed
 #current weapon
 @onready var weapon = get_node("Gun")
 
@@ -65,4 +68,21 @@ func _physics_process(delta):
 		
 func set_weapon(weapon_):
 	weapon = weapon_
+
+func _on_hit_box_area_entered(area: Area2D) -> void:
+	if area.name == "HitBox": #double check this
+		current_health -= 1
+		print_debug(current_health)
+		health_changed.emit(current_health)
+	if current_health <= 0:
+		current_health = 0
+		queue_free()
+		
+func get_max_health():
+	if max_health % 2 != 0:
+		max_health += 1 #make sure health is even, could instead do error message later
+		
+	return max_health
+func get_health():
+	return current_health
 	

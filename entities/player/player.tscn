@@ -1,9 +1,10 @@
-[gd_scene load_steps=7 format=3 uid="uid://ctdj7k4cwb4f6"]
+[gd_scene load_steps=8 format=3 uid="uid://ctdj7k4cwb4f6"]
 
 [ext_resource type="Script" uid="uid://wpgykegedrya" path="res://entities/player/player.gd" id="1_abrql"]
 [ext_resource type="Texture2D" uid="uid://c3ihirpd8epus" path="res://icon.svg" id="1_symyc"]
 [ext_resource type="PackedScene" uid="uid://bnubijqntw488" path="res://gun.tscn" id="3_sglur"]
 [ext_resource type="PackedScene" uid="uid://chq2g34nmenr0" path="res://sword.tscn" id="4_bls4j"]
+[ext_resource type="Script" uid="uid://bep3xxs0sc1p8" path="res://entities/player/hit_box.gd" id="5_fkugw"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_abrql"]
 animations = [{
@@ -38,3 +39,12 @@ position = Vector2(0, -10)
 [node name="Sword" parent="." instance=ExtResource("4_bls4j")]
 visible = false
 position = Vector2(0, -10)
+
+[node name="PlayerHitBox" type="Area2D" parent="."]
+script = ExtResource("5_fkugw")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerHitBox"]
+position = Vector2(0, -32)
+shape = SubResource("CapsuleShape2D_sglur")
+
+[connection signal="area_entered" from="PlayerHitBox" to="." method="_on_hit_box_area_entered"]

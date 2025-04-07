@@ -2,3 +2,11 @@ res://entities/player/player.tscn
 res://entities/player/player.gd
 res://scenes/main.tscn
 res://enemy.tscn
+res://entities/player/hit_box.gd
+res://enemy.gd
+res://entities/player/health_acorn.tscn
+res://health_container.tscn
+res://health_acorn.tscn
+res://health_container.gd
+res://scenes/main.gd
+res://health_acorn.gd
