@@ -4,27 +4,50 @@ extends CharacterBody2D
 @export_range(0.0, 1.0) var friction = 0.25
 @export_range(0.0 , 1.0) var acceleration = 0.3
 
-#we can later add a selector for weapon type
-#Change to $Gun to test Gun and change visibility in editor
-@onready var WEAPON = $Gun
+#current weapon
+@onready var weapon = get_node("Gun")
+
+#list of available ranged and melee weapons
+#can change selection method later
+var ranged_weapons = ["Gun"]
+var ranged_weapon_choice = 0
+var melee_weapons = ["Sword"]
+var melee_weapon_choice = 0
+var selected_weapon_type = "RANGED"
+
+
+func _input(event):
+	#attack toggle
+	if event.is_action_pressed("attack_toggle"):
+		weapon.visible = false
+		if selected_weapon_type == "MELEE":
+			selected_weapon_type = "RANGED"		
+			weapon = get_node(ranged_weapons[ranged_weapon_choice])
+		else:
+			selected_weapon_type = "MELEE"
+			weapon = get_node(melee_weapons[melee_weapon_choice])
+			
+		weapon.visible = true
+		
 
 func _ready():
 	pass
 
 func _physics_process(delta):
 	
+	
 	if (Input.is_action_pressed("attack_right")
 	 or Input.is_action_pressed("attack_left")
 	 or Input.is_action_pressed("attack_down")
 	 or Input.is_action_pressed("attack_up")):
-		WEAPON.attack()
+		weapon.attack()
 	
 	var movement_dir = Vector2(Input.get_axis("left", "right"), Input.get_axis("up", "down"))
 	
 	if movement_dir.length() > 0:
 		movement_dir = movement_dir.normalized()
 
-	WEAPON.set_direction(movement_dir)
+	weapon.set_direction(movement_dir)
 	# horizontal movement
 	if movement_dir[0] != 0:
 		velocity.x = lerp(velocity.x, movement_dir[0] * speed, acceleration)
@@ -40,3 +63,6 @@ func _physics_process(delta):
 	move_and_slide()
 
 		
+func set_weapon(weapon_):
+	weapon = weapon_
+	

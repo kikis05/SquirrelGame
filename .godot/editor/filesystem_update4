@@ -1,4 +1,4 @@
-res://scenes/main.tscn
 res://entities/player/player.tscn
+res://entities/player/player.gd
+res://scenes/main.tscn
 res://enemy.tscn
-res://enemy.gd
