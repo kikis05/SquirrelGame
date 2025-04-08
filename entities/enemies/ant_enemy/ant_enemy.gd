@@ -18,12 +18,6 @@ func _ready():
 	player = get_tree().get_first_node_in_group("player")
 
 func _physics_process(_delta):
-	if stunned:
-		velocity = knockback
-		knockback = lerp(knockback, Vector2.ZERO, 0.1)
-	if !stunned and health == 0: # last stun just finished 
-		die()
-		### UPDATE TEMP -- CHANGE FOR ACTUAL DEATH
 	move_and_slide()
 
 func take_damage(damage):
@@ -34,7 +28,7 @@ func die():
 	queue_free() # UPDATE TEMP
 
 func _on_hit_box_area_entered(area):
-	if area.name == "Bullet":
+	if area.name.to_lower() == "bullet":
 		take_damage(1)
 		var direction = -(player.global_position - global_position).normalized()
 		knockback = direction * knockback_strength
@@ -42,5 +36,5 @@ func _on_hit_box_area_entered(area):
 
 
 func _on_attack_box_body_entered(body):
-	if body.name == "Player":
+	if body.name.to_lower() == "player":
 		state_machine.transition_to("attack state")

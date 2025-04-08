@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://cf1r7ceglwp02"]
+[gd_scene load_steps=12 format=3 uid="uid://cf1r7ceglwp02"]
 
 [ext_resource type="Script" uid="uid://cbpbi2ou62orj" path="res://entities/enemies/mosquito_enemy/mosquito_enemy.gd" id="1_ybsgu"]
 [ext_resource type="Script" uid="uid://drc32dbyt45eh" path="res://entities/enemies/states/state_machine.gd" id="2_ybsgu"]
@@ -6,6 +6,7 @@
 [ext_resource type="Script" uid="uid://7spdl75ena5l" path="res://entities/enemies/states/chase_state.gd" id="4_rojr2"]
 [ext_resource type="Script" uid="uid://dm4uiijfbbr7u" path="res://entities/enemies/states/stun_state.gd" id="5_74br6"]
 [ext_resource type="Script" uid="uid://cji0ts0qst0sl" path="res://entities/enemies/states/attack_state.gd" id="6_0gqg2"]
+[ext_resource type="Script" uid="uid://c7yfvis6uphlt" path="res://entities/enemies/states/death_state.gd" id="7_ybsgu"]
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_cow0h"]
 load_path = "res://.godot/imported/icon.svg-218a8f2b3041327d8a5756f3a245f83b.ctex"
@@ -82,6 +83,10 @@ enemy = NodePath("../..")
 
 [node name="Attack State" type="Node" parent="State Machine" node_paths=PackedStringArray("enemy")]
 script = ExtResource("6_0gqg2")
+enemy = NodePath("../..")
+
+[node name="Death State" type="Node" parent="State Machine" node_paths=PackedStringArray("enemy")]
+script = ExtResource("7_ybsgu")
 enemy = NodePath("../..")
 
 [connection signal="body_entered" from="Enemy Body/AttackBox" to="." method="_on_attack_box_body_entered"]
