@@ -1,0 +1,60 @@
+[gd_scene load_steps=7 format=3 uid="uid://dwh7y81temsjc"]
+
+[ext_resource type="Script" uid="uid://cfr5acqujym3q" path="res://entities/enemies/chaser_enemy.gd" id="1_fhbxx"]
+[ext_resource type="Texture2D" uid="uid://c3ihirpd8epus" path="res://icon.svg" id="1_tslng"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_fhbxx"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_tslng")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_fhbxx"]
+radius = 8.0
+height = 34.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_tslng"]
+radius = 125.004
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ftnn0"]
+radius = 6.0
+
+[node name="Chaser Enemy" type="CharacterBody2D"]
+script = ExtResource("1_fhbxx")
+
+[node name="Sprite" type="AnimatedSprite2D" parent="."]
+modulate = Color(0.929412, 0.427451, 0.796078, 1)
+position = Vector2(0, -14.5)
+scale = Vector2(0.234375, 0.226562)
+sprite_frames = SubResource("SpriteFrames_fhbxx")
+
+[node name="Damage Area" type="Area2D" parent="."]
+position = Vector2(6, -6)
+rotation = -3.14159
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Damage Area"]
+position = Vector2(6, -4.39167e-05)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_fhbxx")
+debug_color = Color(0.980392, 0, 0, 0.419608)
+
+[node name="Chase Area" type="Area2D" parent="."]
+position = Vector2(0, -6)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Chase Area"]
+shape = SubResource("CircleShape2D_tslng")
+
+[node name="Collision" type="CollisionShape2D" parent="."]
+position = Vector2(0, -6)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_ftnn0")
+
+[connection signal="body_entered" from="Damage Area" to="." method="_on_damage_area_body_entered"]
+[connection signal="body_exited" from="Damage Area" to="." method="_on_damage_area_body_exited"]
+[connection signal="body_entered" from="Chase Area" to="." method="_on_area_2d_body_entered"]
+[connection signal="body_exited" from="Chase Area" to="." method="_on_area_2d_body_exited"]
