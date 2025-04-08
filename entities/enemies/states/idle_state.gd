@@ -2,10 +2,9 @@
 # https://www.youtube.com/watch?v=ow_Lum-Agbs
 
 extends State
-class_name IdleState
+class_name Idle_State
 
 @export var enemy: CharacterBody2D
-
 var player: CharacterBody2D
 var move_direction: Vector2
 var wander_time: float
@@ -15,8 +14,8 @@ func randomize_wander():
 	wander_time = randf_range(1, 3)
 
 func enter():
+	player = get_tree().get_first_node_in_group("player")
 	randomize_wander()
-	player = get_tree().get_first_node_in_group("Player")
 
 
 func update(delta: float):
@@ -31,4 +30,4 @@ func physics_update(_delta: float):
 	
 	var direction = player.global_position - enemy.global_position
 	if direction.length() < enemy.detection_radius:
-		transitioned.emit(self, "chase state")
+		transitioned.emit(self, "chasestate")

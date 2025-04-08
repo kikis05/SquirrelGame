@@ -2,14 +2,13 @@
 # https://www.youtube.com/watch?v=ow_Lum-Agbs
 
 extends State
-class_name ChaseState
+class_name Chase_State
 
 @export var enemy: CharacterBody2D
-
 var player: CharacterBody2D
 
 func enter():
-	player = get_tree().get_first_node_in_group("Player")
+	player = get_tree().get_first_node_in_group("player")
 
 func physics_update(_delta: float):
 	var direction = player.global_position - enemy.global_position

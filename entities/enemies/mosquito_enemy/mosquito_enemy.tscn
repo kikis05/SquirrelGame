@@ -1,0 +1,88 @@
+[gd_scene load_steps=11 format=3 uid="uid://cf1r7ceglwp02"]
+
+[ext_resource type="Script" uid="uid://cbpbi2ou62orj" path="res://entities/enemies/mosquito_enemy/mosquito_enemy.gd" id="1_ybsgu"]
+[ext_resource type="Script" uid="uid://drc32dbyt45eh" path="res://entities/enemies/states/state_machine.gd" id="2_ybsgu"]
+[ext_resource type="Script" uid="uid://8jg436ppnko" path="res://entities/enemies/states/idle_state.gd" id="3_ibrlw"]
+[ext_resource type="Script" uid="uid://7spdl75ena5l" path="res://entities/enemies/states/chase_state.gd" id="4_rojr2"]
+[ext_resource type="Script" uid="uid://dm4uiijfbbr7u" path="res://entities/enemies/states/stun_state.gd" id="5_74br6"]
+[ext_resource type="Script" uid="uid://cji0ts0qst0sl" path="res://entities/enemies/states/attack_state.gd" id="6_0gqg2"]
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_cow0h"]
+load_path = "res://.godot/imported/icon.svg-218a8f2b3041327d8a5756f3a245f83b.ctex"
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_cow0h"]
+radius = 3.0
+height = 24.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_nwwbn"]
+size = Vector2(16.5, 13.2501)
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_f87vr"]
+radius = 4.0
+height = 26.0
+
+[node name="Mosquito Enemy" type="CharacterBody2D"]
+collision_layer = 2
+collision_mask = 15
+motion_mode = 1
+script = ExtResource("1_ybsgu")
+
+[node name="Enemy Body" type="CharacterBody2D" parent="."]
+position = Vector2(0, -12)
+motion_mode = 1
+
+[node name="Icon" type="Sprite2D" parent="Enemy Body"]
+position = Vector2(0, -11.5)
+scale = Vector2(0.1875, 0.179688)
+texture = SubResource("CompressedTexture2D_cow0h")
+region_enabled = true
+region_rect = Rect2(0, 0, 128, 128)
+
+[node name="WallCollision" type="CollisionShape2D" parent="Enemy Body"]
+position = Vector2(0, -3)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_cow0h")
+
+[node name="AttackBox" type="Area2D" parent="Enemy Body"]
+position = Vector2(0, -3)
+rotation = 1.5708
+collision_layer = 2
+collision_mask = 4
+
+[node name="AttackCollisionArea" type="CollisionShape2D" parent="Enemy Body/AttackBox"]
+position = Vector2(-2.99994, 16)
+shape = SubResource("RectangleShape2D_nwwbn")
+disabled = true
+
+[node name="HitBox" type="Area2D" parent="Enemy Body"]
+position = Vector2(0, -3)
+rotation = 1.5708
+collision_layer = 2
+collision_mask = 6
+
+[node name="HitCollisionArea" type="CollisionShape2D" parent="Enemy Body/HitBox"]
+shape = SubResource("CapsuleShape2D_f87vr")
+debug_color = Color(1, 0.6, 0.701961, 0.419608)
+
+[node name="State Machine" type="Node" parent="." node_paths=PackedStringArray("initial_state")]
+script = ExtResource("2_ybsgu")
+initial_state = NodePath("Chase State")
+
+[node name="Idle State" type="Node" parent="State Machine" node_paths=PackedStringArray("enemy")]
+script = ExtResource("3_ibrlw")
+enemy = NodePath("../..")
+
+[node name="Chase State" type="Node" parent="State Machine" node_paths=PackedStringArray("enemy")]
+script = ExtResource("4_rojr2")
+enemy = NodePath("../..")
+
+[node name="Stun State" type="Node" parent="State Machine" node_paths=PackedStringArray("enemy")]
+script = ExtResource("5_74br6")
+enemy = NodePath("../..")
+
+[node name="Attack State" type="Node" parent="State Machine" node_paths=PackedStringArray("enemy")]
+script = ExtResource("6_0gqg2")
+enemy = NodePath("../..")
+
+[connection signal="body_entered" from="Enemy Body/AttackBox" to="." method="_on_attack_box_body_entered"]
+[connection signal="area_entered" from="Enemy Body/HitBox" to="." method="_on_hit_box_area_entered"]

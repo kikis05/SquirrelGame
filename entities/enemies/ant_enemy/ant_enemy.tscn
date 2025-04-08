@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://dhsd6cxjrxhtj"]
+[gd_scene load_steps=11 format=3 uid="uid://dhsd6cxjrxhtj"]
 
 [ext_resource type="Script" uid="uid://ny1bt2vvnakm" path="res://entities/enemies/ant_enemy/ant_enemy.gd" id="1_cs3af"]
 [ext_resource type="Texture2D" uid="uid://c3ihirpd8epus" path="res://icon.svg" id="2_7ggom"]
@@ -6,10 +6,14 @@
 [ext_resource type="Script" uid="uid://8jg436ppnko" path="res://entities/enemies/states/idle_state.gd" id="4_rnb2k"]
 [ext_resource type="Script" uid="uid://7spdl75ena5l" path="res://entities/enemies/states/chase_state.gd" id="5_wcsyl"]
 [ext_resource type="Script" uid="uid://dm4uiijfbbr7u" path="res://entities/enemies/states/stun_state.gd" id="6_4ldpi"]
+[ext_resource type="Script" uid="uid://cji0ts0qst0sl" path="res://entities/enemies/states/attack_state.gd" id="7_m6hkk"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_rnb2k"]
 radius = 3.0
 height = 28.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_m6hkk"]
+size = Vector2(16.5, 13.2501)
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_m6hkk"]
 radius = 4.0
@@ -28,20 +32,29 @@ texture = ExtResource("2_7ggom")
 region_enabled = true
 region_rect = Rect2(0, 0, 128, 128)
 
-[node name="Collision" type="CollisionShape2D" parent="."]
+[node name="WallCollision" type="CollisionShape2D" parent="."]
 position = Vector2(0, -3)
 rotation = 1.5708
 shape = SubResource("CapsuleShape2D_rnb2k")
 
-[node name="Timer" type="Timer" parent="Collision"]
+[node name="AttackBox" type="Area2D" parent="."]
+position = Vector2(0, -3)
+rotation = 1.5708
+collision_layer = 2
+collision_mask = 4
+
+[node name="AttackCollisionArea" type="CollisionShape2D" parent="AttackBox"]
+position = Vector2(-1.74994, 16.375)
+shape = SubResource("RectangleShape2D_m6hkk")
+disabled = true
 
 [node name="HitBox" type="Area2D" parent="."]
 position = Vector2(0, -3)
 rotation = 1.5708
 collision_layer = 2
-collision_mask = 13
+collision_mask = 6
 
-[node name="HitArea" type="CollisionShape2D" parent="HitBox"]
+[node name="HitCollisionArea" type="CollisionShape2D" parent="HitBox"]
 shape = SubResource("CapsuleShape2D_m6hkk")
 debug_color = Color(1, 0.6, 0.701961, 0.419608)
 
@@ -62,5 +75,7 @@ script = ExtResource("6_4ldpi")
 enemy = NodePath("../..")
 
 [node name="Attack State" type="Node" parent="State Machine"]
+script = ExtResource("7_m6hkk")
 
+[connection signal="body_entered" from="AttackBox" to="." method="_on_attack_box_body_entered"]
 [connection signal="area_entered" from="HitBox" to="." method="_on_hit_box_area_entered"]
