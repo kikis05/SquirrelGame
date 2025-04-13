@@ -29,7 +29,7 @@ func exit():
 	timer = null
 	enemy.stunned = false
 
-func physics_update(delta: float):
+func physics_update(_delta: float):
 	if enemy.stunned:
 		enemy.velocity = knockback
 		knockback = lerp(knockback, Vector2.ZERO, 0.1)

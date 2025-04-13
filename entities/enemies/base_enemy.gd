@@ -23,10 +23,10 @@ class_name BaseEnemy
 func apply_damage(_damage: int, _body: Node):
 	pass
 
-func take_damage(damage: int):
+func take_damage(_damage: int):
 	pass
 
-func heal(damage: int):
+func heal(_damage: int):
 	pass
 
 func die():
