@@ -1,12 +1,8 @@
 res://scenes/main.tscn
 res://entities/player/player.tscn
-res://entities/enemies/ant_enemy/ant_enemy.tscn
-res://gun.tscn
 res://bullet.tscn
+res://entities/enemies/ant_enemy/ant_enemy.tscn
 res://entities/enemies/mosquito_enemy/mosquito_enemy.tscn
-res://entities/enemies/mosquito_enemy/mosquito_enemy.gd
-res://entities/enemies/states/stun_state.gd
-res://entities/enemies/states/idle_state.gd
 res://entities/enemies/ant_enemy/ant_enemy.gd
-res://entities/enemies/states/death_state.gd
 res://entities/enemies/base_enemy.gd
+res://entities/enemies/states/chase_state.gd

@@ -15,12 +15,12 @@ load_path = "res://.godot/imported/icon.svg-218a8f2b3041327d8a5756f3a245f83b.cte
 radius = 3.0
 height = 24.0
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_nwwbn"]
-size = Vector2(16.5, 13.2501)
+[sub_resource type="CircleShape2D" id="CircleShape2D_ybsgu"]
+radius = 12.3693
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_f87vr"]
-radius = 4.0
-height = 26.0
+radius = 5.0
+height = 28.0
 
 [node name="Mosquito Enemy" type="CharacterBody2D"]
 collision_layer = 2
@@ -30,6 +30,8 @@ script = ExtResource("1_ybsgu")
 
 [node name="Enemy Body" type="CharacterBody2D" parent="."]
 position = Vector2(0, -12)
+collision_layer = 2
+collision_mask = 15
 motion_mode = 1
 
 [node name="Icon" type="Sprite2D" parent="Enemy Body"]
@@ -45,21 +47,20 @@ rotation = 1.5708
 shape = SubResource("CapsuleShape2D_cow0h")
 
 [node name="AttackBox" type="Area2D" parent="Enemy Body"]
-position = Vector2(0, -3)
+position = Vector2(-16, -3)
 rotation = 1.5708
 collision_layer = 2
 collision_mask = 4
 
 [node name="AttackCollisionArea" type="CollisionShape2D" parent="Enemy Body/AttackBox"]
-position = Vector2(-2.99994, 16)
-shape = SubResource("RectangleShape2D_nwwbn")
-disabled = true
+position = Vector2(-1.41859e-05, -4)
+shape = SubResource("CircleShape2D_ybsgu")
 
 [node name="HitBox" type="Area2D" parent="Enemy Body"]
 position = Vector2(0, -3)
 rotation = 1.5708
 collision_layer = 2
-collision_mask = 6
+collision_mask = 4
 
 [node name="HitCollisionArea" type="CollisionShape2D" parent="Enemy Body/HitBox"]
 shape = SubResource("CapsuleShape2D_f87vr")
@@ -90,4 +91,5 @@ script = ExtResource("7_ybsgu")
 enemy = NodePath("../..")
 
 [connection signal="body_entered" from="Enemy Body/AttackBox" to="." method="_on_attack_box_body_entered"]
+[connection signal="body_exited" from="Enemy Body/AttackBox" to="." method="_on_attack_box_body_exited"]
 [connection signal="area_entered" from="Enemy Body/HitBox" to="." method="_on_hit_box_area_entered"]

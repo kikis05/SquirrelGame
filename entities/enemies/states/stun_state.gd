@@ -21,7 +21,7 @@ func enter():
 	# how far back the enemy flies
 	enemy.set_velocity(Vector2.ZERO)
 	var direction = -(player.global_position - enemy.global_position).normalized()
-	knockback = direction * enemy.knockback_strength
+	knockback = direction * enemy.knockback_str
 	enemy.stunned = true
 
 func exit():

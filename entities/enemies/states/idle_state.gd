@@ -25,7 +25,7 @@ func update(delta: float):
 
 func physics_update(_delta: float):
 	if enemy != null:
-		enemy.velocity = move_direction * enemy.idle_speed
+		enemy.velocity = lerp(enemy.velocity, move_direction * enemy.idle_speed, enemy.accel)
 	
 	var direction = player.global_position - enemy.global_position
 	if direction.length() < enemy.detection_radius:

@@ -14,9 +14,6 @@ func physics_update(_delta: float):
 	var direction = player.global_position - enemy.global_position
 	
 	if direction.length() > enemy.in_range_radius:
-		enemy.velocity = direction.normalized() * enemy.chase_speed
+		enemy.velocity = lerp(enemy.velocity, direction.normalized() * enemy.chase_speed, enemy.accel)
 	else:
-		enemy.velocity = Vector2()
-	
-	if direction.length() > enemy.detection_radius:
-		transitioned.emit(self, "idle state")
+		enemy.velocity = lerp(enemy.velocity, Vector2(), enemy.friction)

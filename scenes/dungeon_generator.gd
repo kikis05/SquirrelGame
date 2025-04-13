@@ -1,0 +1,159 @@
+extends Node
+
+const GRID_WIDTH := 3
+const GRID_HEIGHT := 3
+
+const ROOM_TYPES := [
+	"StandardRoomN", "StandardRoomE", "StandardRoomS", "StandardRoomW",
+	"StandardRoomNE", "StandardRoomNS", "StandardRoomNW",
+	"StandardRoomES", "StandardRoomEW", "StandardRoomSW",
+	"StandardRoomNES", "StandardRoomNEW", "StandardRoomNSW",
+	"StandardRoomESW", "StandardRoomNESW"
+]
+
+var DOOR_CONFIGS := {
+	"StandardRoomN":    ["N"],
+	"StandardRoomE":    ["E"],
+	"StandardRoomS":    ["S"],
+	"StandardRoomW":    ["W"],
+
+	"StandardRoomNE":   ["N", "E"],
+	"StandardRoomNS":   ["N", "S"],
+	"StandardRoomNW":   ["N", "W"],
+	"StandardRoomES":   ["E", "S"],
+	"StandardRoomEW":   ["E", "W"],
+	"StandardRoomSW":   ["S", "W"],
+
+	"StandardRoomNES":  ["N", "E", "S"],
+	"StandardRoomNEW":  ["N", "E", "W"],
+	"StandardRoomNSW":  ["N", "S", "W"],
+	"StandardRoomESW":  ["E", "S", "W"],
+
+	"StandardRoomNESW": ["N", "E", "S", "W"]
+}
+
+var cell_possibilities : Array = []
+var dungeon_layout : Array = []
+
+func _ready():
+	randomize()
+	generate_valid_dungeon()
+	instance_dungeon()
+
+func get_valid_room_types(x: int, y: int) -> Array:
+	var valid = []
+	for rtype in ROOM_TYPES:
+		var doors = DOOR_CONFIGS[rtype]
+		if "N" in doors and y == 0: continue
+		if "S" in doors and y == GRID_HEIGHT - 1: continue
+		if "W" in doors and x == 0: continue
+		if "E" in doors and x == GRID_WIDTH - 1: continue
+		valid.append(rtype)
+	return valid
+
+func initialize():
+	cell_possibilities.clear()
+	dungeon_layout.clear()
+	for y in range(GRID_HEIGHT):
+		var row_poss = []
+		var row_layout = []
+		for x in range(GRID_WIDTH):
+			row_poss.append(get_valid_room_types(x, y))
+			row_layout.append(null)
+		cell_possibilities.append(row_poss)
+		dungeon_layout.append(row_layout)
+
+func find_lowest_entropy_cell() -> Vector2:
+	var min_entropy = 999999
+	var best_cell = Vector2(-1, -1)
+	for y in range(GRID_HEIGHT):
+		for x in range(GRID_WIDTH):
+			var count = cell_possibilities[y][x].size()
+			if count > 1 and count < min_entropy:
+				min_entropy = count
+				best_cell = Vector2(x, y)
+	return best_cell
+
+func propagate_constraints_deep(start_x: int, start_y: int):
+	var queue: Array = [Vector2(start_x, start_y)]
+	var direction_map = {
+		"N": {"dx": 0, "dy": -1, "opposite": "S"},
+		"E": {"dx": 1, "dy": 0,  "opposite": "W"},
+		"S": {"dx": 0, "dy": 1,  "opposite": "N"},
+		"W": {"dx": -1,"dy": 0,  "opposite": "E"},
+	}
+
+	while queue.size() > 0:
+		var current = queue.pop_front()
+		var cx = int(current.x)
+		var cy = int(current.y)
+		var current_type = dungeon_layout[cy][cx]
+		if current_type == null:
+			continue
+		var current_doors = DOOR_CONFIGS[current_type]
+
+		for dir in direction_map.keys():
+			var dx = direction_map[dir].dx
+			var dy = direction_map[dir].dy
+			var opposite = direction_map[dir].opposite
+
+			var nx = cx + dx
+			var ny = cy + dy
+			if nx < 0 or nx >= GRID_WIDTH or ny < 0 or ny >= GRID_HEIGHT:
+				continue
+
+			var neighbor_poss = cell_possibilities[ny][nx]
+			var new_poss = []
+
+			var current_requires = current_doors.has(dir)
+
+			for ntype in neighbor_poss:
+				var ndoors = DOOR_CONFIGS[ntype]
+				var neighbor_has_opposite = ndoors.has(opposite)
+				if current_requires == neighbor_has_opposite:
+					new_poss.append(ntype)
+
+			if new_poss.size() < neighbor_poss.size():
+				cell_possibilities[ny][nx] = new_poss
+				if new_poss.size() == 1 and dungeon_layout[ny][nx] == null:
+					dungeon_layout[ny][nx] = new_poss[0]
+					queue.append(Vector2(nx, ny))
+				elif new_poss.size() > 0:
+					queue.append(Vector2(nx, ny))
+
+func generate_dungeon_once() -> bool:
+	initialize()
+	while true:
+		var cell = find_lowest_entropy_cell()
+		if cell.x == -1:
+			return true
+		var poss = cell_possibilities[cell.y][cell.x]
+		if poss.size() == 0:
+			return false
+		var chosen = poss[randi() % poss.size()]
+		cell_possibilities[cell.y][cell.x] = [chosen]
+		dungeon_layout[cell.y][cell.x] = chosen
+		propagate_constraints_deep(cell.x, cell.y)
+	return false
+
+func generate_valid_dungeon():
+	for attempt in range(100):
+		if generate_dungeon_once():
+			return
+	push_warning("Failed to generate valid dungeon after multiple attempts.")
+
+func instance_dungeon():
+	var cell_size = Vector2(640, 360)
+	for y in range(GRID_HEIGHT):
+		for x in range(GRID_WIDTH):
+			var rtype = dungeon_layout[y][x]
+			if rtype == null:
+				rtype = "StandardRoomNESW"
+			var path = "res://Rooms/StandardRoomScenes/" + rtype + ".tscn"
+			if not ResourceLoader.exists(path):
+				path = "res://Rooms/StandardRoomScenes/StandardRoomNESW.tscn"
+			var scene = load(path)
+			if scene:
+				var inst = scene.instantiate()
+				add_child(inst)
+				inst.position = Vector2(x, y) * cell_size

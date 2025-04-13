@@ -26,6 +26,17 @@ motion_mode = 1
 platform_on_leave = 2
 script = ExtResource("1_cs3af")
 
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+visible = false
+position = Vector2(0, -6)
+scale = Vector2(0.21875, 0.09375)
+
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
+debug_enabled = true
+
+[node name="NavTimer" type="Timer" parent="."]
+autostart = true
+
 [node name="Icon" type="Sprite2D" parent="."]
 position = Vector2(0, -6)
 scale = Vector2(0.21875, 0.09375)
@@ -39,13 +50,12 @@ rotation = 1.5708
 shape = SubResource("CapsuleShape2D_rnb2k")
 
 [node name="AttackBox" type="Area2D" parent="."]
-position = Vector2(0, -3)
+position = Vector2(-17, -5)
 rotation = 1.5708
 collision_layer = 2
 collision_mask = 4
 
 [node name="AttackCollisionArea" type="CollisionShape2D" parent="AttackBox"]
-position = Vector2(-1.74994, 16.375)
 shape = SubResource("RectangleShape2D_m6hkk")
 disabled = true
 
@@ -82,5 +92,7 @@ script = ExtResource("7_m6hkk")
 script = ExtResource("8_uerhd")
 enemy = NodePath("../..")
 
+[connection signal="timeout" from="NavTimer" to="." method="_on_nav_timer_timeout"]
 [connection signal="body_entered" from="AttackBox" to="." method="_on_attack_box_body_entered"]
+[connection signal="body_exited" from="AttackBox" to="." method="_on_attack_box_body_exited"]
 [connection signal="area_entered" from="HitBox" to="." method="_on_hit_box_area_entered"]
