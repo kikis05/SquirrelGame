@@ -31,3 +31,6 @@ func heal(_damage: int):
 
 func die():
 	queue_free()
+
+func change_animation(_name: String):
+	pass

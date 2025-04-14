@@ -12,6 +12,7 @@ func enter():
 	add_child(timer)
 	enemy.set_velocity(Vector2.ZERO)
 	enemy.stunned = true
+	enemy.change_animation("stun")
 
 func exit():
 	timer.queue_free()
