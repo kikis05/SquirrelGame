@@ -40,14 +40,13 @@ func die():
 
 func flip():
 	var attackbox: Area2D = $"AttackBox"
-	var animatedsprite2d: AnimatedSprite2D = $"AnimatedSprite2D"
 	attackbox.position.x = -1 * attackbox.position.x
 	animatedsprite2d.flip_h = !animatedsprite2d.flip_h
 	flipped = !flipped
 
-func change_animation(name):
+func change_animation(new_anim):
 	if animatedsprite2d != null:
-		animatedsprite2d.play(name)
+		animatedsprite2d.play(new_anim)
 
 func _on_hit_box_area_entered(area):
 	if area.name.to_lower() == "bullet":
@@ -61,9 +60,6 @@ func _on_attack_box_body_entered(body):
 func _on_attack_box_body_exited(body):
 	if body.name.to_lower() == "player":
 		state_machine.transition_to("chase state")
-
-func _on_nav_timer_timeout():
-	pass # Replace with function body.
 
 func _on_animated_sprite_2d_animation_finished():
 	if animatedsprite2d.animation == "death":

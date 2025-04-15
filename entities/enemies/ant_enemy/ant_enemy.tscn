@@ -179,6 +179,7 @@ height = 22.0
 collision_layer = 2
 collision_mask = 15
 motion_mode = 1
+wall_min_slide_angle = 0.0872665
 platform_on_leave = 2
 script = ExtResource("1_cs3af")
 
@@ -189,12 +190,6 @@ animation = &"stun"
 autoplay = "chase"
 frame = 2
 frame_progress = 1.0
-
-[node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
-debug_enabled = true
-
-[node name="NavTimer" type="Timer" parent="."]
-autostart = true
 
 [node name="WallCollision" type="CollisionShape2D" parent="."]
 position = Vector2(0, -3)
@@ -243,7 +238,6 @@ script = ExtResource("8_uerhd")
 enemy = NodePath("../..")
 
 [connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]
-[connection signal="timeout" from="NavTimer" to="." method="_on_nav_timer_timeout"]
 [connection signal="body_entered" from="AttackBox" to="." method="_on_attack_box_body_entered"]
 [connection signal="body_exited" from="AttackBox" to="." method="_on_attack_box_body_exited"]
 [connection signal="area_entered" from="HitBox" to="." method="_on_hit_box_area_entered"]
