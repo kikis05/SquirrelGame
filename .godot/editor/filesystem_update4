@@ -2,6 +2,9 @@ res://entities/enemies/ant_enemy/ant_enemy.tscn
 res://scenes/main.tscn
 res://entities/player/player.tscn
 res://bullet.tscn
-res://entities/enemies/states/stun_state.gd
+res://entities/enemies/ant_enemy/ant_enemy.gd
 res://entities/enemies/base_enemy.gd
-res://entities/player/player.gd
+res://entities/enemies/states/chase_state.gd
+res://entities/enemies/states/idle_state.gd
+res://entities/enemies/states/stun_state.gd
+res://entities/enemies/states/attack_state.gd
