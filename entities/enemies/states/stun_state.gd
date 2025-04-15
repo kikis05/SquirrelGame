@@ -17,7 +17,6 @@ func enter():
 	timer.timeout.connect(on_timer_finished)
 	add_child(timer)
 	player = get_tree().get_first_node_in_group("player")
-	enemy.change_animation("stun")
 	
 	# how far back the enemy flies
 	enemy.set_velocity(Vector2.ZERO)

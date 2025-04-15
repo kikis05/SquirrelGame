@@ -15,7 +15,6 @@ func randomize_wander():
 
 func enter():
 	player = get_tree().get_first_node_in_group("player")
-	enemy.change_animation("idle")
 	randomize_wander()
 
 func update(delta: float):

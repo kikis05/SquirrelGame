@@ -78,15 +78,6 @@ texture = ExtResource("2_0wfyh")
 [node name="Enemy" parent="." instance=ExtResource("3_sugp2")]
 position = Vector2(395, 48)
 
-[node name="Ant Enemy4" parent="." instance=ExtResource("4_jyhfs")]
-position = Vector2(960, 192)
-
-[node name="Ant Enemy3" parent="." instance=ExtResource("4_jyhfs")]
-position = Vector2(640, 128)
-
-[node name="Ant Enemy2" parent="." instance=ExtResource("4_jyhfs")]
-position = Vector2(1280, 256)
-
 [node name="Ant Enemy" parent="." instance=ExtResource("4_jyhfs")]
 position = Vector2(320, 64)
 
