@@ -1,3 +1,6 @@
+Timer
+CollisionShape2D
+Area2D
 CanvasLayer
 ColorRect
 Button
@@ -7,8 +10,6 @@ Label
 RichTextLabel
 Sprite2D
 HBoxContainer
-CollisionShape2D
-Area2D
 Node2D
 Panel
 CharacterBody2D

@@ -44,3 +44,4 @@ position = Vector2(395, 48)
 [node name="CoinsContainer" parent="CanvasLayer" instance=ExtResource("6_tefeu")]
 
 [node name="Menu" parent="CanvasLayer" instance=ExtResource("8_tipki")]
+visible = false

@@ -13,7 +13,7 @@ grow_vertical = 2
 scale = Vector2(1, 1.00333)
 script = ExtResource("1_lti8b")
 
-[node name="ColorRect2" type="ColorRect" parent="."]
+[node name="Blur" type="ColorRect" parent="."]
 self_modulate = Color(1, 1, 1, 0.392157)
 layout_mode = 0
 offset_right = 40.0

@@ -7,20 +7,26 @@
 size = Vector2(6, 6)
 
 [node name="Bullet" type="Area2D"]
+scale = Vector2(1.84242, 1.71292)
 collision_mask = 0
 script = ExtResource("1_v8qja")
 speed = 800
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+self_modulate = Color(0.557033, 0.501735, 0.352986, 1)
 visibility_layer = 2
-scale = Vector2(0.05, 0.05)
+scale = Vector2(0.05, 0.0297954)
 texture = ExtResource("1_v7oki")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 visibility_layer = 2
+scale = Vector2(1, 0.595908)
 shape = SubResource("RectangleShape2D_v8qja")
 
 [node name="DestroyBullet" type="Timer" parent="."]
-wait_time = 0.5
+wait_time = 4.0
+
+[node name="FadeTimer" type="Timer" parent="."]
 
 [connection signal="timeout" from="DestroyBullet" to="." method="_on_destroy_bullet_timeout"]
+[connection signal="timeout" from="FadeTimer" to="." method="_on_fade_timer_timeout"]

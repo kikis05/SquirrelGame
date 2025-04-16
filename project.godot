@@ -28,6 +28,7 @@ window/stretch/scale_mode="integer"
 
 enemy=""
 coin=""
+player=""
 
 [input]
 
