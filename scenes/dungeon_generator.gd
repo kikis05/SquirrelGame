@@ -1,9 +1,13 @@
 extends Node
 
-const GRID_WIDTH := 3
-const GRID_HEIGHT := 3
+var MIN_NONEMPTY_ROOMS := 10
+var MAX_GRID_SIZE := 20
+
+var GRID_WIDTH := 4
+var GRID_HEIGHT := 4
 
 const ROOM_TYPES := [
+	"EmptyRoom",
 	"StandardRoomN", "StandardRoomE", "StandardRoomS", "StandardRoomW",
 	"StandardRoomNE", "StandardRoomNS", "StandardRoomNW",
 	"StandardRoomES", "StandardRoomEW", "StandardRoomSW",
@@ -12,24 +16,22 @@ const ROOM_TYPES := [
 ]
 
 var DOOR_CONFIGS := {
-	"StandardRoomN":    ["N"],
-	"StandardRoomE":    ["E"],
-	"StandardRoomS":    ["S"],
-	"StandardRoomW":    ["W"],
-
-	"StandardRoomNE":   ["N", "E"],
-	"StandardRoomNS":   ["N", "S"],
-	"StandardRoomNW":   ["N", "W"],
-	"StandardRoomES":   ["E", "S"],
-	"StandardRoomEW":   ["E", "W"],
-	"StandardRoomSW":   ["S", "W"],
-
-	"StandardRoomNES":  ["N", "E", "S"],
-	"StandardRoomNEW":  ["N", "E", "W"],
-	"StandardRoomNSW":  ["N", "S", "W"],
-	"StandardRoomESW":  ["E", "S", "W"],
-
-	"StandardRoomNESW": ["N", "E", "S", "W"]
+	"EmptyRoom":       [],
+	"StandardRoomN":   ["N"],
+	"StandardRoomE":   ["E"],
+	"StandardRoomS":   ["S"],
+	"StandardRoomW":   ["W"],
+	"StandardRoomNE":  ["N", "E"],
+	"StandardRoomNS":  ["N", "S"],
+	"StandardRoomNW":  ["N", "W"],
+	"StandardRoomES":  ["E", "S"],
+	"StandardRoomEW":  ["E", "W"],
+	"StandardRoomSW":  ["S", "W"],
+	"StandardRoomNES": ["N", "E", "S"],
+	"StandardRoomNEW": ["N", "E", "W"],
+	"StandardRoomNSW": ["N", "S", "W"],
+	"StandardRoomESW": ["E", "S", "W"],
+	"StandardRoomNESW":["N", "E", "S", "W"]
 }
 
 var cell_possibilities : Array = []
@@ -37,7 +39,7 @@ var dungeon_layout : Array = []
 
 func _ready():
 	randomize()
-	generate_valid_dungeon()
+	generate_dungeon_with_min_rooms(MIN_NONEMPTY_ROOMS)
 	instance_dungeon()
 
 func get_valid_room_types(x: int, y: int) -> Array:
@@ -105,13 +107,20 @@ func propagate_constraints_deep(start_x: int, start_y: int):
 			var neighbor_poss = cell_possibilities[ny][nx]
 			var new_poss = []
 
-			var current_requires = current_doors.has(dir)
+			var current_has = current_doors.has(dir)
 
 			for ntype in neighbor_poss:
 				var ndoors = DOOR_CONFIGS[ntype]
-				var neighbor_has_opposite = ndoors.has(opposite)
-				if current_requires == neighbor_has_opposite:
-					new_poss.append(ntype)
+				var neighbor_has = ndoors.has(opposite)
+
+				if current_type == "EmptyRoom":
+					if neighbor_has: continue
+				elif ntype == "EmptyRoom":
+					if current_has: continue
+				elif current_has != neighbor_has:
+					continue
+
+				new_poss.append(ntype)
 
 			if new_poss.size() < neighbor_poss.size():
 				cell_possibilities[ny][nx] = new_poss
@@ -136,19 +145,93 @@ func generate_dungeon_once() -> bool:
 		propagate_constraints_deep(cell.x, cell.y)
 	return false
 
-func generate_valid_dungeon():
-	for attempt in range(100):
-		if generate_dungeon_once():
-			return
-	push_warning("Failed to generate valid dungeon after multiple attempts.")
+func generate_dungeon_with_min_rooms(min_rooms: int):
+	for size in range(4, MAX_GRID_SIZE + 1):
+		GRID_WIDTH = size
+		GRID_HEIGHT = size
+		for attempt in range(100):
+			if generate_dungeon_once() and is_fully_connected():
+				var count := 0
+				for y in range(GRID_HEIGHT):
+					for x in range(GRID_WIDTH):
+						var t = dungeon_layout[y][x]
+						if t != null and t != "EmptyRoom":
+							count += 1
+				if count >= min_rooms:
+					print("✅ Dungeon with %d rooms generated in grid %dx%d" % [count, GRID_WIDTH, GRID_HEIGHT])
+					return
+	push_warning("❌ Failed to generate dungeon with %d rooms after max grid/attempts." % min_rooms)
+
+func is_fully_connected() -> bool:
+	var visited := []
+	for y in range(GRID_HEIGHT):
+		visited.append([])
+		for x in range(GRID_WIDTH):
+			visited[y].append(false)
+
+	var directions := {
+		"N": Vector2(0, -1),
+		"S": Vector2(0, 1),
+		"E": Vector2(1, 0),
+		"W": Vector2(-1, 0)
+	}
+	var opposites := {
+		"N": "S",
+		"S": "N",
+		"E": "W",
+		"W": "E"
+	}
+
+	var start := Vector2(-1, -1)
+	for y in range(GRID_HEIGHT):
+		for x in range(GRID_WIDTH):
+			var t = dungeon_layout[y][x]
+			if t != null and t != "EmptyRoom":
+				start = Vector2(x, y)
+				break
+		if start.x != -1:
+			break
+	if start.x == -1:
+		return false
+
+	var queue := [start]
+	visited[start.y][start.x] = true
+
+	while queue.size() > 0:
+		var pos = queue.pop_front()
+		var room_type = dungeon_layout[pos.y][pos.x]
+		var doors = DOOR_CONFIGS[room_type]
+
+		for d in doors:
+			var neighbor = pos + directions[d]
+			if not (neighbor.x >= 0 and neighbor.x < GRID_WIDTH and neighbor.y >= 0 and neighbor.y < GRID_HEIGHT):
+				continue
+			var neighbor_type = dungeon_layout[neighbor.y][neighbor.x]
+			if neighbor_type == null or neighbor_type == "EmptyRoom":
+				continue
+			var neighbor_doors = DOOR_CONFIGS[neighbor_type]
+			if opposites[d] in neighbor_doors and not visited[neighbor.y][neighbor.x]:
+				visited[neighbor.y][neighbor.x] = true
+				queue.append(neighbor)
+
+	var total_rooms := 0
+	var connected_rooms := 0
+	for y in range(GRID_HEIGHT):
+		for x in range(GRID_WIDTH):
+			if dungeon_layout[y][x] != null and dungeon_layout[y][x] != "EmptyRoom":
+				total_rooms += 1
+				if visited[y][x]:
+					connected_rooms += 1
+
+	return total_rooms == connected_rooms
 
 func instance_dungeon():
 	var cell_size = Vector2(640, 360)
 	for y in range(GRID_HEIGHT):
 		for x in range(GRID_WIDTH):
 			var rtype = dungeon_layout[y][x]
-			if rtype == null:
-				rtype = "StandardRoomNESW"
+			if rtype == null or rtype == "EmptyRoom":
+				continue
 			var path = "res://Rooms/StandardRoomScenes/" + rtype + ".tscn"
 			if not ResourceLoader.exists(path):
 				path = "res://Rooms/StandardRoomScenes/StandardRoomNESW.tscn"
