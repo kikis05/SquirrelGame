@@ -1,0 +1,21 @@
+[gd_scene load_steps=3 format=3 uid="uid://bptqwns6p2701"]
+
+[ext_resource type="Script" uid="uid://dxhxk3tj8fipq" path="res://coins_container.gd" id="1_mg3v8"]
+[ext_resource type="Texture2D" uid="uid://c3ihirpd8epus" path="res://icon.svg" id="2_uhx8y"]
+
+[node name="CoinsContainer" type="HBoxContainer"]
+offset_left = 1.0
+offset_top = 30.0
+offset_right = 116.0
+offset_bottom = 68.0
+alignment = 1
+script = ExtResource("1_mg3v8")
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 2
+text = "0"
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(19, 21)
+scale = Vector2(0.242187, 0.242187)
+texture = ExtResource("2_uhx8y")

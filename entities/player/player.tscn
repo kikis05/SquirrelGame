@@ -22,6 +22,8 @@ radius = 9.0
 height = 32.0
 
 [node name="Player" type="CharacterBody2D"]
+light_mask = 4
+visibility_layer = 11
 script = ExtResource("1_abrql")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
@@ -41,6 +43,8 @@ visible = false
 position = Vector2(0, -10)
 
 [node name="PlayerHitBox" type="Area2D" parent="."]
+light_mask = 4
+visibility_layer = 11
 script = ExtResource("5_fkugw")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerHitBox"]
