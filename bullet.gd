@@ -40,12 +40,6 @@ func _physics_process(delta: float) -> void:
 				has_landed = true
 				landingTimer.start()
 	
-func _on_body_entered(body):
-	#group for enemies
-	#if body.is_in_group("enemies"):
-	print("Entered Body")
-	body.die() #not sure what this is
-	queue_free()
 
 #Delete this once we implement collision with enemy
 func _on_destroy_bullet_timeout() -> void:
@@ -63,3 +57,10 @@ func set_damage(damage_):
 	damage = damage_
 func get_damage():
 	return damage
+
+
+func _on_area_entered(area: Area2D) -> void:
+	if area.is_in_group("enemy"):
+		print("Entered Body")
+		#area.die() #not sure what this is
+		queue_free()

@@ -38,6 +38,7 @@ position = Vector2(395, 48)
 [node name="Coin" parent="." instance=ExtResource("5_o6xl0")]
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
+process_mode = 2
 
 [node name="HealthContainer" parent="CanvasLayer" instance=ExtResource("4_jyhfs")]
 

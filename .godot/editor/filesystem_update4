@@ -1,9 +1,10 @@
-res://bullet.tscn
-res://bullet.gd
 res://scenes/main.tscn
 res://entities/player/player.tscn
 res://enemy.tscn
 res://health_container.tscn
 res://health_acorn.tscn
 res://gun.tscn
-res://gun.gd
+res://bullet.tscn
+res://bullet.gd
+res://menu.tscn
+res://menu.gd
