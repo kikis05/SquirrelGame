@@ -22,7 +22,7 @@ func _init():
 
 func _ready():
 	player = get_tree().get_first_node_in_group("player")
-	if player.position.x > position.x:
+	if velocity.x > 0:
 		sprite.flip_h = true
 		flipped = true
 	make_path()

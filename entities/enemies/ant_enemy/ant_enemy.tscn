@@ -179,7 +179,7 @@ height = 22.0
 collision_layer = 2
 collision_mask = 15
 motion_mode = 1
-wall_min_slide_angle = 0.0872665
+wall_min_slide_angle = 0.0
 platform_on_leave = 2
 script = ExtResource("1_cs3af")
 

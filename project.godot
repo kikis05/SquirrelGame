@@ -78,6 +78,10 @@ attack_right={
 2d_physics/layer_3="Player"
 2d_physics/layer_4="Item"
 
+[navigation]
+
+2d/default_edge_connection_margin=8.0
+
 [rendering]
 
 textures/canvas_textures/default_texture_filter=0
