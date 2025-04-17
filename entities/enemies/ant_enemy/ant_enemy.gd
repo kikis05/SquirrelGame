@@ -1,15 +1,15 @@
 extends BaseEnemy
+class_name AntEnemy
 
 @onready var state_machine: Node = $"State Machine"
-@onready var animatedsprite2d: AnimatedSprite2D = $"AnimatedSprite2D"
-
+@onready var sprite: AnimatedSprite2D = $"AnimatedSprite2D"
 
 func _init():
 	health = 3
 	accel = 0.3 
 	friction = 0.25
 	idle_speed = 12.0
-	chase_speed = 50.0
+	chase_speed = 25
 	knockback_str = 100.0
 	
 	stunned = false
@@ -22,10 +22,12 @@ func _init():
 func _ready():
 	player = get_tree().get_first_node_in_group("player")
 	if player.position.x > position.x:
-		animatedsprite2d.flip_h = true
+		sprite.flip_h = true
 		flipped = true
+	make_path()
 
 func _physics_process(_delta):
+	# sprite flipping
 	if player.position.x > position.x and !flipped:
 		flip()
 	elif player.position.x < position.x and flipped:
@@ -41,12 +43,16 @@ func die():
 func flip():
 	var attackbox: Area2D = $"AttackBox"
 	attackbox.position.x = -1 * attackbox.position.x
-	animatedsprite2d.flip_h = !animatedsprite2d.flip_h
+	sprite.flip_h = !sprite.flip_h
 	flipped = !flipped
 
 func change_animation(new_anim):
-	if animatedsprite2d != null:
-		animatedsprite2d.play(new_anim)
+	if sprite != null:
+		sprite.play(new_anim)
+
+func get_nav_agent():
+	return get_node("NavigationAgent2D")
+
 
 func _on_hit_box_area_entered(area):
 	if area.name.to_lower() == "bullet":
@@ -62,5 +68,5 @@ func _on_attack_box_body_exited(body):
 		state_machine.transition_to("chase state")
 
 func _on_animated_sprite_2d_animation_finished():
-	if animatedsprite2d.animation == "death":
+	if sprite.animation == "death":
 		queue_free()

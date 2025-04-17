@@ -21,8 +21,8 @@ func enter():
 	
 	# how far back the enemy flies
 	enemy.set_velocity(Vector2.ZERO)
-	var direction = -(player.global_position - enemy.global_position).normalized()
-	knockback = direction * enemy.knockback_str
+	var dir = -(player.global_position - enemy.global_position).normalized()
+	knockback = dir * enemy.knockback_str
 	enemy.stunned = true
 
 func exit():
@@ -30,10 +30,11 @@ func exit():
 	timer = null
 	enemy.stunned = false
 
-func physics_update(_delta: float):
+func physics_process(_delta: float):
 	if enemy.stunned:
 		enemy.velocity = knockback
 		knockback = lerp(knockback, Vector2.ZERO, 0.1)
+	enemy.move_and_slide()
 
 func on_timer_finished():
 	if enemy.health <= 0:

@@ -24,7 +24,7 @@ func update(delta: float):
 	else:
 		randomize_wander()
 
-func physics_update(_delta: float):
+func physics_process(_delta: float):
 	if enemy != null:
 		enemy.velocity = lerp(enemy.velocity, move_direction * enemy.idle_speed, enemy.accel)
 	

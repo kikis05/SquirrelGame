@@ -191,6 +191,8 @@ autoplay = "chase"
 frame = 2
 frame_progress = 1.0
 
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
+
 [node name="WallCollision" type="CollisionShape2D" parent="."]
 position = Vector2(0, -3)
 rotation = 1.5708
@@ -230,8 +232,9 @@ enemy = NodePath("../..")
 script = ExtResource("6_4ldpi")
 enemy = NodePath("../..")
 
-[node name="Attack State" type="Node" parent="State Machine"]
+[node name="Attack State" type="Node" parent="State Machine" node_paths=PackedStringArray("enemy")]
 script = ExtResource("7_m6hkk")
+enemy = NodePath("../..")
 
 [node name="Death State" type="Node" parent="State Machine" node_paths=PackedStringArray("enemy")]
 script = ExtResource("8_uerhd")

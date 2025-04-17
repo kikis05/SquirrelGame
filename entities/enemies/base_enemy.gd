@@ -20,10 +20,16 @@ class_name BaseEnemy
 @export var in_range_radius: int 
 # range to be close enough to attack without being on top of the player
 
+func physics_process(_delta: float):
+	pass
+
 func apply_damage(_damage: int, _body: Node):
 	pass
 
 func take_damage(_damage: int):
+	pass
+
+func make_path():
 	pass
 
 func heal(_damage: int):
@@ -33,4 +39,7 @@ func die():
 	queue_free()
 
 func change_animation(_name: String):
+	pass
+
+func get_nav_agent():
 	pass

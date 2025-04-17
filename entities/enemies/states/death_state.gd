@@ -8,3 +8,6 @@ class_name Death_State
 
 func enter():
 	enemy.die()
+
+func physics_process(_delta):
+	pass
