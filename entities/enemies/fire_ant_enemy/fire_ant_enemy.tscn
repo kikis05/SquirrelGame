@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://xhg08ovbav64"]
+
+[ext_resource type="Script" uid="uid://b0ge60u6vxiuy" path="res://entities/enemies/fire_ant_enemy/fire_ant_enemy.gd" id="1_7op1r"]
+
+[node name="fire_ant_enemy" type="CharacterBody2D"]
+script = ExtResource("1_7op1r")
+metadata/_custom_type_script = "uid://ny1bt2vvnakm"

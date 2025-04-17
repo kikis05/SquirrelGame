@@ -26,8 +26,11 @@ window/stretch/scale_mode="integer"
 
 [global_group]
 
+<<<<<<< HEAD
 enemy=""
 coin=""
+=======
+>>>>>>> enemy1
 player=""
 
 [input]
@@ -83,7 +86,19 @@ Escape={
 ]
 }
 
+[layer_names]
+
+2d_physics/layer_1="Wall"
+2d_physics/layer_2="Enemy"
+2d_physics/layer_3="Player"
+2d_physics/layer_4="Item"
+
+[navigation]
+
+2d/default_edge_connection_margin=8.0
+
 [rendering]
 
+textures/canvas_textures/default_texture_filter=0
 renderer/rendering_method="gl_compatibility"
 renderer/rendering_method.mobile="gl_compatibility"

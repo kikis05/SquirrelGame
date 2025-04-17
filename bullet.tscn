@@ -7,10 +7,13 @@
 size = Vector2(6, 6)
 
 [node name="Bullet" type="Area2D"]
+
 scale = Vector2(1.84242, 1.71292)
-collision_mask = 0
+collision_layer = 4
+collision_mask = 11
+
 script = ExtResource("1_v8qja")
-speed = 800
+speed = 600
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 self_modulate = Color(0.557033, 0.501735, 0.352986, 1)

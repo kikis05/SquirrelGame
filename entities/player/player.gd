@@ -41,7 +41,7 @@ func _input(event):
 func _ready():
 	pass
 
-func _physics_process(delta):
+func _physics_process(_delta):
 	
 	
 	if (Input.is_action_pressed("attack_right")
