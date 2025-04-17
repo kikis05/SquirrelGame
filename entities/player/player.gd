@@ -85,11 +85,13 @@ func _on_hit_box_area_entered(area: Area2D) -> void:
 	if area.is_in_group("coin"):
 		coins += 1
 		coins_changed.emit(coins)
+		
 func get_max_health():
 	if max_health % 2 != 0:
 		max_health += 1 #make sure health is even, could instead do error message later
 		
 	return max_health
+	
 func get_health():
 	return current_health
 	

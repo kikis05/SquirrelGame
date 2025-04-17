@@ -186,7 +186,7 @@ script = ExtResource("1_cs3af")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(0, -16)
 sprite_frames = SubResource("SpriteFrames_wec8x")
-animation = &"stun"
+animation = &"death"
 autoplay = "chase"
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]

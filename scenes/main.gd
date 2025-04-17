@@ -10,7 +10,7 @@ func _ready() :
 	health_container.setMaxAcorns(player.get_max_health() / 2 )
 	health_container.updateHealth(player.get_health())
 	player.health_changed.connect(health_container.updateHealth)
-
+#
 	coins_container.update_coins(player.get_coins())
 	player.coins_changed.connect(coins_container.update_coins)
 	

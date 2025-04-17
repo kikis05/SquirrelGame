@@ -26,11 +26,8 @@ window/stretch/scale_mode="integer"
 
 [global_group]
 
-<<<<<<< HEAD
 enemy=""
 coin=""
-=======
->>>>>>> enemy1
 player=""
 
 [input]
