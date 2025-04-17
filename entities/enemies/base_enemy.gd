@@ -3,7 +3,7 @@ class_name BaseEnemy
 
 ## General vars ##
 @export var player: CharacterBody2D
-@export var health: int
+@export var health: float
 @export var accel: float # acceleration
 @export var friction: float
 @export var idle_speed: float

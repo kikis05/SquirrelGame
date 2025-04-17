@@ -3,9 +3,10 @@ class_name AntEnemy
 
 @onready var state_machine: Node = $"State Machine"
 @onready var sprite: AnimatedSprite2D = $"AnimatedSprite2D"
+var player_in_range = false
 
 func _init():
-	health = 3
+	health = 3.0
 	accel = 0.3 
 	friction = 0.25
 	idle_speed = 12.0
@@ -39,6 +40,10 @@ func take_damage(damage):
 
 func die():
 	change_animation("death")
+	var attack_box: Area2D = $"AttackBox"
+	var hit_box: Area2D = $"HitBox"
+	attack_box.monitoring = false
+	hit_box.monitoring = false
 
 func flip():
 	var attackbox: Area2D = $"AttackBox"
@@ -55,18 +60,24 @@ func get_nav_agent():
 
 
 func _on_hit_box_area_entered(area):
-	if area.name.to_lower() == "bullet":
-		take_damage(1)
-		state_machine.transition_to("stun state") # updates stunned based on state
+	if area.name.to_lower() == "bullet" and health > 0:
+		print("TODO: Update this with the player weapon so enemy takes proper dmg")
+		take_damage(1) # FIX ATTACK == account for weapon type and damage
+		state_machine.transition_to("stun state")
 
 func _on_attack_box_body_entered(body):
-	if body.name.to_lower() == "player":
+	if body.name.to_lower() == "player" and health > 0:
 		state_machine.transition_to("attack state")
+		player_in_range = true
 
 func _on_attack_box_body_exited(body):
-	if body.name.to_lower() == "player":
+	if body.name.to_lower() == "player" and health > 0:
 		state_machine.transition_to("chase state")
+		player_in_range = false
 
 func _on_animated_sprite_2d_animation_finished():
 	if sprite.animation == "death":
 		queue_free()
+	elif sprite.animation == "attack" and player_in_range:
+		print("TODO: Player takes DMG") # FIX ATTACK == make it so player takes 1 damage when "attack" animation completes
+		sprite.play("idle")

@@ -17,16 +17,19 @@ func _ready():
 	timer.one_shot = false
 	timer.timeout.connect(on_timer_timeout)
 	add_child(timer)
+	
+	player = get_tree().get_first_node_in_group("player")
 
 func enter():
-	print(enemy.health)
-	player = get_tree().get_first_node_in_group("player")
 	enemy.change_animation("chase")
 	timer.start()
 
 func exit():
 	timer.stop()
 	nav_agent.target_position = enemy.global_position
+	enemy.velocity = Vector2.ZERO 
+	# NOTE: enemies don't get pushed back as far as I'd like when they're stunned near the player
+	enemy.move_and_slide()
 
 func physics_process(_delta: float):
 	if nav_agent != null:

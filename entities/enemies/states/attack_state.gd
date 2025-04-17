@@ -4,23 +4,26 @@ class_name Attack_State
 @export var enemy: CharacterBody2D
 var timer: Timer
 
-func enter():
+func _ready():
 	timer = Timer.new()
-	timer.wait_time = 0.5
-	timer.autostart = true
+	timer.wait_time = 1
+	timer.one_shot = true
+	timer.autostart = false
 	timer.timeout.connect(on_timer_finished)
 	add_child(timer)
+
+func enter():
+	timer.start()
 	enemy.set_velocity(Vector2.ZERO)
-	enemy.stunned = true
-	enemy.change_animation("stun")
+	enemy.attacking = true
+	enemy.change_animation("attack")
 
 func exit():
-	timer.queue_free()
-	timer = null
-	enemy.stunned = false
+	timer.stop()
+	enemy.attacking = false
 
 func on_timer_finished():
-	transitioned.emit(self, "chase state")
+	transitioned.emit(self, "attack state")
 
-
-### TO DO: ADD ACTUAL ATTACKS
+func physics_process(_delta):
+	pass
