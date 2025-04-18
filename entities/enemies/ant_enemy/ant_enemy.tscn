@@ -199,7 +199,7 @@ shape = SubResource("CapsuleShape2D_rnb2k")
 [node name="AttackBox" type="Area2D" parent="."]
 position = Vector2(-5, -5)
 collision_layer = 2
-collision_mask = 6
+collision_mask = 4
 
 [node name="AttackCollisionArea" type="CollisionShape2D" parent="AttackBox"]
 shape = SubResource("CapsuleShape2D_uerhd")
@@ -207,7 +207,7 @@ shape = SubResource("CapsuleShape2D_uerhd")
 [node name="HitBox" type="Area2D" parent="."]
 position = Vector2(0, -11)
 collision_layer = 2
-collision_mask = 6
+collision_mask = 4
 
 [node name="HitCollisionArea" type="CollisionShape2D" parent="HitBox"]
 shape = SubResource("CapsuleShape2D_m6hkk")

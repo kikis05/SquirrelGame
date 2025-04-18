@@ -2,8 +2,8 @@ extends HBoxContainer
 
 @onready var AcornGUIClass = preload("res://health_acorn.tscn")
 
-func setMaxAcorns(max: int):
-	for i in range(max):
+func setMaxAcorns(max_amount: int):
+	for i in range(max_amount):
 		var acorn = AcornGUIClass.instantiate()
 		add_child(acorn)
 		

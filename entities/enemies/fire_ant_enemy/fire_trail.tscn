@@ -1,0 +1,65 @@
+[gd_scene load_steps=5 format=3 uid="uid://bgdruxs8r68ud"]
+
+[ext_resource type="Script" uid="uid://00x1ejjnbrks" path="res://entities/enemies/fire_ant_enemy/fire_trail.gd" id="1_nkxie"]
+[ext_resource type="Texture2D" uid="uid://c3ihirpd8epus" path="res://icon.svg" id="2_n0x3s"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_8js0o"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_n0x3s")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_n0x3s")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_n0x3s")
+}],
+"loop": false,
+"name": &"death",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_n0x3s")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_nkxie"]
+radius = 2.0
+height = 14.0
+
+[node name="Fire Trail" type="CharacterBody2D" node_paths=PackedStringArray("sprite")]
+collision_layer = 2
+collision_mask = 4
+script = ExtResource("1_nkxie")
+sprite = NodePath("AnimatedSprite2D")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 3.0
+one_shot = true
+autostart = true
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, -3)
+scale = Vector2(0.125828, 0.0458303)
+sprite_frames = SubResource("SpriteFrames_8js0o")
+animation = &"death"
+autoplay = "idle"
+
+[node name="AttackBox" type="Area2D" parent="."]
+rotation = 1.5708
+collision_layer = 2
+collision_mask = 4
+
+[node name="AttackCollisionArea" type="CollisionShape2D" parent="AttackBox"]
+position = Vector2(-2, 8.74228e-08)
+shape = SubResource("CapsuleShape2D_nkxie")
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]
+[connection signal="body_entered" from="AttackBox" to="." method="_on_attack_box_body_entered"]
+[connection signal="body_exited" from="AttackBox" to="." method="_on_attack_box_body_exited"]

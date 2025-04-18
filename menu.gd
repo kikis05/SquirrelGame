@@ -7,7 +7,7 @@ func resume():
 func pause ():
 	get_tree().paused = true
 	
-func _physics_process(delta):
+func _physics_process(_delta):
 	if Input.is_action_just_pressed("Escape") and get_tree().paused == false:
 		print("here")
 		pause()

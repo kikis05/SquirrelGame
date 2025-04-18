@@ -29,9 +29,9 @@ func _ready():
 
 func _physics_process(_delta):
 	# sprite flipping
-	if player.position.x > position.x and !flipped:
+	if velocity.x > 0 and !flipped:
 		flip()
-	elif player.position.x < position.x and flipped:
+	elif velocity.x < 0 and flipped:
 		flip()
 	move_and_slide()
 
@@ -61,7 +61,7 @@ func get_nav_agent():
 
 func _on_hit_box_area_entered(area):
 	if area.name.to_lower() == "bullet" and health > 0:
-		print("TODO: Update this with the player weapon so enemy takes proper dmg")
+		# ANNA -- print("TODO: Update this with the player weapon so enemy takes proper dmg")
 		take_damage(1) # FIX ATTACK == account for weapon type and damage
 		state_machine.transition_to("stun state")
 
@@ -79,5 +79,5 @@ func _on_animated_sprite_2d_animation_finished():
 	if sprite.animation == "death":
 		queue_free()
 	elif sprite.animation == "attack" and player_in_range:
-		print("TODO: Player takes DMG") # FIX ATTACK == make it so player takes 1 damage when "attack" animation completes
+		# ANNA -- print("TODO: Player takes DMG") # FIX ATTACK == make it so player takes 1 damage when "attack" animation completes
 		sprite.play("idle")

@@ -14,7 +14,7 @@ func _ready() :
 	coins_container.update_coins(player.get_coins())
 	player.coins_changed.connect(coins_container.update_coins)
 	
-func _process(delta):
+func _process(_delta):
 	if Input.is_action_just_pressed("Escape") and get_tree().paused == false:
 		menu.show()
 		menu.pause()

@@ -4,8 +4,8 @@
 [ext_resource type="Script" uid="uid://djinnnl2c7xs5" path="res://scenes/main.gd" id="1_tbgi4"]
 [ext_resource type="Texture2D" uid="uid://c3ihirpd8epus" path="res://icon.svg" id="2_0wfyh"]
 [ext_resource type="PackedScene" uid="uid://cu3p58x0nnbyr" path="res://enemy.tscn" id="3_sugp2"]
-[ext_resource type="PackedScene" uid="uid://dhsd6cxjrxhtj" path="res://entities/enemies/ant_enemy/ant_enemy.tscn" id="4_jyhfs"]
 [ext_resource type="PackedScene" uid="uid://iesxfm68i4pw" path="res://coin.tscn" id="5_o6xl0"]
+[ext_resource type="PackedScene" uid="uid://xhg08ovbav64" path="res://entities/enemies/fire_ant_enemy/fire_ant_enemy.tscn" id="6_85g3d"]
 [ext_resource type="PackedScene" uid="uid://bptqwns6p2701" path="res://coins_container.tscn" id="6_tefeu"]
 [ext_resource type="PackedScene" uid="uid://c1x03uf7p3bj1" path="res://health_container.tscn" id="7_85g3d"]
 [ext_resource type="PackedScene" uid="uid://tfnoonrvjm30" path="res://menu.tscn" id="8_tipki"]
@@ -57,8 +57,8 @@ position = Vector2(395, 48)
 
 [node name="Coin" parent="." instance=ExtResource("5_o6xl0")]
 
-[node name="Ant Enemy" parent="." instance=ExtResource("4_jyhfs")]
-position = Vector2(334, 137)
+[node name="fire_ant_enemy" parent="." instance=ExtResource("6_85g3d")]
+position = Vector2(221, 134)
 
 [node name="TileMapLayer" type="TileMapLayer" parent="."]
 position = Vector2(6, -3)
