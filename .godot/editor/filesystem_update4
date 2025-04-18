@@ -1,12 +1,2 @@
-res://entities/enemies/fire_ant_enemy/fire_ant_enemy.tscn
 res://scenes/main.tscn
-res://entities/enemies/ant_enemy/ant_enemy.tscn
-res://entities/enemies/ant_enemy/ant_enemy.gd
-res://entities/enemies/fire_ant_enemy/fire_ant_enemy.gd
-res://menu.gd
-res://entities/enemies/states/state.gd
-res://scenes/main.gd
-res://health_container.gd
-res://entities/enemies/fire_ant_enemy/fire_trail.tscn
-res://entities/enemies/fire_ant_enemy/fire_trail.gd
-res://entities/player/player.tscn
+res://entities/enemies/fire_ant_enemy/fire_ant_enemy.tscn
