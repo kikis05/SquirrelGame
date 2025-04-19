@@ -4,10 +4,13 @@
 [ext_resource type="Script" uid="uid://btqt06qinw0p4" path="res://sword.gd" id="1_e4ynd"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_74bdg"]
-size = Vector2(11.3137, 63.6396)
+size = Vector2(60.8112, 63.6396)
 
-[node name="Sword" type="Area2D"]
-collision_mask = 0
+[node name="Sword" type="Area2D" groups=["player_weapon"]]
+light_mask = 20
+visibility_layer = 3
+collision_layer = 4
+collision_mask = 11
 script = ExtResource("1_e4ynd")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
@@ -17,9 +20,11 @@ scale = Vector2(0.05, 0.3)
 texture = ExtResource("1_74bdg")
 offset = Vector2(152.173, -39.6843)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(22.0892, -11.4108)
-rotation = 0.785398
+[node name="HitBox" type="CollisionShape2D" parent="."]
+light_mask = 16
+visibility_layer = 2
+position = Vector2(23, -7)
+rotation = 0.0122936
 scale = Vector2(0.5, 0.5)
 shape = SubResource("RectangleShape2D_74bdg")
 
@@ -28,4 +33,5 @@ position = Vector2(17, 0)
 
 [node name="slashSpeedTimer" type="Timer" parent="."]
 
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]
 [connection signal="timeout" from="slashSpeedTimer" to="." method="_on_slash_speed_timer_timeout"]

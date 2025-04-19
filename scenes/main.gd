@@ -5,6 +5,7 @@ extends Node
 @onready var menu = $CanvasLayer/Menu
 @onready var player = $Player
 
+
 func _ready() : 
 	menu.hide()
 	health_container.setMaxAcorns(player.get_max_health() / 2 )
@@ -13,6 +14,11 @@ func _ready() :
 #
 	coins_container.update_coins(player.get_coins())
 	player.coins_changed.connect(coins_container.update_coins)
+	
+	for child in get_children():
+		if child.is_in_group("enemy"):
+			print("enemy found")
+			child.player = player
 	
 func _process(_delta):
 	if Input.is_action_just_pressed("Escape") and get_tree().paused == false:

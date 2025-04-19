@@ -9,6 +9,7 @@ var timer: Timer
 var knockback = Vector2.ZERO
 var player: CharacterBody2D
 
+
 func _ready():
 	player = get_tree().get_first_node_in_group("player")
 	
@@ -42,6 +43,9 @@ func physics_process(_delta: float):
 
 func on_timer_finished():
 	if enemy.health <= 0:
+		#var coin = COIN.instantiate()
+		#coin.global_position = enemy.global_position
+		#get_tree().root.add_child(coin)
 		transitioned.emit(self, "death state")
 	else:
 		transitioned.emit(self, "chase state")

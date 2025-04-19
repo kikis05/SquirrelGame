@@ -1,6 +1,7 @@
 extends CharacterBody2D
 
 @export var sprite: AnimatedSprite2D
+@export var player : CharacterBody2D
 
 func _on_timer_timeout():
 	sprite.play("death")
@@ -17,6 +18,7 @@ func _on_animated_sprite_2d_animation_finished():
 func _on_attack_box_body_entered(body):
 	if body.name.to_lower() == "player":
 		# ANNA -- print("TODO: Fire trail player dmg")
+		player.damage_player()
 		pass
 
 func _on_attack_box_body_exited(body):

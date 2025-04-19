@@ -14,20 +14,20 @@ var has_landed = false
 var origin
 var shoot_direction
 
+var hitbox_activated = true
+
 func set_direction(bulletDirection):
 	direction = bulletDirection
 	rotation_degrees = rad_to_deg(global_position.angle_to_point(global_position+direction))
 	
 func set_origin(_origin):
 	origin = _origin
-	print("origin ", origin)
 	
 func set_shoot_direction(_shoot_direction):
 	shoot_direction = _shoot_direction
 
 func _physics_process(delta: float) -> void:
 	if not has_landed:
-		print("still moving")
 		global_position += direction * speed * delta
 		global_position.y += 1.5 
 	else:
@@ -47,7 +47,6 @@ func _on_destroy_bullet_timeout() -> void:
 	fadeTimer.start()
 	
 func _on_fade_timer_timeout() -> void:
-	print("freed")
 	queue_free()
 	
 func set_speed(speed_):

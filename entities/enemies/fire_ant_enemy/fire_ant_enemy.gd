@@ -6,15 +6,18 @@ extends AntEnemy
 func _on_fire_spawn_timer_timeout():
 	var fire_inst = fire_trail.instantiate()
 	fire_inst.global_position = global_position
+	fire_inst.player = player
 	fire_spawn.add_child(fire_inst)
 
 ## NOTE: Functions the are the same as in ant_enemy
 ## They were reused to properly connect area2d and animsprite2d nodes to script
 func _on_hit_box_area_entered(area):
-	if area.name.to_lower() == "bullet" and health > 0:
+	if area.is_in_group("player_weapon") and health > 0:
 		# ANNA -- print("TODO: Update so enemy takes proper dmg #")
-		take_damage(1) # FIX ATTACK == account for weapon type and damage
-		state_machine.transition_to("stun state")
+		if ('get_damage' in area and area.hitbox_activated):
+			take_damage(area.get_damage())
+			print("Health down to: ", health )
+			state_machine.transition_to("stun state")
 
 func _on_attack_box_body_entered(body):
 	if body.name.to_lower() == "player" and health > 0:
@@ -30,5 +33,8 @@ func _on_animated_sprite_2d_animation_finished():
 	if sprite.animation == "death":
 		queue_free()
 	elif sprite.animation == "attack" and player_in_range:
-		# ANNA -- print("TODO: Player takes DMG") # FIX ATTACK == make it so player takes 1 damage when "attack" animation completes
+		print(player.name)
+		if player != null:
+			print("should damage player")
+			player.damage_player()
 		sprite.play("idle")

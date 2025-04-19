@@ -1,27 +1,90 @@
-[gd_scene load_steps=8 format=3 uid="uid://ctdj7k4cwb4f6"]
+[gd_scene load_steps=17 format=3 uid="uid://ctdj7k4cwb4f6"]
 
 [ext_resource type="Script" uid="uid://wpgykegedrya" path="res://entities/player/player.gd" id="1_abrql"]
-[ext_resource type="Texture2D" uid="uid://c3ihirpd8epus" path="res://icon.svg" id="1_symyc"]
+[ext_resource type="Texture2D" uid="uid://d04jfatr1u7pf" path="res://assets/squirrel_anims1 (1).png" id="2_fkugw"]
 [ext_resource type="PackedScene" uid="uid://bnubijqntw488" path="res://gun.tscn" id="3_sglur"]
 [ext_resource type="PackedScene" uid="uid://chq2g34nmenr0" path="res://sword.tscn" id="4_bls4j"]
 [ext_resource type="Script" uid="uid://bep3xxs0sc1p8" path="res://entities/player/hit_box.gd" id="5_fkugw"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8fjmc"]
+atlas = ExtResource("2_fkugw")
+region = Rect2(0, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qiwj3"]
+atlas = ExtResource("2_fkugw")
+region = Rect2(32, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_26q78"]
+atlas = ExtResource("2_fkugw")
+region = Rect2(64, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bectd"]
+atlas = ExtResource("2_fkugw")
+region = Rect2(96, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wvtmh"]
+atlas = ExtResource("2_fkugw")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7thud"]
+atlas = ExtResource("2_fkugw")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_a1qjk"]
+atlas = ExtResource("2_fkugw")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_j3ovn"]
+atlas = ExtResource("2_fkugw")
+region = Rect2(96, 0, 32, 32)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_abrql"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("1_symyc")
+"texture": SubResource("AtlasTexture_8fjmc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qiwj3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_26q78")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bectd")
 }],
-"loop": true,
-"name": &"default",
+"loop": false,
+"name": &"death",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wvtmh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7thud")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_a1qjk")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_j3ovn")
+}],
+"loop": false,
+"name": &"idle",
 "speed": 5.0
 }]
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_sglur"]
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_fkugw"]
 radius = 4.0
-height = 18.0
+height = 9.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_sglur"]
+height = 24.0
 
 [node name="Player" type="CharacterBody2D" groups=["player"]]
+light_mask = 4
+visibility_layer = 11
 collision_layer = 4
 collision_mask = 11
 motion_mode = 1
@@ -29,16 +92,16 @@ script = ExtResource("1_abrql")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(0, -16.5)
-scale = Vector2(0.15625, 0.257812)
 sprite_frames = SubResource("SpriteFrames_abrql")
+animation = &"death"
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, -4)
-rotation = 1.5708
-shape = SubResource("CapsuleShape2D_sglur")
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." groups=["player"]]
+position = Vector2(3, -4)
+scale = Vector2(2, 1)
+shape = SubResource("CapsuleShape2D_fkugw")
 
 [node name="Gun" parent="." instance=ExtResource("3_sglur")]
-position = Vector2(0, -10)
+position = Vector2(1, -6)
 
 [node name="Sword" parent="." instance=ExtResource("4_bls4j")]
 visible = false
@@ -50,7 +113,9 @@ visibility_layer = 11
 script = ExtResource("5_fkugw")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerHitBox"]
-position = Vector2(0, -9)
+position = Vector2(5, -12)
 shape = SubResource("CapsuleShape2D_sglur")
 
+[connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]
 [connection signal="area_entered" from="PlayerHitBox" to="." method="_on_hit_box_area_entered"]
+[connection signal="body_entered" from="PlayerHitBox" to="." method="_on_player_hit_box_body_entered"]

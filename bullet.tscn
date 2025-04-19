@@ -6,7 +6,7 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_v8qja"]
 size = Vector2(6.51317, 5.87807)
 
-[node name="Bullet" type="Area2D"]
+[node name="Bullet" type="Area2D" groups=["player_weapon"]]
 scale = Vector2(1.84242, 1.71292)
 collision_layer = 4
 collision_mask = 11

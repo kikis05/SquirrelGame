@@ -29,6 +29,7 @@ window/stretch/scale_mode="integer"
 enemy=""
 coin=""
 player=""
+player_weapon=""
 
 [input]
 
@@ -85,6 +86,9 @@ Escape={
 
 [layer_names]
 
+2d_render/layer_2="Enemy"
+2d_render/layer_3="Player"
+2d_render/layer_5="PlayerWeapon"
 2d_physics/layer_1="Wall"
 2d_physics/layer_2="Enemy"
 2d_physics/layer_3="Player"
