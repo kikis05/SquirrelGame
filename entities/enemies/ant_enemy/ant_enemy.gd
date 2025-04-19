@@ -6,8 +6,11 @@ class_name AntEnemy
 
 var player_in_range = false
 
+var death_location = Vector2.ZERO
+const COIN = preload("res://coin.tscn")
+
 func _init():
-	health = 50
+	health = 10
 	accel = 0.3 
 	friction = 0.25
 	idle_speed = 12.0
@@ -38,6 +41,10 @@ func _physics_process(_delta):
 
 func take_damage(damage):
 	health -= damage
+	print(global_position, position)
+	if (health <= 0):
+		death_location.y = global_position.y - 58
+		death_location.x = global_position.x - 153
 
 func die():
 	change_animation("death")
@@ -64,7 +71,6 @@ func get_nav_agent():
 func _on_hit_box_area_entered(area):
 	print(area.name)
 	if area.is_in_group("player_weapon") and health > 0:
-		# ANNA -- print("TODO: Update so enemy takes proper dmg #")
 		if ('get_damage' in area and area.hitbox_activated):
 			take_damage(area.get_damage())
 			print("Health down to: ", health )
@@ -82,9 +88,12 @@ func _on_attack_box_body_exited(body):
 
 func _on_animated_sprite_2d_animation_finished():
 	if sprite.animation == "death":
+		var coin = COIN.instantiate()
+		print(coin.global_position)
+		coin.global_position = death_location
+		get_tree().root.add_child(coin)
 		queue_free()
 	elif sprite.animation == "attack" and player_in_range:
-		# ANNA -- print("TODO: Player takes DMG") # FIX ATTACK == make it so player takes 1 damage when "attack" animation completes
 		print(player.name)
 		if player != null:
 			print("should damage player")

@@ -3,6 +3,14 @@ extends AntEnemy
 @export var fire_trail: PackedScene
 @export var fire_spawn: Node
 
+
+func take_damage(damage):
+	health -= damage
+	print(global_position, position)
+	if (health <= 0):
+		death_location.y = global_position.y - 58
+		death_location.x = global_position.x - 153
+
 func _on_fire_spawn_timer_timeout():
 	var fire_inst = fire_trail.instantiate()
 	fire_inst.global_position = global_position
@@ -13,7 +21,6 @@ func _on_fire_spawn_timer_timeout():
 ## They were reused to properly connect area2d and animsprite2d nodes to script
 func _on_hit_box_area_entered(area):
 	if area.is_in_group("player_weapon") and health > 0:
-		# ANNA -- print("TODO: Update so enemy takes proper dmg #")
 		if ('get_damage' in area and area.hitbox_activated):
 			take_damage(area.get_damage())
 			print("Health down to: ", health )
@@ -30,7 +37,11 @@ func _on_attack_box_body_exited(body):
 		player_in_range = false
 
 func _on_animated_sprite_2d_animation_finished():
-	if sprite.animation == "death":
+	if sprite.animation == "death":		
+		var coin = COIN.instantiate()
+		print(coin.global_position)
+		coin.global_position = death_location
+		get_tree().root.add_child(coin)
 		queue_free()
 	elif sprite.animation == "attack" and player_in_range:
 		print(player.name)

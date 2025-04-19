@@ -70,7 +70,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_j3ovn")
 }],
-"loop": false,
+"loop": true,
 "name": &"idle",
 "speed": 5.0
 }]
@@ -83,8 +83,6 @@ height = 9.0
 height = 24.0
 
 [node name="Player" type="CharacterBody2D" groups=["player"]]
-light_mask = 4
-visibility_layer = 11
 collision_layer = 4
 collision_mask = 11
 motion_mode = 1
@@ -93,7 +91,8 @@ script = ExtResource("1_abrql")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(0, -16.5)
 sprite_frames = SubResource("SpriteFrames_abrql")
-animation = &"death"
+animation = &"idle"
+autoplay = "idle"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." groups=["player"]]
 position = Vector2(3, -4)
@@ -110,6 +109,8 @@ position = Vector2(0, -10)
 [node name="PlayerHitBox" type="Area2D" parent="." groups=["player"]]
 light_mask = 4
 visibility_layer = 11
+collision_layer = 4
+collision_mask = 11
 script = ExtResource("5_fkugw")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerHitBox"]
