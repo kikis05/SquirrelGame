@@ -165,12 +165,12 @@ animations = [{
 }]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_clvme"]
-radius = 4.0
-height = 14.0
+radius = 3.0
+height = 12.0
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_e2370"]
 radius = 6.0
-height = 20.0
+height = 18.0
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_rptcq"]
 radius = 7.0
@@ -193,7 +193,7 @@ autostart = true
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(0, -16)
 sprite_frames = SubResource("SpriteFrames_x8j2c")
-animation = &"attack"
+animation = &"idle"
 autoplay = "chase"
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
@@ -204,12 +204,12 @@ rotation = 1.5708
 shape = SubResource("CapsuleShape2D_clvme")
 
 [node name="AttackBox" type="Area2D" parent="." groups=["enemy"]]
-position = Vector2(-5, -5)
+position = Vector2(-4, -7)
 collision_layer = 2
 collision_mask = 6
 
 [node name="AttackCollisionArea" type="CollisionShape2D" parent="AttackBox"]
-position = Vector2(-2, -4)
+position = Vector2(1, 0)
 shape = SubResource("CapsuleShape2D_e2370")
 
 [node name="HitBox" type="Area2D" parent="." groups=["enemy"]]

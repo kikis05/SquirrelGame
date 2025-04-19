@@ -16,7 +16,10 @@ signal coins_changed
 
 #animation
 @onready var sprite = $AnimatedSprite2D
+@onready var invincible_timer = $InvincibleTimer
 var flipped = false
+var invincible = false
+var dead = false
 
 
 
@@ -46,6 +49,12 @@ func _input(event):
 
 
 func _physics_process(_delta):
+	if current_health <= 0 and dead == false:
+		sprite.play("death")
+		return # stop taking player inputs when the player dies
+	elif dead == true: # stop taking player inputs when the player dies
+		return
+
 	if (Input.is_action_pressed("attack_right")
 	 or Input.is_action_pressed("attack_left")
 	 or Input.is_action_pressed("attack_down")
@@ -76,9 +85,6 @@ func _physics_process(_delta):
 		velocity.y = lerp(velocity.y, 0.0, friction)
 	
 	move_and_slide()
-	
-	if current_health <= 0:
-		sprite.play("death")
 
 func flip():
 	sprite.flip_h = !sprite.flip_h
@@ -91,15 +97,9 @@ func flip():
 func set_weapon(weapon_):
 	weapon = weapon_
 
-func _on_hit_box_area_entered(area: Area2D) -> void:
+
+func _on_player_hit_box_area_entered(area):
 	print("player area", area.name)
-	if area.is_in_group("enemy"): #double check this
-		current_health -= 1
-		print_debug(current_health)
-		health_changed.emit(current_health)
-	if current_health <= 0:
-		current_health = 0
-		queue_free()
 	if area.is_in_group("coin"):
 		coins += 1
 		coins_changed.emit(coins)
@@ -117,25 +117,18 @@ func get_health():
 func get_coins():
 	return coins
 
-
-func _on_player_hit_box_body_entered(body: Node2D) -> void:
-	print("player body", body.name)
-	if body.is_in_group("enemy"): #double check this
-		current_health -= 1
-		health_changed.emit(current_health)
-	if current_health <= 0:
-		current_health = 0
-		sprite.play("death")
-	if body.is_in_group("coin"):
-		coins += 1
-		coins_changed.emit(coins)
-		
 func damage_player():
-	current_health -=1
-	health_changed.emit(current_health)
+	if invincible == false:
+		invincible = true
+		current_health -=1
+		health_changed.emit(current_health)
+		invincible_timer.start()
 
+func _on_invincible_timer_timeout():
+	print("meep")
+	invincible = false
+	# TODO: Will be replaced by an animation
 
 func _on_animated_sprite_2d_animation_finished() -> void:
 	if sprite.animation == "death":
-		hide()
-		queue_free()
+		dead = true

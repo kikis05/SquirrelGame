@@ -164,16 +164,16 @@ animations = [{
 }]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_rnb2k"]
-radius = 4.0
-height = 14.0
+radius = 3.0
+height = 12.0
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_uerhd"]
-radius = 5.0
-height = 18.0
+radius = 7.0
+height = 20.0
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_m6hkk"]
-radius = 6.0
-height = 20.0
+radius = 7.0
+height = 22.0
 
 [node name="Ant Enemy" type="CharacterBody2D" groups=["enemy"]]
 collision_layer = 2
@@ -186,7 +186,7 @@ script = ExtResource("1_cs3af")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(0, -16)
 sprite_frames = SubResource("SpriteFrames_wec8x")
-animation = &"death"
+animation = &"idle"
 autoplay = "chase"
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
@@ -197,12 +197,11 @@ rotation = 1.5708
 shape = SubResource("CapsuleShape2D_rnb2k")
 
 [node name="AttackBox" type="Area2D" parent="." groups=["enemy"]]
-position = Vector2(-5, -5)
+position = Vector2(-4, -7)
 collision_layer = 2
 collision_mask = 6
 
 [node name="AttackCollisionArea" type="CollisionShape2D" parent="AttackBox" groups=["enemy"]]
-position = Vector2(2, -3)
 shape = SubResource("CapsuleShape2D_uerhd")
 
 [node name="HitBox" type="Area2D" parent="." groups=["enemy"]]
@@ -213,7 +212,6 @@ collision_layer = 2
 collision_mask = 4
 
 [node name="HitCollisionArea" type="CollisionShape2D" parent="HitBox"]
-position = Vector2(4, 2)
 shape = SubResource("CapsuleShape2D_m6hkk")
 debug_color = Color(1, 0.6, 0.701961, 0.419608)
 

@@ -16,7 +16,7 @@ func _on_animated_sprite_2d_animation_finished():
 
 ## TODO: Functions below PAIRED, remove this comment after implementing
 func _on_attack_box_body_entered(body):
-	if body.name.to_lower() == "player":
+	if body.name.to_lower() == "player" and player != null:
 		# ANNA -- print("TODO: Fire trail player dmg")
 		player.damage_player()
 		pass

@@ -94,8 +94,8 @@ func _on_animated_sprite_2d_animation_finished():
 		get_tree().root.add_child(coin)
 		queue_free()
 	elif sprite.animation == "attack" and player_in_range:
-		print(player.name)
 		if player != null:
+			print(player.name)
 			print("should damage player")
 			player.damage_player()
 		sprite.play("idle")

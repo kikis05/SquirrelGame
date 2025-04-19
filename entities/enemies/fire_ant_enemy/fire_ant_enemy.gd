@@ -14,7 +14,8 @@ func take_damage(damage):
 func _on_fire_spawn_timer_timeout():
 	var fire_inst = fire_trail.instantiate()
 	fire_inst.global_position = global_position
-	fire_inst.player = player
+	if player != null:
+		fire_inst.player = player
 	fire_spawn.add_child(fire_inst)
 
 ## NOTE: Functions the are the same as in ant_enemy
