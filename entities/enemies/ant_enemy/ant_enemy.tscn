@@ -168,8 +168,8 @@ radius = 3.0
 height = 12.0
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_uerhd"]
-radius = 7.0
-height = 20.0
+radius = 6.0
+height = 18.0
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_m6hkk"]
 radius = 7.0
@@ -202,6 +202,7 @@ collision_layer = 2
 collision_mask = 6
 
 [node name="AttackCollisionArea" type="CollisionShape2D" parent="AttackBox" groups=["enemy"]]
+position = Vector2(1, 0)
 shape = SubResource("CapsuleShape2D_uerhd")
 
 [node name="HitBox" type="Area2D" parent="." groups=["enemy"]]
