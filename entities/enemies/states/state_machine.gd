@@ -31,7 +31,6 @@ func transition_to(new_state_name):
 	on_child_transition(current_state, new_state_name)
 
 func on_child_transition(state, new_state_name):
-	print(state.name + "  to  " + new_state_name)
 	if state != current_state:
 		return
 	

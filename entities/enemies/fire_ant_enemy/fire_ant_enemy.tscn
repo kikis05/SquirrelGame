@@ -267,9 +267,8 @@ debug_color = Color(1, 0.6, 0.701961, 0.419608)
 
 [node name="Marker2D" type="Marker2D" parent="."]
 
-[node name="State Machine" type="Node" parent="." node_paths=PackedStringArray("initial_state")]
+[node name="State Machine" type="Node" parent="."]
 script = ExtResource("3_wr85i")
-initial_state = NodePath("")
 metadata/_custom_type_script = "uid://drc32dbyt45eh"
 
 [node name="Idle State" type="Node" parent="State Machine" node_paths=PackedStringArray("enemy")]

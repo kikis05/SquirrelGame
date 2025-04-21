@@ -31,7 +31,6 @@ func _ready():
 
 
 func _physics_process(delta):
-	print(attacking)
 	# sprite flipping
 	if velocity.x > 0 and !flipped:
 		flip()
@@ -53,7 +52,6 @@ func die():
 	hit_box.monitoring = false
 
 func flip():
-	print('meep')
 	attack_box.position.x = -1 * attack_box.position.x
 	sprite.flip_h = !sprite.flip_h
 	flipped = !flipped
@@ -79,7 +77,6 @@ func _on_attack_box_body_entered(body):
 
 func _on_attack_box_body_exited(body):
 	if body.is_in_group("player") and health > 0:
-		print("YOOO")
 		state_machine.transition_to("linear chase state")
 		player_in_range = false
 
@@ -91,9 +88,7 @@ func _on_animated_sprite_2d_animation_finished():
 		queue_free()
 	elif sprite.animation == "attack" and player_in_range:
 		if player != null and player.dead == false:
-			print("ope shit")
-			print(player.name)
-			print("should damage player")
+			print(player.name, "should damage player")
 			player.damage_player()
 			sprite.play("idle") # TODO: DIFFERENT STATE FOR MOSQUITO
 		else:

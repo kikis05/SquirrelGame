@@ -38,7 +38,7 @@ func on_timer_timeout():
 	make_path()
 
 func make_path():
-	if player != null and player.dead == false:
+	if (player != null and player.dead == false):
 		nav_agent.target_position = player.global_position
 	else:
 		transitioned.emit(self, "idle state")
