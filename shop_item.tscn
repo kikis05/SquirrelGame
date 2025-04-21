@@ -5,12 +5,15 @@
 
 [node name="ShopItem" type="TextureButton" node_paths=PackedStringArray("sprite")]
 offset_left = 1.0
-offset_right = 27.0
-offset_bottom = 26.0
+offset_right = 32.0
+offset_bottom = 31.0
+scale = Vector2(1, 0.979689)
 script = ExtResource("1_wxfep")
-sprite = NodePath("Sprite2D")
+sprite = NodePath("")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(15, 16)
-scale = Vector2(0.25, 0.25)
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+scale = Vector2(0.283034, 0.279691)
 texture = ExtResource("1_glqc6")

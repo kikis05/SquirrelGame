@@ -4,6 +4,7 @@ class_name ShopItem
 
 @export var item_name: String = "item"
 @export var description: String = "a helpful item"
+@export var cost: int = 0
 @export var sprite: Sprite2D 
 
 @export var powerup_type: String = "health_increase" #change depending on what kind of powerup it is
@@ -31,3 +32,12 @@ func get_powerup_value():
 		"bullet_distance_increase":
 			return bullet_distance_increase
 	return 0
+	
+func get_cost():
+	return cost
+	
+func get_description():
+	return description
+
+func get_item_name():
+	return item_name
