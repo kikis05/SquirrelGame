@@ -2,6 +2,7 @@
 # https://www.youtube.com/watch?v=ow_Lum-Agbs
 
 extends Node
+class_name State_Machine
 
 @export var initial_state: State
 
@@ -30,6 +31,7 @@ func transition_to(new_state_name):
 	on_child_transition(current_state, new_state_name)
 
 func on_child_transition(state, new_state_name):
+	print(state.name + "  to  " + new_state_name)
 	if state != current_state:
 		return
 	

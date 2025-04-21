@@ -16,11 +16,13 @@ func enter():
 	timer.start()
 	enemy.set_velocity(Vector2.ZERO)
 	enemy.attacking = true
+	print(enemy.attacking, enemy.name, "enter")
 	enemy.change_animation("attack")
 
 func exit():
 	timer.stop()
 	enemy.attacking = false
+	print(enemy.attacking, enemy.name, "exit")
 
 func on_timer_finished():
 	transitioned.emit(self, "attack state")

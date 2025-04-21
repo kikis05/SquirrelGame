@@ -26,7 +26,7 @@ func enter():
 	
 	# how far back the enemy flies
 	enemy.set_velocity(Vector2.ZERO)
-	if player != null:
+	if player != null and player.dead == false:
 		var dir = -(player.global_position - enemy.global_position).normalized()
 		knockback = dir * enemy.knockback_str
 		timer.start()

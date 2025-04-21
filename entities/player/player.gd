@@ -1,4 +1,5 @@
 extends CharacterBody2D
+class_name Player
 
 @export var speed = 150
 @export_range(0.0, 1.0) var friction = 0.25

@@ -5,7 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://c3ihirpd8epus" path="res://icon.svg" id="2_0wfyh"]
 [ext_resource type="PackedScene" uid="uid://bptqwns6p2701" path="res://coins_container.tscn" id="6_tefeu"]
 [ext_resource type="PackedScene" uid="uid://c1x03uf7p3bj1" path="res://health_container.tscn" id="7_85g3d"]
-[ext_resource type="PackedScene" uid="uid://xhg08ovbav64" path="res://entities/enemies/fire_ant_enemy/fire_ant_enemy.tscn" id="8_85g3d"]
+[ext_resource type="PackedScene" uid="uid://dek0t7ihd4vxg" path="res://entities/enemies/mosquito_enemy/mosquito_enemy.tscn" id="7_o6xl0"]
 [ext_resource type="PackedScene" uid="uid://tfnoonrvjm30" path="res://menu.tscn" id="8_tipki"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_jyhfs"]
@@ -59,11 +59,12 @@ tile_set = SubResource("TileSet_tbgi4")
 process_mode = 2
 
 [node name="HealthContainer" parent="CanvasLayer" instance=ExtResource("7_85g3d")]
+metadata/_edit_use_anchors_ = true
 
 [node name="CoinsContainer" parent="CanvasLayer" instance=ExtResource("6_tefeu")]
 
 [node name="Menu" parent="CanvasLayer" instance=ExtResource("8_tipki")]
 visible = false
 
-[node name="fire_ant_enemy" parent="." instance=ExtResource("8_85g3d")]
-position = Vector2(217, 160)
+[node name="Mosquito Enemy" parent="." instance=ExtResource("7_o6xl0")]
+position = Vector2(245, 170)

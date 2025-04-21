@@ -2,7 +2,7 @@ extends CharacterBody2D
 class_name BaseEnemy
 
 ## General vars ##
-@export var player: CharacterBody2D
+@export var player: Player
 @export var health: float
 @export var accel: float # acceleration
 @export var friction: float
@@ -14,11 +14,6 @@ class_name BaseEnemy
 @export var stunned: bool
 @export var attacking: bool
 @export var flipped: bool
-
-## Radius vars ##
-@export var detection_radius: int # range for chasing player
-@export var in_range_radius: int 
-# range to be close enough to attack without being on top of the player
 
 func physics_process(_delta: float):
 	pass
