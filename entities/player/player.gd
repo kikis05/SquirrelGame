@@ -66,18 +66,20 @@ func _physics_process(_delta):
 	if movement_dir.length() > 0:
 		movement_dir = movement_dir.normalized()
 
-	weapon.set_direction(movement_dir)
+	#weapon.set_direction(movement_dir)
 	# horizontal movement
 	if movement_dir[0] != 0:
 		velocity.x = lerp(velocity.x, movement_dir[0] * speed, acceleration)
 	else:
 		velocity.x = lerp(velocity.x, 0.0, friction)
-	if (velocity.x > 0 or Input.is_action_pressed("attack_right"))and not flipped:
+	if (velocity.x > 0) and not flipped:
 		flip()
-	if (velocity.x < 0 or Input.is_action_pressed("attack_left") ) and flipped:
+	if (velocity.x < 0) and flipped:
 		flip()
-			
-		
+	if ((Input.is_action_pressed("attack_left") and velocity.x > 0)
+	 or (Input.is_action_pressed("attack_right") and velocity.x < 0)):
+		velocity.x = -1 * velocity.x
+		flip()
 	# vertical movement
 	if movement_dir[1] != 0:
 		velocity.y = lerp(velocity.y, movement_dir[1] * speed, acceleration)
@@ -88,15 +90,12 @@ func _physics_process(_delta):
 
 func flip():
 	sprite.flip_h = !sprite.flip_h
-	$CollisionShape2D.position.x =-1 * $CollisionShape2D.position.x
-	$Gun.position.x =-1 * $Gun.position.x
-	$Sword.position.x =-1 * $Sword.position.x
-	$PlayerHitBox.position.x =-1 * $PlayerHitBox.position.x
+	$Gun.position.x = -1 * $Gun.position.x
+	$Sword.flipped = !$Sword.flipped
 	flipped = !flipped
 		
 func set_weapon(weapon_):
 	weapon = weapon_
-
 
 func _on_player_hit_box_area_entered(area):
 	print("player area", area.name)
@@ -104,7 +103,6 @@ func _on_player_hit_box_area_entered(area):
 		coins += 1
 		coins_changed.emit(coins)
 
-		
 func get_max_health():
 	if max_health % 2 != 0:
 		max_health += 1 #make sure health is even, could instead do error message later

@@ -105,7 +105,7 @@ position = Vector2(1, -6)
 
 [node name="Sword" parent="." instance=ExtResource("4_bls4j")]
 visible = false
-position = Vector2(0, -10)
+position = Vector2(-22, 0)
 
 [node name="PlayerHitBox" type="Area2D" parent="." groups=["player"]]
 light_mask = 4
