@@ -14,19 +14,7 @@ script = ExtResource("1_3c770")
 position = Vector2(240, 134)
 texture = ExtResource("1_ruyqg")
 
-[node name="HBoxContainer" type="HBoxContainer" parent="Sprite2D"]
-offset_left = -13.0
-offset_top = 45.0
-offset_right = 209.0
-offset_bottom = 85.0
-
-[node name="ShopItem" parent="Sprite2D/HBoxContainer" instance=ExtResource("2_nc2er")]
-layout_mode = 2
-
-[node name="ShopItem2" parent="Sprite2D/HBoxContainer" instance=ExtResource("2_nc2er")]
-layout_mode = 2
-
-[node name="Label" type="Label" parent="."]
+[node name="ShopText" type="Label" parent="."]
 offset_left = 35.0
 offset_top = 180.0
 offset_right = 208.0
@@ -38,3 +26,42 @@ text = "hi"
 label_settings = SubResource("LabelSettings_3c770")
 horizontal_alignment = 3
 autowrap_mode = 3
+
+[node name="Label" type="Label" parent="."]
+offset_left = 233.0
+offset_top = 238.0
+offset_right = 406.0
+offset_bottom = 319.0
+size_flags_horizontal = 8
+theme_override_fonts/font = ExtResource("4_ywokf")
+theme_override_font_sizes/font_size = 16
+text = "what's up"
+label_settings = SubResource("LabelSettings_3c770")
+horizontal_alignment = 3
+autowrap_mode = 3
+
+[node name="ShopItems" type="HBoxContainer" parent="."]
+offset_left = 227.0
+offset_top = 179.0
+offset_right = 413.0
+offset_bottom = 219.0
+theme_override_constants/separation = 38
+
+[node name="ShopItem" parent="ShopItems" instance=ExtResource("2_nc2er")]
+layout_mode = 2
+
+[node name="ShopItem2" parent="ShopItems" instance=ExtResource("2_nc2er")]
+layout_mode = 2
+
+[node name="Inventory" type="HBoxContainer" parent="."]
+offset_left = 303.0
+offset_top = 179.0
+offset_right = 341.0
+offset_bottom = 219.0
+theme_override_constants/separation = 38
+
+[node name="ShopItem" parent="Inventory" instance=ExtResource("2_nc2er")]
+layout_mode = 2
+
+[node name="ShopItem2" parent="Inventory" instance=ExtResource("2_nc2er")]
+layout_mode = 2

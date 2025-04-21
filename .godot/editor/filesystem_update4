@@ -1,0 +1,7 @@
+res://shop_item.tscn
+res://shop_modal.tscn
+res://shop_modal.gd
+res://scenes/main.tscn
+res://entities/player/player.tscn
+res://enemy.tscn
+res://shop.tscn

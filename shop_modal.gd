@@ -1,6 +1,6 @@
 extends CanvasLayer
 
-@onready var text = $Label
+@onready var text = $ShopText
 var dialogues = ["Another Squirrel?! You better make it quick before they spot us!"]
 
 func _ready():

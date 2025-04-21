@@ -11,6 +11,6 @@ script = ExtResource("1_wxfep")
 sprite = NodePath("Sprite2D")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(13, 13)
-scale = Vector2(0.203125, 0.203125)
+position = Vector2(15, 16)
+scale = Vector2(0.25, 0.25)
 texture = ExtResource("1_glqc6")
