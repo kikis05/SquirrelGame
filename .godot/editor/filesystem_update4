@@ -5,12 +5,6 @@ res://entities/enemies/ant_enemy/ant_enemy.tscn
 res://entities/enemies/mosquito_enemy/mosquito_enemy.tscn
 res://entities/enemies/fire_ant_enemy/fire_ant_enemy.tscn
 res://entities/enemies/mosquito_enemy/mosquito_enemy.gd
-res://entities/enemies/states/state_machine.gd
-res://entities/enemies/states/stun_state.gd
-res://entities/enemies/states/chase_state.gd
-res://entities/player/player.gd
-res://gun.tscn
-res://gun.gd
-res://sword.tscn
-res://sword.gd
-res://bullet.tscn
+res://entities/enemies/ant_enemy/ant_enemy.gd
+res://entities/enemies/fire_ant_enemy/fire_ant_enemy.gd
+res://entities/enemies/fire_ant_enemy/fire_trail.tscn

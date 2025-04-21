@@ -26,6 +26,7 @@ func _init():
 	attack_box = $AttackBox
 
 func _ready():
+	_init()
 	player = get_tree().get_first_node_in_group("player")
 	if velocity.x > 0:
 		sprite.flip_h = true
@@ -65,7 +66,6 @@ func get_nav_agent():
 
 
 func _on_hit_box_area_entered(area):
-	print(area.name)
 	if area.is_in_group("player_weapon") and health > 0:
 		if ('get_damage' in area and area.hitbox_activated):
 			take_damage(area.get_damage())
@@ -76,6 +76,7 @@ func _on_attack_box_body_entered(body):
 	if body.is_in_group("player") and health > 0:
 		state_machine.transition_to("attack state")
 		player_in_range = true
+		player.damage_player()
 
 func _on_attack_box_body_exited(body):
 	if body.is_in_group("player") and health > 0:

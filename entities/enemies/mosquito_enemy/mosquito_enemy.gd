@@ -74,6 +74,7 @@ func _on_attack_box_body_entered(body):
 	if body.is_in_group("player") and health > 0:
 		state_machine.transition_to("attack state")
 		player_in_range = true
+		player.damage_player()
 
 func _on_attack_box_body_exited(body):
 	if body.is_in_group("player") and health > 0:
