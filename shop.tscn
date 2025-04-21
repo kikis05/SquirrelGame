@@ -1,0 +1,41 @@
+[gd_scene load_steps=5 format=3 uid="uid://b40ev3jflvlam"]
+
+[ext_resource type="Texture2D" uid="uid://c3ihirpd8epus" path="res://icon.svg" id="1_viryw"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_e7rdd"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_viryw")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_blqjs"]
+size = Vector2(330.5, 58)
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_fgaav"]
+radius = 170.737
+height = 400.0
+
+[node name="Shop" type="CharacterBody2D"]
+scale = Vector2(0.355571, 0.285277)
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(3, -124)
+scale = Vector2(2.57812, 1.92188)
+sprite_frames = SubResource("SpriteFrames_e7rdd")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -30)
+shape = SubResource("RectangleShape2D_blqjs")
+
+[node name="ActivationArea" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ActivationArea"]
+position = Vector2(-5, -131)
+rotation = 1.5616
+scale = Vector2(0.945386, 1.06412)
+shape = SubResource("CapsuleShape2D_fgaav")

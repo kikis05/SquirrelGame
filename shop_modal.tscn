@@ -1,0 +1,40 @@
+[gd_scene load_steps=6 format=3 uid="uid://biwrg4k20l68n"]
+
+[ext_resource type="Script" uid="uid://dtjimtxj1mf2f" path="res://shop_modal.gd" id="1_3c770"]
+[ext_resource type="Texture2D" uid="uid://8a3kflhvatkp" path="res://assets/Shop.png" id="1_ruyqg"]
+[ext_resource type="PackedScene" uid="uid://btffc7vqohcgl" path="res://shop_item.tscn" id="2_nc2er"]
+[ext_resource type="FontFile" uid="uid://b1u0jrp7i0n3a" path="res://assets/alagard.ttf" id="4_ywokf"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_3c770"]
+
+[node name="ShopModal" type="CanvasLayer"]
+script = ExtResource("1_3c770")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(240, 134)
+texture = ExtResource("1_ruyqg")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Sprite2D"]
+offset_left = -13.0
+offset_top = 45.0
+offset_right = 209.0
+offset_bottom = 85.0
+
+[node name="ShopItem" parent="Sprite2D/HBoxContainer" instance=ExtResource("2_nc2er")]
+layout_mode = 2
+
+[node name="ShopItem2" parent="Sprite2D/HBoxContainer" instance=ExtResource("2_nc2er")]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="."]
+offset_left = 35.0
+offset_top = 180.0
+offset_right = 208.0
+offset_bottom = 261.0
+size_flags_horizontal = 8
+theme_override_fonts/font = ExtResource("4_ywokf")
+theme_override_font_sizes/font_size = 16
+text = "hi"
+label_settings = SubResource("LabelSettings_3c770")
+horizontal_alignment = 3
+autowrap_mode = 3
