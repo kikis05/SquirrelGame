@@ -1,0 +1,156 @@
+[gd_scene load_steps=9 format=3 uid="uid://biwrg4k20l68n"]
+
+[ext_resource type="Script" uid="uid://dtjimtxj1mf2f" path="res://shop_modal.gd" id="1_3c770"]
+[ext_resource type="Texture2D" uid="uid://8a3kflhvatkp" path="res://assets/Shop.png" id="1_ruyqg"]
+[ext_resource type="PackedScene" uid="uid://btffc7vqohcgl" path="res://shop_item.tscn" id="2_nc2er"]
+[ext_resource type="FontFile" uid="uid://b1u0jrp7i0n3a" path="res://assets/alagard.ttf" id="4_ywokf"]
+[ext_resource type="PackedScene" uid="uid://d0hhfkjlx4ty0" path="res://inventory_item.tscn" id="5_mswy0"]
+[ext_resource type="Texture2D" uid="uid://c3ihirpd8epus" path="res://icon.svg" id="5_q8nhw"]
+[ext_resource type="FontFile" uid="uid://ndwk22yeokxy" path="res://assets/DePixelBreit.ttf" id="7_5yeww"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_3c770"]
+
+[node name="ShopModal" type="CanvasLayer"]
+script = ExtResource("1_3c770")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(240, 134)
+texture = ExtResource("1_ruyqg")
+
+[node name="ShopText" type="Label" parent="."]
+offset_left = 35.0
+offset_top = 180.0
+offset_right = 208.0
+offset_bottom = 261.0
+size_flags_horizontal = 8
+theme_override_fonts/font = ExtResource("4_ywokf")
+theme_override_font_sizes/font_size = 16
+text = "hi"
+label_settings = SubResource("LabelSettings_3c770")
+horizontal_alignment = 3
+autowrap_mode = 3
+
+[node name="Inventory" type="HBoxContainer" parent="."]
+offset_left = 228.0
+offset_top = 234.0
+offset_right = 342.0
+offset_bottom = 261.0
+theme_override_constants/separation = 30
+
+[node name="InventoryItem" parent="Inventory" instance=ExtResource("5_mswy0")]
+layout_mode = 2
+
+[node name="Buy" type="TextureButton" parent="."]
+offset_left = 381.0
+offset_top = 180.0
+offset_right = 449.0
+offset_bottom = 210.0
+scale = Vector2(0.801708, 0.9533)
+
+[node name="Sprite2D" type="Sprite2D" parent="Buy"]
+position = Vector2(43.6568, 18.3573)
+scale = Vector2(0.554688, 0.303223)
+texture = ExtResource("5_q8nhw")
+
+[node name="Drop" type="TextureButton" parent="."]
+offset_left = 762.0
+offset_top = 360.0
+offset_right = 830.0
+offset_bottom = 390.0
+
+[node name="Sprite2D" type="Sprite2D" parent="Drop"]
+position = Vector2(-349.75, -112.5)
+scale = Vector2(0.566406, 0.210938)
+texture = ExtResource("5_q8nhw")
+
+[node name="InventoryLabel" type="Label" parent="."]
+anchors_preset = -1
+anchor_right = 0.083
+anchor_bottom = 0.085
+offset_left = 227.0
+offset_top = 223.0
+offset_right = 286.16
+offset_bottom = 223.05
+theme_override_fonts/font = ExtResource("7_5yeww")
+theme_override_font_sizes/font_size = 11
+text = "Inventory"
+
+[node name="Cost" type="Label" parent="."]
+offset_left = 34.0
+offset_top = 182.0
+offset_right = 212.0
+offset_bottom = 202.0
+theme_override_colors/font_color = Color(0.929385, 0.995261, 0, 1)
+theme_override_fonts/font = ExtResource("4_ywokf")
+text = "Item"
+autowrap_mode = 2
+
+[node name="Item Description" type="Label" parent="."]
+offset_left = 34.0
+offset_top = 202.0
+offset_right = 212.0
+offset_bottom = 238.0
+theme_override_fonts/font = ExtResource("4_ywokf")
+autowrap_mode = 2
+
+[node name="Powerup Description" type="Label" parent="."]
+offset_left = 34.0
+offset_top = 240.0
+offset_right = 209.0
+offset_bottom = 263.0
+scale = Vector2(0.995493, 0.98252)
+theme_override_colors/font_color = Color(7.07522e-06, 0.708273, 3.85046e-07, 1)
+theme_override_fonts/font = ExtResource("4_ywokf")
+autowrap_mode = 2
+
+[node name="ShopItem" parent="." instance=ExtResource("2_nc2er")]
+offset_left = 227.0
+offset_top = 179.0
+offset_right = 227.0
+offset_bottom = 219.0
+scale = Vector2(1, 1)
+item_name = "sunflower seed"
+description = "a small but reasonable energy boost!"
+cost = 1
+powerup_type = "speed_increase"
+speed_increase = 10
+
+[node name="ShopItem2" parent="." instance=ExtResource("2_nc2er")]
+offset_left = 265.0
+offset_top = 179.0
+offset_right = 265.0
+offset_bottom = 219.0
+scale = Vector2(1, 1)
+item_name = "heart"
+description = "you can never have too much health!"
+cost = 5
+health_increase = 1
+
+[node name="ShopItem3" parent="." instance=ExtResource("2_nc2er")]
+offset_left = 303.0
+offset_top = 179.0
+offset_right = 303.0
+offset_bottom = 219.0
+scale = Vector2(1, 1)
+item_name = "sap"
+description = "spicy sap! tasty and painful"
+cost = 1
+powerup_type = "bullet_attack_increase"
+bullet_attack_increase = 5
+
+[node name="ShopItem4" parent="." instance=ExtResource("2_nc2er")]
+offset_left = 341.0
+offset_top = 179.0
+offset_right = 341.0
+offset_bottom = 219.0
+scale = Vector2(1, 1)
+item_name = "thorn"
+description = "as if your sword isn't sharp enough."
+cost = 2
+powerup_type = "sword_attack_increase"
+sword_attack_increase = 10
+
+[connection signal="pressed" from="ShopItem" to="." method="_on_shop_item_pressed"]
+[connection signal="pressed" from="ShopItem2" to="." method="_on_shop_item_2_pressed"]
+[connection signal="pressed" from="ShopItem3" to="." method="_on_shop_item_3_pressed"]
+[connection signal="pressed" from="ShopItem4" to="." method="_on_shop_item_4_pressed"]
