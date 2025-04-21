@@ -8,3 +8,9 @@ res://entities/enemies/mosquito_enemy/mosquito_enemy.gd
 res://entities/enemies/states/state_machine.gd
 res://entities/enemies/states/stun_state.gd
 res://entities/enemies/states/chase_state.gd
+res://entities/player/player.gd
+res://gun.tscn
+res://gun.gd
+res://sword.tscn
+res://sword.gd
+res://bullet.tscn

@@ -13,6 +13,10 @@ var canShoot = true
 var SCALE_X = scale.x
 var SCALE_Y = scale.y
 
+#flip
+var flipped = false
+
+
 func _ready():
 	shoot_speed_timer.wait_time = 1.0 /shootSpeed
 	
@@ -25,11 +29,11 @@ func attack():
 		if bullet_dir.length() > 0:
 			bullet_dir = bullet_dir.normalized()
 			
-		#var rot = rad_to_deg(global_position.angle_to_point(global_position + bullet_dir))
-		#if scale.x == -1 * SCALE_X:
-			#rotation_degrees = -1 * (180 - rot)
-		#else:
-			#rotation_degrees = rot
+		var rot = rad_to_deg(global_position.angle_to_point(global_position + bullet_dir))
+		if scale.x == -1 * SCALE_X:
+			rotation_degrees = -1 * (180 - rot)
+		else:
+			rotation_degrees = rot
 		var bulletNode = BULLET.instantiate()
 		bulletNode.set_origin(global_position)
 		bulletNode.set_direction(bullet_dir)
@@ -48,4 +52,7 @@ func set_direction(direction):
 		if direction.x > 0:
 			scale.x = SCALE_X * -1
 		
+func flip():
+	pass
+	
 	

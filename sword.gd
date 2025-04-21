@@ -9,6 +9,7 @@ const SLASH = preload("res://slash.tscn")
 @onready var slash_speed_timer = $slashSpeedTimer
 @onready var hitbox = $HitBox
 
+@onready var sprite = $Sprite2D
 
 #original scales of x and y
 var SCALE_X = scale.x
@@ -17,6 +18,8 @@ var SCALE_Y = scale.y
 var hitbox_activated = false
 
 var canSlash = true
+
+var flipped = false
 
 func _ready():
 	slash_speed_timer.wait_time = 1.0 /force
@@ -30,12 +33,12 @@ func attack():
 		var slash_dir = Vector2(Input.get_axis("attack_left", "attack_right"), Input.get_axis("attack_up", "attack_down"))
 		if slash_dir.length() > 0:
 			slash_dir = slash_dir.normalized()
-			
-		#var rot = rad_to_deg(global_position.angle_to_point(global_position + slash_dir)) 
-		#if scale.x == -1 * SCALE_X:
-			#rotation_degrees = -1 * (180 - rot)
-		#else:
-			#rotation_degrees = rot
+		if slash_dir.y > 0:
+			position.y = 30
+			position.x = 0
+		if slash_dir.y < 0:
+			position.y = -20
+			position.x = 0
 		var slashNode = SLASH.instantiate()
 		slashNode.set_direction(slash_dir)
 		get_tree().root.add_child(slashNode)
@@ -48,18 +51,19 @@ func _physics_process(_delta: float) -> void:
 	elif not is_attacking():
 		hitbox.hide()
 		hitbox_activated = false
+	if not Input.is_action_pressed("attack_down") and not Input.is_action_pressed("attack_up"):
+		position.y = 0
+		position.x = -22 if not flipped else 22
 
 #for some reason can't attack until bullet is gone
 func _on_slash_speed_timer_timeout() -> void:
 	canSlash = true 
 	rotation_degrees = 0
 	
-func set_direction(direction):
-	if direction[0] != 0:
-		if direction.x < 0:	
-			scale.x = SCALE_X * -1
-		if direction.x > 0:
-			scale.x = SCALE_X * 1
+#func set_direction(direction):
+	#if direction[0] != 0:
+		#if direction.x < 0:	
+		#if direction.x > 0:
 		
 func set_damage(damage_):
 	damage = damage_ 
