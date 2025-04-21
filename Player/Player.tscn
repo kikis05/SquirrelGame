@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3 uid="uid://dr1q774wdrx75"]
+
+[ext_resource type="PackedScene" uid="uid://ctdj7k4cwb4f6" path="res://entities/player/player.tscn" id="1_3qydi"]
+
+[node name="Player" type="Node2D"]
+
+[node name="Player" parent="." instance=ExtResource("1_3qydi")]
+collision_layer = 7
+collision_mask = 7
+
+[node name="OptionalCamera" type="Camera2D" parent="Player"]

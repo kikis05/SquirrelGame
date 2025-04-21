@@ -1,242 +1,244 @@
 extends Node
+class_name DungeonGenerator
 
-var MIN_NONEMPTY_ROOMS := 10
-var MAX_GRID_SIZE := 20
+# ───────── CONFIGURATION ─────────
+@export var player_scene : PackedScene = preload("res://Player/Player.tscn")
 
-var GRID_WIDTH := 4
-var GRID_HEIGHT := 4
+const GRID_WIDTH      = 5
+const GRID_HEIGHT     = 5
+const MIN_NONEMPTY    = 10
+const MAX_ATTEMPTS    = 100
+const TILE_SIZE       = Vector2(160, 64)
 
-const ROOM_TYPES := [
-	"EmptyRoom",
-	"StandardRoomN", "StandardRoomE", "StandardRoomS", "StandardRoomW",
-	"StandardRoomNE", "StandardRoomNS", "StandardRoomNW",
-	"StandardRoomES", "StandardRoomEW", "StandardRoomSW",
-	"StandardRoomNES", "StandardRoomNEW", "StandardRoomNSW",
-	"StandardRoomESW", "StandardRoomNESW"
-]
-
-var DOOR_CONFIGS := {
-	"EmptyRoom":       [],
-	"StandardRoomN":   ["N"],
-	"StandardRoomE":   ["E"],
-	"StandardRoomS":   ["S"],
-	"StandardRoomW":   ["W"],
-	"StandardRoomNE":  ["N", "E"],
-	"StandardRoomNS":  ["N", "S"],
-	"StandardRoomNW":  ["N", "W"],
-	"StandardRoomES":  ["E", "S"],
-	"StandardRoomEW":  ["E", "W"],
-	"StandardRoomSW":  ["S", "W"],
-	"StandardRoomNES": ["N", "E", "S"],
-	"StandardRoomNEW": ["N", "E", "W"],
-	"StandardRoomNSW": ["N", "S", "W"],
-	"StandardRoomESW": ["E", "S", "W"],
-	"StandardRoomNESW":["N", "E", "S", "W"]
+const ROOM_TYPES = {
+	"EmptyRoom":        [],
+	"StandardRoomN":    ["N"],
+	"StandardRoomE":    ["E"],
+	"StandardRoomS":    ["S"],
+	"StandardRoomW":    ["W"],
+	"StandardRoomNE":   ["N","E"],
+	"StandardRoomNS":   ["N","S"],
+	"StandardRoomNW":   ["N","W"],
+	"StandardRoomES":   ["E","S"],
+	"StandardRoomEW":   ["E","W"],
+	"StandardRoomSW":   ["S","W"],
+	"StandardRoomNES":  ["N","E","S"],
+	"StandardRoomNEW":  ["N","E","W"],
+	"StandardRoomNSW":  ["N","S","W"],
+	"StandardRoomESW":  ["E","S","W"],
+	"StandardRoomNESW": ["N","E","S","W"],
 }
 
-var cell_possibilities : Array = []
-var dungeon_layout : Array = []
+const DIRS = ["N","E","S","W"]
+const OPPOSITE = {"N":"S", "E":"W", "S":"N", "W":"E"}
+const DIR_OFFSET = {
+	"N": Vector2i( 0,-1),
+	"E": Vector2i( 1, 0),
+	"S": Vector2i( 0, 1),
+	"W": Vector2i(-1, 0)
+}
 
-func _ready():
-	randomize()
-	generate_dungeon_with_min_rooms(MIN_NONEMPTY_ROOMS)
-	instance_dungeon()
+# ───────── RUNTIME STATE ─────────
+var grid : Array = []
+var collapsed : Array = []
+var current_room_pos : Vector2i = Vector2i.ZERO
+var current_room_instance : Node = null
+var rng : RandomNumberGenerator = RandomNumberGenerator.new()
 
-func get_valid_room_types(x: int, y: int) -> Array:
-	var valid = []
-	for rtype in ROOM_TYPES:
-		var doors = DOOR_CONFIGS[rtype]
-		if "N" in doors and y == 0: continue
-		if "S" in doors and y == GRID_HEIGHT - 1: continue
-		if "W" in doors and x == 0: continue
-		if "E" in doors and x == GRID_WIDTH - 1: continue
-		valid.append(rtype)
-	return valid
+# ───────── ENGINE ENTRY ─────────
+func _ready() -> void:
+	rng.randomize()
+	print("\n=== DungeonGenerator READY ===")
+	if _generate_dungeon():
+		current_room_pos = Vector2i(GRID_WIDTH / 2, GRID_HEIGHT / 2)
+		print("▶ Initial room:", current_room_pos)
+		_switch_to_room(current_room_pos, "")
+	else:
+		push_error("❌ Failed to build dungeon after %s attempts" % MAX_ATTEMPTS)
 
-func initialize():
-	cell_possibilities.clear()
-	dungeon_layout.clear()
-	for y in range(GRID_HEIGHT):
-		var row_poss = []
-		var row_layout = []
-		for x in range(GRID_WIDTH):
-			row_poss.append(get_valid_room_types(x, y))
-			row_layout.append(null)
-		cell_possibilities.append(row_poss)
-		dungeon_layout.append(row_layout)
+# ───────── WFC GRID GENERATION ─────────
+func _generate_dungeon() -> bool:
+	print("\n=== Generating dungeon grid with WFC ===")
+	for attempt in range(MAX_ATTEMPTS):
+		print("--- Attempt", attempt, "of", MAX_ATTEMPTS, "---")
+		_init_grid()
 
-func find_lowest_entropy_cell() -> Vector2:
-	var min_entropy = 999999
-	var best_cell = Vector2(-1, -1)
-	for y in range(GRID_HEIGHT):
-		for x in range(GRID_WIDTH):
-			var count = cell_possibilities[y][x].size()
-			if count > 1 and count < min_entropy:
-				min_entropy = count
-				best_cell = Vector2(x, y)
-	return best_cell
+		var centre : Vector2i = Vector2i(GRID_WIDTH / 2, GRID_HEIGHT / 2)
+		var first_index : int = rng.randi_range(0, ROOM_TYPES.size() - 1)
+		var first_room : String = ROOM_TYPES.keys()[first_index]
+		grid[centre.y][centre.x] = [first_room]
+		collapsed[centre.y][centre.x] = first_room
+		print("Seeded centre", centre, "with", first_room)
 
-func propagate_constraints_deep(start_x: int, start_y: int):
-	var queue: Array = [Vector2(start_x, start_y)]
-	var direction_map = {
-		"N": {"dx": 0, "dy": -1, "opposite": "S"},
-		"E": {"dx": 1, "dy": 0,  "opposite": "W"},
-		"S": {"dx": 0, "dy": 1,  "opposite": "N"},
-		"W": {"dx": -1,"dy": 0,  "opposite": "E"},
-	}
+		_propagate(centre)
+		_collapse_all()
 
-	while queue.size() > 0:
-		var current = queue.pop_front()
-		var cx = int(current.x)
-		var cy = int(current.y)
-		var current_type = dungeon_layout[cy][cx]
-		if current_type == null:
-			continue
-		var current_doors = DOOR_CONFIGS[current_type]
+		var nonempty : int = 0
+		for row in collapsed:
+			for cell in row:
+				if cell != null and cell != "EmptyRoom":
+					nonempty += 1
+		print("→ Non‑empty rooms:", nonempty)
 
-		for dir in direction_map.keys():
-			var dx = direction_map[dir].dx
-			var dy = direction_map[dir].dy
-			var opposite = direction_map[dir].opposite
-
-			var nx = cx + dx
-			var ny = cy + dy
-			if nx < 0 or nx >= GRID_WIDTH or ny < 0 or ny >= GRID_HEIGHT:
-				continue
-
-			var neighbor_poss = cell_possibilities[ny][nx]
-			var new_poss = []
-
-			var current_has = current_doors.has(dir)
-
-			for ntype in neighbor_poss:
-				var ndoors = DOOR_CONFIGS[ntype]
-				var neighbor_has = ndoors.has(opposite)
-
-				if current_type == "EmptyRoom":
-					if neighbor_has: continue
-				elif ntype == "EmptyRoom":
-					if current_has: continue
-				elif current_has != neighbor_has:
-					continue
-
-				new_poss.append(ntype)
-
-			if new_poss.size() < neighbor_poss.size():
-				cell_possibilities[ny][nx] = new_poss
-				if new_poss.size() == 1 and dungeon_layout[ny][nx] == null:
-					dungeon_layout[ny][nx] = new_poss[0]
-					queue.append(Vector2(nx, ny))
-				elif new_poss.size() > 0:
-					queue.append(Vector2(nx, ny))
-
-func generate_dungeon_once() -> bool:
-	initialize()
-	while true:
-		var cell = find_lowest_entropy_cell()
-		if cell.x == -1:
+		if nonempty >= MIN_NONEMPTY:
+			print("✅ Grid accepted")
+			for y in range(GRID_HEIGHT):
+				for x in range(GRID_WIDTH):
+					if collapsed[y][x] == null:
+						collapsed[y][x] = "EmptyRoom"
 			return true
-		var poss = cell_possibilities[cell.y][cell.x]
-		if poss.size() == 0:
-			return false
-		var chosen = poss[randi() % poss.size()]
-		cell_possibilities[cell.y][cell.x] = [chosen]
-		dungeon_layout[cell.y][cell.x] = chosen
-		propagate_constraints_deep(cell.x, cell.y)
+
+	print("❌ Could not satisfy WFC constraints")
 	return false
 
-func generate_dungeon_with_min_rooms(min_rooms: int):
-	for size in range(4, MAX_GRID_SIZE + 1):
-		GRID_WIDTH = size
-		GRID_HEIGHT = size
-		for attempt in range(100):
-			if generate_dungeon_once() and is_fully_connected():
-				var count := 0
-				for y in range(GRID_HEIGHT):
-					for x in range(GRID_WIDTH):
-						var t = dungeon_layout[y][x]
-						if t != null and t != "EmptyRoom":
-							count += 1
-				if count >= min_rooms:
-					print("✅ Dungeon with %d rooms generated in grid %dx%d" % [count, GRID_WIDTH, GRID_HEIGHT])
-					return
-	push_warning("❌ Failed to generate dungeon with %d rooms after max grid/attempts." % min_rooms)
 
-func is_fully_connected() -> bool:
-	var visited := []
+func _init_grid() -> void:
+	grid.clear()
+	collapsed.clear()
 	for y in range(GRID_HEIGHT):
-		visited.append([])
+		var g_row : Array = []
+		var c_row : Array = []
 		for x in range(GRID_WIDTH):
-			visited[y].append(false)
+			g_row.append(ROOM_TYPES.keys())
+			c_row.append(null)
+		grid.append(g_row)
+		collapsed.append(c_row)
+	print("• Grid initialised")
 
-	var directions := {
-		"N": Vector2(0, -1),
-		"S": Vector2(0, 1),
-		"E": Vector2(1, 0),
-		"W": Vector2(-1, 0)
-	}
-	var opposites := {
-		"N": "S",
-		"S": "N",
-		"E": "W",
-		"W": "E"
-	}
 
-	var start := Vector2(-1, -1)
+func _collapse_all() -> void:
+	while true:
+		var cell : Vector2i = _lowest_entropy_cell()
+		if cell.x == -1:
+			print("• All cells collapsed")
+			return
+		var options : Array = grid[cell.y][cell.x]
+		var pick : String = options[rng.randi_range(0, options.size() - 1)]
+		grid[cell.y][cell.x] = [pick]
+		collapsed[cell.y][cell.x] = pick
+		print("  Collapsed", cell, "→", pick)
+		_propagate(cell)
+
+
+func _lowest_entropy_cell() -> Vector2i:
+	var best : Vector2i = Vector2i(-1, -1)
+	var min_entropy : float = INF
 	for y in range(GRID_HEIGHT):
 		for x in range(GRID_WIDTH):
-			var t = dungeon_layout[y][x]
-			if t != null and t != "EmptyRoom":
-				start = Vector2(x, y)
-				break
-		if start.x != -1:
-			break
-	if start.x == -1:
-		return false
+			if collapsed[y][x] == null:
+				var count : int = grid[y][x].size()
+				if count > 1 and count < min_entropy:
+					min_entropy = count
+					best = Vector2i(x, y)
+	return best
 
-	var queue := [start]
-	visited[start.y][start.x] = true
 
+func _propagate(start : Vector2i) -> void:
+	var queue : Array = [start]
+	var visited : Dictionary = {}
 	while queue.size() > 0:
-		var pos = queue.pop_front()
-		var room_type = dungeon_layout[pos.y][pos.x]
-		var doors = DOOR_CONFIGS[room_type]
-
-		for d in doors:
-			var neighbor = pos + directions[d]
-			if not (neighbor.x >= 0 and neighbor.x < GRID_WIDTH and neighbor.y >= 0 and neighbor.y < GRID_HEIGHT):
+		var current : Vector2i = queue.pop_front()
+		if visited.has(current):
+			continue
+		visited[current] = true
+		for dir in DIRS:
+			var neighbour : Vector2i = current + DIR_OFFSET[dir]
+			if neighbour.x < 0 or neighbour.x >= GRID_WIDTH or neighbour.y < 0 or neighbour.y >= GRID_HEIGHT:
 				continue
-			var neighbor_type = dungeon_layout[neighbor.y][neighbor.x]
-			if neighbor_type == null or neighbor_type == "EmptyRoom":
+			if collapsed[neighbour.y][neighbour.x] != null:
 				continue
-			var neighbor_doors = DOOR_CONFIGS[neighbor_type]
-			if opposites[d] in neighbor_doors and not visited[neighbor.y][neighbor.x]:
-				visited[neighbor.y][neighbor.x] = true
-				queue.append(neighbor)
 
-	var total_rooms := 0
-	var connected_rooms := 0
-	for y in range(GRID_HEIGHT):
-		for x in range(GRID_WIDTH):
-			if dungeon_layout[y][x] != null and dungeon_layout[y][x] != "EmptyRoom":
-				total_rooms += 1
-				if visited[y][x]:
-					connected_rooms += 1
+			var valid : Array = []
+			for opt in grid[current.y][current.x]:
+				for r in ROOM_TYPES.keys():
+					var cond1 : bool = dir in ROOM_TYPES[opt] and OPPOSITE[dir] in ROOM_TYPES[r]
+					var cond2 : bool = dir not in ROOM_TYPES[opt] and OPPOSITE[dir] not in ROOM_TYPES[r]
+					if cond1 or cond2:
+						valid.append(r)
 
-	return total_rooms == connected_rooms
+			var new_list : Array = []
+			for item in grid[neighbour.y][neighbour.x]:
+				if valid.has(item):
+					new_list.append(item)
 
-func instance_dungeon():
-	var cell_size = Vector2(640, 360)
-	for y in range(GRID_HEIGHT):
-		for x in range(GRID_WIDTH):
-			var rtype = dungeon_layout[y][x]
-			if rtype == null or rtype == "EmptyRoom":
-				continue
-			var path = "res://Rooms/StandardRoomScenes/" + rtype + ".tscn"
-			if not ResourceLoader.exists(path):
-				path = "res://Rooms/StandardRoomScenes/StandardRoomNESW.tscn"
-			var scene = load(path)
-			if scene:
-				var inst = scene.instantiate()
-				add_child(inst)
-				inst.position = Vector2(x, y) * cell_size
+			if new_list.size() < grid[neighbour.y][neighbour.x].size():
+				grid[neighbour.y][neighbour.x] = new_list
+				print("    Updated", neighbour, "options →", new_list)
+				if new_list.size() == 1:
+					collapsed[neighbour.y][neighbour.x] = new_list[0]
+					queue.append(neighbour)
+
+# ───────── ROOM LOADING & TELEPORT ─────────
+func _switch_to_room(pos : Vector2i, entered_from_dir : String) -> void:
+	print("\n=== Switching to", pos, "from:", entered_from_dir, "===")
+
+	if pos.x < 0 or pos.x >= GRID_WIDTH or pos.y < 0 or pos.y >= GRID_HEIGHT:
+		print("⚠ Out of bounds – aborting")
+		return
+	var room_name : String = collapsed[pos.y][pos.x]
+	if room_name == "EmptyRoom":
+		print("⚠ Target cell is EmptyRoom – aborting")
+		return
+
+	if current_room_instance:
+		current_room_instance.queue_free()
+	var old_player : Node = get_node_or_null("Player")
+	if old_player:
+		old_player.queue_free()
+
+	var scene_path : String = "res://Rooms/StandardRoomScenes/%s.tscn" % room_name
+	print("• Instancing room:", scene_path)
+	current_room_instance = load(scene_path).instantiate()
+	current_room_instance.name = "RoomInstance"
+	add_child(current_room_instance)
+
+	await get_tree().process_frame  # Ensure nodes are fully entered into the scene tree
+
+	_wire_doors_recursive(current_room_instance, pos)
+
+	var spawn : Vector2 = Vector2(320, 180)  # default
+	var spawn_point_node : Node2D = current_room_instance.get_node_or_null("SpawnPoint")
+	if spawn_point_node == null:
+		print("⚠ No SpawnPoint found in room, using default spawn position")
+	else:
+		spawn = spawn_point_node.global_position
+		if entered_from_dir != "":
+			var offset := Vector2.ZERO
+			match entered_from_dir:
+				"N": offset = Vector2(0, TILE_SIZE.y)
+				"S": offset = Vector2(0, -TILE_SIZE.y)
+				"E": offset = Vector2(-TILE_SIZE.x, 0)
+				"W": offset = Vector2(TILE_SIZE.x, 0)
+			spawn += offset
+			print("• Spawn from", entered_from_dir, "→", spawn, "(offset:", offset, ")")
+
+	if player_scene == null:
+		push_error("❌ player_scene is null")
+		return
+	var player : Node = player_scene.instantiate()
+	player.name = "Player"
+	add_child(player)
+	player.global_position = spawn
+	print("• Player spawned at", spawn)
+
+	current_room_pos = pos
+	print("=== Room ready ===\n")
+
+
+func _wire_doors_recursive(node : Node, room_pos : Vector2i) -> void:
+	for child in node.get_children():
+		if child is Door:
+			child.room_pos = room_pos
+			child.dungeon  = self
+			child.connect("door_entered", _on_door_entered)
+			print("  ↳ Wired Door:", child.name, "dir:", child.direction, "room:", room_pos)
+		_wire_doors_recursive(child, room_pos)
+
+
+func _on_door_entered(room_pos : Vector2i, dir : String, body : Node) -> void:
+	if body.name != "Player":
+		return
+	print("\n>>> DOOR TRIGGER  room_pos:", room_pos, " dir:", dir, " <<<")
+	var target : Vector2i = room_pos + DIR_OFFSET[dir]
+	print("    Target room:", target)
+	_switch_to_room(target, dir)
