@@ -1,95 +1,195 @@
-[gd_scene load_steps=12 format=3 uid="uid://cf1r7ceglwp02"]
+[gd_scene load_steps=16 format=3 uid="uid://dek0t7ihd4vxg"]
 
-[ext_resource type="Script" uid="uid://cbpbi2ou62orj" path="res://entities/enemies/mosquito_enemy/mosquito_enemy.gd" id="1_ybsgu"]
+[ext_resource type="Script" uid="uid://daiw5kfg4dhxo" path="res://entities/enemies/mosquito_enemy/mosquito_enemy.gd" id="1_21egr"]
+[ext_resource type="Texture2D" uid="uid://cvymypq17y0d7" path="res://assets/enemies/mosquito_mom_anims1.png" id="2_ibrlw"]
 [ext_resource type="Script" uid="uid://drc32dbyt45eh" path="res://entities/enemies/states/state_machine.gd" id="2_ybsgu"]
 [ext_resource type="Script" uid="uid://8jg436ppnko" path="res://entities/enemies/states/idle_state.gd" id="3_ibrlw"]
-[ext_resource type="Script" uid="uid://7spdl75ena5l" path="res://entities/enemies/states/chase_state.gd" id="4_rojr2"]
-[ext_resource type="Script" uid="uid://dm4uiijfbbr7u" path="res://entities/enemies/states/stun_state.gd" id="5_74br6"]
+[ext_resource type="Script" uid="uid://b0u3qvmt58th8" path="res://entities/enemies/states/linear_chase_state.gd" id="5_ibrlw"]
 [ext_resource type="Script" uid="uid://cji0ts0qst0sl" path="res://entities/enemies/states/attack_state.gd" id="6_0gqg2"]
-[ext_resource type="Script" uid="uid://c7yfvis6uphlt" path="res://entities/enemies/states/death_state.gd" id="7_ybsgu"]
+[ext_resource type="Script" uid="uid://bnm6cr87jsjaw" path="res://entities/enemies/states/stun_tolinear_state.gd" id="6_ibrlw"]
+[ext_resource type="Script" uid="uid://c7yfvis6uphlt" path="res://entities/enemies/states/death_state.gd" id="7_qyrbb"]
 
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_cow0h"]
-load_path = "res://.godot/imported/icon.svg-218a8f2b3041327d8a5756f3a245f83b.ctex"
+[sub_resource type="AtlasTexture" id="AtlasTexture_rojr2"]
+atlas = ExtResource("2_ibrlw")
+region = Rect2(0, 0, 32, 32)
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_cow0h"]
-radius = 3.0
+[sub_resource type="AtlasTexture" id="AtlasTexture_74br6"]
+atlas = ExtResource("2_ibrlw")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0gqg2"]
+atlas = ExtResource("2_ibrlw")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qyrbb"]
+atlas = ExtResource("2_ibrlw")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_b51hg"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rojr2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_74br6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0gqg2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qyrbb")
+}],
+"loop": false,
+"name": &"attack",
+"speed": 9.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rojr2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_74br6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0gqg2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qyrbb")
+}],
+"loop": true,
+"name": &"chase",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rojr2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_74br6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0gqg2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qyrbb")
+}],
+"loop": false,
+"name": &"death",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rojr2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_74br6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0gqg2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qyrbb")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rojr2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_74br6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0gqg2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qyrbb")
+}],
+"loop": false,
+"name": &"stun",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ibrlw"]
+radius = 6.08276
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_rojr2"]
+radius = 9.0
 height = 24.0
-
-[sub_resource type="CircleShape2D" id="CircleShape2D_ybsgu"]
-radius = 12.3693
-
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_f87vr"]
-radius = 5.0
-height = 28.0
 
 [node name="Mosquito Enemy" type="CharacterBody2D"]
 collision_layer = 2
-collision_mask = 15
+collision_mask = 12
 motion_mode = 1
-script = ExtResource("1_ybsgu")
+wall_min_slide_angle = 0.0
+script = ExtResource("1_21egr")
+metadata/_custom_type_script = "uid://r8yeg3hefk1e"
 
-[node name="Enemy Body" type="CharacterBody2D" parent="."]
+[node name="EnemyBody" type="CharacterBody2D" parent="."]
+position = Vector2(0, -11)
+collision_layer = 2
+collision_mask = 12
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="EnemyBody"]
+position = Vector2(0, -16)
+sprite_frames = SubResource("SpriteFrames_b51hg")
+animation = &"attack"
+autoplay = "chase"
+
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="EnemyBody"]
+debug_enabled = true
+
+[node name="AttackBox" type="Area2D" parent="EnemyBody" groups=["enemy"]]
+position = Vector2(-3, -3)
+collision_layer = 2
+collision_mask = 6
+
+[node name="AttackCollisionArea" type="CollisionShape2D" parent="EnemyBody/AttackBox"]
+shape = SubResource("CircleShape2D_ibrlw")
+
+[node name="HitBox" type="Area2D" parent="EnemyBody" groups=["enemy"]]
 position = Vector2(0, -12)
 collision_layer = 2
-collision_mask = 15
-motion_mode = 1
+collision_mask = 6
 
-[node name="Icon" type="Sprite2D" parent="Enemy Body"]
-position = Vector2(0, -11.5)
-scale = Vector2(0.1875, 0.179688)
-texture = SubResource("CompressedTexture2D_cow0h")
-region_enabled = true
-region_rect = Rect2(0, 0, 128, 128)
-
-[node name="WallCollision" type="CollisionShape2D" parent="Enemy Body"]
-position = Vector2(0, -3)
-rotation = 1.5708
-shape = SubResource("CapsuleShape2D_cow0h")
-
-[node name="AttackBox" type="Area2D" parent="Enemy Body"]
-position = Vector2(-16, -3)
-rotation = 1.5708
-collision_layer = 2
-collision_mask = 4
-
-[node name="AttackCollisionArea" type="CollisionShape2D" parent="Enemy Body/AttackBox"]
-position = Vector2(-1.41859e-05, -4)
-shape = SubResource("CircleShape2D_ybsgu")
-
-[node name="HitBox" type="Area2D" parent="Enemy Body"]
-position = Vector2(0, -3)
-rotation = 1.5708
-collision_layer = 2
-collision_mask = 4
-
-[node name="HitCollisionArea" type="CollisionShape2D" parent="Enemy Body/HitBox"]
-shape = SubResource("CapsuleShape2D_f87vr")
+[node name="HitCollisionArea" type="CollisionShape2D" parent="EnemyBody/HitBox"]
+shape = SubResource("CapsuleShape2D_rojr2")
 debug_color = Color(1, 0.6, 0.701961, 0.419608)
+
+[node name="Marker2D" type="Marker2D" parent="EnemyBody"]
 
 [node name="State Machine" type="Node" parent="." node_paths=PackedStringArray("initial_state")]
 script = ExtResource("2_ybsgu")
-initial_state = NodePath("Chase State")
+initial_state = NodePath("Linear Chase State")
+metadata/_custom_type_script = "uid://drc32dbyt45eh"
 
-[node name="Idle State" type="Node" parent="State Machine" node_paths=PackedStringArray("enemy")]
+[node name="Idle State" type="Node" parent="State Machine"]
 script = ExtResource("3_ibrlw")
-enemy = NodePath("../..")
+metadata/_custom_type_script = "uid://8jg436ppnko"
 
-[node name="Chase State" type="Node" parent="State Machine" node_paths=PackedStringArray("enemy")]
-script = ExtResource("4_rojr2")
+[node name="Linear Chase State" type="Node" parent="State Machine" node_paths=PackedStringArray("enemy")]
+script = ExtResource("5_ibrlw")
 enemy = NodePath("../..")
+metadata/_custom_type_script = "uid://7spdl75ena5l"
 
 [node name="Stun State" type="Node" parent="State Machine" node_paths=PackedStringArray("enemy")]
-script = ExtResource("5_74br6")
+script = ExtResource("6_ibrlw")
 enemy = NodePath("../..")
 
 [node name="Attack State" type="Node" parent="State Machine" node_paths=PackedStringArray("enemy")]
 script = ExtResource("6_0gqg2")
 enemy = NodePath("../..")
+metadata/_custom_type_script = "uid://cji0ts0qst0sl"
 
 [node name="Death State" type="Node" parent="State Machine" node_paths=PackedStringArray("enemy")]
-script = ExtResource("7_ybsgu")
+script = ExtResource("7_qyrbb")
 enemy = NodePath("../..")
+metadata/_custom_type_script = "uid://c7yfvis6uphlt"
 
-[connection signal="body_entered" from="Enemy Body/AttackBox" to="." method="_on_attack_box_body_entered"]
-[connection signal="body_exited" from="Enemy Body/AttackBox" to="." method="_on_attack_box_body_exited"]
-[connection signal="area_entered" from="Enemy Body/HitBox" to="." method="_on_hit_box_area_entered"]
+[connection signal="animation_finished" from="EnemyBody/AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]
+[connection signal="body_entered" from="EnemyBody/AttackBox" to="." method="_on_attack_box_body_entered"]
+[connection signal="body_exited" from="EnemyBody/AttackBox" to="." method="_on_attack_box_body_exited"]
+[connection signal="area_entered" from="EnemyBody/HitBox" to="." method="_on_hit_box_area_entered"]

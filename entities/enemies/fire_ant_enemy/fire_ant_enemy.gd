@@ -4,17 +4,10 @@ extends AntEnemy
 @export var fire_spawn: Node
 
 
-func take_damage(damage):
-	health -= damage
-	print(global_position, position)
-	if (health <= 0):
-		death_location.y = global_position.y - 58
-		death_location.x = global_position.x - 153
-
 func _on_fire_spawn_timer_timeout():
 	var fire_inst = fire_trail.instantiate()
 	fire_inst.global_position = global_position
-	if player != null:
+	if player != null and player.dead == false:
 		fire_inst.player = player
 	fire_spawn.add_child(fire_inst)
 
@@ -24,7 +17,7 @@ func _on_hit_box_area_entered(area):
 	if area.is_in_group("player_weapon") and health > 0:
 		if ('get_damage' in area and area.hitbox_activated):
 			take_damage(area.get_damage())
-			print("Health down to: ", health )
+			print("Health down to: ", health)
 			state_machine.transition_to("stun state")
 
 func _on_attack_box_body_entered(body):
@@ -40,13 +33,12 @@ func _on_attack_box_body_exited(body):
 func _on_animated_sprite_2d_animation_finished():
 	if sprite.animation == "death":		
 		var coin = COIN.instantiate()
-		print(coin.global_position)
-		coin.global_position = death_location
+		coin.global_position = global_position
 		get_tree().root.add_child(coin)
 		queue_free()
 	elif sprite.animation == "attack" and player_in_range:
 		print(player.name)
-		if player != null:
+		if player != null and player.dead == false:
 			print("should damage player")
 			player.damage_player()
 		sprite.play("idle")

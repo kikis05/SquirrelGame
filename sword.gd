@@ -44,7 +44,7 @@ func attack():
 		get_tree().root.add_child(slashNode)
 		slashNode.global_position = marker_2d.global_position
 		
-func _physics_process(delta: float) -> void: 
+func _physics_process(_delta: float) -> void: 
 	if is_attacking() and canSlash:
 		hitbox.show()
 		hitbox_activated = true

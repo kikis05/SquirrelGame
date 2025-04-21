@@ -2,6 +2,7 @@
 # https://www.youtube.com/watch?v=ow_Lum-Agbs
 
 extends Node
+class_name State_Machine
 
 @export var initial_state: State
 
