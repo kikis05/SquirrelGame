@@ -99,11 +99,23 @@ func _init_grid() -> void:
 		var g_row : Array = []
 		var c_row : Array = []
 		for x in range(GRID_WIDTH):
-			g_row.append(ROOM_TYPES.keys())
+			var valid_room_types : Array = []
+			for room_name in ROOM_TYPES.keys():
+				var exits = ROOM_TYPES[room_name]
+				var is_valid = true
+				for dir in exits:
+					var nx = x + DIR_OFFSET[dir].x
+					var ny = y + DIR_OFFSET[dir].y
+					if nx < 0 or nx >= GRID_WIDTH or ny < 0 or ny >= GRID_HEIGHT:
+						is_valid = false
+						break
+				if is_valid:
+					valid_room_types.append(room_name)
+			g_row.append(valid_room_types)
 			c_row.append(null)
 		grid.append(g_row)
 		collapsed.append(c_row)
-	print("• Grid initialised")
+	print("• Grid initialised with bounded room options")
 
 
 func _collapse_all() -> void:
