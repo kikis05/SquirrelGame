@@ -4,7 +4,4 @@ res://coin.tscn
 res://entities/enemies/ant_enemy/ant_enemy.tscn
 res://entities/enemies/mosquito_enemy/mosquito_enemy.tscn
 res://entities/enemies/fire_ant_enemy/fire_ant_enemy.tscn
-res://entities/enemies/mosquito_enemy/mosquito_enemy.gd
-res://entities/enemies/ant_enemy/ant_enemy.gd
-res://entities/enemies/fire_ant_enemy/fire_ant_enemy.gd
 res://entities/enemies/fire_ant_enemy/fire_trail.tscn
