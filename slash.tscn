@@ -6,8 +6,11 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_bf50k"]
 size = Vector2(6, 38.5)
 
-[node name="Slash" type="Area2D"]
-collision_mask = 0
+[node name="Slash" type="Area2D" groups=["player_weapon"]]
+light_mask = 16
+visibility_layer = 2
+collision_layer = 4
+collision_mask = 11
 script = ExtResource("1_tocf0")
 speed = 300
 

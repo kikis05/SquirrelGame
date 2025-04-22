@@ -1,12 +1,14 @@
 extends Area2D
 
 @export var speed = 500
-@export var fade = 0.5 #how fast the slash effect fades
+@export var fade = 3 #how fast the slash effect fades
 @export var damage = 5
 
 @onready var sprite = $Sprite2D
 
 var direction:Vector2
+
+var hitbox_activated = true
 
 func set_direction(slashDirection):
 	direction = slashDirection
@@ -35,5 +37,5 @@ func set_damage(damage_):
 	damage = damage_
 
 func get_damage():
-	return damage
+	return damage * sprite.modulate.a
 	

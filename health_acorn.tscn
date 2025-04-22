@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://clyfvimkr00rl"]
+
+[ext_resource type="Texture2D" uid="uid://yda0fpy6r21e" path="res://art/HealthAcorns.png" id="1_tjo7d"]
+[ext_resource type="Script" uid="uid://bbglt6dy2ryh7" path="res://health_acorn.gd" id="1_x427u"]
+
+[node name="HealthAcorn" type="Panel"]
+self_modulate = Color(1, 1, 1, 0)
+custom_minimum_size = Vector2(32, 33)
+offset_right = 32.0
+offset_bottom = 33.0
+script = ExtResource("1_x427u")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_tjo7d")
+centered = false
+hframes = 3
+frame = 2

@@ -13,6 +13,10 @@ var canShoot = true
 var SCALE_X = scale.x
 var SCALE_Y = scale.y
 
+#flip
+var flipped = false
+
+
 func _ready():
 	shoot_speed_timer.wait_time = 1.0 /shootSpeed
 	
@@ -31,11 +35,10 @@ func attack():
 		else:
 			rotation_degrees = rot
 		var bulletNode = BULLET.instantiate()
-		
+		bulletNode.set_origin(global_position)
 		bulletNode.set_direction(bullet_dir)
 		get_tree().root.add_child(bulletNode)
 		bulletNode.global_position = marker_2d.global_position
-		bulletNode.destroyTimer.start()
 
 #for some reason can't shoot until bullet is gone
 func _on_shoot_speed_timer_timeout():
@@ -49,4 +52,7 @@ func set_direction(direction):
 		if direction.x > 0:
 			scale.x = SCALE_X * -1
 		
+func flip():
+	pass
+	
 	

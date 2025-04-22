@@ -4,16 +4,20 @@
 [ext_resource type="Texture2D" uid="uid://c3ihirpd8epus" path="res://icon.svg" id="1_vk1bi"]
 
 [node name="Gun" type="Node2D"]
+light_mask = 16
+visibility_layer = 3
 script = ExtResource("1_dk5gl")
 
 [node name="Gun_Sprite" type="Sprite2D" parent="."]
+light_mask = 16
 position = Vector2(-4, 0)
 scale = Vector2(0.25, 0.05)
 texture = ExtResource("1_vk1bi")
 offset = Vector2(16, 0)
 
 [node name="Marker2D" type="Marker2D" parent="."]
-position = Vector2(19, 0)
+position = Vector2(1, 0)
+scale = Vector2(473.628, 16.6436)
 
 [node name="shootSpeedTimer" type="Timer" parent="."]
 wait_time = 0.5
