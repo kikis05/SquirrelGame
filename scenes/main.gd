@@ -20,10 +20,13 @@ func _ready() :
 			print("enemy found")
 			child.player = player
 	
-#func _process(_delta):
-	##if Input.is_action_just_pressed("Escape") and get_tree().paused == false:
-		##menu.show()
-		##menu.pause()
-	##elif  Input.is_action_just_pressed("Escape") and get_tree().paused == true:
-		##menu.hide()
-		##menu.resume()
+func _process(_delta):
+	#if Input.is_action_just_pressed("Escape") and get_tree().paused == false:
+		#print("open menu")
+		#menu.show()
+		#menu.pause()
+	#elif  Input.is_action_just_pressed("Escape") and get_tree().paused == true:
+		#print("close menu")
+		#menu.resume()
+		#menu.hide()
+		pass

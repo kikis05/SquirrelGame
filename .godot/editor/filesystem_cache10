@@ -1,5 +1,5 @@
 ea4bc82a6ad023ab7ee23ee620429895
-::res://::1745383672
+::res://::1745383836
 bullet.gd::GDScript/GDScript::2304997660688105147::1745347712::0::1::::<>Area2D<><>0<>0<><>::
 bullet.tscn::PackedScene/PackedScene::1732501824914031346::1745347712::0::1::::<><><>0<>0<><>::uid://c3ihirpd8epus::::res://icon.svg<>uid://73s8e05jdqcp::::res://bullet.gd
 coin.gd::GDScript/GDScript::7206091320089563611::1745347712::0::1::::<>Area2D<><>0<>0<><>::
@@ -86,7 +86,7 @@ StandardRoomW-A-BossRoom.tscn::PackedScene/PackedScene::5923369738918440299::174
 ::res://Rooms/StandardRoomScenes/::1745383549
 StandardRoomE.tscn::PackedScene/PackedScene::8886422063002195357::1745382765::0::1::::<><><>0<>0<><>::uid://ct5rm6fgeven2::::res://Rooms/DungeonAssets.png<>uid://cip7l1do06wqa::::res://Rooms/Door.gd
 StandardRoomES.tscn::PackedScene/PackedScene::3709506009109993894::1745382765::0::1::::<><><>0<>0<><>::uid://ct5rm6fgeven2::::res://Rooms/DungeonAssets.png<>uid://cip7l1do06wqa::::res://Rooms/Door.gd
-StandardRoomESW.tscn::PackedScene::633986334391443320::1745383549::0::1::::<><><>0<>0<><>::uid://ct5rm6fgeven2::::res://Rooms/DungeonAssets.png<>uid://cip7l1do06wqa::::res://Rooms/Door.gd
+StandardRoomESW.tscn::PackedScene/PackedScene::633986334391443320::1745383549::0::1::::<><><>0<>0<><>::uid://ct5rm6fgeven2::::res://Rooms/DungeonAssets.png<>uid://cip7l1do06wqa::::res://Rooms/Door.gd
 StandardRoomEW.tscn::PackedScene/PackedScene::6127865275856613899::1745347705::0::1::::<><><>0<>0<><>::uid://ct5rm6fgeven2::::res://Rooms/DungeonAssets.png<>uid://cip7l1do06wqa::::res://Rooms/Door.gd
 StandardRoomN.tscn::PackedScene/PackedScene::6539977559932297535::1745347705::0::1::::<><><>0<>0<><>::uid://ct5rm6fgeven2::::res://Rooms/DungeonAssets.png<>uid://cip7l1do06wqa::::res://Rooms/Door.gd
 StandardRoomNE.tscn::PackedScene/PackedScene::1675148961216567053::1745347705::0::1::::<><><>0<>0<><>::uid://ct5rm6fgeven2::::res://Rooms/DungeonAssets.png<>uid://cip7l1do06wqa::::res://Rooms/Door.gd
@@ -100,6 +100,6 @@ StandardRoomS.tscn::PackedScene/PackedScene::5776824557532626341::1745382765::0:
 StandardRoomSW.tscn::PackedScene/PackedScene::7934387101254747572::1745347705::0::1::::<><><>0<>0<><>::uid://ct5rm6fgeven2::::res://Rooms/DungeonAssets.png<>uid://cip7l1do06wqa::::res://Rooms/Door.gd
 StandardRoomW.tscn::PackedScene/PackedScene::5500431779857457030::1745347705::0::1::::<><><>0<>0<><>::uid://ct5rm6fgeven2::::res://Rooms/DungeonAssets.png<>uid://cip7l1do06wqa::::res://Rooms/Door.gd
 ::res://scenes/::1745383662
-dungeon_generator.gd::GDScript::8192507296294421068::1745383549::0::1::::DungeonGenerator<>Node<><>0<>0<><>::
-main.gd::GDScript::7808289903107915038::1745383549::0::1::::<>Node<><>0<>0<><>::
-main.tscn::PackedScene::7568936160764162782::1745383662::0::1::::<><><>0<>0<><>::uid://ctdj7k4cwb4f6::::res://Player/player.tscn<>uid://djinnnl2c7xs5::::res://scenes/main.gd<>uid://c3ihirpd8epus::::res://icon.svg<>uid://doyrnsmawccn1::::res://scenes/dungeon_generator.gd<>uid://bptqwns6p2701::::res://coins_container.tscn<>uid://c1x03uf7p3bj1::::res://health_container.tscn<>uid://tfnoonrvjm30::::res://menu.tscn
+dungeon_generator.gd::GDScript/GDScript::8192507296294421068::1745383549::0::1::::DungeonGenerator<>Node<><>0<>0<><>::
+main.gd::GDScript/GDScript::7808289903107915038::1745383549::0::1::::<>Node<><>0<>0<><>::
+main.tscn::PackedScene/PackedScene::7568936160764162782::1745383662::0::1::::<><><>0<>0<><>::uid://ctdj7k4cwb4f6::::res://Player/player.tscn<>uid://djinnnl2c7xs5::::res://scenes/main.gd<>uid://c3ihirpd8epus::::res://icon.svg<>uid://doyrnsmawccn1::::res://scenes/dungeon_generator.gd<>uid://bptqwns6p2701::::res://coins_container.tscn<>uid://c1x03uf7p3bj1::::res://health_container.tscn<>uid://tfnoonrvjm30::::res://menu.tscn

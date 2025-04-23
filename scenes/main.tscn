@@ -46,7 +46,7 @@ tile_set = SubResource("TileSet_tbgi4")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 process_mode = 2
-visible = false
+layer = 3
 
 [node name="HealthContainer" parent="CanvasLayer" instance=ExtResource("7_85g3d")]
 metadata/_edit_use_anchors_ = true
