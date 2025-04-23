@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://clyfvimkr00rl"]
 
-[ext_resource type="Texture2D" uid="uid://yda0fpy6r21e" path="res://art/HealthAcorns.png" id="1_tjo7d"]
 [ext_resource type="Script" uid="uid://bbglt6dy2ryh7" path="res://health_acorn.gd" id="1_x427u"]
+[ext_resource type="Texture2D" uid="uid://b4g5qj8yhy1fk" path="res://art/SquirrelGame_Sprites.png" id="2_x427u"]
 
 [node name="HealthAcorn" type="Panel"]
 self_modulate = Color(1, 1, 1, 0)
@@ -11,7 +11,9 @@ offset_bottom = 33.0
 script = ExtResource("1_x427u")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("1_tjo7d")
+texture = ExtResource("2_x427u")
 centered = false
 hframes = 3
 frame = 2
+region_enabled = true
+region_rect = Rect2(64, 158, 48, 20)

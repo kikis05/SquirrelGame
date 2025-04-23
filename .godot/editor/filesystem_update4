@@ -12,3 +12,5 @@ res://Player/player.gd
 res://entities/enemies/ant_enemy/ant_enemy.gd
 res://entities/enemies/mosquito_enemy/mosquito_enemy.tscn
 res://entities/enemies/mosquito_enemy/mosquito_enemy.gd
+res://health_acorn.tscn
+res://health_container.tscn
