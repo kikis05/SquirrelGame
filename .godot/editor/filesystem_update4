@@ -1,4 +1,2 @@
-res://scenes/main.tscn
-res://entities/player/player.tscn
-res://enemy.tscn
-res://enemy.gd
+res://Rooms/Door.gd
+res://Rooms/RoomManager.gd
