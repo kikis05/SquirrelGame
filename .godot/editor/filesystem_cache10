@@ -1,5 +1,5 @@
 ea4bc82a6ad023ab7ee23ee620429895
-::res://::1745383836
+::res://::1745436732
 bullet.gd::GDScript/GDScript::2304997660688105147::1745347712::0::1::::<>Area2D<><>0<>0<><>::
 bullet.tscn::PackedScene/PackedScene::1732501824914031346::1745347712::0::1::::<><><>0<>0<><>::uid://c3ihirpd8epus::::res://icon.svg<>uid://73s8e05jdqcp::::res://bullet.gd
 coin.gd::GDScript/GDScript::7206091320089563611::1745347712::0::1::::<>Area2D<><>0<>0<><>::
@@ -15,7 +15,7 @@ health_acorn.tscn::PackedScene/PackedScene::5594805239340366281::1745347712::0::
 health_container.gd::GDScript/GDScript::1953735380379108506::1745347712::0::1::::<>HBoxContainer<><>0<>0<><>::
 health_container.tscn::PackedScene/PackedScene::6646800977033023200::1745347712::0::1::::<><><>0<>0<><>::uid://23n0bem228ti::::res://health_container.gd
 icon.svg::CompressedTexture2D/CompressedTexture2D::6755084232833790790::1742761209::1744910140::1::::<><><>0<>0<>601003d8c7f45d6a69370904ec3e772d<>res://.godot/imported/icon.svg-218a8f2b3041327d8a5756f3a245f83b.ctex::
-menu.gd::GDScript/GDScript::6255915407689833656::1745347712::0::1::::<>Control<><>0<>0<><>::
+menu.gd::GDScript::6255915407689833656::1745436684::0::1::::<>Control<><>0<>0<><>::
 menu.tscn::PackedScene/PackedScene::1344724996123740025::1745347712::0::1::::<><><>0<>0<><>::uid://cveoao0w7p7yq::::res://menu.gd
 README.md::TextFile/TextFile::-1::1743987362::0::1::::<><><>0<>0<><>::
 slash.gd::GDScript/GDScript::3345691420506417099::1745347712::0::1::::<>Area2D<><>0<>0<><>::
@@ -66,7 +66,7 @@ player.tscn::PackedScene/PackedScene::6113226698264024357::1745382765::0::1::::<
 ::res://Rooms/::1745382024
 Door.gd::GDScript/GDScript::5367281741215104256::1745347705::0::1::::Door<>Area2D<><>0<>0<><>::
 DungeonAssets.png::CompressedTexture2D/CompressedTexture2D::6169415983761164237::1745347705::1745354404::1::::<><><>0<>0<>63671138cb1118ebaf903dcb59109816<>res://.godot/imported/DungeonAssets.png-c082733c921a291add0147c87167bb92.ctex::
-::res://Rooms/RoomsWithEnemies/::1745383435
+::res://Rooms/RoomsWithEnemies/::1745384045
 StandardRoomE-A.tscn::PackedScene/PackedScene::3140334605766677829::1745382765::0::1::::<><><>0<>0<><>::uid://ct5rm6fgeven2::::res://Rooms/DungeonAssets.png<>uid://cip7l1do06wqa::::res://Rooms/Door.gd
 StandardRoomE-Shop.tscn::PackedScene/PackedScene::5794360817439071992::1745382765::0::1::::<><><>0<>0<><>::uid://ct5rm6fgeven2::::res://Rooms/DungeonAssets.png<>uid://cip7l1do06wqa::::res://Rooms/Door.gd
 StandardRoomES-A.tscn::PackedScene/PackedScene::6705926509662637135::1745382765::0::1::::<><><>0<>0<><>::uid://ct5rm6fgeven2::::res://Rooms/DungeonAssets.png<>uid://cip7l1do06wqa::::res://Rooms/Door.gd<>uid://xhg08ovbav64::::res://entities/enemies/fire_ant_enemy/fire_ant_enemy.tscn
@@ -74,7 +74,7 @@ StandardRoomESW-A.tscn::PackedScene/PackedScene::2719829540983194144::1745382765
 StandardRoomEW-A.tscn::PackedScene/PackedScene::2287242476458617470::1745382765::0::1::::<><><>0<>0<><>::uid://ct5rm6fgeven2::::res://Rooms/DungeonAssets.png<>uid://cip7l1do06wqa::::res://Rooms/Door.gd<>uid://dek0t7ihd4vxg::::res://entities/enemies/mosquito_enemy/mosquito_enemy.tscn
 StandardRoomN-A-MosquitoDen.tscn::PackedScene/PackedScene::8521442343073486748::1745382765::0::1::::<><><>0<>0<><>::uid://ct5rm6fgeven2::::res://Rooms/DungeonAssets.png<>uid://cip7l1do06wqa::::res://Rooms/Door.gd<>uid://dek0t7ihd4vxg::::res://entities/enemies/mosquito_enemy/mosquito_enemy.tscn
 StandardRoomNE-A.tscn::PackedScene/PackedScene::833276470625136512::1745382765::0::1::::<><><>0<>0<><>::uid://ct5rm6fgeven2::::res://Rooms/DungeonAssets.png<>uid://cip7l1do06wqa::::res://Rooms/Door.gd
-StandardRoomNES-A.tscn::PackedScene/PackedScene::4619457933852712069::1745382765::0::1::::<><><>0<>0<><>::uid://ct5rm6fgeven2::::res://Rooms/DungeonAssets.png<>uid://cip7l1do06wqa::::res://Rooms/Door.gd<>uid://xhg08ovbav64::::res://entities/enemies/fire_ant_enemy/fire_ant_enemy.tscn
+StandardRoomNES-A.tscn::PackedScene::4619457933852712069::1745384045::0::1::::<><><>0<>0<><>::uid://ct5rm6fgeven2::::res://Rooms/DungeonAssets.png<>uid://cip7l1do06wqa::::res://Rooms/Door.gd<>uid://xhg08ovbav64::::res://entities/enemies/fire_ant_enemy/fire_ant_enemy.tscn
 StandardRoomNESW-A.tscn::PackedScene/PackedScene::4543786712821377640::1745382765::0::1::::<><><>0<>0<><>::uid://ct5rm6fgeven2::::res://Rooms/DungeonAssets.png<>uid://cip7l1do06wqa::::res://Rooms/Door.gd<>uid://dhsd6cxjrxhtj::::res://entities/enemies/ant_enemy/ant_enemy.tscn
 StandardRoomNEW-A.tscn::PackedScene/PackedScene::799623879805256661::1745382988::0::1::::<><><>0<>0<><>::uid://ct5rm6fgeven2::::res://Rooms/DungeonAssets.png<>uid://cip7l1do06wqa::::res://Rooms/Door.gd<>uid://dhsd6cxjrxhtj::::res://entities/enemies/ant_enemy/ant_enemy.tscn<>uid://dek0t7ihd4vxg::::res://entities/enemies/mosquito_enemy/mosquito_enemy.tscn
 StandardRoomNS-A.tscn::PackedScene/PackedScene::809287875328727427::1745383074::0::1::::<><><>0<>0<><>::uid://ct5rm6fgeven2::::res://Rooms/DungeonAssets.png<>uid://cip7l1do06wqa::::res://Rooms/Door.gd<>uid://dhsd6cxjrxhtj::::res://entities/enemies/ant_enemy/ant_enemy.tscn<>uid://xhg08ovbav64::::res://entities/enemies/fire_ant_enemy/fire_ant_enemy.tscn
@@ -99,7 +99,7 @@ StandardRoomNW.tscn::PackedScene/PackedScene::8073895651543062441::1745347705::0
 StandardRoomS.tscn::PackedScene/PackedScene::5776824557532626341::1745382765::0::1::::<><><>0<>0<><>::uid://ct5rm6fgeven2::::res://Rooms/DungeonAssets.png<>uid://cip7l1do06wqa::::res://Rooms/Door.gd
 StandardRoomSW.tscn::PackedScene/PackedScene::7934387101254747572::1745347705::0::1::::<><><>0<>0<><>::uid://ct5rm6fgeven2::::res://Rooms/DungeonAssets.png<>uid://cip7l1do06wqa::::res://Rooms/Door.gd
 StandardRoomW.tscn::PackedScene/PackedScene::5500431779857457030::1745347705::0::1::::<><><>0<>0<><>::uid://ct5rm6fgeven2::::res://Rooms/DungeonAssets.png<>uid://cip7l1do06wqa::::res://Rooms/Door.gd
-::res://scenes/::1745383662
+::res://scenes/::1745436684
 dungeon_generator.gd::GDScript/GDScript::8192507296294421068::1745383549::0::1::::DungeonGenerator<>Node<><>0<>0<><>::
-main.gd::GDScript/GDScript::7808289903107915038::1745383549::0::1::::<>Node<><>0<>0<><>::
-main.tscn::PackedScene/PackedScene::7568936160764162782::1745383662::0::1::::<><><>0<>0<><>::uid://ctdj7k4cwb4f6::::res://Player/player.tscn<>uid://djinnnl2c7xs5::::res://scenes/main.gd<>uid://c3ihirpd8epus::::res://icon.svg<>uid://doyrnsmawccn1::::res://scenes/dungeon_generator.gd<>uid://bptqwns6p2701::::res://coins_container.tscn<>uid://c1x03uf7p3bj1::::res://health_container.tscn<>uid://tfnoonrvjm30::::res://menu.tscn
+main.gd::GDScript::7808289903107915038::1745436684::0::1::::<>Node<><>0<>0<><>::
+main.tscn::PackedScene::7568936160764162782::1745436658::0::1::::<><><>0<>0<><>::uid://ctdj7k4cwb4f6::::res://Player/player.tscn<>uid://djinnnl2c7xs5::::res://scenes/main.gd<>uid://c3ihirpd8epus::::res://icon.svg<>uid://doyrnsmawccn1::::res://scenes/dungeon_generator.gd<>uid://bptqwns6p2701::::res://coins_container.tscn<>uid://c1x03uf7p3bj1::::res://health_container.tscn<>uid://tfnoonrvjm30::::res://menu.tscn

@@ -5,6 +5,7 @@ func resume():
 	hide()
 	
 func pause ():
+	show()
 	get_tree().paused = true
 	
 func _physics_process(_delta):

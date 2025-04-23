@@ -1,3 +1,2 @@
 res://scenes/main.tscn
-res://Rooms/RoomsWithEnemies/StandardRoomNES-A.tscn
-res://scenes/main.gd
+res://menu.gd
