@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=4 uid="uid://be0rgvu46ndme"]
+[gd_scene load_steps=9 format=4 uid="uid://jbdwrvcqubka"]
 
 [ext_resource type="Texture2D" uid="uid://ct5rm6fgeven2" path="res://Rooms/DungeonAssets.png" id="1_ckj0h"]
 [ext_resource type="Script" uid="uid://cip7l1do06wqa" path="res://Rooms/Door.gd" id="2_2e3b6"]

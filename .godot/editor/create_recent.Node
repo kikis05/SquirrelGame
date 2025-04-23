@@ -1,10 +1,10 @@
+Node
 Death_State
 Attack_State
 Stun_State
 Chase_State
 Idle_State
 State_Machine
-Node
 State
 CharacterBody2D
 Node2D

@@ -2,7 +2,7 @@ extends Node
 class_name DungeonGenerator
 
 # ───────── CONFIGURATION ─────────
-@export var player_scene : PackedScene = preload("res://Player/Player.tscn")
+@export var player_scene : PackedScene = preload("res://Player/player.tscn")
 
 const GRID_WIDTH      = 5
 const GRID_HEIGHT     = 5
