@@ -79,7 +79,7 @@ func _physics_process(_delta):
 		flip()
 	if ((Input.is_action_pressed("attack_left") and velocity.x > 0)
 	 or (Input.is_action_pressed("attack_right") and velocity.x < 0)):
-		velocity.x = -1 * velocity.x
+		#velocity.x = -1 * velocity.x
 		flip()
 	# vertical movement
 	if movement_dir[1] != 0:

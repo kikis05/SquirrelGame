@@ -4,7 +4,7 @@ class_name MosquitoEnemy
 var enemy_body: CharacterBody2D
 var angular_speed = 4 * PI
 
-func _init():
+func _ready():
 	health = 15
 	accel = 0.3 
 	friction = 0.25
@@ -16,7 +16,6 @@ func _init():
 	attacking = false
 	flipped = false
 
-func _ready():
 	player = get_tree().get_first_node_in_group("player")
 	print(player)
 	if velocity.x > 0:

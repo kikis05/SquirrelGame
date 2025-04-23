@@ -1,2 +1,14 @@
+res://Rooms/RoomsWithEnemies/StandardRoomE-A.tscn
 res://scenes/main.tscn
-res://menu.gd
+res://Player/player.tscn
+res://Rooms/RoomsWithEnemies/StandardRoomE-Shop.tscn
+res://Rooms/RoomsWithEnemies/StandardRoomESW-A.tscn
+res://Rooms/RoomsWithEnemies/StandardRoomES-A.tscn
+res://Rooms/RoomsWithEnemies/StandardRoomSW-A.tscn
+res://entities/enemies/ant_enemy/ant_enemy.tscn
+res://assets/tiles/RoomTileset.tres
+res://sword.tscn
+res://Player/player.gd
+res://entities/enemies/ant_enemy/ant_enemy.gd
+res://entities/enemies/mosquito_enemy/mosquito_enemy.tscn
+res://entities/enemies/mosquito_enemy/mosquito_enemy.gd

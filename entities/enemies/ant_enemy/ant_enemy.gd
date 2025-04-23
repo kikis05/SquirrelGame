@@ -9,7 +9,7 @@ var player_in_range = false
 
 const COIN = preload("res://coin.tscn")
 
-func _init():
+func _ready():
 	health = 10
 	accel = 0.3 
 	friction = 0.25
@@ -24,9 +24,7 @@ func _init():
 	state_machine = $"State Machine"
 	sprite = $AnimatedSprite2D
 	attack_box = $AttackBox
-
-func _ready():
-	_init()
+	
 	player = get_tree().get_first_node_in_group("player")
 	if velocity.x > 0:
 		sprite.flip_h = true

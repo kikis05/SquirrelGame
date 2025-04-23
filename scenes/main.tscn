@@ -36,8 +36,6 @@ script = ExtResource("2_85g3d")
 [node name="Player" parent="." instance=ExtResource("1_o5qli")]
 position = Vector2(307, 118)
 
-[node name="OptionalCamera" type="Camera2D" parent="Player"]
-
 [node name="TileMapLayer" type="TileMapLayer" parent="."]
 visible = false
 position = Vector2(6, -3)

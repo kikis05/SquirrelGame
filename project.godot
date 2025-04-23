@@ -97,6 +97,7 @@ Escape={
 [navigation]
 
 2d/default_edge_connection_margin=8.0
+2d/default_link_connection_radius=8.0
 
 [rendering]
 
