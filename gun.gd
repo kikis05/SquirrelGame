@@ -53,7 +53,7 @@ func attack():
 		var bulletNode = BULLET.instantiate()
 		bulletNode.set_origin(global_position)
 		bulletNode.set_direction(bullet_dir)
-		get_tree().root.add_child(bulletNode)
+		get_node("/root/Main/DungeonGenerator").current_room_instance.add_child(bulletNode)
 		bulletNode.global_position = marker_2d.global_position
 
 func _physics_process(_delta: float) -> void: 

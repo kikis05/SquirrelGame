@@ -194,6 +194,9 @@ func _switch_to_room(pos : Vector2i, entered_from_dir : String) -> void:
 	print("• Instancing room:", scene_path)
 	current_room_instance = load(scene_path).instantiate()
 	current_room_instance.name = "RoomInstance"
+
+	# NEW: place this room according to its grid coordinate
+	current_room_instance.position = Vector2(pos.x, pos.y) * TILE_SIZE
 	add_child(current_room_instance)
 
 	await get_tree().process_frame
@@ -216,18 +219,19 @@ func _switch_to_room(pos : Vector2i, entered_from_dir : String) -> void:
 	else:
 		print("⚠ No SpawnPoint found, using default spawn position")
 
-	# Spawn or reuse player
 	if player == null:
 		player = player_scene.instantiate()
 		player.name = "Player"
 		add_child(player)
 		emit_signal("player_spawned", player)
+
 	move_child(player, get_child_count() - 1)
 	player.global_position = spawn
 	print("• Player positioned at", spawn)
 
 	current_room_pos = pos
 	print("=== Room ready ===\n")
+
 	await get_tree().process_frame
 	emit_signal("room_loaded")
 

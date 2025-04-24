@@ -1,4 +1,5 @@
+res://Player/player.tscn
+res://scenes/dungeon_generator.gd
 res://entities/enemies/mosquito_enemy/mosquito_enemy.tscn
 res://entities/enemies/fire_ant_enemy/fire_ant_enemy.tscn
-res://Player/player.tscn
-res://Player/player.gd
+res://gun.gd
