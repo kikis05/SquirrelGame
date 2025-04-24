@@ -145,7 +145,7 @@ func _on_animated_sprite_2d_animation_finished() -> void:
 	
 	
 func get_sword_attack():
-	return $Sword.get_damage()
+	return $Sword.damage
 func get_gun_attack():
 	return $Gun.get_bullet_damage()
 func get_gun_speed():
