@@ -2,7 +2,6 @@
 
 [ext_resource type="Script" uid="uid://djinnnl2c7xs5" path="res://scenes/main.gd" id="1_tbgi4"]
 [ext_resource type="Script" uid="uid://doyrnsmawccn1" path="res://scenes/dungeon_generator.gd" id="2_85g3d"]
-[ext_resource type="PackedScene" uid="uid://ctdj7k4cwb4f6" path="res://Player/player.tscn" id="4_o6xl0"]
 [ext_resource type="PackedScene" uid="uid://bptqwns6p2701" path="res://coins_container.tscn" id="6_tefeu"]
 [ext_resource type="PackedScene" uid="uid://c1x03uf7p3bj1" path="res://health_container.tscn" id="7_85g3d"]
 [ext_resource type="PackedScene" uid="uid://tfnoonrvjm30" path="res://menu.tscn" id="8_tipki"]

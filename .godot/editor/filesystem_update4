@@ -1,8 +1,6 @@
-res://entities/enemies/mosquito_baby_enemy/mosquito_baby_enemy.tscn
 res://scenes/test.tscn
+res://entities/enemies/mosquito_baby_enemy/mosquito_baby_enemy.tscn
 res://entities/enemies/mosquito_enemy/mosquito_enemy.tscn
-res://entities/enemies/mosquito_baby_enemy/mosquito_baby_enemy.gd
-res://entities/enemies/mosquito_enemy/mosquito_enemy.gd
-res://entities/enemies/ant_enemy/ant_enemy.gd
 res://entities/enemies/fire_ant_enemy/fire_ant_enemy.tscn
-res://entities/enemies/fire_ant_enemy/fire_ant_enemy.gd
+res://scenes/main.gd
+res://scenes/main.tscn
