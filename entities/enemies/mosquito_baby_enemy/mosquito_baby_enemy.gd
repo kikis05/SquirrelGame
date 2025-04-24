@@ -89,6 +89,8 @@ func _on_animated_sprite_2d_animation_finished():
 		var coin = COIN.instantiate()
 		coin.global_position = global_position
 		get_tree().root.add_child(coin)
+		if player != null:
+			coin.attract_to_player(player)
 		queue_free()
 	elif sprite.animation == "attack" and player_in_range:
 		if player != null and player.dead == false:

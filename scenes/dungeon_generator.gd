@@ -195,9 +195,17 @@ func _switch_to_room(pos : Vector2i, entered_from_dir : String) -> void:
 	current_room_instance = load(scene_path).instantiate()
 	current_room_instance.name = "RoomInstance"
 
-	# NEW: place this room according to its grid coordinate
+	# Position the room at its grid location
 	current_room_instance.position = Vector2(pos.x, pos.y) * TILE_SIZE
 	add_child(current_room_instance)
+
+	# 🧹 Remove all enemies in the spawn room (center cell)
+	if pos == Vector2i(GRID_WIDTH / 2, GRID_HEIGHT / 2):
+		print("🧹 Removing enemies from spawn room")
+		var enemies = current_room_instance.get_tree().get_nodes_in_group("enemy")
+		for e in enemies:
+			if e.is_inside_tree() and current_room_instance.is_ancestor_of(e):
+				e.queue_free()
 
 	await get_tree().process_frame
 
