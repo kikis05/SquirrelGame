@@ -219,6 +219,7 @@ radius = 9.0
 height = 24.0
 
 [node name="Mosquito Enemy" type="CharacterBody2D" groups=["enemy"]]
+z_index = 1
 collision_layer = 2
 collision_mask = 12
 motion_mode = 1
@@ -234,7 +235,7 @@ collision_mask = 12
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="EnemyBody"]
 position = Vector2(0, -16)
 sprite_frames = SubResource("SpriteFrames_b51hg")
-animation = &"death"
+animation = &"idle"
 autoplay = "chase"
 
 [node name="AttackBox" type="Area2D" parent="EnemyBody" groups=["enemy"]]
@@ -262,9 +263,6 @@ debug_color = Color(1, 0.6, 0.701961, 0.419608)
 position = Vector2(0, -27)
 
 [node name="ChildMarker2" type="Marker2D" parent="EnemyBody/Children"]
-position = Vector2(0, -11)
-
-[node name="Child Marker3" type="Marker2D" parent="EnemyBody/Children"]
 position = Vector2(0, -11)
 
 [node name="State Machine" type="Node" parent="." node_paths=PackedStringArray("initial_state")]

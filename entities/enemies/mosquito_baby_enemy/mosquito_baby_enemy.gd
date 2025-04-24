@@ -59,6 +59,11 @@ func get_nav_agent():
 	# no nav agent
 	return null
 
+func player_has_died():
+	state_machine.transition_to("idle state")
+	attack_box.monitoring = false
+	angular_speed = 0
+
 func _on_hit_box_area_entered(area):
 	print(area.name)
 	if area.is_in_group("player_weapon") and health > 0:

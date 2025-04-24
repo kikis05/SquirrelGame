@@ -1,2 +1,4 @@
+res://entities/enemies/mosquito_baby_enemy/mosquito_baby_enemy.tscn
 res://scenes/test.tscn
-res://entities/enemies/mosquito_enemy/mosquito_enemy.gd
+res://entities/enemies/mosquito_enemy/mosquito_enemy.tscn
+res://entities/enemies/mosquito_baby_enemy/mosquito_baby_enemy.gd
