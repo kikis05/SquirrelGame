@@ -50,6 +50,9 @@ logs/
 tests/data/*.translation
 tests/data/crypto/out*
 
+#other 
+.godot/uid_cache.bin
+
 ############################
 ### General build output ###
 ############################

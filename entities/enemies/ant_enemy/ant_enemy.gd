@@ -25,7 +25,7 @@ func _ready():
 	sprite = $AnimatedSprite2D
 	attack_box = $AttackBox
 	
-	player = get_tree().get_first_node_in_group("player")
+	#player = get_tree().get_first_node_in_group("player")
 	if velocity.x > 0:
 		sprite.flip_h = true
 		flipped = true
@@ -46,6 +46,7 @@ func die():
 	var hit_box: Area2D = $HitBox
 	attack_box.monitoring = false
 	hit_box.monitoring = false
+	emit_signal("enemy_defeated")
 
 func flip():
 	attack_box.position.x = -1 * attack_box.position.x

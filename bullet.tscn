@@ -1,10 +1,37 @@
-[gd_scene load_steps=4 format=3 uid="uid://yxib1bie3es5"]
+[gd_scene load_steps=7 format=3 uid="uid://yxib1bie3es5"]
 
-[ext_resource type="Texture2D" uid="uid://c3ihirpd8epus" path="res://icon.svg" id="1_v7oki"]
 [ext_resource type="Script" uid="uid://73s8e05jdqcp" path="res://bullet.gd" id="1_v8qja"]
+[ext_resource type="Texture2D" uid="uid://5ubv3ttytk60" path="res://art/SquirrelGame_Planning3.png" id="2_v8qja"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_t4vbm"]
+atlas = ExtResource("2_v8qja")
+region = Rect2(0, 130, 16, 13)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2b2rl"]
+atlas = ExtResource("2_v8qja")
+region = Rect2(16, 130, 16, 13)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_b7duk"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_t4vbm")
+}],
+"loop": true,
+"name": &"fly",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2b2rl")
+}],
+"loop": true,
+"name": &"land",
+"speed": 5.0
+}]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_v8qja"]
-size = Vector2(6.51317, 5.87807)
+size = Vector2(4.34212, 6)
 
 [node name="Bullet" type="Area2D" groups=["player_weapon"]]
 scale = Vector2(1.84242, 1.71292)
@@ -13,15 +40,14 @@ collision_mask = 11
 script = ExtResource("1_v8qja")
 speed = 600
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
-self_modulate = Color(0.557033, 0.501735, 0.352986, 1)
-visibility_layer = 2
-scale = Vector2(0.05, 0.0297954)
-texture = ExtResource("1_v7oki")
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+scale = Vector2(0.565996, 0.59653)
+sprite_frames = SubResource("SpriteFrames_b7duk")
+animation = &"fly"
+autoplay = "fly"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 visibility_layer = 2
-position = Vector2(0, 6.95942e-08)
 scale = Vector2(1, 0.595908)
 shape = SubResource("RectangleShape2D_v8qja")
 

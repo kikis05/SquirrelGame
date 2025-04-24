@@ -1,6 +1,14 @@
 MosquitoBabyEnemy
 AnimatedSprite2D
 CharacterBody2D
+Camera2D
+AnimatedSprite2D
+VBoxContainer
+Label
+TextureRect
+TextEdit
+CanvasLayer
+Node
 Death_State
 Attack_State
 Idle_State

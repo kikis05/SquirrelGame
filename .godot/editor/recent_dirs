@@ -1,7 +1,5 @@
-res://assets/enemies
-res://entities/enemies/mosquito_baby_enemy
-res://scenes
-res://entities/enemies/states
+res://assets
 res://art
 res://assets/tiles
-res://assets
+res://entities/enemies/states
+res://assets/enemies

@@ -20,6 +20,7 @@ var hitbox_activated = false
 var canSlash = true
 
 var flipped = false
+var flipped_v = false
 
 func _ready():
 	slash_speed_timer.wait_time = 1.0 /force
@@ -34,10 +35,12 @@ func attack():
 		if slash_dir.length() > 0:
 			slash_dir = slash_dir.normalized()
 		if slash_dir.y > 0:
-			position.y = 30
+			position.y = 20
 			position.x = 0
+			sprite.flip_v = !sprite.flip_v
+			flipped_v = true
 		if slash_dir.y < 0:
-			position.y = -20
+			position.y = -15
 			position.x = 0
 		var slashNode = SLASH.instantiate()
 		slashNode.set_direction(slash_dir)
@@ -53,7 +56,11 @@ func _physics_process(_delta: float) -> void:
 		hitbox_activated = false
 	if not Input.is_action_pressed("attack_down") and not Input.is_action_pressed("attack_up"):
 		position.y = 0
-		position.x = -22 if not flipped else 22
+		position.x = -15 if not flipped else 15
+		if flipped_v:
+			sprite.flip_v = !sprite.flip_v
+			flipped_v = false
+			
 
 #for some reason can't attack until bullet is gone
 func _on_slash_speed_timer_timeout() -> void:

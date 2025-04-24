@@ -22,7 +22,10 @@ var flipped = false
 var invincible = false
 var dead = false
 
-
+#Canvas Layers
+@onready var health_container = $CanvasLayer/HealthContainer
+@onready var coins_container = $CanvasLayer/CoinsContainer
+@onready var menu = $CanvasLayer/Menu
 
 #list of available ranged and melee weapons
 #can change selection method later
@@ -34,6 +37,14 @@ var selected_weapon_type = "RANGED"
 
 func _ready():
 	sprite.play("idle")
+	menu.hide()
+	health_container.setMaxAcorns(max_health / 2)
+	health_container.updateHealth(current_health)
+	health_changed.connect(health_container.updateHealth)
+
+	coins_container.update_coins(coins)
+	coins_changed.connect(coins_container.update_coins)
+	
 
 func _input(event):
 	#attack toggle
@@ -81,17 +92,24 @@ func _physics_process(_delta):
 	 or (Input.is_action_pressed("attack_right") and velocity.x < 0)):
 		#velocity.x = -1 * velocity.x
 		flip()
+		
 	# vertical movement
 	if movement_dir[1] != 0:
 		velocity.y = lerp(velocity.y, movement_dir[1] * speed, acceleration)
 	else:
 		velocity.y = lerp(velocity.y, 0.0, friction)
 	
+	if movement_dir != Vector2.ZERO:
+		sprite.play("run")
+	else:
+		sprite.play("idle")
+	
 	move_and_slide()
 
 func flip():
 	sprite.flip_h = !sprite.flip_h
 	$Gun.position.x = -1 * $Gun.position.x
+	$Gun.flip()
 	$Sword.flipped = !$Sword.flipped
 	flipped = !flipped
 		
@@ -132,3 +150,11 @@ func _on_animated_sprite_2d_animation_finished() -> void:
 	if sprite.animation == "death":
 		dead = true
 		get_tree().call_group("enemy", "player_has_died")
+	
+	
+func get_sword_attack():
+	return $Sword.damage
+func get_gun_attack():
+	return $Gun.get_bullet_damage()
+func get_gun_speed():
+	return $Gun.get_bullet_speed()

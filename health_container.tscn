@@ -3,4 +3,7 @@
 [ext_resource type="Script" uid="uid://23n0bem228ti" path="res://health_container.gd" id="1_rctsn"]
 
 [node name="HealthContainer" type="HBoxContainer"]
+show_behind_parent = true
+size_flags_stretch_ratio = 0.0
+theme_override_constants/separation = -11
 script = ExtResource("1_rctsn")

@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://bnubijqntw488"]
 
 [ext_resource type="Script" uid="uid://ceivakvrwklgj" path="res://gun.gd" id="1_dk5gl"]
-[ext_resource type="Texture2D" uid="uid://c3ihirpd8epus" path="res://icon.svg" id="1_vk1bi"]
+[ext_resource type="Texture2D" uid="uid://5ubv3ttytk60" path="res://art/SquirrelGame_Planning3.png" id="2_dk5gl"]
 
 [node name="Gun" type="Node2D"]
 light_mask = 16
@@ -10,10 +10,11 @@ script = ExtResource("1_dk5gl")
 
 [node name="Gun_Sprite" type="Sprite2D" parent="."]
 light_mask = 16
-position = Vector2(-4, 0)
-scale = Vector2(0.25, 0.05)
-texture = ExtResource("1_vk1bi")
-offset = Vector2(16, 0)
+position = Vector2(3, 4)
+texture = ExtResource("2_dk5gl")
+offset = Vector2(-3, -4)
+region_enabled = true
+region_rect = Rect2(33, 129, 14, 13)
 
 [node name="Marker2D" type="Marker2D" parent="."]
 position = Vector2(1, 0)

@@ -15,6 +15,9 @@ class_name BaseEnemy
 @export var attacking: bool
 @export var flipped: bool
 
+## Enemy defeated signal ##
+signal enemy_defeated
+
 func physics_process(_delta: float):
 	pass
 
@@ -31,6 +34,7 @@ func heal(_damage: int):
 	pass
 
 func die():
+	emit_signal("enemy_defeated")
 	queue_free()
 
 func change_animation(_name: String):

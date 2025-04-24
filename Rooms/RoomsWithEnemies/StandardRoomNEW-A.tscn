@@ -213,25 +213,20 @@ polygon = PackedVector2Array(7, -1, 4, 110, -432, 107, -432, -125, -3, -125, 7, 
 [node name="SpawnPoint" type="Node2D" parent="."]
 position = Vector2(240, 136)
 
+[node name="Mosquito Enemy" parent="." instance=ExtResource("4_onlgq")]
+position = Vector2(247, 154)
+
 [node name="Ant Enemy5" parent="." instance=ExtResource("3_yw5mi")]
-z_index = 1
 position = Vector2(380, 110)
 
-[node name="Mosquito Enemy" parent="Ant Enemy5" instance=ExtResource("4_onlgq")]
-position = Vector2(-133, 44)
-
 [node name="Ant Enemy4" parent="." instance=ExtResource("3_yw5mi")]
-z_index = 1
 position = Vector2(110, 112)
 
 [node name="Ant Enemy3" parent="." instance=ExtResource("3_yw5mi")]
-z_index = 1
 position = Vector2(55, 56)
 
 [node name="Ant Enemy2" parent="." instance=ExtResource("3_yw5mi")]
-z_index = 1
 position = Vector2(427, 66)
 
 [node name="Ant Enemy" parent="." instance=ExtResource("3_yw5mi")]
-z_index = 1
 position = Vector2(251, 226)
