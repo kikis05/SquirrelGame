@@ -56,10 +56,18 @@ func flip():
 	flipped = !flipped
 
 func get_nav_agent():
-	# Different nav agent locations (from the ant) due to the rotation method
-	var nav_agent: NavigationAgent2D = $EnemyBody/NavigationAgent2D
-	return nav_agent
+	# no nav agent
+	return null
 
+
+func spawn_babies():
+	pass
+
+func stop_moving():
+	angular_speed = 0
+
+func start_moving():
+	angular_speed = 4 * PI
 
 func _on_hit_box_area_entered(area):
 	print(area.name)
@@ -71,13 +79,14 @@ func _on_hit_box_area_entered(area):
 
 func _on_attack_box_body_entered(body):
 	if body.is_in_group("player") and health > 0:
-		state_machine.transition_to("attack state")
+		if state_machine.current_state.name.to_lower() != "escape state":
+			state_machine.transition_to("attack state")
 		player_in_range = true
-		player.damage_player()
 
 func _on_attack_box_body_exited(body):
 	if body.is_in_group("player") and health > 0:
-		state_machine.transition_to("linear chase state")
+		if state_machine.current_state.name.to_lower() != "escape state":
+			state_machine.transition_to("linear chase state")
 		player_in_range = false
 
 func _on_animated_sprite_2d_animation_finished():
@@ -86,10 +95,13 @@ func _on_animated_sprite_2d_animation_finished():
 		coin.global_position = global_position
 		get_tree().root.add_child(coin)
 		queue_free()
+	elif sprite.animation == "after escape":
+		spawn_babies()
+		state_machine.transition_to("linear chase state")
 	elif sprite.animation == "attack" and player_in_range:
 		if player != null and player.dead == false:
-			print(player.name, "should damage player")
 			player.damage_player()
-			sprite.play("idle") # TODO: DIFFERENT STATE FOR MOSQUITO
+			sprite.play("chase")
+			state_machine.transition_to("escape state")
 		else:
 			state_machine.transition_to("idle state") # player is dead, become idle

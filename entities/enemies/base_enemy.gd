@@ -38,3 +38,12 @@ func change_animation(_name: String):
 
 func get_nav_agent():
 	pass
+
+func start_moving():
+	pass
+
+func stop_moving():
+	pass
+
+func player_has_died():
+	pass

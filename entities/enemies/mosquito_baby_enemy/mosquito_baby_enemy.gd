@@ -1,49 +1,52 @@
-extends BaseEnemy
-class_name AntEnemy
+extends AntEnemy
+class_name MosquitoBabyEnemy
 
-var state_machine: State_Machine
-var sprite: AnimatedSprite2D
-var attack_box: Area2D
-
-var player_in_range = false
-
-const COIN = preload("res://coin.tscn")
+var enemy_body: CharacterBody2D
+var angular_speed = 4 * PI
 
 func _ready():
-	health = 10
+	health = 1
 	accel = 0.3 
 	friction = 0.25
 	idle_speed = 12.0
-	chase_speed = 50
-	knockback_str = 100.0
+	chase_speed = 55
+	knockback_str = 110
 	
 	stunned = false
 	attacking = false
 	flipped = false
-	
-	state_machine = $"State Machine"
-	sprite = $AnimatedSprite2D
-	attack_box = $AttackBox
-	
+
 	player = get_tree().get_first_node_in_group("player")
+	print(player)
 	if velocity.x > 0:
 		sprite.flip_h = true
 		flipped = true
+	
+	# different node placement because of the rotating arm
+	sprite = $EnemyBody/AnimatedSprite2D
+	attack_box = $EnemyBody/AttackBox
+	state_machine = $"State Machine"
+	enemy_body = $EnemyBody
 
-func _physics_process(_delta):
+
+func _physics_process(delta):
 	# sprite flipping
 	if velocity.x > 0 and !flipped:
 		flip()
 	elif velocity.x < 0 and flipped:
 		flip()
-
-func take_damage(damage):
-	health -= damage
+	
+	# rotation of everything and counter-rotation of sprite
+	if (stunned == false and attacking == false) and health > 0:
+		var new_rotation = rotation + angular_speed * delta
+		rotation = lerp(rotation, fmod(new_rotation, (2 * PI)), accel) # NOTE
+		enemy_body.rotation = -1 * rotation
 
 func die():
 	change_animation("death")
 	
-	var hit_box: Area2D = $HitBox
+	# Different hitbox locations (from the ant) due to the rotation method
+	var hit_box: Area2D = $EnemyBody/HitBox
 	attack_box.monitoring = false
 	hit_box.monitoring = false
 
@@ -52,22 +55,12 @@ func flip():
 	sprite.flip_h = !sprite.flip_h
 	flipped = !flipped
 
-func change_animation(new_anim):
-	if sprite == null or (new_anim not in sprite.get_sprite_frames().get_animation_names()):
-		return
-	else:
-		sprite.play(new_anim)
-
 func get_nav_agent():
-	var nav_agent: NavigationAgent2D = $NavigationAgent2D
-	return nav_agent
-
-func player_has_died():
-	state_machine.transition_to("idle state")
-	attack_box.monitoring = false
-
+	# no nav agent
+	return null
 
 func _on_hit_box_area_entered(area):
+	print(area.name)
 	if area.is_in_group("player_weapon") and health > 0:
 		if ('get_damage' in area and area.hitbox_activated):
 			take_damage(area.get_damage())
@@ -78,11 +71,10 @@ func _on_attack_box_body_entered(body):
 	if body.is_in_group("player") and health > 0:
 		state_machine.transition_to("attack state")
 		player_in_range = true
-		player.damage_player()
 
 func _on_attack_box_body_exited(body):
 	if body.is_in_group("player") and health > 0:
-		state_machine.transition_to("chase state")
+		state_machine.transition_to("linear chase state")
 		player_in_range = false
 
 func _on_animated_sprite_2d_animation_finished():

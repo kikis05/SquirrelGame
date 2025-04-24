@@ -131,3 +131,4 @@ func _on_invincible_timer_timeout():
 func _on_animated_sprite_2d_animation_finished() -> void:
 	if sprite.animation == "death":
 		dead = true
+		get_tree().call_group("enemy", "player_has_died")

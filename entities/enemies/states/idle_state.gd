@@ -6,7 +6,6 @@ class_name Idle_State
 
 @export var enemy: CharacterBody2D
 var move_direction: Vector2
-var wander_time: float
 
 func enter():
 	enemy.change_animation("idle")

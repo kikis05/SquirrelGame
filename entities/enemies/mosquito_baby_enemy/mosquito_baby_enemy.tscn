@@ -1,0 +1,107 @@
+[gd_scene load_steps=11 format=3 uid="uid://cwrwm5a1gb2nh"]
+
+[ext_resource type="Script" uid="uid://drc32dbyt45eh" path="res://entities/enemies/states/state_machine.gd" id="1_svt0h"]
+[ext_resource type="Script" uid="uid://bednidx6sx8rn" path="res://entities/enemies/mosquito_baby_enemy/mosquito_baby_enemy.gd" id="1_uqm2f"]
+[ext_resource type="Script" uid="uid://b0u3qvmt58th8" path="res://entities/enemies/states/linear_chase_state.gd" id="2_uqm2f"]
+[ext_resource type="Script" uid="uid://dm4uiijfbbr7u" path="res://entities/enemies/states/stun_state.gd" id="3_kyong"]
+[ext_resource type="Script" uid="uid://8jg436ppnko" path="res://entities/enemies/states/idle_state.gd" id="4_qdd20"]
+[ext_resource type="Script" uid="uid://cji0ts0qst0sl" path="res://entities/enemies/states/attack_state.gd" id="5_ro4yc"]
+[ext_resource type="Script" uid="uid://c7yfvis6uphlt" path="res://entities/enemies/states/death_state.gd" id="6_yrbmr"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_uqm2f"]
+animations = [{
+"frames": [],
+"loop": true,
+"name": &"attack",
+"speed": 5.0
+}, {
+"frames": [],
+"loop": true,
+"name": &"chase",
+"speed": 5.0
+}, {
+"frames": [],
+"loop": true,
+"name": &"death",
+"speed": 5.0
+}, {
+"frames": [],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [],
+"loop": true,
+"name": &"stun",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_uqm2f"]
+radius = 6.08276
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_kyong"]
+radius = 9.0
+height = 24.0
+
+[node name="Mosquito Baby Enemy" type="CharacterBody2D" groups=["enemy"]]
+script = ExtResource("1_uqm2f")
+
+[node name="CharacterBody2D" type="CharacterBody2D" parent="."]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="CharacterBody2D"]
+sprite_frames = SubResource("SpriteFrames_uqm2f")
+animation = &"attack"
+
+[node name="AttackBox" type="Area2D" parent="CharacterBody2D" groups=["enemy"]]
+position = Vector2(-3, -3)
+collision_layer = 2
+collision_mask = 6
+
+[node name="AttackCollisionArea" type="CollisionShape2D" parent="CharacterBody2D/AttackBox"]
+shape = SubResource("CircleShape2D_uqm2f")
+
+[node name="HitBox" type="Area2D" parent="CharacterBody2D" groups=["enemy"]]
+position = Vector2(0, -12)
+collision_layer = 2
+collision_mask = 6
+
+[node name="HitCollisionArea" type="CollisionShape2D" parent="CharacterBody2D/HitBox"]
+shape = SubResource("CapsuleShape2D_kyong")
+debug_color = Color(1, 0.6, 0.701961, 0.419608)
+
+[node name="Marker2D" type="Marker2D" parent="CharacterBody2D"]
+
+[node name="State Machine" type="Node" parent="." node_paths=PackedStringArray("initial_state")]
+script = ExtResource("1_svt0h")
+initial_state = NodePath("Linear Chase State")
+metadata/_custom_type_script = "uid://drc32dbyt45eh"
+
+[node name="Linear Chase State" type="Node" parent="State Machine" node_paths=PackedStringArray("enemy")]
+script = ExtResource("2_uqm2f")
+enemy = NodePath("../..")
+metadata/_custom_type_script = "uid://b0u3qvmt58th8"
+
+[node name="Stun State" type="Node" parent="State Machine" node_paths=PackedStringArray("enemy")]
+script = ExtResource("3_kyong")
+enemy = NodePath("../..")
+metadata/_custom_type_script = "uid://dm4uiijfbbr7u"
+
+[node name="Idle State" type="Node" parent="State Machine" node_paths=PackedStringArray("enemy")]
+script = ExtResource("4_qdd20")
+enemy = NodePath("../..")
+metadata/_custom_type_script = "uid://8jg436ppnko"
+
+[node name="Attack State" type="Node" parent="State Machine" node_paths=PackedStringArray("enemy")]
+script = ExtResource("5_ro4yc")
+enemy = NodePath("../..")
+metadata/_custom_type_script = "uid://cji0ts0qst0sl"
+
+[node name="Death State" type="Node" parent="State Machine" node_paths=PackedStringArray("enemy")]
+script = ExtResource("6_yrbmr")
+enemy = NodePath("../..")
+metadata/_custom_type_script = "uid://c7yfvis6uphlt"
+
+[connection signal="animation_finished" from="CharacterBody2D/AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]
+[connection signal="body_entered" from="CharacterBody2D/AttackBox" to="." method="_on_attack_box_body_entered"]
+[connection signal="body_exited" from="CharacterBody2D/AttackBox" to="." method="_on_attack_box_body_exited"]
+[connection signal="area_entered" from="CharacterBody2D/HitBox" to="." method="_on_hit_box_area_entered"]
