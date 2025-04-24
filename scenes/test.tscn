@@ -1,11 +1,14 @@
-[gd_scene load_steps=10 format=4 uid="uid://bpso4fkechqk7"]
+[gd_scene load_steps=13 format=4 uid="uid://bpso4fkechqk7"]
 
 [ext_resource type="Texture2D" uid="uid://c3ihirpd8epus" path="res://icon.svg" id="1_lpvoh"]
 [ext_resource type="PackedScene" uid="uid://c1x03uf7p3bj1" path="res://health_container.tscn" id="2_at5dv"]
 [ext_resource type="PackedScene" uid="uid://bptqwns6p2701" path="res://coins_container.tscn" id="3_jcd4p"]
 [ext_resource type="PackedScene" uid="uid://tfnoonrvjm30" path="res://menu.tscn" id="4_uacia"]
 [ext_resource type="PackedScene" uid="uid://ctdj7k4cwb4f6" path="res://Player/player.tscn" id="5_yk7ts"]
-[ext_resource type="PackedScene" uid="uid://cwrwm5a1gb2nh" path="res://entities/enemies/mosquito_baby_enemy/mosquito_baby_enemy.tscn" id="6_lpvoh"]
+[ext_resource type="PackedScene" uid="uid://dek0t7ihd4vxg" path="res://entities/enemies/mosquito_enemy/mosquito_enemy.tscn" id="6_lpvoh"]
+[ext_resource type="PackedScene" uid="uid://dhsd6cxjrxhtj" path="res://entities/enemies/ant_enemy/ant_enemy.tscn" id="7_uacia"]
+[ext_resource type="PackedScene" uid="uid://xhg08ovbav64" path="res://entities/enemies/fire_ant_enemy/fire_ant_enemy.tscn" id="8_yk7ts"]
+[ext_resource type="PackedScene" uid="uid://cwrwm5a1gb2nh" path="res://entities/enemies/mosquito_baby_enemy/mosquito_baby_enemy.tscn" id="9_ajshl"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_jyhfs"]
 vertices = PackedVector2Array(4, 4, -4, 4, -4, -4, 4, -4)
@@ -49,6 +52,17 @@ position = Vector2(358, 192)
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
 
-[node name="Mosquito Baby Enemy" parent="." instance=ExtResource("6_lpvoh")]
+[node name="Mosquito Enemy" parent="." instance=ExtResource("6_lpvoh")]
+position = Vector2(148, 165)
 
-[node name="Mosquito Baby Enemy2" parent="." instance=ExtResource("6_lpvoh")]
+[node name="Ant Enemy" parent="." instance=ExtResource("7_uacia")]
+position = Vector2(148, 165)
+
+[node name="Fire Ant Enemy" parent="." instance=ExtResource("8_yk7ts")]
+position = Vector2(170, 171)
+
+[node name="Mosquito Baby Enemy" parent="." instance=ExtResource("9_ajshl")]
+position = Vector2(203, 130)
+
+[node name="Mosquito Baby Enemy2" parent="." instance=ExtResource("9_ajshl")]
+position = Vector2(200, 167)

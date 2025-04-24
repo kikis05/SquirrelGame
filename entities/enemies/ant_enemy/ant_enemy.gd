@@ -68,20 +68,20 @@ func player_has_died():
 
 
 func _on_hit_box_area_entered(area):
-	if area.is_in_group("player_weapon") and health > 0:
+	if area.is_in_group("player_weapon") and health > 0 and player.dead == false:
 		if ('get_damage' in area and area.hitbox_activated):
 			take_damage(area.get_damage())
 			print("Health down to: ", health )
 			state_machine.transition_to("stun state")
 
 func _on_attack_box_body_entered(body):
-	if body.is_in_group("player") and health > 0:
+	if body.is_in_group("player") and health > 0 and player.dead == false:
 		state_machine.transition_to("attack state")
 		player_in_range = true
 		player.damage_player()
 
 func _on_attack_box_body_exited(body):
-	if body.is_in_group("player") and health > 0:
+	if body.is_in_group("player") and health > 0 and player.dead == false:
 		state_machine.transition_to("chase state")
 		player_in_range = false
 
