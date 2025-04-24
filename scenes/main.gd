@@ -3,22 +3,41 @@ extends Node
 @onready var health_container = $CanvasLayer/HealthContainer
 @onready var coins_container = $CanvasLayer/CoinsContainer
 @onready var menu = $CanvasLayer/Menu
-@onready var player = $Player
+@onready var dungeon_generator = $DungeonGenerator  # Adjust path if needed
 
+var player : Node = null
 
-func _ready() : 
+func _ready() -> void:
 	menu.hide()
-	health_container.setMaxAcorns(player.get_max_health() / 2 )
+
+	dungeon_generator.player_spawned.connect(_on_player_spawned)
+	dungeon_generator.room_loaded.connect(_on_room_loaded)
+
+	dungeon_generator.start_game()
+
+
+func _on_player_spawned(p: Node) -> void:
+	player = p
+
+	# UI bindings
+	health_container.setMaxAcorns(player.get_max_health() / 2)
 	health_container.updateHealth(player.get_health())
 	player.health_changed.connect(health_container.updateHealth)
-#
+
 	coins_container.update_coins(player.get_coins())
 	player.coins_changed.connect(coins_container.update_coins)
-	
-	for child in get_children():
-		if child.is_in_group("enemy"):
-			print("enemy found")
-			child.player = player
+
+	# Safe player assignment to enemies
+	for enemy in get_tree().get_nodes_in_group("enemy"):
+		if "player" in enemy:
+			enemy.player = player
+
+func _on_room_loaded():
+	# Reassign player to any new enemies that just loaded
+	for enemy in get_tree().get_nodes_in_group("enemy"):
+		if "player" in enemy:
+			enemy.player = player
+
 	
 func _process(_delta):
 	#if Input.is_action_just_pressed("Escape") and get_tree().paused == false:

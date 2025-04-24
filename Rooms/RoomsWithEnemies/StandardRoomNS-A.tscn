@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=4 uid="uid://lsa4ae81smpf"]
+[gd_scene load_steps=11 format=4 uid="uid://cbwhq55wy3k0e"]
 
 [ext_resource type="Texture2D" uid="uid://ct5rm6fgeven2" path="res://Rooms/DungeonAssets.png" id="1_5pwd5"]
 [ext_resource type="Script" uid="uid://cip7l1do06wqa" path="res://Rooms/Door.gd" id="2_iwnwy"]
@@ -208,17 +208,13 @@ polygon = PackedVector2Array(7, -1, 4, 110, -432, 107, -432, -125, -3, -125, 7, 
 position = Vector2(240, 136)
 
 [node name="Ant Enemy2" parent="." instance=ExtResource("3_ali6o")]
-z_index = 1
 position = Vector2(385, 130)
 
 [node name="Ant Enemy" parent="." instance=ExtResource("3_ali6o")]
-z_index = 1
 position = Vector2(108, 131)
 
 [node name="Fire Ant Enemy2" parent="." instance=ExtResource("4_pvceg")]
-z_index = 1
 position = Vector2(129, 172)
 
 [node name="Fire Ant Enemy" parent="." instance=ExtResource("4_pvceg")]
-z_index = 1
 position = Vector2(362, 169)

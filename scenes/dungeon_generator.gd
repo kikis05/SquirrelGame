@@ -1,7 +1,9 @@
 extends Node
 class_name DungeonGenerator
 
-# ───────── CONFIGURATION ─────────
+signal player_spawned(player : Node)
+signal room_loaded
+
 @export var player_scene : PackedScene = preload("res://Player/player.tscn")
 
 const GRID_WIDTH      = 5
@@ -38,14 +40,13 @@ const DIR_OFFSET = {
 	"W": Vector2i(-1, 0)
 }
 
-# ───────── RUNTIME STATE ─────────
 var grid : Array = []
 var collapsed : Array = []
 var current_room_pos : Vector2i = Vector2i.ZERO
 var current_room_instance : Node = null
+var player : Node = null
 var rng : RandomNumberGenerator = RandomNumberGenerator.new()
 
-# ───────── ENGINE ENTRY ─────────
 func _ready() -> void:
 	rng.randomize()
 	print("\n=== DungeonGenerator READY ===")
@@ -56,7 +57,6 @@ func _ready() -> void:
 	else:
 		push_error("❌ Failed to build dungeon after %s attempts" % MAX_ATTEMPTS)
 
-# ───────── WFC GRID GENERATION ─────────
 func _generate_dungeon() -> bool:
 	print("\n=== Generating dungeon grid with WFC ===")
 	for attempt in range(MAX_ATTEMPTS):
@@ -91,7 +91,6 @@ func _generate_dungeon() -> bool:
 	print("❌ Could not satisfy WFC constraints")
 	return false
 
-
 func _init_grid() -> void:
 	grid.clear()
 	collapsed.clear()
@@ -117,7 +116,6 @@ func _init_grid() -> void:
 		collapsed.append(c_row)
 	print("• Grid initialised with bounded room options")
 
-
 func _collapse_all() -> void:
 	while true:
 		var cell : Vector2i = _lowest_entropy_cell()
@@ -131,7 +129,6 @@ func _collapse_all() -> void:
 		print("  Collapsed", cell, "→", pick)
 		_propagate(cell)
 
-
 func _lowest_entropy_cell() -> Vector2i:
 	var best : Vector2i = Vector2i(-1, -1)
 	var min_entropy : float = INF
@@ -143,7 +140,6 @@ func _lowest_entropy_cell() -> Vector2i:
 					min_entropy = count
 					best = Vector2i(x, y)
 	return best
-
 
 func _propagate(start : Vector2i) -> void:
 	var queue : Array = [start]
@@ -180,7 +176,6 @@ func _propagate(start : Vector2i) -> void:
 					collapsed[neighbour.y][neighbour.x] = new_list[0]
 					queue.append(neighbour)
 
-# ───────── ROOM LOADING & TELEPORT ─────────
 func _switch_to_room(pos : Vector2i, entered_from_dir : String) -> void:
 	print("\n=== Switching to", pos, "from:", entered_from_dir, "===")
 
@@ -194,9 +189,6 @@ func _switch_to_room(pos : Vector2i, entered_from_dir : String) -> void:
 
 	if current_room_instance:
 		current_room_instance.queue_free()
-	var old_player : Node = get_node_or_null("Player")
-	if old_player:
-		old_player.queue_free()
 
 	var scene_path : String = "res://Rooms/StandardRoomScenes/%s.tscn" % room_name
 	print("• Instancing room:", scene_path)
@@ -204,15 +196,13 @@ func _switch_to_room(pos : Vector2i, entered_from_dir : String) -> void:
 	current_room_instance.name = "RoomInstance"
 	add_child(current_room_instance)
 
-	await get_tree().process_frame  # Ensure nodes are fully entered into the scene tree
+	await get_tree().process_frame
 
 	_wire_doors_recursive(current_room_instance, pos)
 
-	var spawn : Vector2 = Vector2(320, 180)  # default
+	var spawn : Vector2 = Vector2(320, 180)
 	var spawn_point_node : Node2D = current_room_instance.get_node_or_null("SpawnPoint")
-	if spawn_point_node == null:
-		print("⚠ No SpawnPoint found in room, using default spawn position")
-	else:
+	if spawn_point_node:
 		spawn = spawn_point_node.global_position
 		if entered_from_dir != "":
 			var offset := Vector2.ZERO
@@ -223,19 +213,23 @@ func _switch_to_room(pos : Vector2i, entered_from_dir : String) -> void:
 				"W": offset = Vector2(TILE_SIZE.x, 0)
 			spawn += offset
 			print("• Spawn from", entered_from_dir, "→", spawn, "(offset:", offset, ")")
+	else:
+		print("⚠ No SpawnPoint found, using default spawn position")
 
-	if player_scene == null:
-		push_error("❌ player_scene is null")
-		return
-	var player : Node = player_scene.instantiate()
-	player.name = "Player"
-	add_child(player)
+	# Spawn or reuse player
+	if player == null:
+		player = player_scene.instantiate()
+		player.name = "Player"
+		add_child(player)
+		emit_signal("player_spawned", player)
+	move_child(player, get_child_count() - 1)
 	player.global_position = spawn
-	print("• Player spawned at", spawn)
+	print("• Player positioned at", spawn)
 
 	current_room_pos = pos
 	print("=== Room ready ===\n")
-
+	await get_tree().process_frame
+	emit_signal("room_loaded")
 
 func _wire_doors_recursive(node : Node, room_pos : Vector2i) -> void:
 	for child in node.get_children():
@@ -246,7 +240,6 @@ func _wire_doors_recursive(node : Node, room_pos : Vector2i) -> void:
 			print("  ↳ Wired Door:", child.name, "dir:", child.direction, "room:", room_pos)
 		_wire_doors_recursive(child, room_pos)
 
-
 func _on_door_entered(room_pos : Vector2i, dir : String, body : Node) -> void:
 	if body.name != "Player":
 		return
@@ -254,3 +247,10 @@ func _on_door_entered(room_pos : Vector2i, dir : String, body : Node) -> void:
 	var target : Vector2i = room_pos + DIR_OFFSET[dir]
 	print("    Target room:", target)
 	_switch_to_room(target, dir)
+
+func start_game():
+	if _generate_dungeon():
+		current_room_pos = Vector2i(GRID_WIDTH / 2, GRID_HEIGHT / 2)
+		_switch_to_room(current_room_pos, "")
+	else:
+		push_error("❌ Failed to build dungeon after %s attempts" % MAX_ATTEMPTS)
