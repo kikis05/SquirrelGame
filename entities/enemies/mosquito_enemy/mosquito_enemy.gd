@@ -50,6 +50,11 @@ func die():
 	attack_box.monitoring = false
 	hit_box.monitoring = false
 
+func player_has_died():
+	state_machine.transition_to("idle state")
+	attack_box.monitoring = false
+	angular_speed = 0
+
 func flip():
 	attack_box.position.x = -1 * attack_box.position.x
 	sprite.flip_h = !sprite.flip_h
