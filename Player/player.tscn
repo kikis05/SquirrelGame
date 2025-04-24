@@ -126,29 +126,27 @@ collision_mask = 11
 motion_mode = 1
 script = ExtResource("1_abrql")
 
-[node name="Camera2D" type="Camera2D" parent="."]
-
 [node name="Sword" parent="." instance=ExtResource("4_bls4j")]
 visible = false
 position = Vector2(-13, 0)
 
 [node name="Gun" parent="." instance=ExtResource("3_sglur")]
-position = Vector2(-13, -10)
+position = Vector2(-13, -8.5)
 rotation = 3.14159
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-position = Vector2(0, -16)
+position = Vector2(0, -14.5)
 sprite_frames = SubResource("SpriteFrames_abrql")
-animation = &"idle"
+animation = &"run"
 autoplay = "idle"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." groups=["player"]]
-position = Vector2(0, -3)
+position = Vector2(0, -1.5)
 rotation = 1.5708
 shape = SubResource("CapsuleShape2D_fkugw")
 
 [node name="PlayerHitBox" type="Area2D" parent="." groups=["player"]]
-position = Vector2(0, -10)
+position = Vector2(0, -8.5)
 collision_layer = 4
 collision_mask = 11
 script = ExtResource("5_fkugw")
@@ -172,6 +170,10 @@ offset_bottom = 5.0
 
 [node name="Menu" parent="CanvasLayer" instance=ExtResource("8_x3vf3")]
 visible = false
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(0, 1.5)
+offset = Vector2(0.5, 0.5)
 
 [connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]
 [connection signal="area_entered" from="PlayerHitBox" to="." method="_on_player_hit_box_area_entered"]

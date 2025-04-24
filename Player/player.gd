@@ -92,11 +92,17 @@ func _physics_process(_delta):
 	 or (Input.is_action_pressed("attack_right") and velocity.x < 0)):
 		#velocity.x = -1 * velocity.x
 		flip()
+		
 	# vertical movement
 	if movement_dir[1] != 0:
 		velocity.y = lerp(velocity.y, movement_dir[1] * speed, acceleration)
 	else:
 		velocity.y = lerp(velocity.y, 0.0, friction)
+	
+	if movement_dir != Vector2.ZERO:
+		sprite.play("run")
+	else:
+		sprite.play("idle")
 	
 	move_and_slide()
 
