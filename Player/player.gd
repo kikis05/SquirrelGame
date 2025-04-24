@@ -22,7 +22,10 @@ var flipped = false
 var invincible = false
 var dead = false
 
-
+#Canvas Layers
+@onready var health_container = $CanvasLayer/HealthContainer
+@onready var coins_container = $CanvasLayer/CoinsContainer
+@onready var menu = $CanvasLayer/Menu
 
 #list of available ranged and melee weapons
 #can change selection method later
@@ -34,6 +37,14 @@ var selected_weapon_type = "RANGED"
 
 func _ready():
 	sprite.play("idle")
+	menu.hide()
+	health_container.setMaxAcorns(max_health / 2)
+	health_container.updateHealth(current_health)
+	health_changed.connect(health_container.updateHealth)
+
+	coins_container.update_coins(coins)
+	coins_changed.connect(coins_container.update_coins)
+	
 
 func _input(event):
 	#attack toggle
@@ -131,3 +142,11 @@ func _on_invincible_timer_timeout():
 func _on_animated_sprite_2d_animation_finished() -> void:
 	if sprite.animation == "death":
 		dead = true
+	
+	
+func get_sword_attack():
+	return $Sword.get_damage()
+func get_gun_attack():
+	return $Gun.get_bullet_damage()
+func get_gun_speed():
+	return $Gun.get_bullet_speed()

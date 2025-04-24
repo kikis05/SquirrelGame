@@ -1,6 +1,10 @@
-[gd_scene load_steps=2 format=3 uid="uid://tfnoonrvjm30"]
+[gd_scene load_steps=6 format=3 uid="uid://tfnoonrvjm30"]
 
 [ext_resource type="Script" uid="uid://cveoao0w7p7yq" path="res://menu.gd" id="1_lti8b"]
+[ext_resource type="Texture2D" uid="uid://dtsdcy7c731nw" path="res://art/menu.png" id="2_4hy44"]
+[ext_resource type="Texture2D" uid="uid://djcl0nx13715i" path="res://art/exit_button.png" id="3_ytr4m"]
+[ext_resource type="Texture2D" uid="uid://c5tglfu1rv15t" path="res://art/resume_button.png" id="4_l48gv"]
+[ext_resource type="FontFile" uid="uid://ch5tibw7yghdt" path="res://assets/MinecraftStandard.otf" id="5_ytr4m"]
 
 [node name="Menu" type="Control"]
 process_mode = 3
@@ -21,38 +25,78 @@ offset_bottom = 40.0
 scale = Vector2(12.028, 6.79419)
 color = Color(0, 0, 0, 1)
 
-[node name="ColorRect" type="ColorRect" parent="."]
+[node name="TextureRect" type="TextureRect" parent="."]
 layout_mode = 0
-offset_left = 383.0
-offset_top = 46.8441
-offset_right = 423.0
-offset_bottom = 86.8441
-scale = Vector2(-7.18898, 4.36099)
-color = Color(0.587163, 0.351443, 0.170637, 1)
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("2_4hy44")
 
-[node name="PanelContainer" type="PanelContainer" parent="."]
-self_modulate = Color(1, 1, 1, 0)
-layout_mode = 0
-offset_left = 163.0
-offset_top = 89.7014
-offset_right = 242.0
-offset_bottom = 155.701
-scale = Vector2(1.8671, 1.40567)
-
-[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer"]
+[node name="Exit" type="Button" parent="."]
 self_modulate = Color(1, 1, 1, 0)
 layout_mode = 2
-
-[node name="Exit" type="Button" parent="PanelContainer/VBoxContainer"]
-modulate = Color(0.795419, 0.422452, 0.182646, 1)
-layout_mode = 2
+offset_left = 113.0
+offset_top = 109.635
+offset_right = 213.0
+offset_bottom = 140.635
+scale = Vector2(1.00228, 1.00444)
 text = "Exit
 "
 
-[node name="Resume" type="Button" parent="PanelContainer/VBoxContainer"]
-modulate = Color(0.551595, 0.858015, 0.369918, 1)
+[node name="TextureRect" type="TextureRect" parent="Exit"]
+layout_mode = 0
+offset_right = 100.0
+offset_bottom = 25.0
+scale = Vector2(0.996137, 1)
+texture = ExtResource("3_ytr4m")
+
+[node name="Resume" type="Button" parent="."]
+self_modulate = Color(1, 1, 1, 0)
 layout_mode = 2
+offset_left = 113.0
+offset_top = 143.522
+offset_right = 213.0
+offset_bottom = 174.522
+scale = Vector2(0.997987, 1)
 text = "Resume"
 
-[connection signal="pressed" from="PanelContainer/VBoxContainer/Exit" to="." method="_on_exit_pressed"]
-[connection signal="pressed" from="PanelContainer/VBoxContainer/Resume" to="." method="_on_resume_pressed"]
+[node name="TextureRect" type="TextureRect" parent="Resume"]
+layout_mode = 0
+offset_right = 100.0
+offset_bottom = 25.0
+texture = ExtResource("4_l48gv")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 0
+offset_left = 260.0
+offset_top = 106.645
+offset_right = 300.0
+offset_bottom = 146.645
+theme_override_constants/separation = 0
+
+[node name="Health" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("5_ytr4m")
+theme_override_font_sizes/font_size = 6
+
+[node name="Speed" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("5_ytr4m")
+theme_override_font_sizes/font_size = 6
+
+[node name="Sword Attack" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("5_ytr4m")
+theme_override_font_sizes/font_size = 6
+
+[node name="Sap Shooter Attack" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("5_ytr4m")
+theme_override_font_sizes/font_size = 6
+
+[node name="Sap Shooter Speed" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("5_ytr4m")
+theme_override_font_sizes/font_size = 6
+
+[connection signal="pressed" from="Exit" to="." method="_on_exit_pressed"]
+[connection signal="pressed" from="Resume" to="." method="_on_resume_pressed"]

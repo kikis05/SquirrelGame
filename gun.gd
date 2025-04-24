@@ -55,4 +55,7 @@ func set_direction(direction):
 func flip():
 	pass
 	
-	
+func get_bullet_damage():
+	return 15 #sorry! this is hardcoded for now
+func get_bullet_speed():
+	return 100 #sorry! this is hardcoded for now

@@ -1,5 +1,6 @@
-res://scenes/main.tscn
+res://menu.tscn
 res://assets/tiles/RoomTileset.tres
+res://scenes/main.tscn
 res://Player/player.tscn
 res://Rooms/RoomsWithEnemies/StandardRoomE-Shop.tscn
 res://Rooms/RoomsWithEnemies/StandardRoomESW-A.tscn
@@ -38,3 +39,4 @@ res://Rooms/StandardRoomScenes/StandardRoomSW.tscn
 res://Rooms/RoomsWithEnemies/StandardRoomS-A-Shop.tscn
 res://Rooms/RoomsWithEnemies/StandardRoomW-A-BossRoom.tscn
 res://Rooms/StandardRoomScenes/StandardRoomW.tscn
+res://menu.gd

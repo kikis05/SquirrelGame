@@ -1,3 +1,8 @@
+VBoxContainer
+Label
+TextureRect
+TextEdit
+CanvasLayer
 Node
 Death_State
 Attack_State
@@ -8,7 +13,3 @@ State_Machine
 State
 CharacterBody2D
 Node2D
-AnimatedSprite2D
-BaseEnemy
-Timer
-Marker2D
