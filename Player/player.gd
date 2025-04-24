@@ -103,6 +103,7 @@ func _physics_process(_delta):
 func flip():
 	sprite.flip_h = !sprite.flip_h
 	$Gun.position.x = -1 * $Gun.position.x
+	$Gun.flip()
 	$Sword.flipped = !$Sword.flipped
 	flipped = !flipped
 		

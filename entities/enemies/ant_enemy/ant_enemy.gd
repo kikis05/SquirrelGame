@@ -46,6 +46,7 @@ func die():
 	var hit_box: Area2D = $HitBox
 	attack_box.monitoring = false
 	hit_box.monitoring = false
+	emit_signal("enemy_defeated")
 
 func flip():
 	attack_box.position.x = -1 * attack_box.position.x

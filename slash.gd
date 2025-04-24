@@ -10,6 +10,9 @@ var direction:Vector2
 
 var hitbox_activated = true
 
+func _ready():
+	sprite.flip_h = !sprite.flip_h
+
 func set_direction(slashDirection):
 	direction = slashDirection
 	rotation_degrees = rad_to_deg(global_position.angle_to_point(global_position+direction))

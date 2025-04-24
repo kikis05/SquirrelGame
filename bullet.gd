@@ -5,7 +5,7 @@ extends Area2D
 
 @onready var landingTimer = $DestroyBullet
 @onready var fadeTimer = $FadeTimer
-@onready var sprite = $Sprite2D #change to Animation
+@onready var sprite = $AnimatedSprite2D #change to Animation
 
 var fading = 0
 
@@ -31,6 +31,7 @@ func _physics_process(delta: float) -> void:
 		global_position += direction * speed * delta
 		global_position.y += 1.5 
 	else:
+		sprite.animation = "land"
 		direction = Vector2.ZERO
 		sprite.self_modulate.a -= fading * delta
 		

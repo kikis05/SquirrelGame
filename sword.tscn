@@ -1,10 +1,10 @@
 [gd_scene load_steps=4 format=3 uid="uid://chq2g34nmenr0"]
 
-[ext_resource type="Texture2D" uid="uid://c3ihirpd8epus" path="res://icon.svg" id="1_74bdg"]
 [ext_resource type="Script" uid="uid://btqt06qinw0p4" path="res://sword.gd" id="1_e4ynd"]
+[ext_resource type="Texture2D" uid="uid://5ubv3ttytk60" path="res://art/SquirrelGame_Planning3.png" id="2_e4ynd"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_74bdg"]
-size = Vector2(60.8112, 63.6396)
+size = Vector2(23.9982, 42.0157)
 
 [node name="Sword" type="Area2D" groups=["player_weapon"]]
 light_mask = 20
@@ -13,23 +13,26 @@ collision_layer = 4
 collision_mask = 11
 script = ExtResource("1_e4ynd")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(-36, -7)
-rotation = 0.0130519
-scale = Vector2(0.238082, 0.254745)
-texture = ExtResource("1_74bdg")
-offset = Vector2(152.173, -39.6843)
-
 [node name="HitBox" type="CollisionShape2D" parent="."]
 light_mask = 16
 visibility_layer = 2
-position = Vector2(-3.8147e-06, -17)
+position = Vector2(2.38419e-07, -11)
 rotation = 0.0122936
 scale = Vector2(0.5, 0.5)
 shape = SubResource("RectangleShape2D_74bdg")
 
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(-3, -1)
+rotation = 0.0130519
+scale = Vector2(0.934, 1)
+texture = ExtResource("2_e4ynd")
+offset = Vector2(-0.21495, -9.84375)
+region_enabled = true
+region_rect = Rect2(76, 120, 18, 21)
+
 [node name="Marker2D" type="Marker2D" parent="."]
-position = Vector2(13, -11)
+position = Vector2(13, -10)
+scale = Vector2(1.69224, -0.763728)
 
 [node name="slashSpeedTimer" type="Timer" parent="."]
 

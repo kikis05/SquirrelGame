@@ -1,3 +1,5 @@
+Camera2D
+AnimatedSprite2D
 VBoxContainer
 Label
 TextureRect
@@ -10,6 +12,3 @@ Stun_State
 Chase_State
 Idle_State
 State_Machine
-State
-CharacterBody2D
-Node2D
