@@ -61,7 +61,7 @@ tests/data/crypto/out*
 .godot/
 
 # Godot-specific ignores
-# .import/
+.import/
 export.cfg
 export_presets.cfg
 
