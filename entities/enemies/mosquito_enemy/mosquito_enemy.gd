@@ -3,13 +3,14 @@ class_name MosquitoEnemy
 
 var enemy_body: CharacterBody2D
 var angular_speed = 4 * PI
+@export var mosquito_baby_scene: PackedScene
 
 func _ready():
 	health = 15
 	accel = 0.3 
 	friction = 0.25
 	idle_speed = 12.0
-	chase_speed = 40
+	chase_speed = randf_range(30, 50)
 	knockback_str = 70.0
 	
 	stunned = false
@@ -66,7 +67,12 @@ func get_nav_agent():
 
 
 func spawn_babies():
-	pass
+	var node = $EnemyBody/Children
+	for marker in node.get_children(): 
+		var mosquito_baby: MosquitoBabyEnemy = mosquito_baby_scene.instantiate()
+		get_tree().root.add_child(mosquito_baby)
+		mosquito_baby.global_position = marker.global_position
+		print(mosquito_baby.global_position)
 
 func stop_moving():
 	angular_speed = 0

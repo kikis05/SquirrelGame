@@ -9,7 +9,7 @@ func _ready():
 	accel = 0.3 
 	friction = 0.25
 	idle_speed = 12.0
-	chase_speed = 55
+	chase_speed = randf_range(50, 70)
 	knockback_str = 110
 	
 	stunned = false

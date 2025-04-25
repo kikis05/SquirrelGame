@@ -15,6 +15,7 @@ func exit():
 	enemy.move_and_slide()
 
 func physics_process(_delta: float):
-	var dir = (player.global_position - enemy.global_position).normalized()
-	enemy.velocity = lerp(enemy.velocity, dir * enemy.chase_speed, enemy.accel)
+	if player != null: 
+		var dir = (player.global_position - enemy.global_position).normalized()
+		enemy.velocity = lerp(enemy.velocity, dir * enemy.chase_speed, enemy.accel)
 	enemy.move_and_slide()

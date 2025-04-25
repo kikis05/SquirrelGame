@@ -1,6 +1,7 @@
-[gd_scene load_steps=37 format=3 uid="uid://dek0t7ihd4vxg"]
+[gd_scene load_steps=38 format=3 uid="uid://dek0t7ihd4vxg"]
 
 [ext_resource type="Script" uid="uid://daiw5kfg4dhxo" path="res://entities/enemies/mosquito_enemy/mosquito_enemy.gd" id="1_21egr"]
+[ext_resource type="PackedScene" uid="uid://cwrwm5a1gb2nh" path="res://entities/enemies/mosquito_baby_enemy/mosquito_baby_enemy.tscn" id="2_74br6"]
 [ext_resource type="Texture2D" uid="uid://cvymypq17y0d7" path="res://assets/enemies/mosquito_mom_anims1.png" id="2_ibrlw"]
 [ext_resource type="Script" uid="uid://drc32dbyt45eh" path="res://entities/enemies/states/state_machine.gd" id="2_ybsgu"]
 [ext_resource type="Script" uid="uid://8jg436ppnko" path="res://entities/enemies/states/idle_state.gd" id="3_ibrlw"]
@@ -220,17 +221,14 @@ height = 24.0
 
 [node name="Mosquito Enemy" type="CharacterBody2D" groups=["enemy"]]
 z_index = 1
-collision_layer = 2
-collision_mask = 12
 motion_mode = 1
 wall_min_slide_angle = 0.0
 script = ExtResource("1_21egr")
+mosquito_baby_scene = ExtResource("2_74br6")
 metadata/_custom_type_script = "uid://r8yeg3hefk1e"
 
 [node name="EnemyBody" type="CharacterBody2D" parent="."]
 position = Vector2(0, -11)
-collision_layer = 2
-collision_mask = 12
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="EnemyBody"]
 position = Vector2(0, -16)
@@ -257,13 +255,14 @@ debug_color = Color(1, 0.6, 0.701961, 0.419608)
 
 [node name="Marker2D" type="Marker2D" parent="EnemyBody"]
 
-[node name="Children" type="Node" parent="EnemyBody"]
+[node name="Children" type="Node2D" parent="EnemyBody"]
 
 [node name="ChildMarker1" type="Marker2D" parent="EnemyBody/Children"]
-position = Vector2(0, -27)
+z_index = 1
+position = Vector2(-17, 1)
 
 [node name="ChildMarker2" type="Marker2D" parent="EnemyBody/Children"]
-position = Vector2(0, -11)
+position = Vector2(18, -2)
 
 [node name="State Machine" type="Node" parent="." node_paths=PackedStringArray("initial_state")]
 script = ExtResource("2_ybsgu")

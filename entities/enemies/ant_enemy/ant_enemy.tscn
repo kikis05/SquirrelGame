@@ -190,7 +190,6 @@ animation = &"attack"
 autoplay = "chase"
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
-debug_enabled = true
 
 [node name="WallCollision" type="CollisionShape2D" parent="."]
 position = Vector2(0, -3)

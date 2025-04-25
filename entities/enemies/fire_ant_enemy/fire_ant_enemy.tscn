@@ -220,7 +220,7 @@ motion_mode = 1
 wall_min_slide_angle = 0.0
 script = ExtResource("1_7op1r")
 fire_trail = ExtResource("9_wr85i")
-fire_spawn = NodePath("FireSpawn")
+fire_spawn = NodePath("")
 metadata/_custom_type_script = "uid://ny1bt2vvnakm"
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
@@ -235,14 +235,11 @@ sprite_frames = SubResource("SpriteFrames_8xb6b")
 animation = &"idle"
 autoplay = "idle"
 
-[node name="FireSpawn" type="Node" parent="."]
-
 [node name="FireSpawnTimer" type="Timer" parent="."]
 wait_time = 0.2
 autostart = true
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
-debug_enabled = true
 
 [node name="WallCollision" type="CollisionShape2D" parent="."]
 position = Vector2(0, -3)

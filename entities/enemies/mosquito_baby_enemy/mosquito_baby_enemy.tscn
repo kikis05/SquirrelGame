@@ -175,22 +175,24 @@ animations = [{
 radius = 6.08276
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_kyong"]
-radius = 7.0
-height = 16.0
+radius = 8.0
+height = 18.0
 
 [node name="Mosquito Baby Enemy" type="CharacterBody2D" groups=["enemy"]]
+z_index = 1
 script = ExtResource("1_uqm2f")
 
 [node name="EnemyBody" type="CharacterBody2D" parent="."]
-position = Vector2(0, -18)
+position = Vector2(0, -13)
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="EnemyBody"]
+position = Vector2(0, -5)
 sprite_frames = SubResource("SpriteFrames_uqm2f")
 animation = &"attack"
 autoplay = "chase"
 
 [node name="AttackBox" type="Area2D" parent="EnemyBody" groups=["enemy"]]
-position = Vector2(-3, 6)
+position = Vector2(-3, 1)
 collision_layer = 2
 collision_mask = 6
 
@@ -199,15 +201,17 @@ shape = SubResource("CircleShape2D_uqm2f")
 
 [node name="HitBox" type="Area2D" parent="EnemyBody" groups=["enemy"]]
 z_index = 1
-position = Vector2(-1, 1)
+position = Vector2(-1, -4)
 collision_layer = 2
 collision_mask = 6
 
 [node name="HitCollisionArea" type="CollisionShape2D" parent="EnemyBody/HitBox"]
+position = Vector2(0, 1)
 shape = SubResource("CapsuleShape2D_kyong")
 debug_color = Color(1, 0.6, 0.701961, 0.419608)
 
 [node name="Marker2D" type="Marker2D" parent="EnemyBody"]
+position = Vector2(0, -5)
 
 [node name="State Machine" type="Node" parent="." node_paths=PackedStringArray("initial_state")]
 script = ExtResource("1_svt0h")

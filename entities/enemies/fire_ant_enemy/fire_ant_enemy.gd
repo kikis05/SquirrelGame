@@ -9,7 +9,7 @@ func _on_fire_spawn_timer_timeout():
 	fire_inst.global_position = global_position
 	if player != null and player.dead == false:
 		fire_inst.player = player
-	fire_spawn.add_child(fire_inst)
+	get_tree().root.add_child(fire_inst)
 
 ## NOTE: Functions the are the same as in ant_enemy
 ## They were reused to properly connect area2d and animsprite2d nodes to script

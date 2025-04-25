@@ -1,3 +1,7 @@
+CollisionShape2D
+Node2D
+TileMapLayer
+MosquitoEnemy
 Label
 Button
 TextureButton
@@ -8,7 +12,3 @@ CharacterBody2D
 Camera2D
 AnimatedSprite2D
 VBoxContainer
-TextureRect
-TextEdit
-CanvasLayer
-Node
