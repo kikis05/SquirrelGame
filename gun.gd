@@ -1,6 +1,7 @@
 extends Node2D
 
 @export var shootSpeed = 1.0
+@export var damage = 15
 
 const BULLET = preload("res://bullet.tscn")
 
@@ -29,12 +30,6 @@ func attack():
 		var bullet_dir = Vector2(Input.get_axis("attack_left", "attack_right"), Input.get_axis("attack_up", "attack_down"))
 		if bullet_dir.length() > 0:
 			bullet_dir = bullet_dir.normalized()
-			#
-		#var rot = rad_to_deg(global_position.angle_to_point(global_position + bullet_dir))
-		#if scale.x == -1 * SCALE_X:
-			#rotation_degrees = -1 * (180 - rot)
-		#else:
-			#rotation_degrees = rot
 		if bullet_dir.y < 0:
 			if flipped:
 				rotation_degrees = -90
@@ -76,7 +71,8 @@ func flip():
 	sprite.flip_h = !sprite.flip_h
 	flipped = !flipped
 	
+# TODO: handle bullet damage linkage to gun damage
 func get_bullet_damage():
-	return 15 #sorry! this is hardcoded for now
+	return damage 
 func get_bullet_speed():
-	return 100 #sorry! this is hardcoded for now
+	return damage 

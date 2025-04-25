@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=3 uid="uid://ctdj7k4cwb4f6"]
+[gd_scene load_steps=26 format=3 uid="uid://ctdj7k4cwb4f6"]
 
 [ext_resource type="Script" uid="uid://wpgykegedrya" path="res://Player/player.gd" id="1_abrql"]
 [ext_resource type="Texture2D" uid="uid://d04jfatr1u7pf" path="res://assets/squirrel_anims1 (1).png" id="2_fkugw"]
@@ -9,6 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://c1x03uf7p3bj1" path="res://health_container.tscn" id="6_od3ui"]
 [ext_resource type="PackedScene" uid="uid://bptqwns6p2701" path="res://coins_container.tscn" id="7_00tjw"]
 [ext_resource type="PackedScene" uid="uid://tfnoonrvjm30" path="res://menu.tscn" id="8_x3vf3"]
+[ext_resource type="PackedScene" uid="uid://c16cshvswxjjx" path="res://game_over.tscn" id="10_x3vf3"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_8fjmc"]
 atlas = ExtResource("2_fkugw")
@@ -170,6 +171,9 @@ offset_bottom = 5.0
 
 [node name="Menu" parent="CanvasLayer" instance=ExtResource("8_x3vf3")]
 visible = false
+
+[node name="Game Over" parent="CanvasLayer" instance=ExtResource("10_x3vf3")]
+position = Vector2(135, 85)
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(0, 1.5)

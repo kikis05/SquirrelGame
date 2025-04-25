@@ -1,0 +1,32 @@
+[gd_scene load_steps=2 format=3 uid="uid://c16cshvswxjjx"]
+
+[ext_resource type="Script" uid="uid://cm2j3yagfyhs" path="res://game_over.gd" id="1_y26ei"]
+
+[node name="Game Over" type="Node2D"]
+script = ExtResource("1_y26ei")
+
+[node name="Panel" type="Panel" parent="."]
+modulate = Color(0.524627, 0.293513, 0.185675, 1)
+self_modulate = Color(0.340637, 0.256189, 0.118984, 1)
+offset_right = 201.0
+offset_bottom = 92.0
+
+[node name="Button" type="Button" parent="Panel"]
+layout_mode = 0
+offset_left = 55.0
+offset_top = 40.0
+offset_right = 135.0
+offset_bottom = 71.0
+scale = Vector2(1.09999, 0.953761)
+theme_override_font_sizes/font_size = 21
+text = "Restart"
+
+[node name="Label" type="Label" parent="."]
+offset_left = 50.0
+offset_top = 6.0
+offset_right = 142.0
+offset_bottom = 30.0
+scale = Vector2(1.08608, 1.02371)
+text = "Game Over"
+
+[connection signal="pressed" from="Panel/Button" to="." method="_on_button_pressed"]

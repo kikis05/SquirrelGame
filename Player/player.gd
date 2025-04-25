@@ -26,6 +26,7 @@ var dead = false
 @onready var health_container = $CanvasLayer/HealthContainer
 @onready var coins_container = $CanvasLayer/CoinsContainer
 @onready var menu = $CanvasLayer/Menu
+@onready var game_over = $"CanvasLayer/Game Over"
 
 #list of available ranged and melee weapons
 #can change selection method later
@@ -38,6 +39,7 @@ var selected_weapon_type = "RANGED"
 func _ready():
 	sprite.play("idle")
 	menu.hide()
+	game_over.hide()
 	health_container.setMaxAcorns(max_health / 2)
 	health_container.updateHealth(current_health)
 	health_changed.connect(health_container.updateHealth)
@@ -148,6 +150,7 @@ func _on_invincible_timer_timeout():
 
 func _on_animated_sprite_2d_animation_finished() -> void:
 	if sprite.animation == "death":
+		game_over.show()
 		dead = true
 		get_tree().call_group("enemy", "player_has_died")
 	
@@ -158,3 +161,10 @@ func get_gun_attack():
 	return $Gun.get_bullet_damage()
 func get_gun_speed():
 	return $Gun.get_bullet_speed()
+	
+func reset():
+	dead = false
+	current_health = max_health
+	coins = 0
+	#TODO: Reset items, attack, etc.
+	
