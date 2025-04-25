@@ -20,7 +20,7 @@ func _on_hit_box_area_entered(area):
 			print("Health down to: ", health)
 			state_machine.transition_to("stun state")
 
-# TODO: Line 25 causes an error when game restarts
+# TODO: CHECK why player could be null when scene restarts
 func _on_attack_box_body_entered(body):
 	if body.name.to_lower() == "player" and health > 0:
 		if player == null:
