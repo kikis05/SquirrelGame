@@ -37,7 +37,7 @@ func _physics_process(delta):
 		flip()
 	
 	# rotation of everything and counter-rotation of sprite
-	if (stunned == false and attacking == false) and health > 0:
+	if (stunned == false and attacking == false) and health > 0 and player != null:
 		var new_rotation = rotation + angular_speed * delta
 		rotation = lerp(rotation, fmod(new_rotation, (2 * PI)), accel) # NOTE
 		enemy_body.rotation = -1 * rotation

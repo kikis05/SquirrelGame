@@ -233,7 +233,7 @@ position = Vector2(0, -11)
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="EnemyBody"]
 position = Vector2(0, -16)
 sprite_frames = SubResource("SpriteFrames_b51hg")
-animation = &"idle"
+animation = &"chase"
 autoplay = "chase"
 
 [node name="AttackBox" type="Area2D" parent="EnemyBody" groups=["enemy"]]

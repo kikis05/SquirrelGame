@@ -4,10 +4,10 @@
 [ext_resource type="Script" uid="uid://bednidx6sx8rn" path="res://entities/enemies/mosquito_baby_enemy/mosquito_baby_enemy.gd" id="1_uqm2f"]
 [ext_resource type="Texture2D" uid="uid://d15j0meafobpr" path="res://assets/enemies/mosquito_baby_anims1.png" id="2_qdd20"]
 [ext_resource type="Script" uid="uid://b0u3qvmt58th8" path="res://entities/enemies/states/linear_chase_state.gd" id="2_uqm2f"]
-[ext_resource type="Script" uid="uid://dm4uiijfbbr7u" path="res://entities/enemies/states/stun_state.gd" id="3_kyong"]
 [ext_resource type="Texture2D" uid="uid://db78rwvgl0hcn" path="res://assets/enemies/mosquito_baby_anims2.png" id="3_ro4yc"]
 [ext_resource type="Script" uid="uid://8jg436ppnko" path="res://entities/enemies/states/idle_state.gd" id="4_qdd20"]
 [ext_resource type="Script" uid="uid://cji0ts0qst0sl" path="res://entities/enemies/states/attack_state.gd" id="5_ro4yc"]
+[ext_resource type="Script" uid="uid://bnm6cr87jsjaw" path="res://entities/enemies/states/stun_tolinear_state.gd" id="6_qdd20"]
 [ext_resource type="Script" uid="uid://c7yfvis6uphlt" path="res://entities/enemies/states/death_state.gd" id="6_yrbmr"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_yrbmr"]
@@ -188,7 +188,7 @@ position = Vector2(0, -13)
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="EnemyBody"]
 position = Vector2(0, -5)
 sprite_frames = SubResource("SpriteFrames_uqm2f")
-animation = &"attack"
+animation = &"chase"
 autoplay = "chase"
 
 [node name="AttackBox" type="Area2D" parent="EnemyBody" groups=["enemy"]]
@@ -224,7 +224,7 @@ enemy = NodePath("../..")
 metadata/_custom_type_script = "uid://b0u3qvmt58th8"
 
 [node name="Stun State" type="Node" parent="State Machine" node_paths=PackedStringArray("enemy")]
-script = ExtResource("3_kyong")
+script = ExtResource("6_qdd20")
 enemy = NodePath("../..")
 metadata/_custom_type_script = "uid://dm4uiijfbbr7u"
 
