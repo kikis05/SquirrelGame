@@ -188,6 +188,7 @@ func _switch_to_room(pos : Vector2i, entered_from_dir : String) -> void:
 		return
 
 	if current_room_instance:
+		get_tree().call_group("room_deletables", "queue_free")
 		current_room_instance.queue_free()
 
 	var scene_path : String = "res://Rooms/StandardRoomScenes/%s.tscn" % room_name

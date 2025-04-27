@@ -1,7 +1,7 @@
 ea4bc82a6ad023ab7ee23ee620429895
-::res://::1745738016
+::res://::1745779009
 bullet.gd::GDScript::2304997660688105147::1745736997::0::1::::<>Area2D<><>0<>0<><>::
-bullet.tscn::PackedScene::1732501824914031346::1745738016::0::1::::<><><>0<>0<><>::uid://73s8e05jdqcp::::res://bullet.gd<>uid://5ubv3ttytk60::::res://art/SquirrelGame_Planning3.png
+bullet.tscn::PackedScene::1732501824914031346::1745738704::0::1::::<><><>0<>0<><>::uid://73s8e05jdqcp::::res://bullet.gd<>uid://5ubv3ttytk60::::res://art/SquirrelGame_Planning3.png
 coin.gd::GDScript/GDScript::7206091320089563611::1745547790::0::1::::<>Area2D<><>0<>0<><>::
 coin.png::CompressedTexture2D/CompressedTexture2D::8111765784483779409::1745547790::1745547790::1::::<><><>0<>0<>b4c66c2f53ef751fd2d9bac126fe83bc<>res://.godot/imported/coin.png-7e710de472b75b3653c3283ef5153eb4.ctex::
 coin.tscn::PackedScene/PackedScene::570902521857456568::1745551763::0::1::::<><><>0<>0<><>::uid://dawxjhr8nh1al::::res://coin.gd<>uid://dntnukrlc6aij::::res://coin.png
@@ -38,7 +38,7 @@ Pixeled.ttf::FontFile/FontFile::6796454984083231835::1745518446::1745520022::1::
 squirrel_anims1 (1).png::CompressedTexture2D/CompressedTexture2D::8974405508961523363::1745073402::1745073402::1::::<><><>0<>0<>bf87c244edf8989b557231c9b218c1e6<>res://.godot/imported/squirrel_anims1 (1).png-2c276af77e5914d3f1131ea26256a075.ctex::
 squirrel_anims1 (2).png::CompressedTexture2D/CompressedTexture2D::2877510293557281536::1745518446::1745520022::1::::<><><>0<>0<>a6399abef1255dc20d989221d61858c7<>res://.godot/imported/squirrel_anims1 (2).png-78281edb17d6f5b0c78f5657bba6022f.ctex::
 squirrel_anims2.png::CompressedTexture2D/CompressedTexture2D::7184935223299715441::1745518446::1745520022::0::::<><><>0<>0<>1cc432f2af3c26421827c72ed3055a1d<>::
-::res://assets/chests/::1745738698
+::res://assets/chests/::1745738699
 chest_items1.png::CompressedTexture2D/CompressedTexture2D::2017836182587131941::1745738698::1745738699::1::::<><><>0<>0<>667049d73b90114165352cb139355039<>res://.godot/imported/chest_items1.png-f939576dce8f9ad1cbdd98dfc36e1ae6.ctex::
 ::res://assets/enemies/::1745520227
 ant_anims1.png::CompressedTexture2D/CompressedTexture2D::3019056734942963273::1744691370::1744956370::1::::<><><>0<>0<>fd78e34424bca59cab8809c6bd566b09<>res://.godot/imported/ant_anims1.png-70c860137b9a924b87bb6197a3dd56e1.ctex::
@@ -51,14 +51,14 @@ mosquito_mom_anims1.png::CompressedTexture2D/CompressedTexture2D::62971244266414
 ::res://assets/tiles/::1745736917
 RoomTileset.tres::TileSet::7739507965868503946::1745736917::0::1::::<><><>0<>0<><>::uid://ct5rm6fgeven2::::res://Rooms/DungeonAssets.png
 ::res://entities/::1745693323
-::res://entities/chests/::1745738322
+::res://entities/chests/::1745738704
 chest.gd::GDScript::8101383578872045616::1745738016::0::1::::<>Node2D<><>0<>0<><>::
-chest.tscn::PackedScene::3763896630973862085::1745738322::0::1::::<><><>0<>0<><>::uid://dnomusemecreu::::res://entities/chests/chest.gd<>uid://30pp48uexckr::::res://assets/chests/chest_items1.png<>uid://ch5tibw7yghdt::::res://assets/MinecraftStandard.otf
+chest.tscn::PackedScene::3763896630973862085::1745738704::0::1::::<><><>0<>0<><>::uid://dnomusemecreu::::res://entities/chests/chest.gd<>uid://30pp48uexckr::::res://assets/chests/chest_items1.png<>uid://ch5tibw7yghdt::::res://assets/MinecraftStandard.otf
 ::res://entities/enemies/::1745692175
 base_enemy.gd::GDScript/GDScript::1262799517450764648::1745692175::0::1::::BaseEnemy<>CharacterBody2D<><>0<>0<><>::
-::res://entities/enemies/ant_enemy/::1745738016
+::res://entities/enemies/ant_enemy/::1745738704
 ant_enemy.gd::GDScript::963581501633778808::1745736997::0::1::::AntEnemy<>BaseEnemy<><>0<>0<><>::
-ant_enemy.tscn::PackedScene::7687980407717708115::1745738016::0::1::::<><><>0<>0<><>::uid://ny1bt2vvnakm::::res://entities/enemies/ant_enemy/ant_enemy.gd<>uid://bjaponm0sgvs8::::res://assets/enemies/ant_anims1.png<>uid://drc32dbyt45eh::::res://entities/enemies/states/state_machine.gd<>uid://8jg436ppnko::::res://entities/enemies/states/idle_state.gd<>uid://7spdl75ena5l::::res://entities/enemies/states/chase_state.gd<>uid://dm4uiijfbbr7u::::res://entities/enemies/states/stun_state.gd<>uid://cji0ts0qst0sl::::res://entities/enemies/states/attack_state.gd<>uid://c7yfvis6uphlt::::res://entities/enemies/states/death_state.gd
+ant_enemy.tscn::PackedScene::7687980407717708115::1745738704::0::1::::<><><>0<>0<><>::uid://ny1bt2vvnakm::::res://entities/enemies/ant_enemy/ant_enemy.gd<>uid://bjaponm0sgvs8::::res://assets/enemies/ant_anims1.png<>uid://drc32dbyt45eh::::res://entities/enemies/states/state_machine.gd<>uid://8jg436ppnko::::res://entities/enemies/states/idle_state.gd<>uid://7spdl75ena5l::::res://entities/enemies/states/chase_state.gd<>uid://dm4uiijfbbr7u::::res://entities/enemies/states/stun_state.gd<>uid://cji0ts0qst0sl::::res://entities/enemies/states/attack_state.gd<>uid://c7yfvis6uphlt::::res://entities/enemies/states/death_state.gd
 ::res://entities/enemies/fire_ant_enemy/::1745551763
 fire_ant_enemy.gd::GDScript/GDScript::3222630424160138900::1745549137::0::1::::<>AntEnemy<><>0<>0<><>::
 fire_ant_enemy.tscn::PackedScene/PackedScene::1629204750610706623::1745551763::0::1::::<><><>0<>0<><>::uid://bl6citutyyxma::::res://entities/enemies/fire_ant_enemy/fire_ant_enemy.gd<>uid://i5ijd7a87ocv::::res://assets/enemies/fireant_anims1.png<>uid://drc32dbyt45eh::::res://entities/enemies/states/state_machine.gd<>uid://8jg436ppnko::::res://entities/enemies/states/idle_state.gd<>uid://dtk15d83oumgr::::res://assets/enemies/fire_trail_anims1.png<>uid://7spdl75ena5l::::res://entities/enemies/states/chase_state.gd<>uid://dm4uiijfbbr7u::::res://entities/enemies/states/stun_state.gd<>uid://cji0ts0qst0sl::::res://entities/enemies/states/attack_state.gd<>uid://c7yfvis6uphlt::::res://entities/enemies/states/death_state.gd<>uid://bgdruxs8r68ud::::res://entities/enemies/fire_ant_enemy/fire_trail.tscn
@@ -70,9 +70,9 @@ mosquito_baby_enemy.tscn::PackedScene/PackedScene::6353449129499566037::17456928
 ::res://entities/enemies/mosquito_enemy/::1745736998
 mosquito_enemy.gd::GDScript::7177166954038807072::1745736998::0::1::::MosquitoEnemy<>AntEnemy<><>0<>0<><>::
 mosquito_enemy.tscn::PackedScene/PackedScene::7462214751504246880::1745692976::0::1::::<><><>0<>0<><>::uid://daiw5kfg4dhxo::::res://entities/enemies/mosquito_enemy/mosquito_enemy.gd<>uid://cwrwm5a1gb2nh::::res://entities/enemies/mosquito_baby_enemy/mosquito_baby_enemy.tscn<>uid://cvymypq17y0d7::::res://assets/enemies/mosquito_mom_anims1.png<>uid://drc32dbyt45eh::::res://entities/enemies/states/state_machine.gd<>uid://8jg436ppnko::::res://entities/enemies/states/idle_state.gd<>uid://b0u3qvmt58th8::::res://entities/enemies/states/linear_chase_state.gd<>uid://cji0ts0qst0sl::::res://entities/enemies/states/attack_state.gd<>uid://bnm6cr87jsjaw::::res://entities/enemies/states/stun_tolinear_state.gd<>uid://c7yfvis6uphlt::::res://entities/enemies/states/death_state.gd<>uid://fhaxlu632pt::::res://entities/enemies/states/escape_state.gd
-::res://entities/enemies/states/::1745738322
+::res://entities/enemies/states/::1745738722
 attack_state.gd::GDScript/GDScript::5422608821856536523::1745692175::0::1::::Attack_State<>State<><>0<>0<><>::
-chase_state.gd::GDScript::2284118536822836847::1745738322::0::1::::Chase_State<>State<><>0<>0<><>::
+chase_state.gd::GDScript::2284118536822836847::1745738722::0::1::::Chase_State<>State<><>0<>0<><>::
 death_state.gd::GDScript/GDScript::7068770965965611709::1745087079::0::1::::Death_State<>State<><>0<>0<><>::
 escape_state.gd::GDScript/GDScript::10748133700833165::1745520227::0::1::::Escape_State<>State<><>0<>0<><>::
 idle_state.gd::GDScript/GDScript::68683201443126110::1745520227::0::1::::Idle_State<>State<><>0<>0<><>::
@@ -122,8 +122,8 @@ StandardRoomNW.tscn::PackedScene/PackedScene::8073895651543062441::1745518446::0
 StandardRoomS.tscn::PackedScene/PackedScene::5776824557532626341::1745518446::0::1::::<><><>0<>0<><>::uid://dijcthwd7lyow::::res://assets/tiles/RoomTileset.tres<>uid://cip7l1do06wqa::::res://Rooms/Door.gd
 StandardRoomSW.tscn::PackedScene/PackedScene::7934387101254747572::1745518446::0::1::::<><><>0<>0<><>::uid://dijcthwd7lyow::::res://assets/tiles/RoomTileset.tres<>uid://cip7l1do06wqa::::res://Rooms/Door.gd<>uid://xhg08ovbav64::::res://entities/enemies/fire_ant_enemy/fire_ant_enemy.tscn<>uid://dhsd6cxjrxhtj::::res://entities/enemies/ant_enemy/ant_enemy.tscn
 StandardRoomW.tscn::PackedScene/PackedScene::5500431779857457030::1745518446::0::1::::<><><>0<>0<><>::uid://dijcthwd7lyow::::res://assets/tiles/RoomTileset.tres<>uid://cip7l1do06wqa::::res://Rooms/Door.gd
-::res://scenes/::1745738016
+::res://scenes/::1745738722
 dungeon_generator.gd::GDScript::8192507296294421068::1745736997::0::1::::DungeonGenerator<>Node<><>0<>0<><>::
 main.gd::GDScript::7808289903107915038::1745736998::0::1::::<>Node<><>0<>0<><>::
-main.tscn::PackedScene::7568936160764162782::1745738016::0::1::::<><><>0<>0<><>::uid://djinnnl2c7xs5::::res://scenes/main.gd<>uid://doyrnsmawccn1::::res://scenes/dungeon_generator.gd<>uid://bptqwns6p2701::::res://coins_container.tscn<>uid://c1x03uf7p3bj1::::res://health_container.tscn<>uid://tfnoonrvjm30::::res://menu.tscn
-test.tscn::PackedScene::8370131592351715355::1745738016::0::1::::<><><>0<>0<><>::uid://ctdj7k4cwb4f6::::res://Player/player.tscn<>uid://btvi3ex8vchv6::::res://entities/chests/chest.tscn<>uid://dijcthwd7lyow::::res://assets/tiles/RoomTileset.tres
+main.tscn::PackedScene::7568936160764162782::1745738704::0::1::::<><><>0<>0<><>::uid://djinnnl2c7xs5::::res://scenes/main.gd<>uid://doyrnsmawccn1::::res://scenes/dungeon_generator.gd<>uid://bptqwns6p2701::::res://coins_container.tscn<>uid://c1x03uf7p3bj1::::res://health_container.tscn<>uid://tfnoonrvjm30::::res://menu.tscn
+test.tscn::PackedScene::8370131592351715355::1745738722::0::1::::<><><>0<>0<><>::uid://ctdj7k4cwb4f6::::res://Player/player.tscn<>uid://btvi3ex8vchv6::::res://entities/chests/chest.tscn<>uid://dijcthwd7lyow::::res://assets/tiles/RoomTileset.tres

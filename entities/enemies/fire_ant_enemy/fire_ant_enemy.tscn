@@ -212,7 +212,7 @@ radius = 6.08276
 radius = 7.0
 height = 22.0
 
-[node name="Fire Ant Enemy" type="CharacterBody2D" node_paths=PackedStringArray("fire_spawn") groups=["enemy"]]
+[node name="Fire Ant Enemy" type="CharacterBody2D" groups=["enemy"]]
 z_index = 1
 collision_layer = 2
 collision_mask = 15
@@ -220,7 +220,6 @@ motion_mode = 1
 wall_min_slide_angle = 0.0
 script = ExtResource("1_7op1r")
 fire_trail = ExtResource("9_wr85i")
-fire_spawn = NodePath("")
 metadata/_custom_type_script = "uid://ny1bt2vvnakm"
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
