@@ -1,3 +1,5 @@
+MosquitoBabyEnemy
+MosquitoEnemy
 RichTextLabel
 StaticBody2D
 Marker2D
@@ -6,10 +8,7 @@ Area2D
 AnimatedSprite2D
 Node2D
 TileMapLayer
-MosquitoEnemy
 Label
 Button
 TextureButton
 Panel
-MosquitoBabyEnemy
-CharacterBody2D

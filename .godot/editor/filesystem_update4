@@ -10,3 +10,4 @@ res://entities/enemies/fire_ant_enemy/fire_trail.tscn
 res://gun.gd
 res://entities/enemies/fire_ant_enemy/fire_ant_enemy.tscn
 res://scenes/dungeon_generator.gd
+res://bullet.gd

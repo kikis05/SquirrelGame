@@ -1,8 +1,10 @@
-[gd_scene load_steps=4 format=4 uid="uid://dris3yfwhwwt4"]
+[gd_scene load_steps=6 format=4 uid="uid://dris3yfwhwwt4"]
 
 [ext_resource type="PackedScene" uid="uid://ctdj7k4cwb4f6" path="res://Player/player.tscn" id="2_74lek"]
 [ext_resource type="PackedScene" uid="uid://btvi3ex8vchv6" path="res://entities/chests/chest.tscn" id="3_iyx0m"]
 [ext_resource type="TileSet" uid="uid://dijcthwd7lyow" path="res://assets/tiles/RoomTileset.tres" id="4_74lek"]
+[ext_resource type="PackedScene" uid="uid://dek0t7ihd4vxg" path="res://entities/enemies/mosquito_enemy/mosquito_enemy.tscn" id="4_j5jx5"]
+[ext_resource type="PackedScene" uid="uid://cwrwm5a1gb2nh" path="res://entities/enemies/mosquito_baby_enemy/mosquito_baby_enemy.tscn" id="5_lpvoh"]
 
 [node name="Test" type="Node2D"]
 y_sort_enabled = true
@@ -16,3 +18,7 @@ tile_set = ExtResource("4_74lek")
 
 [node name="Chest" parent="." instance=ExtResource("3_iyx0m")]
 position = Vector2(115, 8)
+
+[node name="Mosquito Enemy" parent="." instance=ExtResource("4_j5jx5")]
+
+[node name="Mosquito Baby Enemy" parent="." instance=ExtResource("5_lpvoh")]
