@@ -1,4 +1,9 @@
+RichTextLabel
+StaticBody2D
+Marker2D
 CollisionShape2D
+Area2D
+AnimatedSprite2D
 Node2D
 TileMapLayer
 MosquitoEnemy
@@ -7,8 +12,4 @@ Button
 TextureButton
 Panel
 MosquitoBabyEnemy
-AnimatedSprite2D
 CharacterBody2D
-Camera2D
-AnimatedSprite2D
-VBoxContainer

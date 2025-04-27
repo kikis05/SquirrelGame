@@ -1,0 +1,106 @@
+[gd_scene load_steps=11 format=3 uid="uid://btvi3ex8vchv6"]
+
+[ext_resource type="Script" uid="uid://dnomusemecreu" path="res://entities/chests/chest.gd" id="1_yb3w5"]
+[ext_resource type="Texture2D" uid="uid://30pp48uexckr" path="res://assets/chests/chest_items1.png" id="2_41lyc"]
+[ext_resource type="FontFile" uid="uid://ch5tibw7yghdt" path="res://assets/MinecraftStandard.otf" id="3_41lyc"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_j4y5m"]
+atlas = ExtResource("2_41lyc")
+region = Rect2(96, 32, 48, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_54opg"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_j4y5m")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wyl80"]
+atlas = ExtResource("2_41lyc")
+region = Rect2(0, 32, 48, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_76som"]
+atlas = ExtResource("2_41lyc")
+region = Rect2(48, 32, 48, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_lqcv6"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wyl80")
+}],
+"loop": false,
+"name": &"closed",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_76som")
+}],
+"loop": false,
+"name": &"open",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_j4y5m"]
+size = Vector2(30, 8)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_54opg"]
+radius = 40.0
+
+[node name="Chest" type="StaticBody2D" groups=["change_on_complete"]]
+z_index = 1
+collision_mask = 4
+script = ExtResource("1_yb3w5")
+
+[node name="SpriteOutline" type="AnimatedSprite2D" parent="."]
+visible = false
+position = Vector2(0, -13)
+sprite_frames = SubResource("SpriteFrames_54opg")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, -13)
+sprite_frames = SubResource("SpriteFrames_lqcv6")
+animation = &"closed"
+autoplay = "closed"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 1)
+shape = SubResource("RectangleShape2D_j4y5m")
+
+[node name="Area2D" type="Area2D" parent="."]
+position = Vector2(0, -1)
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CircleShape2D_54opg")
+
+[node name="Marker2D" type="Marker2D" parent="."]
+position = Vector2(0, -11)
+
+[node name="RichTextLabel" type="RichTextLabel" parent="."]
+visible = false
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -34.0
+offset_top = -34.0
+offset_right = 38.0
+offset_bottom = -21.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 0
+size_flags_vertical = 4
+theme_override_fonts/normal_font = ExtResource("3_41lyc")
+theme_override_font_sizes/normal_font_size = 6
+text = "E to interact"
+horizontal_alignment = 1
+
+[connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
+[connection signal="area_exited" from="Area2D" to="." method="_on_area_2d_area_exited"]

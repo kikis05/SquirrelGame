@@ -31,23 +31,22 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_v8qja"]
-size = Vector2(4.34212, 6)
+size = Vector2(10, 13.4249)
 
-[node name="Bullet" type="Area2D" groups=["player_weapon"]]
-scale = Vector2(1.84242, 1.71292)
+[node name="Bullet" type="Area2D" groups=["player_weapon", "room_deletables"]]
+z_index = 1
 collision_layer = 4
 collision_mask = 11
 script = ExtResource("1_v8qja")
 speed = 600
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-scale = Vector2(0.565996, 0.59653)
+position = Vector2(0, 0.5)
 sprite_frames = SubResource("SpriteFrames_b7duk")
-animation = &"fly"
+animation = &"land"
 autoplay = "fly"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-visibility_layer = 2
 scale = Vector2(1, 0.595908)
 shape = SubResource("RectangleShape2D_v8qja")
 
