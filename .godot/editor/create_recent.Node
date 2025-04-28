@@ -1,11 +1,12 @@
-MosquitoBabyEnemy
-MosquitoEnemy
-RichTextLabel
-StaticBody2D
-Marker2D
+AnimationPlayer
 CollisionShape2D
 Area2D
 AnimatedSprite2D
+StaticBody2D
+MosquitoBabyEnemy
+MosquitoEnemy
+RichTextLabel
+Marker2D
 Node2D
 TileMapLayer
 Label

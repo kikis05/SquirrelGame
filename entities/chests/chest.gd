@@ -4,7 +4,7 @@ var is_locked = true
 var is_closed = true
 var player_in_range = false
 
-@export var item = null
+@export var item = preload("res://entities/items/upgrade_item.tscn")
 
 @onready var sprite: AnimatedSprite2D = null
 @onready var outline: AnimatedSprite2D = null
@@ -26,7 +26,7 @@ func set_chest(new_item):
 		outline.visible = false
 		label.visible = false
 	else: 
-		pass # TODO save a real item to spawn
+		item.set_item(new_item)
 
 func _input(event):
 	if Input.is_action_just_pressed("interact") and \
@@ -43,12 +43,14 @@ func _input(event):
 
 
 func room_completed():
-	label.text = "E to INTERACT"
+	label.text = "E to OPEN"
 	is_locked = false
 	outline.visible = true
 
 func spawn_item():
-	pass
+	var spawned_item = item.instantiate()
+	spawned_item.global_position = $Marker2D.global_position
+	get_tree().root.add_child(spawned_item)
 
 func _on_area_2d_area_entered(area):
 	if area.is_in_group("player") and is_closed == true:

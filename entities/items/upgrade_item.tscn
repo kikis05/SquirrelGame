@@ -1,0 +1,76 @@
+[gd_scene load_steps=8 format=3 uid="uid://x7lotpve1epg"]
+
+[ext_resource type="Script" uid="uid://cw26uq4goishx" path="res://entities/items/upgrade_item.gd" id="1_0ej0c"]
+[ext_resource type="Texture2D" uid="uid://cj2yd0s5oem5e" path="res://assets/chests_items/items1.png" id="1_j2fwf"]
+[ext_resource type="FontFile" uid="uid://ch5tibw7yghdt" path="res://assets/MinecraftStandard.otf" id="1_q1bvq"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_25oe7"]
+radius = 40.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hbcpy"]
+atlas = ExtResource("1_j2fwf")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0ej0c"]
+atlas = ExtResource("1_j2fwf")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_erwyd"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hbcpy")
+}],
+"loop": true,
+"name": &"health",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0ej0c")
+}],
+"loop": true,
+"name": &"sword attack",
+"speed": 5.0
+}]
+
+[node name="Upgrade Item" type="StaticBody2D" groups=["room_deletables"]]
+z_index = 1
+collision_layer = 8
+collision_mask = 4
+script = ExtResource("1_0ej0c")
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 8
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CircleShape2D_25oe7")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, -30)
+sprite_frames = SubResource("SpriteFrames_erwyd")
+animation = &"sword attack"
+
+[node name="RichTextLabel" type="RichTextLabel" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -34.0
+offset_top = -55.0
+offset_right = 38.0
+offset_bottom = -42.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 0
+size_flags_vertical = 4
+theme_override_fonts/normal_font = ExtResource("1_q1bvq")
+theme_override_font_sizes/normal_font_size = 6
+text = "E to PICK UP"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
+[connection signal="area_exited" from="Area2D" to="." method="_on_area_2d_area_exited"]
