@@ -60,7 +60,5 @@ func get_damage():
 
 
 func _on_area_entered(area: Area2D) -> void:
-	if area.is_in_group("enemy"):
-		print("Entered Body")
-		#area.die() #not sure what this is
+	if area.is_in_group("enemy") and area.name.to_lower() == "hitbox":
 		queue_free()
