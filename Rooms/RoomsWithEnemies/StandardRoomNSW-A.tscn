@@ -215,17 +215,13 @@ polygon = PackedVector2Array(7, -1, 4, 110, -432, 107, -432, -125, -3, -125, 7, 
 position = Vector2(240, 136)
 
 [node name="Mosquito Enemy3" parent="." instance=ExtResource("3_xuquh")]
-z_index = 1
 position = Vector2(361, 211)
 
 [node name="Mosquito Enemy2" parent="." instance=ExtResource("3_xuquh")]
-z_index = 1
 position = Vector2(302, 200)
 
 [node name="Mosquito Enemy4" parent="." instance=ExtResource("3_xuquh")]
-z_index = 1
 position = Vector2(105, 80)
 
 [node name="Mosquito Enemy" parent="." instance=ExtResource("3_xuquh")]
-z_index = 1
 position = Vector2(80, 94)

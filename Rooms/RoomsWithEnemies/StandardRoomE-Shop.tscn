@@ -1,7 +1,8 @@
-[gd_scene load_steps=8 format=4 uid="uid://cos3jnfxyb5vo"]
+[gd_scene load_steps=9 format=4 uid="uid://cos3jnfxyb5vo"]
 
 [ext_resource type="Texture2D" uid="uid://ct5rm6fgeven2" path="res://Rooms/DungeonAssets.png" id="1_n2her"]
 [ext_resource type="Script" uid="uid://cip7l1do06wqa" path="res://Rooms/Door.gd" id="2_kkpq7"]
+[ext_resource type="PackedScene" uid="uid://b40ev3jflvlam" path="res://shop.tscn" id="3_kkpq7"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_fplxe"]
 texture = ExtResource("1_n2her")
@@ -195,3 +196,7 @@ polygon = PackedVector2Array(7, -1, 4, 110, -432, 107, -432, -125, -3, -125, 7, 
 
 [node name="SpawnPoint" type="Node2D" parent="."]
 position = Vector2(240, 136)
+
+[node name="Shop" parent="." instance=ExtResource("3_kkpq7")]
+z_index = 1
+position = Vector2(113, 114)
