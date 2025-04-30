@@ -1,7 +1,8 @@
 extends CharacterBody2D
 class_name Player
 
-@export var speed = 150
+@export var original_speed = 150
+var speed = original_speed
 @export_range(0.0, 1.0) var friction = 0.25
 @export_range(0.0 , 1.0) var acceleration = 0.3
 
@@ -132,9 +133,21 @@ func get_max_health():
 	
 func get_health():
 	return current_health
+func set_health(health):
+	current_health = min(max_health, health)
+	health_changed.emit(current_health) 
+	
+	
+func get_speed():
+	return speed
+func set_speed(new_speed):
+	speed = new_speed
 	
 func get_coins():
 	return coins
+func set_coins(cns):
+	coins = cns
+	coins_changed.emit(coins)
 
 func damage_player():
 	if invincible == false:
@@ -156,11 +169,21 @@ func _on_animated_sprite_2d_animation_finished() -> void:
 	
 	
 func get_sword_attack():
+	#note: need to directly access damage variable!!
 	return $Sword.damage
+	
+func set_sword_attack(attack):
+	$Sword.set_damage(attack)
+	
 func get_gun_attack():
 	return $Gun.get_bullet_damage()
+func set_gun_attack(attack):
+	$Gun.set_bullet_damage(attack)
+	
 func get_gun_speed():
 	return $Gun.get_bullet_speed()
+func set_gun_speed(spd):
+	$Gun.set_bullet_speed(spd)
 	
 func reset():
 	dead = false

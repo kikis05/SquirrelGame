@@ -1,7 +1,8 @@
 extends Area2D
 
 @export var force = 2.0
-@export var damage = 20
+@export var original_damage = 20
+var damage = original_damage
 
 const SLASH = preload("res://slash.tscn")
 
@@ -72,8 +73,6 @@ func _on_slash_speed_timer_timeout() -> void:
 		#if direction.x < 0:	
 		#if direction.x > 0:
 		
-func set_damage(damage_):
-	damage = damage_ 
 	
 func is_attacking():
 	return (Input.is_action_pressed("attack_down")
@@ -87,3 +86,5 @@ func get_damage():
 		print("sword is attacking")
 		return damage
 	return 0
+func set_damage(dmg):
+	damage = dmg 

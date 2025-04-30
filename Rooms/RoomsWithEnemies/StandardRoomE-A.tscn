@@ -28,7 +28,6 @@ shape = SubResource("RectangleShape2D_se1ei")
 position = Vector2(154, 88)
 
 [node name="Player" parent="." instance=ExtResource("4_iyjhi")]
-z_index = 1
 position = Vector2(349, 128)
 
 [node name="SpawnPoint" type="Node2D" parent="."]
