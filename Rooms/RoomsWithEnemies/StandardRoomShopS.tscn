@@ -1,11 +1,11 @@
 [gd_scene load_steps=9 format=4 uid="uid://dhp8dstgyo08"]
 
-[ext_resource type="Texture2D" uid="uid://ct5rm6fgeven2" path="res://Rooms/DungeonAssets.png" id="1_hp81s"]
-[ext_resource type="Script" uid="uid://cip7l1do06wqa" path="res://Rooms/Door.gd" id="2_kqqsc"]
-[ext_resource type="PackedScene" uid="uid://b40ev3jflvlam" path="res://shop.tscn" id="3_7cqw8"]
+[ext_resource type="Texture2D" uid="uid://ct5rm6fgeven2" path="res://Rooms/DungeonAssets.png" id="1_a4t4r"]
+[ext_resource type="Script" uid="uid://cip7l1do06wqa" path="res://Rooms/Door.gd" id="2_uchtu"]
+[ext_resource type="PackedScene" uid="uid://b40ev3jflvlam" path="res://shop.tscn" id="3_u13gr"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_i2qbg"]
-texture = ExtResource("1_hp81s")
+texture = ExtResource("1_a4t4r")
 0:0/0 = 0
 1:0/0 = 0
 2:0/0 = 0
@@ -84,7 +84,7 @@ texture = ExtResource("1_hp81s")
 sources/0 = SubResource("TileSetAtlasSource_i2qbg")
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_0pem1"]
-texture = ExtResource("1_hp81s")
+texture = ExtResource("1_a4t4r")
 0:0/0 = 0
 1:0/0 = 0
 2:0/0 = 0
@@ -180,7 +180,7 @@ tile_map_data = PackedByteArray("AAAAAAIAAAAAAAEAAAABAAIAAAABAAEAAAAAAAMAAAAAAAE
 tile_set = SubResource("TileSet_iktgi")
 
 [node name="DoorS" type="Area2D" parent="TileMap"]
-script = ExtResource("2_kqqsc")
+script = ExtResource("2_uchtu")
 direction = "S"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="TileMap/DoorS"]
@@ -196,6 +196,6 @@ polygon = PackedVector2Array(7, -1, 4, 110, -432, 107, -432, -125, -3, -125, 7, 
 [node name="SpawnPoint" type="Node2D" parent="."]
 position = Vector2(240, 136)
 
-[node name="Shop" parent="." instance=ExtResource("3_7cqw8")]
+[node name="Shop" parent="." instance=ExtResource("3_u13gr")]
 z_index = 1
 position = Vector2(251, 138)
