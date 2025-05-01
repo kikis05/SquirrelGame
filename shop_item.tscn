@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://btffc7vqohcgl"]
 
 [ext_resource type="Script" uid="uid://cc7b72wrk5phb" path="res://shop_item.gd" id="1_wxfep"]
-[ext_resource type="Texture2D" uid="uid://bmstghos2cvld" path="res://art/Hold.png" id="2_wxfep"]
+[ext_resource type="Texture2D" uid="uid://c3jbpo4r12orr" path="res://art/shop_item_holder (1).png" id="2_wxfep"]
 
 [node name="ShopItem" type="TextureButton"]
 offset_left = 1.0
@@ -14,7 +14,7 @@ script = ExtResource("1_wxfep")
 layout_mode = 0
 offset_right = 40.0
 offset_bottom = 40.0
-scale = Vector2(0.283034, 0.279691)
+scale = Vector2(0.9, 0.9)
 texture = ExtResource("2_wxfep")
 
 [node name="Item" type="Sprite2D" parent="TextureRect"]

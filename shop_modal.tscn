@@ -36,8 +36,8 @@ offset_bottom = 210.0
 scale = Vector2(0.801708, 0.9533)
 
 [node name="Sprite2D" type="Sprite2D" parent="Buy"]
-position = Vector2(39.9148, 16.7838)
-scale = Vector2(0.3, 0.3)
+position = Vector2(38.0087, 18.2737)
+scale = Vector2(0.31531, 0.324831)
 texture = ExtResource("4_q8nhw")
 
 [node name="Cost" type="Label" parent="."]
