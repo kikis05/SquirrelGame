@@ -1,11 +1,12 @@
-[gd_scene load_steps=9 format=4 uid="uid://cos3jnfxyb5vo"]
+[gd_scene load_steps=10 format=4 uid="uid://cos3jnfxyb5vo"]
 
-[ext_resource type="Texture2D" uid="uid://ct5rm6fgeven2" path="res://Rooms/DungeonAssets.png" id="1_n2her"]
-[ext_resource type="Script" uid="uid://cip7l1do06wqa" path="res://Rooms/Door.gd" id="2_kkpq7"]
-[ext_resource type="PackedScene" uid="uid://b40ev3jflvlam" path="res://shop.tscn" id="3_kkpq7"]
+[ext_resource type="Texture2D" uid="uid://ct5rm6fgeven2" path="res://Rooms/DungeonAssets.png" id="1_tiabs"]
+[ext_resource type="Script" uid="uid://cip7l1do06wqa" path="res://Rooms/Door.gd" id="2_uykya"]
+[ext_resource type="PackedScene" uid="uid://b40ev3jflvlam" path="res://shop.tscn" id="3_6efsv"]
+[ext_resource type="PackedScene" uid="uid://ctdj7k4cwb4f6" path="res://Player/player.tscn" id="4_bhmik"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_fplxe"]
-texture = ExtResource("1_n2her")
+texture = ExtResource("1_tiabs")
 0:0/0 = 0
 1:0/0 = 0
 2:0/0 = 0
@@ -84,7 +85,7 @@ texture = ExtResource("1_n2her")
 sources/0 = SubResource("TileSetAtlasSource_fplxe")
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_4nlu2"]
-texture = ExtResource("1_n2her")
+texture = ExtResource("1_tiabs")
 0:0/0 = 0
 1:0/0 = 0
 2:0/0 = 0
@@ -181,7 +182,7 @@ tile_set = SubResource("TileSet_se1ei")
 
 [node name="DoorE" type="Area2D" parent="TileMap"]
 collision_layer = 2
-script = ExtResource("2_kkpq7")
+script = ExtResource("2_uykya")
 direction = "E"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="TileMap/DoorE"]
@@ -197,6 +198,9 @@ polygon = PackedVector2Array(7, -1, 4, 110, -432, 107, -432, -125, -3, -125, 7, 
 [node name="SpawnPoint" type="Node2D" parent="."]
 position = Vector2(240, 136)
 
-[node name="Shop" parent="." instance=ExtResource("3_kkpq7")]
+[node name="Shop" parent="." instance=ExtResource("3_6efsv")]
 z_index = 1
 position = Vector2(113, 114)
+
+[node name="Player" parent="." instance=ExtResource("4_bhmik")]
+position = Vector2(213, 68)

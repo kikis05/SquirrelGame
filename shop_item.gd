@@ -5,7 +5,7 @@ class_name ShopItem
 @export var item_name: String = "item"
 @export var description: String = "a helpful item"
 @export var cost: int = 0
-@export var sprite: Sprite2D 
+@export var sprite_path: String
 
 @export var powerup_type: String = "health_increase" #change depending on what kind of powerup it is
 
@@ -14,6 +14,15 @@ class_name ShopItem
 @export var sword_attack_increase: int
 @export var bullet_attack_increase: int
 @export var bullet_distance_increase: int
+
+@onready var itemImage = $TextureRect/Item
+
+func _ready():
+	if (sprite_path) :
+		print(sprite_path)
+		var img = load(sprite_path) # Replace with the actual path to your PNG file
+		itemImage.texture = img
+		print ("texture should be set??")
 
 #can add other powerups here
 func get_powerup_type():
