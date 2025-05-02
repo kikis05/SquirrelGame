@@ -1,6 +1,7 @@
+Player
+AntEnemy
 TileMapLayer
 HBoxContainer
-Player
 Sprite2D
 TextureRect
 AnimationPlayer
@@ -11,5 +12,3 @@ StaticBody2D
 MosquitoBabyEnemy
 MosquitoEnemy
 RichTextLabel
-Marker2D
-Node2D

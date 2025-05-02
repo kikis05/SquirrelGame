@@ -214,6 +214,7 @@ height = 22.0
 
 [node name="Fire Ant Enemy" type="CharacterBody2D" groups=["enemy"]]
 z_index = 1
+y_sort_enabled = true
 collision_layer = 2
 collision_mask = 15
 motion_mode = 1
@@ -229,6 +230,7 @@ animation = &"idle"
 autoplay = "chase"
 
 [node name="FireAnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+y_sort_enabled = true
 position = Vector2(0, -15)
 sprite_frames = SubResource("SpriteFrames_8xb6b")
 animation = &"idle"

@@ -79,6 +79,7 @@ height = 14.0
 
 [node name="Fire Trail" type="CharacterBody2D" node_paths=PackedStringArray("sprite") groups=["enemy", "room_deletables"]]
 z_index = 1
+y_sort_enabled = true
 collision_layer = 2
 collision_mask = 4
 script = ExtResource("1_nkxie")
