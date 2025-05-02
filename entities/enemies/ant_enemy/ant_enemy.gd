@@ -26,7 +26,7 @@ func _ready():
 	sprite = $AnimatedSprite2D
 	attack_box = $AttackBox
 	
-	#player = get_tree().get_first_node_in_group("player")
+	player = get_tree().get_first_node_in_group("player")
 	if velocity.x > 0:
 		sprite.flip_h = true
 		flipped = true

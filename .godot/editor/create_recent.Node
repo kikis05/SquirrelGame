@@ -1,3 +1,6 @@
+TileMapLayer
+HBoxContainer
+Player
 Sprite2D
 TextureRect
 AnimationPlayer
@@ -10,6 +13,3 @@ MosquitoEnemy
 RichTextLabel
 Marker2D
 Node2D
-TileMapLayer
-Label
-Button

@@ -86,11 +86,12 @@ func _on_attack_box_body_exited(body):
 
 func _on_animated_sprite_2d_animation_finished():
 	if sprite.animation == "death":
-		var coin = COIN.instantiate()
-		coin.global_position = global_position
-		get_tree().root.add_child(coin)
-		if player != null:
-			coin.attract_to_player(player)
+		### NOTE: NO coin dropped from baby mosquito
+		#var coin = COIN.instantiate()
+		#coin.global_position = global_position
+		#get_tree().root.add_child(coin)
+		#if player != null:
+			#coin.attract_to_player(player)
 		queue_free()
 	elif sprite.animation == "attack" and player_in_range:
 		if player != null and player.dead == false:
