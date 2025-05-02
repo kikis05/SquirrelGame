@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c8me1ibj6q5oq"
-path="res://.godot/imported/AcornItem.png-5eb846e4e2cc04ad1652b233fae6a428.ctex"
+uid="uid://bfm6chplianru"
+path="res://.godot/imported/HalfAcorn.png-278f3ac4122a50b89f966dbb3a5c630b.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://art/shop_items/AcornItem.png"
-dest_files=["res://.godot/imported/AcornItem.png-5eb846e4e2cc04ad1652b233fae6a428.ctex"]
+source_file="res://art/shop_items/HalfAcorn.png"
+dest_files=["res://.godot/imported/HalfAcorn.png-278f3ac4122a50b89f966dbb3a5c630b.ctex"]
 
 [params]
 

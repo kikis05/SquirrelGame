@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://dtjimtxj1mf2f" path="res://shop_modal.gd" id="1_3c770"]
 [ext_resource type="Texture2D" uid="uid://8a3kflhvatkp" path="res://assets/Shop.png" id="1_ruyqg"]
 [ext_resource type="PackedScene" uid="uid://btffc7vqohcgl" path="res://shop_item.tscn" id="2_nc2er"]
-[ext_resource type="Texture2D" uid="uid://dy4k77c3dghvs" path="res://art/Untitled_Artwork (3).png" id="4_q8nhw"]
+[ext_resource type="Texture2D" uid="uid://mk8pwcc2cwgv" path="res://art/BuyButton.png" id="4_q8nhw"]
 [ext_resource type="FontFile" uid="uid://b1u0jrp7i0n3a" path="res://assets/alagard.ttf" id="4_ywokf"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_3c770"]
@@ -29,15 +29,14 @@ horizontal_alignment = 3
 autowrap_mode = 3
 
 [node name="Buy" type="TextureButton" parent="."]
-offset_left = 381.0
+offset_left = 405.0
 offset_top = 180.0
-offset_right = 449.0
+offset_right = 473.0
 offset_bottom = 210.0
-scale = Vector2(0.801708, 0.9533)
+scale = Vector2(0.795494, 0.9533)
 
 [node name="Sprite2D" type="Sprite2D" parent="Buy"]
-position = Vector2(39.9148, 16.7838)
-scale = Vector2(0.3, 0.3)
+position = Vector2(23.6994, 19.9308)
 texture = ExtResource("4_q8nhw")
 
 [node name="Cost" type="Label" parent="."]
@@ -74,6 +73,7 @@ offset_top = 179.0
 offset_right = 227.0
 offset_bottom = 219.0
 scale = Vector2(1, 1)
+pivot_offset = Vector2(0, 1)
 item_name = "sunflower seed"
 description = "a small but reasonable energy boost!"
 cost = 1
@@ -82,23 +82,25 @@ powerup_type = "speed_increase"
 speed_increase = 10
 
 [node name="ShopItem2" parent="." instance=ExtResource("2_nc2er")]
-offset_left = 265.0
+offset_left = 268.0
 offset_top = 179.0
-offset_right = 265.0
+offset_right = 268.0
 offset_bottom = 219.0
 scale = Vector2(1, 1)
+pivot_offset = Vector2(2, 2)
 item_name = "heart"
 description = "you can never have too much health!"
 cost = 5
-sprite_path = "res://art/shop_items/AcornItem.png"
+sprite_path = "res://art/shop_items/HalfAcorn.png"
 health_increase = 1
 
 [node name="ShopItem3" parent="." instance=ExtResource("2_nc2er")]
-offset_left = 303.0
+offset_left = 309.0
 offset_top = 179.0
-offset_right = 303.0
+offset_right = 309.0
 offset_bottom = 219.0
 scale = Vector2(1, 1)
+pivot_offset = Vector2(1, 1)
 item_name = "sap"
 description = "spicy sap! tasty and painful"
 cost = 1
@@ -107,9 +109,9 @@ powerup_type = "bullet_attack_increase"
 bullet_attack_increase = 5
 
 [node name="ShopItem4" parent="." instance=ExtResource("2_nc2er")]
-offset_left = 341.0
+offset_left = 350.0
 offset_top = 179.0
-offset_right = 341.0
+offset_right = 350.0
 offset_bottom = 219.0
 scale = Vector2(1, 1)
 item_name = "thorn"

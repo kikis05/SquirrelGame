@@ -38,7 +38,6 @@ z_index = 1
 collision_layer = 4
 collision_mask = 11
 script = ExtResource("1_v8qja")
-speed = 600
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(0, 0.5)

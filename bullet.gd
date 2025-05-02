@@ -1,7 +1,7 @@
 extends Area2D
 
-@export var speed = 100
-@export var damage = 15
+var speed = 0
+var damage = 15
 
 @onready var landingTimer = $DestroyBullet
 @onready var fadeTimer = $FadeTimer
