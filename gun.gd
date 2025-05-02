@@ -2,7 +2,7 @@ extends Node2D
 
 @export var shootSpeed = 1.0
 
-@export var original_bullet_speed = 100
+@export var original_bullet_speed = 500
 var bullet_speed = original_bullet_speed
 @export var original_bullet_damage = 15
 var bullet_damage = original_bullet_damage
@@ -52,8 +52,8 @@ func attack():
 		var bulletNode = BULLET.instantiate()
 		bulletNode.set_origin(global_position)
 		bulletNode.set_direction(bullet_dir)
-		bulletNode.damage = bullet_damage
-		bulletNode.speed = bullet_speed
+		bulletNode.set_speed(bullet_speed)
+		bulletNode.set_damage(bullet_damage)
 		get_tree().root.add_child(bulletNode) # Added so player can shoot in scenes without the dungeon
 		#get_node("/root/Main/DungeonGenerator").current_room_instance.add_child(bulletNode)
 		bulletNode.global_position = marker_2d.global_position

@@ -1,13 +1,15 @@
-res://scenes/main.tscn
+res://gun.tscn
 res://scenes/main.gd
 res://assets/tiles/RoomTileset.tres
+res://entities/enemies/states/chase_state.gd
+res://gun.gd
+res://scenes/main.tscn
 res://Rooms/RoomsWithEnemies/StandardRoomShopE.tscn
 res://shop_modal.tscn
 res://shop_item.tscn
 res://Rooms/RoomsWithEnemies/StandardRoomShopS.tscn
 res://Rooms/StandardRoomScenes/StandardRoomShop2W.tscn
 res://Rooms/RoomsWithEnemies/StandardRoomNE-A.tscn
-res://entities/enemies/states/chase_state.gd
 res://Rooms/RoomsWithEnemies/StandardRoomE-A.tscn
 res://Rooms/RoomsWithEnemies/StandardRoomES-A.tscn
 res://Rooms/RoomsWithEnemies/StandardRoomESW-A.tscn
@@ -28,3 +30,6 @@ res://Rooms/StandardRoomScenes/StandardRoomNSW.tscn
 res://Rooms/StandardRoomScenes/StandardRoomNW.tscn
 res://Rooms/StandardRoomScenes/StandardRoomShop2S.tscn
 res://Rooms/StandardRoomScenes/StandardRoomSW.tscn
+res://bullet.tscn
+res://bullet.gd
+res://Player/player.tscn
