@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c8me1ibj6q5oq"
-path="res://.godot/imported/AcornItem.png-5eb846e4e2cc04ad1652b233fae6a428.ctex"
+uid="uid://mk8pwcc2cwgv"
+path="res://.godot/imported/BuyButton.png-d344527738df55c72ca69d77eef603a1.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://art/shop_items/AcornItem.png"
-dest_files=["res://.godot/imported/AcornItem.png-5eb846e4e2cc04ad1652b233fae6a428.ctex"]
+source_file="res://art/BuyButton.png"
+dest_files=["res://.godot/imported/BuyButton.png-d344527738df55c72ca69d77eef603a1.ctex"]
 
 [params]
 
