@@ -1,3 +1,5 @@
+Control
+CanvasLayer
 Node2D
 Node
 CollisionShape2D
@@ -11,4 +13,3 @@ MosquitoBabyEnemy
 MosquitoEnemy
 RichTextLabel
 Marker2D
-TileMapLayer

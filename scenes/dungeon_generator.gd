@@ -2,16 +2,17 @@ extends Node
 class_name DungeonGenerator
 
 signal player_spawned(player : Node)
-signal room_loaded
+signal room_loaded(pos : Vector2i)  
 
 @export var player_scene : PackedScene = preload("res://Player/player.tscn")
 
-const GRID_WIDTH      = 6
-const GRID_HEIGHT     = 6
+const GRID_WIDTH      = 5
+const GRID_HEIGHT     = 5
 const MIN_NONEMPTY    = 10
 const MAX_ATTEMPTS    = 100
 const TILE_SIZE       = Vector2(160, 64)
 var cleared_rooms := {}  # Dictionary<Vector2i, bool>
+var visited_rooms : Dictionary = {}  
 
 const ROOM_TYPES = {
 	"EmptyRoom":        [],
@@ -80,8 +81,10 @@ func _generate_dungeon() -> bool:
 				if cell != null and cell != "EmptyRoom":
 					nonempty += 1
 		print("→ Non‑empty rooms:", nonempty)
+		var connected := _count_connected_rooms(centre)
+		print("→ Reachable from centre:", connected)
 
-		if nonempty >= MIN_NONEMPTY:
+		if nonempty >= MIN_NONEMPTY and connected >= MIN_NONEMPTY:
 			print("✅ Grid accepted")
 			for y in range(GRID_HEIGHT):
 				for x in range(GRID_WIDTH):
@@ -290,9 +293,10 @@ func _switch_to_room(pos : Vector2i, entered_from_dir : String) -> void:
 
 	current_room_pos = pos
 	print("=== Room ready ===\n")
+	visited_rooms[pos] = true                    # mark visited
 
 	await get_tree().process_frame
-	emit_signal("room_loaded")
+	emit_signal("room_loaded", pos)
 
 func _wire_doors_recursive(node : Node, room_pos : Vector2i) -> void:
 	for child in node.get_children():
@@ -356,3 +360,36 @@ func _clear_room(room_pos: Vector2i):
 		if door.is_inside_tree() and current_room_instance.is_ancestor_of(door):
 			print("→ Opening door:", door.name)
 			door.open()
+
+# Returns how many non-empty rooms can be reached from `start`
+# by walking only through door pairs that correctly face each other.
+func _count_connected_rooms(start : Vector2i) -> int:
+	var visited : Dictionary = {}
+	var stack : Array       = [start]
+
+	while stack:
+		var cur : Vector2i = stack.pop_back()
+		if visited.has(cur):
+			continue
+		visited[cur] = true
+
+		var cur_room : String = collapsed[cur.y][cur.x]
+		if cur_room == "EmptyRoom":
+			continue                       # shouldn’t happen, but be safe
+		var cur_exits : Array = ROOM_TYPES[cur_room]
+
+		for dir in DIRS:
+			if dir not in cur_exits:       # no door that way
+				continue
+			var nxt : Vector2i = cur + DIR_OFFSET[dir]
+			if nxt.x < 0 or nxt.x >= GRID_WIDTH \
+			or nxt.y < 0 or nxt.y >= GRID_HEIGHT:
+				continue                   # off the grid
+			var nxt_room : String = collapsed[nxt.y][nxt.x]
+			if nxt_room == "EmptyRoom":
+				continue
+			# Only traverse if BOTH rooms’ doors face each other
+			if OPPOSITE[dir] in ROOM_TYPES[nxt_room]:
+				stack.append(nxt)
+
+	return visited.size()
