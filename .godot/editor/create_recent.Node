@@ -1,10 +1,7 @@
-Control
-CanvasLayer
-Node2D
-Node
-CollisionShape2D
-StaticBody2D
-AnimatedSprite2D
+Player
+AntEnemy
+TileMapLayer
+HBoxContainer
 Sprite2D
 TextureRect
 AnimationPlayer
@@ -12,4 +9,3 @@ Area2D
 MosquitoBabyEnemy
 MosquitoEnemy
 RichTextLabel
-Marker2D

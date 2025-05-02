@@ -54,6 +54,7 @@ radius = 40.0
 
 [node name="Chest" type="StaticBody2D" groups=["change_on_complete", "room_deletables"]]
 z_index = 1
+y_sort_enabled = true
 collision_mask = 4
 script = ExtResource("1_yb3w5")
 
