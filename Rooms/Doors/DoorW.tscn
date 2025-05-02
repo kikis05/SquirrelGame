@@ -121,4 +121,4 @@ position = Vector2(16, 144)
 shape = SubResource("RectangleShape2D_q6ssg")
 
 [node name="SpawnPoint" type="Node2D" parent="."]
-position = Vector2(55, 145)
+position = Vector2(60, 145)

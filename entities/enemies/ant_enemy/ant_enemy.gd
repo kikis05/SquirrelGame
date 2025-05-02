@@ -44,6 +44,8 @@ func take_damage(damage):
 func die():
 	change_animation("death")
 	
+	await sprite.animation_finished
+	
 	var hit_box: Area2D = $HitBox
 	attack_box.monitoring = false
 	hit_box.monitoring = false

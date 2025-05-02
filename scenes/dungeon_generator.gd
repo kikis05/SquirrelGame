@@ -6,8 +6,8 @@ signal room_loaded
 
 @export var player_scene : PackedScene = preload("res://Player/player.tscn")
 
-const GRID_WIDTH      = 5
-const GRID_HEIGHT     = 5
+const GRID_WIDTH      = 6
+const GRID_HEIGHT     = 6
 const MIN_NONEMPTY    = 10
 const MAX_ATTEMPTS    = 100
 const TILE_SIZE       = Vector2(160, 64)
