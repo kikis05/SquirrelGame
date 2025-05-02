@@ -16,13 +16,11 @@ script = ExtResource("2_85g3d")
 
 [node name="MiniMap" type="CanvasLayer" parent="."]
 
-[node name="Control" type="Control" parent="MiniMap" node_paths=PackedStringArray("dungeon")]
+[node name="Control" type="Control" parent="MiniMap"]
 layout_mode = 3
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
-script = ExtResource("6_o6xl0")
-dungeon = NodePath("../../DungeonGenerator")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 process_mode = 2

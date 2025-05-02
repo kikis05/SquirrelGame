@@ -1,6 +1,6 @@
 Player
-AntEnemy
 TileMapLayer
+AntEnemy
 HBoxContainer
 Sprite2D
 TextureRect
