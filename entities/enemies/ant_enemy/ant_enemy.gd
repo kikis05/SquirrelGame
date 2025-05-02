@@ -47,7 +47,7 @@ func die():
 	var hit_box: Area2D = $HitBox
 	attack_box.monitoring = false
 	hit_box.monitoring = false
-	emit_signal("enemy_defeated")
+	super()
 
 func flip():
 	attack_box.position.x = -1 * attack_box.position.x
@@ -94,7 +94,7 @@ func _on_animated_sprite_2d_animation_finished():
 		get_tree().root.add_child(coin)
 		if player != null:
 			coin.attract_to_player(player)
-		queue_free()
+			
 	elif sprite.animation == "attack" and player_in_range:
 		if player != null and player.dead == false:
 			player.damage_player()

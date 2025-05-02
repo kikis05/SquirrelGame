@@ -11,6 +11,7 @@ const GRID_HEIGHT     = 5
 const MIN_NONEMPTY    = 10
 const MAX_ATTEMPTS    = 100
 const TILE_SIZE       = Vector2(160, 64)
+var cleared_rooms := {}  # Dictionary<Vector2i, bool>
 
 const ROOM_TYPES = {
 	"EmptyRoom":        [],
@@ -182,6 +183,7 @@ func _switch_to_room(pos : Vector2i, entered_from_dir : String) -> void:
 	if pos.x < 0 or pos.x >= GRID_WIDTH or pos.y < 0 or pos.y >= GRID_HEIGHT:
 		print("⚠ Out of bounds – aborting")
 		return
+
 	var room_name : String = collapsed[pos.y][pos.x]
 	if room_name == "EmptyRoom":
 		print("⚠ Target cell is EmptyRoom – aborting")
@@ -196,38 +198,86 @@ func _switch_to_room(pos : Vector2i, entered_from_dir : String) -> void:
 	current_room_instance = load(scene_path).instantiate()
 	current_room_instance.name = "RoomInstance"
 
-	# Position the room at its grid location
 	current_room_instance.position = Vector2(pos.x, pos.y) * TILE_SIZE
 	add_child(current_room_instance)
 
-	# 🧹 Remove all enemies in the spawn room (center cell)
+	_wire_doors_recursive(current_room_instance, pos)
+
+	var is_cleared = cleared_rooms.get(pos, false)
+
+	# First room logic (remove enemies, mark cleared early)
 	if pos == Vector2i(GRID_WIDTH / 2, GRID_HEIGHT / 2):
 		print("🧹 Removing enemies from spawn room")
-		var enemies = current_room_instance.get_tree().get_nodes_in_group("enemy")
-		for e in enemies:
+		for e in current_room_instance.get_tree().get_nodes_in_group("enemy"):
 			if e.is_inside_tree() and current_room_instance.is_ancestor_of(e):
 				e.queue_free()
+		cleared_rooms[pos] = true
+		is_cleared = true
+
+	await get_tree().process_frame
+
+	# 🔓 Open or 🔒 slam doors based on clearance
+	if is_cleared:
+		print("✅ Room was previously cleared:", pos)
+		for door in get_tree().get_nodes_in_group("door"):
+			if door.is_inside_tree() and current_room_instance.is_ancestor_of(door):
+				door.open()
+			for e in get_tree().get_nodes_in_group("enemy"):
+				if e.is_inside_tree() and current_room_instance.is_ancestor_of(e):
+					print("💀 Removing residual enemy from cleared room:", e.name)
+					e.queue_free()
+	else:
+		print("⚠ Room has enemies, slamming doors:", pos)
+		for door in get_tree().get_nodes_in_group("door"):
+			if door.is_inside_tree() and current_room_instance.is_ancestor_of(door):
+				door.slam()
+		await get_tree().process_frame
+		_check_for_enemies(pos)
 
 	await get_tree().process_frame
 
 	_wire_doors_recursive(current_room_instance, pos)
 
-	var spawn : Vector2 = Vector2(320, 180)
-	var spawn_point_node : Node2D = current_room_instance.get_node_or_null("SpawnPoint")
-	if spawn_point_node:
-		spawn = spawn_point_node.global_position
-		if entered_from_dir != "":
-			var offset := Vector2.ZERO
-			match entered_from_dir:
-				"N": offset = Vector2(0, TILE_SIZE.y)
-				"S": offset = Vector2(0, -TILE_SIZE.y)
-				"E": offset = Vector2(-TILE_SIZE.x, 0)
-				"W": offset = Vector2(TILE_SIZE.x, 0)
-			spawn += offset
-			print("• Spawn from", entered_from_dir, "→", spawn, "(offset:", offset, ")")
+	if is_cleared:
+		print("✅ Room was previously cleared:", pos)
+		for door in get_tree().get_nodes_in_group("door"):
+			if door.is_inside_tree() and current_room_instance.is_ancestor_of(door):
+				door.open()
 	else:
-		print("⚠ No SpawnPoint found, using default spawn position")
+		print("⚠ Room has enemies, slamming doors:", pos)
+		for door in get_tree().get_nodes_in_group("door"):
+			if door.is_inside_tree() and current_room_instance.is_ancestor_of(door):
+				door.slam()
+		await get_tree().process_frame
+		_check_for_enemies(pos)
 
+	# ───────── Player Spawn Logic ─────────
+	var spawn : Vector2
+
+	if entered_from_dir == "":
+		var room_spawn := current_room_instance.get_node_or_null("SpawnPoint")
+		if room_spawn:
+			spawn = room_spawn.global_position
+			print("🟢 First room spawn:", spawn)
+		else:
+			spawn = Vector2(320, 180)
+			print("⚠ First room fallback spawn used")
+	else:
+		var opposite_dir = OPPOSITE[entered_from_dir]
+		var target_door_name = "Door" + opposite_dir
+		var found := false
+		for child in current_room_instance.get_children():
+			if child.name == target_door_name and child.has_node("SpawnPoint"):
+				var door_spawn_point := child.get_node("SpawnPoint")
+				spawn = door_spawn_point.global_position
+				print("▶ Door spawn from:", target_door_name, "→", spawn)
+				found = true
+				break
+		if !found:
+			spawn = Vector2(320, 180)
+			print("⚠ Couldn't find door spawn, using fallback position")
+
+	# ───────── Spawn or reuse Player ─────────
 	if player == null:
 		player = player_scene.instantiate()
 		player.name = "Player"
@@ -267,3 +317,42 @@ func start_game():
 		_switch_to_room(current_room_pos, "")
 	else:
 		push_error("❌ Failed to build dungeon after %s attempts" % MAX_ATTEMPTS)
+
+func _check_for_enemies(room_pos: Vector2i):
+	var enemies := []
+	for e in get_tree().get_nodes_in_group("enemy"):
+		if e.is_inside_tree() and current_room_instance.is_ancestor_of(e):
+			enemies.append(e)
+
+	if enemies.is_empty():
+		print("🧠 No enemies found — clearing room")
+		_clear_room(room_pos)
+	else:
+		print("🧠 Enemies remaining:", enemies.size())
+		for enemy in enemies:
+			print("🕷 Tracking enemy:", enemy.name)
+			if "enemy_defeated" in enemy:
+				if not enemy.enemy_defeated.is_connected(func(): _check_if_room_cleared(room_pos)):
+					enemy.enemy_defeated.connect(func(): _check_if_room_cleared(room_pos))
+					print("✔ Connected enemy_defeated for", enemy.name)
+				else:
+					print("🔁 Already connected:", enemy.name)
+
+func _check_if_room_cleared(room_pos: Vector2i):
+	print("🧪 Checking if room is cleared:", room_pos)
+	var remaining_enemies := 0
+	for e in get_tree().get_nodes_in_group("enemy"):
+		if e is BaseEnemy and e.is_inside_tree() and current_room_instance.is_ancestor_of(e):
+			print("🚫 Enemy still alive:", e.name)
+			remaining_enemies += 1
+	print("🔍 Total remaining enemies:", remaining_enemies)
+	if remaining_enemies == 1:
+		_clear_room(room_pos)
+
+func _clear_room(room_pos: Vector2i):
+	print("✅✅✅ All enemies gone — unlocking doors in room:", room_pos)
+	cleared_rooms[room_pos] = true
+	for door in get_tree().get_nodes_in_group("door"):
+		if door.is_inside_tree() and current_room_instance.is_ancestor_of(door):
+			print("→ Opening door:", door.name)
+			door.open()

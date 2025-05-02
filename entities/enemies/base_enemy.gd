@@ -18,6 +18,11 @@ class_name BaseEnemy
 ## Enemy defeated signal ##
 signal enemy_defeated
 
+func _ready():
+	if not is_in_group("enemy"):
+		print("🚨", name, "was not in 'enemy' group — adding it now")
+		add_to_group("enemy")
+
 func physics_process(_delta: float):
 	pass
 
@@ -34,7 +39,13 @@ func heal(_damage: int):
 	pass
 
 func die():
+	print("🛑 BaseEnemy.die() called — emitting signal and queue_free()")
 	emit_signal("enemy_defeated")
+	_remove_from_enemy_group_recursive(self)
+	await get_tree().process_frame
+	await get_tree().process_frame
+	for e in get_tree().get_nodes_in_group("enemy"):
+		print("🧾 Still in 'enemy' group:", e.name)
 	queue_free()
 
 func change_animation(_name: String):
@@ -51,3 +62,12 @@ func stop_moving():
 
 func player_has_died():
 	pass
+	
+func _exit_tree():
+	print("💀 Enemy removed from scene tree:", name)
+
+func _remove_from_enemy_group_recursive(node: Node) -> void:
+	if node.is_in_group("enemy"):
+		node.call_deferred("remove_from_group", "enemy")  # safer with deferred call
+	for child in node.get_children():
+		_remove_from_enemy_group_recursive(child)
