@@ -32,6 +32,7 @@ player=""
 player_weapon=""
 room_deletables=""
 change_on_complete=""
+door=""
 
 [input]
 

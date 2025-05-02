@@ -44,10 +44,12 @@ func take_damage(damage):
 func die():
 	change_animation("death")
 	
+	await sprite.animation_finished
+	
 	var hit_box: Area2D = $HitBox
 	attack_box.monitoring = false
 	hit_box.monitoring = false
-	emit_signal("enemy_defeated")
+	super()
 
 func flip():
 	attack_box.position.x = -1 * attack_box.position.x
@@ -69,14 +71,27 @@ func player_has_died():
 	attack_box.monitoring = false
 
 
-func _on_hit_box_area_entered(area):
-	if area.is_in_group("player_weapon") and health > 0 and player.dead == false:
-		if ('get_damage' in area and area.hitbox_activated):
+func _on_hit_box_area_entered(area: Area2D) -> void:
+	if area.is_in_group("player_weapon") and health > 0:
+		# (1) grab the player reference lazily if we don't have it yet
+		if player == null:
+			player = get_tree().get_first_node_in_group("player")    # or "Player"
+		# (2) if it’s still null, bail out
+		if player == null or player.dead:
+			return
+
+		if "get_damage" in area and area.hitbox_activated:
 			take_damage(area.get_damage())
-			print("Health down to: ", health )
+			print("Health down to:", health)
 			state_machine.transition_to("stun state")
 
+
 func _on_attack_box_body_entered(body):
+	if player == null:
+		player = get_tree().get_first_node_in_group("player")    # or "Player"
+		# (2) if it’s still null, bail out
+		if player == null or player.dead:
+			return
 	if body.is_in_group("player") and health > 0 and player.dead == false:
 		state_machine.transition_to("attack state")
 		player_in_range = true
@@ -94,7 +109,7 @@ func _on_animated_sprite_2d_animation_finished():
 		get_tree().root.add_child(coin)
 		if player != null:
 			coin.attract_to_player(player)
-		queue_free()
+			
 	elif sprite.animation == "attack" and player_in_range:
 		if player != null and player.dead == false:
 			player.damage_player()

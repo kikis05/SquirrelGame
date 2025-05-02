@@ -1,0 +1,123 @@
+[gd_scene load_steps=17 format=3 uid="uid://ck7trcc5jld8w"]
+
+[ext_resource type="Script" uid="uid://cip7l1do06wqa" path="res://Rooms/Door.gd" id="1_ckq06"]
+[ext_resource type="Texture2D" uid="uid://bbjxf3khdwpfo" path="res://Rooms/Door_Slam-Sheet.png" id="2_pnrgm"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_df1bn"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cj25q"]
+atlas = ExtResource("2_pnrgm")
+region = Rect2(288, 224, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7fxyw"]
+atlas = ExtResource("2_pnrgm")
+region = Rect2(288, 256, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_056ap"]
+atlas = ExtResource("2_pnrgm")
+region = Rect2(288, 288, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rksob"]
+atlas = ExtResource("2_pnrgm")
+region = Rect2(288, 320, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_86fmu"]
+atlas = ExtResource("2_pnrgm")
+region = Rect2(288, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_udqru"]
+atlas = ExtResource("2_pnrgm")
+region = Rect2(288, 64, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lbrg4"]
+atlas = ExtResource("2_pnrgm")
+region = Rect2(288, 96, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_q1mdp"]
+atlas = ExtResource("2_pnrgm")
+region = Rect2(288, 128, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_f7ult"]
+atlas = ExtResource("2_pnrgm")
+region = Rect2(288, 160, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_67nvj"]
+atlas = ExtResource("2_pnrgm")
+region = Rect2(288, 192, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fy2py"]
+atlas = ExtResource("2_pnrgm")
+region = Rect2(288, 224, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_tlf6e"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cj25q")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7fxyw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_056ap")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rksob")
+}],
+"loop": false,
+"name": &"open",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_86fmu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_udqru")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lbrg4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_q1mdp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_f7ult")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_67nvj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fy2py")
+}],
+"loop": false,
+"name": &"slam",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ckq06"]
+size = Vector2(32, 32)
+
+[node name="DoorE" type="Node2D"]
+
+[node name="DoorE" type="Area2D" parent="." groups=["door"]]
+script = ExtResource("1_ckq06")
+direction = "E"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DoorE"]
+position = Vector2(459, 144)
+shape = SubResource("RectangleShape2D_df1bn")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="DoorE"]
+position = Vector2(464, 144)
+sprite_frames = SubResource("SpriteFrames_tlf6e")
+animation = &"open"
+
+[node name="StaticBody2D" type="StaticBody2D" parent="DoorE"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DoorE/StaticBody2D"]
+position = Vector2(464, 144)
+shape = SubResource("RectangleShape2D_ckq06")
+
+[node name="SpawnPoint" type="Node2D" parent="."]
+position = Vector2(421, 144)
