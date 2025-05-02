@@ -21,8 +21,6 @@ res://Rooms/StandardRoomScenes/StandardRoomS.tscn
 res://Rooms/StandardRoomScenes/StandardRoomSW.tscn
 res://Rooms/StandardRoomScenes/StandardRoomW.tscn
 res://entities/enemies/ant_enemy/ant_enemy.tscn
-res://scenes/dungeon_generator.gd
 res://scenes/main.tscn
-res://scenes/MiniMap.gd
-res://entities/enemies/fire_ant_enemy/fire_ant_enemy.gd
-res://entities/enemies/ant_enemy/ant_enemy.gd
+res://Rooms/Tutorial/Tutorial1.tscn
+res://scenes/dungeon_generator.gd
