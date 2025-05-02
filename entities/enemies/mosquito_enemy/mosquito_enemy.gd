@@ -107,7 +107,7 @@ func _on_animated_sprite_2d_animation_finished():
 		get_tree().root.add_child(coin)
 		if player != null:
 			coin.attract_to_player(player)
-		queue_free()
+	
 	elif sprite.animation == "after escape":
 		spawn_babies()
 		state_machine.transition_to("linear chase state")

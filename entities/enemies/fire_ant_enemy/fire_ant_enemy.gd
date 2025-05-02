@@ -13,12 +13,20 @@ func _on_fire_spawn_timer_timeout():
 
 ## NOTE: Functions the are the same as in ant_enemy
 ## They were reused to properly connect area2d and animsprite2d nodes to script
-func _on_hit_box_area_entered(area):
-	if area.is_in_group("player_weapon") and health > 0 and player.dead == false:
-		if ('get_damage' in area and area.hitbox_activated):
+func _on_hit_box_area_entered(area: Area2D) -> void:
+	if area.is_in_group("player_weapon") and health > 0:
+		# (1) grab the player reference lazily if we don't have it yet
+		if player == null:
+			player = get_tree().get_first_node_in_group("player")    # or "Player"
+		# (2) if it’s still null, bail out
+		if player == null or player.dead:
+			return
+
+		if "get_damage" in area and area.hitbox_activated:
 			take_damage(area.get_damage())
-			print("Health down to: ", health)
+			print("Health down to:", health)
 			state_machine.transition_to("stun state")
+
 
 # TODO: CHECK why player could be null when scene restarts
 func _on_attack_box_body_entered(body):

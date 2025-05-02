@@ -5,10 +5,7 @@ HBoxContainer
 Sprite2D
 TextureRect
 AnimationPlayer
-CollisionShape2D
 Area2D
-AnimatedSprite2D
-StaticBody2D
 MosquitoBabyEnemy
 MosquitoEnemy
 RichTextLabel
