@@ -30,3 +30,8 @@ res://Rooms/StandardRoomScenes/StandardRoomN.tscn
 res://Rooms/StandardRoomScenes/StandardRoomEW.tscn
 res://Rooms/StandardRoomScenes/StandardRoomESW.tscn
 res://Rooms/StandardRoomScenes/StandardRoomES.tscn
+res://Rooms/ShopRooms/StandardRoomShopS.tscn
+res://Rooms/ShopRooms/StandardRoomShopE.tscn
+res://Rooms/ShopRooms/StandardRoomShop2W.tscn
+res://Rooms/ShopRooms/StandardRoomShop2S.tscn
+res://Rooms/ShopRooms/StandardRoomShop2N.tscn
