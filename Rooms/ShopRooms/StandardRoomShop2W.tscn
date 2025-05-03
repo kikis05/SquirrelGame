@@ -2,7 +2,7 @@
 
 [ext_resource type="TileSet" uid="uid://dijcthwd7lyow" path="res://assets/tiles/RoomTileset.tres" id="1_vtmmi"]
 [ext_resource type="PackedScene" uid="uid://3bwfjlqsm6b4" path="res://Rooms/Doors/DoorW.tscn" id="2_8xlwr"]
-[ext_resource type="PackedScene" uid="uid://b40ev3jflvlam" path="res://shop.tscn" id="4_1jqle"]
+[ext_resource type="PackedScene" uid="uid://cw6doj3joo6p7" path="res://Shops/ShopA/shopA.tscn" id="3_jcg5v"]
 
 [node name="StandardRoomW" type="Node2D"]
 
@@ -16,5 +16,5 @@ tile_set = ExtResource("1_vtmmi")
 [node name="SpawnPoint" type="Node2D" parent="."]
 position = Vector2(240, 136)
 
-[node name="Shop" parent="." instance=ExtResource("4_1jqle")]
-position = Vector2(305, 181)
+[node name="ShopA" parent="." instance=ExtResource("3_jcg5v")]
+position = Vector2(367, 100)

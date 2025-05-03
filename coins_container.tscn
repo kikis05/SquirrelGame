@@ -5,16 +5,16 @@
 [ext_resource type="FontFile" uid="uid://c33ivdot7yug6" path="res://assets/Pixeled.ttf" id="3_uhx8y"]
 
 [node name="CoinsContainer" type="HBoxContainer"]
-offset_left = 1.0
+offset_left = -24.0
 offset_top = 30.0
-offset_right = 116.0
+offset_right = 91.0
 offset_bottom = 68.0
 theme_override_constants/separation = -5
 alignment = 1
 script = ExtResource("1_mg3v8")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(15, 21)
+position = Vector2(39, 22)
 texture = ExtResource("3_nhiue")
 region_enabled = true
 region_rect = Rect2(50, 82, 12, 12)

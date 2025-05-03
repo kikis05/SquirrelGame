@@ -138,6 +138,7 @@ position = Vector2(-13, -8.5)
 rotation = 3.14159
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+z_index = 1
 position = Vector2(0, -14.5)
 sprite_frames = SubResource("SpriteFrames_abrql")
 animation = &"run"
