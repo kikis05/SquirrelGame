@@ -1,7 +1,7 @@
 extends Area2D
 
-@export var force = 2.0
-@export var original_damage = 20
+@export var force = 0.5
+@export var original_damage = 5
 var damage = original_damage
 
 const SLASH = preload("res://slash.tscn")

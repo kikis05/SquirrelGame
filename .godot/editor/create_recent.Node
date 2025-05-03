@@ -1,3 +1,6 @@
+CollisionShape2D
+Area2D
+AnimatedSprite2D
 Player
 TileMapLayer
 AntEnemy
@@ -5,7 +8,6 @@ HBoxContainer
 Sprite2D
 TextureRect
 AnimationPlayer
-Area2D
 MosquitoBabyEnemy
 MosquitoEnemy
 RichTextLabel

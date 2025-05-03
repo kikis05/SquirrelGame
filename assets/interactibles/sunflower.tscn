@@ -1,0 +1,79 @@
+[gd_scene load_steps=10 format=3 uid="uid://cgw67cgqbgfle"]
+
+[ext_resource type="Script" uid="uid://bwtgdjs5ki24v" path="res://assets/interactibles/sunflower.gd" id="1_e2fdc"]
+[ext_resource type="Texture2D" uid="uid://7gaygssu2t11" path="res://assets/interactibles/Sunflower.png" id="1_oiv3v"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_e2fdc"]
+atlas = ExtResource("1_oiv3v")
+region = Rect2(0, 0, 12, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2g1xv"]
+atlas = ExtResource("1_oiv3v")
+region = Rect2(0, 0, 12, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gj0q7"]
+atlas = ExtResource("1_oiv3v")
+region = Rect2(12, 0, 12, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ugw2w"]
+atlas = ExtResource("1_oiv3v")
+region = Rect2(24, 0, 12, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xkcqc"]
+atlas = ExtResource("1_oiv3v")
+region = Rect2(24, 0, 12, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_v4t62"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_e2fdc")
+}],
+"loop": true,
+"name": &"alive",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2g1xv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gj0q7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ugw2w")
+}],
+"loop": false,
+"name": &"crushed",
+"speed": 2.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xkcqc")
+}],
+"loop": true,
+"name": &"dead",
+"speed": 5.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_2g1xv"]
+radius = 7.287
+height = 14.574
+
+[node name="Sunflower" type="Area2D"]
+collision_layer = 8
+collision_mask = 4
+script = ExtResource("1_e2fdc")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_v4t62")
+animation = &"crushed"
+autoplay = "alive"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 5)
+scale = Vector2(0.823382, 0.59886)
+shape = SubResource("CapsuleShape2D_2g1xv")
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]
+[connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]

@@ -1,0 +1,53 @@
+[gd_scene load_steps=7 format=3 uid="uid://c1fbc6lvy2bai"]
+
+[ext_resource type="Script" uid="uid://dhwjkwhmtj6k2" path="res://assets/interactibles/grass.gd" id="1_yt7r5"]
+[ext_resource type="Texture2D" uid="uid://cb3beprdwmma3" path="res://assets/interactibles/Greenery.png" id="2_eidxd"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_po7g1"]
+atlas = ExtResource("2_eidxd")
+region = Rect2(0, 0, 18, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_i4trc"]
+atlas = ExtResource("2_eidxd")
+region = Rect2(18, 0, 18, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_v4t62"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_po7g1")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 1.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_i4trc")
+}],
+"loop": false,
+"name": &"moved",
+"speed": 1.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_2g1xv"]
+radius = 7.287
+height = 14.574
+
+[node name="Grass" type="Area2D"]
+collision_layer = 8
+collision_mask = 4
+script = ExtResource("1_yt7r5")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_v4t62")
+animation = &"moved"
+autoplay = "idle"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 5)
+scale = Vector2(0.823382, 0.59886)
+shape = SubResource("CapsuleShape2D_2g1xv")
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]
+[connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]

@@ -12,8 +12,8 @@ extends CanvasLayer
 
 var player = null
 
-var dialogues = ["Another Squirrel?! You better make it quick before they spot us!"]
-
+var dialogues = ["Hii, p-please don't eat me! Wait, you're a squirrel?!", "How were you not eaten already? Do you also own a shop........ competitor?!", "Wow, you're still alive! Store up!", "Hey, these ants aren't so bad, but...their mama on the other hand...", "My twin sister was also brought here...it's been a while since I've seen her.", "Oh, my foot? Funny story, it was bitten off! HAHAHAhahaa...", "My only joy is swindling my customers...oh...not you of course! Hehe...", "Wanna hear me sing a song...?", "Oh my darling nut...we will be united soooon...", "...in the Queen ant's stomach, we'll have lots of room...", "Maybe I should have gone into music instead of farming...", "Oh my name?? It's Shawp Keypor.",  "I'll wait riiight here until it's safe to leave!"]
+var time_entered = 0
 var item_view = false
 
 var current_item_selected = null
@@ -22,7 +22,11 @@ func _ready():
 	cost.hide()
 	item_description.hide()
 	powerup_description.hide()
-	text.text = dialogues[0]
+	#text.text = dialogues[min(time_entered, len(dialogues) - 1)]
+	
+func set_time_entered(val):
+	time_entered = val
+	text.text = dialogues[min(time_entered, len(dialogues) - 1)]
 
 func _on_shop_item_pressed() -> void:
 	current_item_selected = item1

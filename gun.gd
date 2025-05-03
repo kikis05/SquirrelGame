@@ -4,7 +4,7 @@ extends Node2D
 
 @export var original_bullet_speed = 500
 var bullet_speed = original_bullet_speed
-@export var original_bullet_damage = 15
+@export var original_bullet_damage = 7
 var bullet_damage = original_bullet_damage
 
 const BULLET = preload("res://bullet.tscn")

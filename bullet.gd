@@ -39,6 +39,7 @@ func _physics_process(delta: float) -> void:
 		or (direction.y < 0 and global_position.y <= origin.y - 70)
 			or (direction.x != 0 and global_position.y >= origin.y + 10)):
 				has_landed = true
+				damage = damage / 2
 				landingTimer.start()
 	
 
