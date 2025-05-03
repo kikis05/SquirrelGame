@@ -1,7 +1,8 @@
-[gd_scene load_steps=7 format=4 uid="uid://df3pjjjqdan63"]
+[gd_scene load_steps=8 format=4 uid="uid://df3pjjjqdan63"]
 
 [ext_resource type="Script" uid="uid://djinnnl2c7xs5" path="res://scenes/main.gd" id="1_tbgi4"]
 [ext_resource type="Script" uid="uid://doyrnsmawccn1" path="res://scenes/dungeon_generator.gd" id="2_85g3d"]
+[ext_resource type="Script" uid="uid://tm3cwovednyy" path="res://scenes/MiniMap.gd" id="3_o6xl0"]
 [ext_resource type="TileSet" uid="uid://dijcthwd7lyow" path="res://assets/tiles/RoomTileset.tres" id="6_o6xl0"]
 [ext_resource type="PackedScene" uid="uid://bptqwns6p2701" path="res://coins_container.tscn" id="6_tefeu"]
 [ext_resource type="PackedScene" uid="uid://c1x03uf7p3bj1" path="res://health_container.tscn" id="7_85g3d"]
@@ -16,11 +17,13 @@ script = ExtResource("2_85g3d")
 
 [node name="MiniMap" type="CanvasLayer" parent="."]
 
-[node name="Control" type="Control" parent="MiniMap"]
+[node name="Control" type="Control" parent="MiniMap" node_paths=PackedStringArray("dungeon")]
 layout_mode = 3
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
+script = ExtResource("3_o6xl0")
+dungeon = NodePath("../../DungeonGenerator")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 process_mode = 2
