@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=4 uid="uid://d1s64h2yet7nu"]
+[gd_scene load_steps=5 format=4 uid="uid://d1s64h2yet7nu"]
 
 [ext_resource type="TileSet" uid="uid://dijcthwd7lyow" path="res://assets/tiles/RoomTileset.tres" id="1_svtvd"]
 [ext_resource type="PackedScene" uid="uid://dek0t7ihd4vxg" path="res://entities/enemies/mosquito_enemy/mosquito_enemy.tscn" id="2_svtvd"]
 [ext_resource type="PackedScene" uid="uid://dhsd6cxjrxhtj" path="res://entities/enemies/ant_enemy/ant_enemy.tscn" id="3_oyqbf"]
+[ext_resource type="PackedScene" uid="uid://ctdj7k4cwb4f6" path="res://Player/player.tscn" id="4_7e672"]
 
 [node name="SquareFourCornersNESW" type="Node2D"]
 y_sort_enabled = true
@@ -26,3 +27,6 @@ position = Vector2(186, 144)
 
 [node name="Ant Enemy2" parent="." instance=ExtResource("3_oyqbf")]
 position = Vector2(228, 176)
+
+[node name="Player" parent="." instance=ExtResource("4_7e672")]
+position = Vector2(182, 48)
