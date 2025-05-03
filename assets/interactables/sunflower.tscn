@@ -1,7 +1,7 @@
 [gd_scene load_steps=10 format=3 uid="uid://cgw67cgqbgfle"]
 
-[ext_resource type="Script" uid="uid://bwtgdjs5ki24v" path="res://assets/interactibles/sunflower.gd" id="1_e2fdc"]
-[ext_resource type="Texture2D" uid="uid://7gaygssu2t11" path="res://assets/interactibles/Sunflower.png" id="1_oiv3v"]
+[ext_resource type="Script" uid="uid://bwtgdjs5ki24v" path="res://assets/interactables/sunflower.gd" id="1_e2fdc"]
+[ext_resource type="Texture2D" uid="uid://7gaygssu2t11" path="res://assets/interactables/Sunflower.png" id="1_oiv3v"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_e2fdc"]
 atlas = ExtResource("1_oiv3v")

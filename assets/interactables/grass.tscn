@@ -1,7 +1,7 @@
 [gd_scene load_steps=7 format=3 uid="uid://c1fbc6lvy2bai"]
 
-[ext_resource type="Script" uid="uid://dhwjkwhmtj6k2" path="res://assets/interactibles/grass.gd" id="1_yt7r5"]
-[ext_resource type="Texture2D" uid="uid://cb3beprdwmma3" path="res://assets/interactibles/Greenery.png" id="2_eidxd"]
+[ext_resource type="Script" uid="uid://dhwjkwhmtj6k2" path="res://assets/interactables/grass.gd" id="1_yt7r5"]
+[ext_resource type="Texture2D" uid="uid://cb3beprdwmma3" path="res://assets/interactables/Greenery.png" id="2_eidxd"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_po7g1"]
 atlas = ExtResource("2_eidxd")

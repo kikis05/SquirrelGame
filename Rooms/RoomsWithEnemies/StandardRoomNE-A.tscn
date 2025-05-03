@@ -2,7 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://ct5rm6fgeven2" path="res://Rooms/DungeonAssets.png" id="1_qycxf"]
 [ext_resource type="Script" uid="uid://cip7l1do06wqa" path="res://Rooms/Door.gd" id="2_gxaop"]
-[ext_resource type="PackedScene" uid="uid://b40ev3jflvlam" path="res://shop.tscn" id="3_xkdhb"]
+[ext_resource type="PackedScene" uid="uid://dsg31ult7idkb" path="res://Shops/ShopB/shopB.tscn" id="3_xkdhb"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_2xtif"]
 texture = ExtResource("1_qycxf")
@@ -204,6 +204,7 @@ polygon = PackedVector2Array(7, -1, 4, 110, -432, 107, -432, -125, -3, -125, 7, 
 [node name="SpawnPoint" type="Node2D" parent="."]
 position = Vector2(240, 136)
 
-[node name="Shop" parent="." instance=ExtResource("3_xkdhb")]
+[node name="ShopB" parent="." instance=ExtResource("3_xkdhb")]
 z_index = 1
-position = Vector2(241, 147)
+y_sort_enabled = true
+position = Vector2(129, 138)

@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://btffc7vqohcgl"]
 
-[ext_resource type="Script" uid="uid://cc7b72wrk5phb" path="res://shop_item.gd" id="1_wxfep"]
+[ext_resource type="Script" uid="uid://cc7b72wrk5phb" path="res://Shops/shop_item.gd" id="1_wxfep"]
 [ext_resource type="Texture2D" uid="uid://c3jbpo4r12orr" path="res://art/shop_item_holder (1).png" id="2_wxfep"]
 
 [node name="ShopItem" type="TextureButton"]

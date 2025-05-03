@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cb3beprdwmma3"
-path="res://.godot/imported/Greenery.png-5e360f8cc0c410e6adca5975375b3f90.ctex"
+uid="uid://br3v313wpg1mi"
+path="res://.godot/imported/Pebbles.png-4149ff330cda7817c2fed165c55b3f95.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/interactibles/Greenery.png"
-dest_files=["res://.godot/imported/Greenery.png-5e360f8cc0c410e6adca5975375b3f90.ctex"]
+source_file="res://art/shop_items/Pebbles.png"
+dest_files=["res://.godot/imported/Pebbles.png-4149ff330cda7817c2fed165c55b3f95.ctex"]
 
 [params]
 

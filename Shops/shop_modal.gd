@@ -5,15 +5,12 @@ extends CanvasLayer
 @onready var item_description = $"Item Description"
 @onready var powerup_description = $"Powerup Description"
 
-@onready var item1 = $ShopItem
-@onready var item2 = $ShopItem2
-@onready var item3 = $ShopItem3
-@onready var item4 = $ShopItem4
+@onready var items = [$ShopItem, $ShopItem2, $ShopItem3, $ShopItem4]
 
 var player = null
 
 var dialogues = ["Hii, p-please don't eat me! Wait, you're a squirrel?!", "How were you not eaten already? Do you also own a shop........ competitor?!", "Wow, you're still alive! Store up!", "Hey, these ants aren't so bad, but...their mama on the other hand...", "My twin sister was also brought here...it's been a while since I've seen her.", "Oh, my foot? Funny story, it was bitten off! HAHAHAhahaa...", "My only joy is swindling my customers...oh...not you of course! Hehe...", "Wanna hear me sing a song...?", "Oh my darling nut...we will be united soooon...", "...in the Queen ant's stomach, we'll have lots of room...", "Maybe I should have gone into music instead of farming...", "Oh my name?? It's Shawp Keypor.",  "I'll wait riiight here until it's safe to leave!"]
-var time_entered = 0
+var modal_time_entered = 0
 var item_view = false
 
 var current_item_selected = null
@@ -23,39 +20,49 @@ func _ready():
 	item_description.hide()
 	powerup_description.hide()
 	#text.text = dialogues[min(time_entered, len(dialogues) - 1)]
-	
+func set_item(index, image, item_name, cost, description, powerup_type, powerup_amount):
+	items[index].set_data(image, item_name, cost, description, powerup_type, powerup_amount)
+
+func reopen():
+	cost.hide()
+	item_description.hide()
+	powerup_description.hide()
+	text.show()
+	text.text = dialogues[min(modal_time_entered, len(dialogues) - 1)]
+		
 func set_time_entered(val):
-	time_entered = val
-	text.text = dialogues[min(time_entered, len(dialogues) - 1)]
+	modal_time_entered = val
+	print("modal time entered", modal_time_entered)
+	text.text = dialogues[min(modal_time_entered, len(dialogues) - 1)]
 
 func _on_shop_item_pressed() -> void:
-	current_item_selected = item1
+	current_item_selected = items[0]
 	print("pressed item 1")
 	shop_item_pressed(0)
 
 func _on_shop_item_2_pressed() -> void:
-	current_item_selected = item2
+	current_item_selected = items[1]
 	print("pressed item 2")
 	shop_item_pressed(1)
 
 
 func _on_shop_item_3_pressed() -> void:
-	current_item_selected = item3
+	current_item_selected = items[2]
 	print("pressed item 3")
 	shop_item_pressed(2)
 
 func _on_shop_item_4_pressed() -> void:
-	current_item_selected = item4
+	current_item_selected = items[3]
 	print("pressed item 4")
 	shop_item_pressed(3)
 
 func shop_item_pressed(item_value: int):
 	var item = ShopItem
 	match (item_value):
-		0: item = item1
-		1: item = item2
-		2: item = item3
-		3: item = item4
+		0: item = items[0]
+		1: item = items[1]
+		2: item = items[2]
+		3: item = items[3]
 	if item == null :
 		print("null item, ", item_value)
 		text.show()
@@ -126,5 +133,5 @@ func _on_buy_pressed() -> void:
 				cost.hide()
 				item_description.hide()
 				powerup_description.hide()
-				text.text = "Outa money? Come back next time!"
+				text.text = "Outta money? Come back next time!"
 			

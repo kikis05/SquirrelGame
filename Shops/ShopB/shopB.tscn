@@ -1,15 +1,15 @@
-[gd_scene load_steps=9 format=3 uid="uid://b40ev3jflvlam"]
+[gd_scene load_steps=9 format=3 uid="uid://dsg31ult7idkb"]
 
-[ext_resource type="Script" uid="uid://crdlcgt2pwddc" path="res://shop.gd" id="1_blqjs"]
-[ext_resource type="Texture2D" uid="uid://cn0r5ch4vd5w2" path="res://art/ShopPurple.png" id="2_blqjs"]
-[ext_resource type="PackedScene" uid="uid://biwrg4k20l68n" path="res://shop_modal.tscn" id="3_fgaav"]
+[ext_resource type="Script" uid="uid://dlb4onffcmr88" path="res://Shops/ShopB/shop_b.gd" id="1_bhapu"]
+[ext_resource type="Texture2D" uid="uid://cn0r5ch4vd5w2" path="res://art/ShopPurple.png" id="2_bkcos"]
+[ext_resource type="PackedScene" uid="uid://biwrg4k20l68n" path="res://Shops/shop_modal.tscn" id="3_e0hfc"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_fgaav"]
-atlas = ExtResource("2_blqjs")
+atlas = ExtResource("2_bkcos")
 region = Rect2(0, 0, 120, 100)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_6lah5"]
-atlas = ExtResource("2_blqjs")
+atlas = ExtResource("2_bkcos")
 region = Rect2(120, 0, 120, 100)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_e7rdd"]
@@ -45,9 +45,9 @@ size = Vector2(91.0385, 22)
 radius = 159.301
 height = 372.384
 
-[node name="Shop" type="CharacterBody2D"]
+[node name="ShopB" type="CharacterBody2D"]
 collision_mask = 4
-script = ExtResource("1_blqjs")
+script = ExtResource("1_bhapu")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(3.20513, -50)
@@ -69,7 +69,7 @@ rotation = 1.5616
 scale = Vector2(0.351873, 0.380727)
 shape = SubResource("CapsuleShape2D_fgaav")
 
-[node name="ShopModal" parent="." instance=ExtResource("3_fgaav")]
+[node name="ShopModal" parent="." instance=ExtResource("3_e0hfc")]
 
 [connection signal="area_entered" from="ActivationArea" to="." method="_on_activation_area_area_entered"]
 [connection signal="area_exited" from="ActivationArea" to="." method="_on_activation_area_area_exited"]
