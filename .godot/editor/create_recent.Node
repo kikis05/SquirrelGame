@@ -1,3 +1,4 @@
+TileMapLayer
 AnimationPlayer
 AnimationTree
 CollisionShape2D
@@ -7,7 +8,6 @@ Node
 Node2D
 ProgressBar
 AnimatedSprite2D
-TileMapLayer
 Sprite2D
 Player
 AntEnemy

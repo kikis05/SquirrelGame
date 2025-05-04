@@ -8,3 +8,14 @@ res://Shops/shop_item.tscn
 res://Shops/shop_modal.tscn
 res://entities/enemies/states/chase_state.gd
 res://Rooms/Boss_Queen/ant_queen.gd
+res://entities/enemies/ant_enemy/ant_enemy.tscn
+res://entities/enemies/base_enemy.gd
+res://entities/chests/chest.gd
+res://entities/enemies/states/death_state.gd
+res://entities/enemies/mosquito_baby_enemy/mosquito_baby_enemy.tscn
+res://entities/enemies/fire_ant_enemy/fire_ant_enemy.tscn
+res://Rooms/ImportantRooms/Shop.tscn
+res://Rooms/ShopRooms/StandardRoomShop2N.tscn
+res://Shops/ShopB/shopB.tscn
+res://entities/items/upgrade_item.tscn
+res://Shops/shop_modal.gd

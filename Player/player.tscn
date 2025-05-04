@@ -134,6 +134,7 @@ visible = false
 position = Vector2(-13, 0)
 
 [node name="Gun" parent="." instance=ExtResource("3_sglur")]
+z_as_relative = false
 position = Vector2(-13, -8.5)
 rotation = 3.14159
 

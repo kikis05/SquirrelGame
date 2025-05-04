@@ -1,10 +1,13 @@
-[gd_scene load_steps=4 format=4 uid="uid://c0gaqe83sgr8j"]
+[gd_scene load_steps=5 format=4 uid="uid://c0gaqe83sgr8j"]
 
 [ext_resource type="TileSet" uid="uid://dijcthwd7lyow" path="res://assets/tiles/RoomTileset.tres" id="1_qhihl"]
 [ext_resource type="PackedScene" uid="uid://dsg31ult7idkb" path="res://Shops/ShopB/shopB.tscn" id="2_8m38s"]
 [ext_resource type="PackedScene" uid="uid://bv1hwr4j0auc7" path="res://Rooms/Doors/DoorN.tscn" id="2_bajs0"]
+[ext_resource type="PackedScene" uid="uid://ctdj7k4cwb4f6" path="res://Player/player.tscn" id="4_aiql1"]
 
 [node name="StandardRoomN" type="Node2D"]
+z_as_relative = false
+y_sort_enabled = true
 
 [node name="Tilemap" type="TileMapLayer" parent="."]
 texture_filter = 1
@@ -22,4 +25,9 @@ tile_set = ExtResource("1_qhihl")
 position = Vector2(240, 136)
 
 [node name="ShopB" parent="." instance=ExtResource("2_8m38s")]
+z_as_relative = false
 position = Vector2(239, 231)
+
+[node name="Player" parent="." instance=ExtResource("4_aiql1")]
+z_as_relative = false
+position = Vector2(238, 77)
