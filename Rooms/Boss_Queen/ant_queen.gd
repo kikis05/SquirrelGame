@@ -25,11 +25,17 @@ var soldier_count = 0
 var last_bullet = null
 
 @onready var anim_tree: AnimationTree
+@onready var mod_anim_player: AnimationPlayer
 
 
 func _ready():
 	anim_tree = $AnimationTree
+	mod_anim_player = $ModulateAnimPlayer
 	randomize() # may be unnecessary?
+
+func _input(_event):
+	if Input.is_action_just_pressed("test"):
+		take_damage(null)
 
 # ------------- STATE-RELATED -------------
 func increase_idle_count():
@@ -41,15 +47,15 @@ func increase_idle_count():
 	### Look at 14min to see when he's calling it
 
 func attack():
-	var attack = attack_set.pick_random()
-	anim_tree.set_condition(attack, true)
-	if attack == "left_hand":
+	var next_attack = attack_set.pick_random()
+	anim_tree.set_condition(next_attack, true)
+	if next_attack == "left_hand":
 		attack_set = AFTER_LEFT_HAND
-	elif attack == "right_hand":
+	elif next_attack == "right_hand":
 		attack_set = AFTER_RIGHT_HAND
-	elif attack == "pheromones":
+	elif next_attack == "pheromones":
 		attack_set = SPAWN
-	elif attack == "spawn_ants" || attack == "spawn_fire_ants":
+	elif next_attack == "spawn_ants" || next_attack == "spawn_fire_ants":
 		attack_set = HANDS
 	else:
 		attack_set = HANDS
@@ -58,10 +64,11 @@ func attack():
 
 # ---------- HEALTH & SLIGHT INVINCIBILITY ----------
 func take_damage(bullet):
-	if last_bullet == bullet: # No double damage for our player
+	if bullet != null and last_bullet == bullet: # No double damage for our player
 		return 
 	else:
-		pass
+		mod_anim_player.play("RESET")
+		mod_anim_player.play("Damaged")
 
 
 

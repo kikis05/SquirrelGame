@@ -1,11 +1,10 @@
-res://assets/tiles/RoomTileset.tres
-res://entities/enemies/states/chase_state.gd
-res://scenes/main.gd
-res://Rooms/Boss_Queen/boss_room_queen.tscn
-res://Player/player.tscn
-res://entities/chests/chest.gd
 res://Rooms/Boss_Queen/ant_queen.tscn
+res://assets/tiles/RoomTileset.tres
+res://Player/player.tscn
+res://Rooms/Boss_Queen/boss_room_queen.tscn
 res://entities/chests/chest.tscn
 res://Rooms/Rooms_Anna/SquareChestS.tscn
-res://Rooms/Boss_Queen/animation_tree.gd
+res://Shops/shop_item.tscn
+res://Shops/shop_modal.tscn
+res://entities/enemies/states/chase_state.gd
 res://Rooms/Boss_Queen/ant_queen.gd
