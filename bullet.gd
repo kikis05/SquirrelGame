@@ -63,3 +63,6 @@ func get_damage():
 func _on_area_entered(area: Area2D) -> void:
 	if area.is_in_group("enemy") and area.name.to_lower() == "hitbox":
 		queue_free()
+
+func destroy():
+	queue_free()

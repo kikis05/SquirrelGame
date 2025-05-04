@@ -17,3 +17,9 @@ res://assets/interactables/slow_honey.tscn
 res://Player/player.tscn
 res://entities/enemies/ant_enemy/ant_enemy.tscn
 res://assets/interactables/slow_honey_floor.tscn
+res://assets/interactables/DirtMound.tscn
+res://assets/interactables/dirt_mound.gd
+res://health_acorn.tscn
+res://bullet.tscn
+res://Rooms/ShopRooms/StandardRoomShop2S.tscn
+res://bullet.gd

@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://yo8c4alnkdc5"]
 
 [ext_resource type="Script" uid="uid://b6vekmav5doyi" path="res://assets/interactables/slow_honey.gd" id="1_yrten"]
-[ext_resource type="Texture2D" uid="uid://v4iflp0rlech" path="res://assets/interactables/Untitled_Artwork (8).png" id="2_yrten"]
+[ext_resource type="Texture2D" uid="uid://v4iflp0rlech" path="res://assets/interactables/floor_honey.png" id="2_yrten"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_5k6ju"]
 radius = 32.4251

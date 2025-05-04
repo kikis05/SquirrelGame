@@ -35,7 +35,7 @@ size = Vector2(10, 13.4249)
 
 [node name="Bullet" type="Area2D" groups=["player_weapon", "room_deletables"]]
 z_index = 1
-collision_layer = 4
+collision_layer = 20
 collision_mask = 11
 script = ExtResource("1_v8qja")
 

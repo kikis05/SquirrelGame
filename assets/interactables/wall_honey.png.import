@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://k883nby5416y"
-path="res://.godot/imported/Untitled_Artwork (10).png-f2a1822aa010d5c9f1f62a7ec761b58f.ctex"
+path="res://.godot/imported/wall_honey.png-c090a2e52bcba1d97b3b864e19e085df.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/interactables/Untitled_Artwork (10).png"
-dest_files=["res://.godot/imported/Untitled_Artwork (10).png-f2a1822aa010d5c9f1f62a7ec761b58f.ctex"]
+source_file="res://assets/interactables/wall_honey.png"
+dest_files=["res://.godot/imported/wall_honey.png-c090a2e52bcba1d97b3b864e19e085df.ctex"]
 
 [params]
 

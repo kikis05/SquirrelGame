@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://v4iflp0rlech"
-path="res://.godot/imported/Untitled_Artwork (8).png-4f3f90d35a9ce2e3b0c64eb76991308f.ctex"
+uid="uid://dc7gbnieonul8"
+path="res://.godot/imported/dirtmound.png-6233ddfc8dfc955ed7b9e2513649845b.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/interactables/Untitled_Artwork (8).png"
-dest_files=["res://.godot/imported/Untitled_Artwork (8).png-4f3f90d35a9ce2e3b0c64eb76991308f.ctex"]
+source_file="res://assets/interactables/dirtmound.png"
+dest_files=["res://.godot/imported/dirtmound.png-6233ddfc8dfc955ed7b9e2513649845b.ctex"]
 
 [params]
 

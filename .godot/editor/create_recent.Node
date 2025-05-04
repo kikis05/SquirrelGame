@@ -1,7 +1,10 @@
-Area2D
-Node2D
+CharacterBody2D
+RigidBody2D
 CollisionShape2D
+Area2D
 Sprite2D
+StaticBody2D
+Node2D
 TileMapLayer
 AnimatedSprite2D
 Player
@@ -10,5 +13,3 @@ HBoxContainer
 TextureRect
 AnimationPlayer
 MosquitoBabyEnemy
-MosquitoEnemy
-RichTextLabel
