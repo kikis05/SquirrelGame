@@ -14,7 +14,7 @@ func _ready():
 	player = get_tree().get_first_node_in_group("player")
 	
 	timer = Timer.new()
-	timer.wait_time = 0.6
+	timer.wait_time = 0.4
 	timer.autostart = false
 	timer.one_shot = true
 	timer.timeout.connect(on_timer_finished)
