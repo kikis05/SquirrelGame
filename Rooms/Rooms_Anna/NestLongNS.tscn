@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=4 uid="uid://dgbob5dktjdh5"]
+[gd_scene load_steps=6 format=4 uid="uid://dgbob5dktjdh5"]
 
 [ext_resource type="TileSet" uid="uid://dijcthwd7lyow" path="res://assets/tiles/RoomTileset.tres" id="1_h7457"]
 [ext_resource type="PackedScene" uid="uid://dek0t7ihd4vxg" path="res://entities/enemies/mosquito_enemy/mosquito_enemy.tscn" id="2_vdsen"]
 [ext_resource type="PackedScene" uid="uid://cwrwm5a1gb2nh" path="res://entities/enemies/mosquito_baby_enemy/mosquito_baby_enemy.tscn" id="3_866wa"]
 [ext_resource type="PackedScene" uid="uid://dhsd6cxjrxhtj" path="res://entities/enemies/ant_enemy/ant_enemy.tscn" id="4_mq0d3"]
+[ext_resource type="Texture2D" uid="uid://cws2vdp61uowe" path="res://art/DirtMound.png" id="5_vdsen"]
 
 [node name="NestLongNS" type="Node2D"]
 y_sort_enabled = true
@@ -39,3 +40,13 @@ position = Vector2(166, 219)
 
 [node name="Ant Enemy" parent="." instance=ExtResource("4_mq0d3")]
 position = Vector2(136, 229)
+
+[node name="smalldirt2" type="Sprite2D" parent="."]
+z_index = 1
+position = Vector2(218, 392)
+texture = ExtResource("5_vdsen")
+
+[node name="smalldirt" type="Sprite2D" parent="."]
+z_index = 1
+position = Vector2(109, 196)
+texture = ExtResource("5_vdsen")

@@ -30,3 +30,7 @@ res://Rooms/Rooms_Anna2/MoundsEW.tscn
 res://Rooms/ImportantRooms/Shop.tscn
 res://Rooms/Rooms_Anna/SquareCornerNW.tscn
 res://Rooms/Rooms_Anna/NestCircleNESW.tscn
+res://Rooms/ImportantRooms/PuzzleRoomNS.tscn
+res://assets/interactables/grass.tscn
+res://Rooms/Rooms_Anna/NestLongNS.tscn
+res://Rooms/StandardRoomScenes/StandardRoomNS.tscn

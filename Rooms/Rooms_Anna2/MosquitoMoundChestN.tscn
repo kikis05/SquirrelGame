@@ -130,11 +130,11 @@ position = Vector2(32, 106)
 
 [node name="DirtMound23" parent="." instance=ExtResource("5_fsl60")]
 z_index = 1
-position = Vector2(102, 168)
+position = Vector2(103, 173)
 
 [node name="DirtMound18" parent="." instance=ExtResource("5_fsl60")]
 z_index = 1
-position = Vector2(92, 187)
+position = Vector2(78, 187)
 
 [node name="DirtMound17" parent="." instance=ExtResource("5_fsl60")]
 z_index = 1

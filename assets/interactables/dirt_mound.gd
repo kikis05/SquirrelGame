@@ -22,5 +22,4 @@ func _on_area_2d_area_entered(area: Area2D) -> void:
 		stage += 1
 		sprite.frame = stage
 	if (sprite.frame == 6):
-		collisions[0].hide()
-		collisions[1].hide()
+		queue_free()
