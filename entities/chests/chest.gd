@@ -4,7 +4,8 @@ var is_locked = true
 var is_closed = true
 var player_in_range = false
 
-@export var item = preload("res://entities/items/upgrade_item.tscn")
+@export var item = preload("res://Shops/shop_item.tscn")
+# @export var item = preload("res://entities/items/upgrade_item.tscn")
 
 @onready var sprite: AnimatedSprite2D = null
 @onready var outline: AnimatedSprite2D = null

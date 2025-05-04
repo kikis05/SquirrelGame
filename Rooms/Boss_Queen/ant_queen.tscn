@@ -1,0 +1,111 @@
+[gd_scene load_steps=14 format=3 uid="uid://ecsrhcu1cpjh"]
+
+[ext_resource type="Script" uid="uid://xffwgc3jwl06" path="res://Rooms/Boss_Queen/animation_tree.gd" id="1_5jl46"]
+[ext_resource type="Script" uid="uid://qnipbvq3w0fs" path="res://Rooms/Boss_Queen/ant_queen.gd" id="1_k6nnh"]
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_d26tu"]
+animation = &"Idle"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_5jl46"]
+
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_k6nnh"]
+states/End/position = Vector2(856, 47.5)
+states/Idle/node = SubResource("AnimationNodeAnimation_d26tu")
+states/Idle/position = Vector2(524.06, 9.91496)
+states/Start/position = Vector2(315, 6.875)
+transitions = ["Start", "Idle", SubResource("AnimationNodeStateMachineTransition_5jl46")]
+graph_offset = Vector2(207.56, -191.585)
+
+[sub_resource type="Animation" id="Animation_gq0jj"]
+resource_name = "SETUP"
+
+[sub_resource type="Animation" id="Animation_ox8v1"]
+resource_name = "Idle"
+
+[sub_resource type="Animation" id="Animation_en2xq"]
+resource_name = "Swat Left"
+
+[sub_resource type="Animation" id="Animation_qq41e"]
+resource_name = "Swat Right"
+
+[sub_resource type="Animation" id="Animation_du80b"]
+resource_name = "Pheromone Trail"
+
+[sub_resource type="Animation" id="Animation_uw26s"]
+resource_name = "Spawn Soldiers"
+
+[sub_resource type="Animation" id="Animation_o5303"]
+resource_name = "Spawn Fire Soldiers"
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_s5xob"]
+_data = {
+&"Idle": SubResource("Animation_ox8v1"),
+&"Pheromone Trail": SubResource("Animation_du80b"),
+&"SETUP": SubResource("Animation_gq0jj"),
+&"Spawn Fire Soldiers": SubResource("Animation_o5303"),
+&"Spawn Soldiers": SubResource("Animation_uw26s"),
+&"Swat Left": SubResource("Animation_en2xq"),
+&"Swat Right": SubResource("Animation_qq41e")
+}
+
+[node name="AntQueen" type="Node"]
+script = ExtResource("1_k6nnh")
+
+[node name="AnimationTree" type="AnimationTree" parent="."]
+tree_root = SubResource("AnimationNodeStateMachine_k6nnh")
+advance_expression_base_node = NodePath("../AnimationPlayer")
+anim_player = NodePath("../AnimationPlayer")
+script = ExtResource("1_5jl46")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_s5xob")
+}
+
+[node name="Node2D" type="Node2D" parent="."]
+
+[node name="Head" type="Node2D" parent="Node2D"]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Node2D/Head"]
+
+[node name="Area2D" type="Area2D" parent="Node2D/Head"]
+
+[node name="Body" type="Node2D" parent="Node2D"]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Node2D/Body"]
+
+[node name="Area2D" type="Area2D" parent="Node2D/Body"]
+
+[node name="Left Arm" type="Node2D" parent="Node2D"]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Node2D/Left Arm"]
+
+[node name="Area2D" type="Area2D" parent="Node2D/Left Arm"]
+
+[node name="Right Arm" type="Node2D" parent="Node2D"]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Node2D/Right Arm"]
+
+[node name="Area2D" type="Area2D" parent="Node2D/Right Arm"]
+
+[node name="Antennas" type="Node2D" parent="Node2D"]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Node2D/Antennas"]
+
+[node name="Area2D" type="Area2D" parent="Node2D/Antennas"]
+
+[node name="ProgressBar" type="ProgressBar" parent="."]
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -240.0
+offset_top = -24.0
+offset_right = 240.0
+grow_horizontal = 2
+grow_vertical = 0
+size_flags_horizontal = 3
+show_percentage = false
+
+[node name="PheromoneTimer" type="Timer" parent="."]
