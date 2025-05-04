@@ -36,6 +36,11 @@ func _ready() -> void:
 
 	# 3) Wire the Area2D signal to our local handler
 	connect("body_entered", _on_body_entered)
+	
+	# 4) Make sure proper frame is showing
+	sprite.stop()
+	sprite.animation = "open"
+	sprite.frame = sprite.sprite_frames.get_frame_count("open") - 1  # freeze at end
 
 # ──────────────────────────────────────────────────────────────
 func _on_body_entered(body : Node) -> void:
@@ -58,6 +63,6 @@ func open() -> void:
 			print("[Door OPEN] playing open on", name)
 			sprite.play("open")
 			await sprite.animation_finished
-		sprite.frame = sprite.sprite_frames.get_frame_count("open") - 1  # freeze at end
+			sprite.frame = sprite.sprite_frames.get_frame_count("open") - 1  # freeze at end
 	if blocker_shape:
 		blocker_shape.set_deferred("disabled", true)
