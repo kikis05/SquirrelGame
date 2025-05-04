@@ -23,3 +23,9 @@ res://health_acorn.tscn
 res://bullet.tscn
 res://Rooms/ShopRooms/StandardRoomShop2S.tscn
 res://bullet.gd
+res://Rooms/Rooms_Anna2/HolesEW.tscn
+res://Rooms/StandardRoomScenes/StandardRoomE.tscn
+res://Rooms/ShopRooms/StandardRoomShop2W.tscn
+res://Rooms/Rooms_Anna2/MoundsEW.tscn
+res://Rooms/ImportantRooms/Shop.tscn
+res://Rooms/Rooms_Anna/SquareCornerNW.tscn
