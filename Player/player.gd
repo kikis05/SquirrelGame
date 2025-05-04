@@ -23,6 +23,8 @@ var flipped = false
 var invincible = false
 var dead = false
 
+@onready var hitbox = $PlayerHitBox
+
 #Canvas Layers
 @onready var health_container = $CanvasLayer/HealthContainer
 @onready var coins_container = $CanvasLayer/CoinsContainer
@@ -47,6 +49,9 @@ func _ready():
 
 	coins_container.update_coins(coins)
 	coins_changed.connect(coins_container.update_coins)
+	
+	hitbox.speed = speed
+	hitbox.coins = coins
 	
 
 func _input(event):
@@ -142,12 +147,14 @@ func get_speed():
 	return speed
 func set_speed(new_speed):
 	speed = new_speed
+	hitbox.speed = speed
 	
 func get_coins():
 	return coins
 func set_coins(cns):
 	coins = cns
 	coins_changed.emit(coins)
+	hitbox.coins = coins
 
 func damage_player():
 	if invincible == false:
