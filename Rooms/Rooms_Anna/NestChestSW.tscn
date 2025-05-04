@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=4 uid="uid://dgbob5dktjdh5"]
+[gd_scene load_steps=6 format=4 uid="uid://dgbob5dktjdh5"]
 
 [ext_resource type="TileSet" uid="uid://dijcthwd7lyow" path="res://assets/tiles/RoomTileset.tres" id="1_365h3"]
 [ext_resource type="PackedScene" uid="uid://dek0t7ihd4vxg" path="res://entities/enemies/mosquito_enemy/mosquito_enemy.tscn" id="3_4dhag"]
 [ext_resource type="PackedScene" uid="uid://cwrwm5a1gb2nh" path="res://entities/enemies/mosquito_baby_enemy/mosquito_baby_enemy.tscn" id="4_6ooel"]
 [ext_resource type="PackedScene" uid="uid://btvi3ex8vchv6" path="res://entities/chests/chest.tscn" id="5_365h3"]
+[ext_resource type="PackedScene" uid="uid://yo8c4alnkdc5" path="res://assets/interactables/slow_honey_floor.tscn" id="5_h84mr"]
 
 [node name="NestChestSW" type="Node2D"]
 y_sort_enabled = true
@@ -39,3 +40,11 @@ position = Vector2(93, 108)
 
 [node name="Chest" parent="." instance=ExtResource("5_365h3")]
 position = Vector2(312, 121)
+
+[node name="SlowHoneyFloor2" parent="." instance=ExtResource("5_h84mr")]
+z_index = 1
+position = Vector2(191, 143)
+
+[node name="SlowHoneyFloor" parent="." instance=ExtResource("5_h84mr")]
+z_index = 1
+position = Vector2(86, 206)

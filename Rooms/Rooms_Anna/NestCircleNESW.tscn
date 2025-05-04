@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=4 uid="uid://beynrktr52ke"]
+[gd_scene load_steps=5 format=4 uid="uid://beynrktr52ke"]
 
 [ext_resource type="TileSet" uid="uid://dijcthwd7lyow" path="res://assets/tiles/RoomTileset.tres" id="1_wkjx1"]
 [ext_resource type="PackedScene" uid="uid://cwrwm5a1gb2nh" path="res://entities/enemies/mosquito_baby_enemy/mosquito_baby_enemy.tscn" id="2_halxx"]
 [ext_resource type="PackedScene" uid="uid://dhsd6cxjrxhtj" path="res://entities/enemies/ant_enemy/ant_enemy.tscn" id="3_ggyj1"]
+[ext_resource type="PackedScene" uid="uid://dr2f7a7ug123d" path="res://assets/interactables/slow_honey.tscn" id="4_halxx"]
 
 [node name="NestCircleNESW" type="Node2D"]
 y_sort_enabled = true
@@ -26,3 +27,7 @@ position = Vector2(186, 112)
 
 [node name="TileMap5" parent="." instance=ExtResource("3_ggyj1")]
 position = Vector2(107, 175)
+
+[node name="SlowHoneyWall" parent="." instance=ExtResource("4_halxx")]
+z_index = 1
+position = Vector2(214, 175)
