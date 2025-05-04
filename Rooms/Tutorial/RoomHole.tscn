@@ -1,10 +1,9 @@
-[gd_scene load_steps=6 format=4 uid="uid://dd1m2t5lophjm"]
+[gd_scene load_steps=5 format=4 uid="uid://dd1m2t5lophjm"]
 
 [ext_resource type="TileSet" uid="uid://dijcthwd7lyow" path="res://assets/tiles/RoomTileset.tres" id="1_geah0"]
 [ext_resource type="PackedScene" uid="uid://1eki3d3ao8vu" path="res://Rooms/Doors/TutorialDoorS.tscn" id="2_4aiiu"]
 [ext_resource type="PackedScene" uid="uid://p6ykfm7n7oe1" path="res://NPCs/Nutsworth.tscn" id="3_4aiiu"]
 [ext_resource type="Script" uid="uid://ddhxg73m7ph5f" path="res://NPCs/NutsworthHole.gd" id="4_nmt8c"]
-[ext_resource type="PackedScene" uid="uid://ctdj7k4cwb4f6" path="res://Player/player.tscn" id="5_8ruhq"]
 
 [node name="RoomHole" type="Node2D"]
 
@@ -25,6 +24,3 @@ ui_layer = NodePath("../UILayer")
 position = Vector2(241, 206)
 
 [node name="UILayer" type="CanvasLayer" parent="."]
-
-[node name="Player" parent="." instance=ExtResource("5_8ruhq")]
-position = Vector2(161, 188)

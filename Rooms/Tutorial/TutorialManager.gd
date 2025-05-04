@@ -7,14 +7,13 @@ signal player_spawned(player : Node)
 @export var player_scene : PackedScene = preload("res://Player/player.tscn")
 
 const TILE_SIZE : Vector2 = Vector2(160, 64)            # world‑space units
-const DIR_OFF   : Dictionary = {                        # grid displacements
-	"N": Vector2i(0,  1),     # move **down** one row
-	"S": Vector2i(0, -1),     # move **up**   one row
+const DIR_OFF   : Dictionary = {
+	"N": Vector2i(0,  1),   # move *down* one row
+	"S": Vector2i(0, -1),   # move *up*   one row
 	"E": Vector2i(1,  0),
 	"W": Vector2i(-1, 0)
 }
 
-# grid → room‑scene map
 const ROOMS : Dictionary = {
 	Vector2i(0, 0): preload("res://Rooms/Tutorial/RoomIntro.tscn"),
 	Vector2i(0, 1): preload("res://Rooms/Tutorial/RoomSap.tscn"),
@@ -28,7 +27,7 @@ var _player   : Node     = null
 
 # ───────────────────────────────────────────────────────────────
 func _ready() -> void:
-	_switch_to_room(Vector2i(0, 0), "")        # start in the intro room
+	_switch_to_room(Vector2i(0, 0), "")     # start in the intro room
 
 # ───────────────────── room switching ───────────────────────────
 func _switch_to_room(pos : Vector2i, entered_from_dir : String) -> void:
@@ -36,12 +35,14 @@ func _switch_to_room(pos : Vector2i, entered_from_dir : String) -> void:
 		push_error("TutorialManager: no room at %s" % pos)
 		return
 
+	get_tree().call_group("room_deletables", "queue_free")
+
 	if _cur_room:
 		_cur_room.queue_free()
 
 	_cur_pos  = pos
 	_cur_room = (ROOMS[pos] as PackedScene).instantiate()
-	_cur_room.position = Vector2(pos) * TILE_SIZE
+	_cur_room.position = Vector2(pos) * TILE_SIZE   # cast Vector2i → Vector2
 	add_child(_cur_room)
 
 	_wire_doors_in(_cur_room, pos)
@@ -59,8 +60,7 @@ func _wire_doors_in(room: Node, room_pos: Vector2i) -> void:
 				door.connect("door_entered", _on_door_entered)
 
 func _on_door_entered(room_pos : Vector2i, dir : String, body : Node) -> void:
-	if body.name != "Player":
-		return
+	if body.name != "Player": return
 	_switch_to_room(room_pos + DIR_OFF[dir], dir)
 
 # ───────────────────── player management ───────────────────────
@@ -71,10 +71,8 @@ func _spawn_or_move_player(from_dir : String) -> void:
 		add_child(_player)
 		emit_signal("player_spawned", _player)
 
-	# default spawn (room centre or a dedicated Marker2D called SpawnPoint)
 	var spawn : Vector2 = _cur_room.get_node("SpawnPoint").global_position
 
-	# if we came through a door, try its inner SpawnPoint instead
 	if from_dir != "":
 		var opp = {"N":"S","S":"N","E":"W","W":"E"}[from_dir]
 		var door_spawn := _find_door_spawn(opp)
@@ -91,11 +89,8 @@ func _find_door_spawn(dir : String) -> Vector2:
 
 # ───────────────────── helper: unwrap wrapper nodes ─────────────
 func _find_real_door(holder : Node) -> Door:
-	# (1) tag sits directly on the Area2D running Door.gd
 	if holder is Door:
 		return holder
-
-	# (2) tag is on a wrapper (Node2D); search children once
 	for child in holder.get_children():
 		if child is Door:
 			return child
