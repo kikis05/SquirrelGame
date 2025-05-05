@@ -50,6 +50,7 @@ var player : Node = null
 var rng : RandomNumberGenerator = RandomNumberGenerator.new()
 
 func _ready() -> void:
+	TransitionScreen.fade_in()
 	rng.randomize()
 	print("\n=== DungeonGenerator READY ===")
 	if _generate_dungeon():

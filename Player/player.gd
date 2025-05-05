@@ -143,9 +143,10 @@ func get_max_health():
 func get_health():
 	return current_health
 func set_health(health):
-	powerup_text.show()
-	powerup_text.text = "Health +" + str(health - current_health)
-	powerup_timer.start()
+	if powerup_text:
+		powerup_text.show()
+		powerup_text.text = "Health +" + str(health - current_health)
+		powerup_timer.start()
 	current_health = min(max_health, health)
 	health_changed.emit(current_health) 
 	
@@ -153,18 +154,20 @@ func set_health(health):
 func get_speed():
 	return speed
 func set_speed(new_speed):
-	powerup_text.show()
-	powerup_text.text = "Speed +" + str(new_speed - speed)
-	powerup_timer.start()
+	if powerup_text:
+		powerup_text.show()
+		powerup_text.text = "Speed +" + str(new_speed - speed)
+		powerup_timer.start()
+		hitbox.speed = speed
 	speed = new_speed
-	hitbox.speed = speed
 	
 func get_coins():
 	return coins
 func set_coins(cns):
 	coins = cns
 	coins_changed.emit(coins)
-	hitbox.coins = coins
+	if hitbox:
+		hitbox.coins = coins
 
 func damage_player():
 	if invincible == false:
@@ -190,25 +193,28 @@ func get_sword_attack():
 	return $Sword.damage
 	
 func set_sword_attack(attack):
-	powerup_text.show()
-	powerup_text.text = "Sword Attack +" + str(attack - get_sword_attack())
-	powerup_timer.start()
+	if powerup_text:
+		powerup_text.show()
+		powerup_text.text = "Sword Attack +" + str(attack - get_sword_attack())
+		powerup_timer.start()
 	$Sword.set_damage(attack)
 	
 func get_gun_attack():
 	return $Gun.get_bullet_damage()
 func set_gun_attack(attack):
-	powerup_text.show()
-	powerup_text.text = "Sap Attack +" + str(attack - get_gun_attack())
-	powerup_timer.start()
+	if powerup_text:
+		powerup_text.show()
+		powerup_text.text = "Sap Attack +" + str(attack - get_gun_attack())
+		powerup_timer.start()
 	$Gun.set_bullet_damage(attack)
 	
 func get_gun_speed():
 	return $Gun.get_bullet_speed()
 func set_gun_speed(spd):
-	powerup_text.show()
-	powerup_text.text = "Sap Shooter Speed +" + str(spd - get_gun_speed())
-	powerup_timer.start()
+	if powerup_text:
+		powerup_text.show()
+		powerup_text.text = "Sap Shooter Speed +" + str(spd - get_gun_speed())
+		powerup_timer.start()
 	$Gun.set_bullet_speed(spd)
 	
 func reset():

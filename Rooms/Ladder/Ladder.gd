@@ -37,15 +37,13 @@ func _unhandled_input(event : InputEvent) -> void:
 	if event.is_action_pressed(interact_action):
 		_start_climb()
 
-# ────────────────────────────────────────────────────────────────
 func _start_climb() -> void:
 	_busy = true
 	_prompt.visible = false
+	var tree = get_tree()
 
-	var tree : SceneTree = get_tree()
-
-	# Save player stats
 	if _player:
+		# Save player stats
 		GameState.player_stats.max_health     = _player.max_health
 		GameState.player_stats.current_health = _player.current_health
 		GameState.player_stats.coins          = _player.coins
@@ -53,13 +51,18 @@ func _start_climb() -> void:
 		GameState.player_stats.gun_speed      = _player.get_gun_speed()
 		GameState.player_stats.sword_attack   = _player.get_sword_attack()
 		GameState.player_stats.speed          = _player.speed
-		_player.queue_free()
+
+		# Hide player
+		_player.visible = false
+		_player.set_physics_process(false)
+		_player.set_process(false)
 
 	_sprite.play("climb")
 	await _sprite.animation_finished
 
-	TransitionScreen.transition()
-	await TransitionScreen.on_transition_finished
+	# Fade to black
+	TransitionScreen.fade_out()
+	await TransitionScreen.fade_out_finished
 
 	if next_scene:
 		tree.change_scene_to_packed(next_scene)
