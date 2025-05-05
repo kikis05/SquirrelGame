@@ -1,0 +1,38 @@
+[gd_scene load_steps=5 format=3 uid="uid://dcto22f6ba3gm"]
+
+[ext_resource type="Texture2D" uid="uid://dc7gbnieonul8" path="res://assets/interactables/dirtmound.png" id="1_uii8g"]
+[ext_resource type="Script" uid="uid://ckf66pji5xtb" path="res://assets/interactables/dirt_mound.gd" id="1_vo7e6"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_vo7e6"]
+height = 34.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_8sdsa"]
+radius = 11.0
+height = 40.0
+
+[node name="DirtMound" type="CharacterBody2D"]
+collision_layer = 8
+collision_mask = 22
+script = ExtResource("1_vo7e6")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0, -33)
+texture = ExtResource("1_uii8g")
+hframes = 7
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -8)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_vo7e6")
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 8
+collision_mask = 22
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(0, -10)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_8sdsa")
+
+[connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

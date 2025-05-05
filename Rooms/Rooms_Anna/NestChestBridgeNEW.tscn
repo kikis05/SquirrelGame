@@ -1,9 +1,13 @@
-[gd_scene load_steps=5 format=4 uid="uid://dt02eiy83lxy2"]
+[gd_scene load_steps=9 format=4 uid="uid://dt02eiy83lxy2"]
 
 [ext_resource type="TileSet" uid="uid://dijcthwd7lyow" path="res://assets/tiles/RoomTileset.tres" id="1_gshms"]
 [ext_resource type="PackedScene" uid="uid://dek0t7ihd4vxg" path="res://entities/enemies/mosquito_enemy/mosquito_enemy.tscn" id="2_qsucw"]
 [ext_resource type="PackedScene" uid="uid://xhg08ovbav64" path="res://entities/enemies/fire_ant_enemy/fire_ant_enemy.tscn" id="2_r6ts2"]
 [ext_resource type="PackedScene" uid="uid://btvi3ex8vchv6" path="res://entities/chests/chest.tscn" id="4_sevsv"]
+[ext_resource type="PackedScene" uid="uid://bv1hwr4j0auc7" path="res://Rooms/Doors/DoorN.tscn" id="5_sevsv"]
+[ext_resource type="PackedScene" uid="uid://3bwfjlqsm6b4" path="res://Rooms/Doors/DoorW.tscn" id="6_csb5d"]
+[ext_resource type="PackedScene" uid="uid://ck7trcc5jld8w" path="res://Rooms/Doors/DoorE.tscn" id="7_vwrmh"]
+[ext_resource type="PackedScene" uid="uid://c1fbc6lvy2bai" path="res://assets/interactables/grass.tscn" id="8_csb5d"]
 
 [node name="NestChestBridgeNEW" type="Node2D"]
 y_sort_enabled = true
@@ -33,3 +37,32 @@ position = Vector2(129, 139)
 
 [node name="Chest" parent="." instance=ExtResource("4_sevsv")]
 position = Vector2(256, 223)
+
+[node name="DoorN" parent="." instance=ExtResource("5_sevsv")]
+position = Vector2(24, 22)
+
+[node name="DoorW" parent="." instance=ExtResource("6_csb5d")]
+position = Vector2(24, 118)
+
+[node name="DoorE" parent="." instance=ExtResource("7_vwrmh")]
+position = Vector2(24, 118)
+
+[node name="Grass" parent="." instance=ExtResource("8_csb5d")]
+z_index = 1
+position = Vector2(239, 227)
+
+[node name="Grass" parent="Grass" instance=ExtResource("8_csb5d")]
+z_index = 1
+position = Vector2(12, -1)
+
+[node name="Grass" parent="Grass/Grass" instance=ExtResource("8_csb5d")]
+z_index = 1
+position = Vector2(12, 2)
+
+[node name="Grass" parent="Grass/Grass/Grass" instance=ExtResource("8_csb5d")]
+z_index = 1
+position = Vector2(12, -2)
+
+[node name="Grass" parent="Grass/Grass/Grass/Grass" instance=ExtResource("8_csb5d")]
+z_index = 1
+position = Vector2(-47, -5)

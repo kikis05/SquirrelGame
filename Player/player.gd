@@ -23,6 +23,8 @@ var flipped = false
 var invincible = false
 var dead = false
 
+@onready var hitbox = $PlayerHitBox
+
 #Canvas Layers
 @onready var health_container = $CanvasLayer/HealthContainer
 @onready var coins_container = $CanvasLayer/CoinsContainer
@@ -37,16 +39,23 @@ var melee_weapons = ["Sword"]
 var melee_weapon_choice = 0
 var selected_weapon_type = "RANGED"
 
+@onready var powerup_text = $CanvasLayer/Label
+@onready var powerup_timer = $PowerupTextTimer
+
 func _ready():
 	sprite.play("idle")
 	menu.hide()
 	game_over.hide()
+	powerup_text.hide()
 	health_container.setMaxAcorns(max_health / 2)
 	health_container.updateHealth(current_health)
 	health_changed.connect(health_container.updateHealth)
 
 	coins_container.update_coins(coins)
 	coins_changed.connect(coins_container.update_coins)
+	
+	hitbox.speed = speed
+	hitbox.coins = coins
 	
 
 func _input(event):
@@ -134,6 +143,9 @@ func get_max_health():
 func get_health():
 	return current_health
 func set_health(health):
+	powerup_text.show()
+	powerup_text.text = "Health +" + str(health - current_health)
+	powerup_timer.start()
 	current_health = min(max_health, health)
 	health_changed.emit(current_health) 
 	
@@ -141,13 +153,18 @@ func set_health(health):
 func get_speed():
 	return speed
 func set_speed(new_speed):
+	powerup_text.show()
+	powerup_text.text = "Speed +" + str(new_speed - speed)
+	powerup_timer.start()
 	speed = new_speed
+	hitbox.speed = speed
 	
 func get_coins():
 	return coins
 func set_coins(cns):
 	coins = cns
 	coins_changed.emit(coins)
+	hitbox.coins = coins
 
 func damage_player():
 	if invincible == false:
@@ -173,16 +190,25 @@ func get_sword_attack():
 	return $Sword.damage
 	
 func set_sword_attack(attack):
+	powerup_text.show()
+	powerup_text.text = "Sword Attack +" + str(attack - get_sword_attack())
+	powerup_timer.start()
 	$Sword.set_damage(attack)
 	
 func get_gun_attack():
 	return $Gun.get_bullet_damage()
 func set_gun_attack(attack):
+	powerup_text.show()
+	powerup_text.text = "Sap Attack +" + str(attack - get_gun_attack())
+	powerup_timer.start()
 	$Gun.set_bullet_damage(attack)
 	
 func get_gun_speed():
 	return $Gun.get_bullet_speed()
 func set_gun_speed(spd):
+	powerup_text.show()
+	powerup_text.text = "Sap Shooter Speed +" + str(spd - get_gun_speed())
+	powerup_timer.start()
 	$Gun.set_bullet_speed(spd)
 	
 func reset():
@@ -190,4 +216,6 @@ func reset():
 	current_health = max_health
 	coins = 0
 	#TODO: Reset items, attack, etc.
-	
+
+func _on_powerup_text_timer_timeout() -> void:
+	powerup_text.hide()

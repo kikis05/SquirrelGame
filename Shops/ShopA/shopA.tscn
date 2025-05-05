@@ -70,6 +70,7 @@ scale = Vector2(0.351873, 0.380727)
 shape = SubResource("CapsuleShape2D_fgaav")
 
 [node name="ShopModal" parent="." instance=ExtResource("3_lafmt")]
+visible = false
 
 [connection signal="area_entered" from="ActivationArea" to="." method="_on_activation_area_area_entered"]
 [connection signal="area_exited" from="ActivationArea" to="." method="_on_activation_area_area_exited"]
