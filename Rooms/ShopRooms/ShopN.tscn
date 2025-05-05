@@ -1,10 +1,9 @@
-[gd_scene load_steps=7 format=4 uid="uid://c0gaqe83sgr8j"]
+[gd_scene load_steps=6 format=4 uid="uid://c0gaqe83sgr8j"]
 
 [ext_resource type="TileSet" uid="uid://dijcthwd7lyow" path="res://assets/tiles/RoomTileset.tres" id="1_qhihl"]
 [ext_resource type="PackedScene" uid="uid://dsg31ult7idkb" path="res://Shops/ShopB/shopB.tscn" id="2_8m38s"]
 [ext_resource type="PackedScene" uid="uid://bv1hwr4j0auc7" path="res://Rooms/Doors/DoorN.tscn" id="2_bajs0"]
 [ext_resource type="PackedScene" uid="uid://dr2f7a7ug123d" path="res://assets/interactables/slow_honey.tscn" id="4_aiql1"]
-[ext_resource type="PackedScene" uid="uid://ctdj7k4cwb4f6" path="res://Player/player.tscn" id="6_mj7q0"]
 [ext_resource type="PackedScene" uid="uid://yo8c4alnkdc5" path="res://assets/interactables/slow_honey_floor.tscn" id="6_sucom"]
 
 [node name="StandardRoomN" type="Node2D"]
@@ -37,6 +36,3 @@ position = Vector2(418, 239)
 
 [node name="SlowHoneyFloor" parent="." instance=ExtResource("6_sucom")]
 position = Vector2(240, 123)
-
-[node name="Player" parent="." instance=ExtResource("6_mj7q0")]
-position = Vector2(148, 153)

@@ -18,7 +18,7 @@ tile_set = ExtResource("1_vtmmi")
 [node name="DoorW" parent="." instance=ExtResource("2_8xlwr")]
 
 [node name="SpawnPoint" type="Node2D" parent="."]
-position = Vector2(240, 136)
+position = Vector2(97, 143)
 
 [node name="ShopA" parent="." instance=ExtResource("3_jcg5v")]
 position = Vector2(86, 91)

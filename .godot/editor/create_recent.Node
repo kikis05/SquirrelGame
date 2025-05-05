@@ -1,3 +1,5 @@
+Timer
+Label
 TileMapLayer
 TileMap
 CharacterBody2D
@@ -11,4 +13,3 @@ AnimatedSprite2D
 Player
 AntEnemy
 HBoxContainer
-TextureRect
