@@ -1,3 +1,5 @@
+Sprite2D
+TextureRect
 CollisionPolygon2D
 Marker2D
 Node2D
@@ -11,4 +13,3 @@ Area2D
 Timer
 Node
 ProgressBar
-AnimatedSprite2D

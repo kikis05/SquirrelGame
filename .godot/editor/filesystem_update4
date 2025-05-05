@@ -4,3 +4,4 @@ res://Rooms/Boss_Queen/ant_queen.gd
 res://Rooms/Boss_Queen/boss_room_queen.tscn
 res://entities/enemies/states/chase_state.gd
 res://Rooms/Boss_Queen/boss_room_queen.gd
+res://Player/player.tscn

@@ -1,4 +1,4 @@
-[gd_scene load_steps=44 format=3 uid="uid://ecsrhcu1cpjh"]
+[gd_scene load_steps=45 format=3 uid="uid://ecsrhcu1cpjh"]
 
 [ext_resource type="Script" uid="uid://xffwgc3jwl06" path="res://Rooms/Boss_Queen/animation_tree.gd" id="1_5jl46"]
 [ext_resource type="Script" uid="uid://qnipbvq3w0fs" path="res://Rooms/Boss_Queen/ant_queen.gd" id="1_k6nnh"]
@@ -7,6 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://bwv4tlcifvsot" path="res://assets/enemies/queen_ant/queen_body.png" id="4_du80b"]
 [ext_resource type="Texture2D" uid="uid://ss0sks3hf0eu" path="res://assets/enemies/queen_ant/queen_left.png" id="5_uw26s"]
 [ext_resource type="Texture2D" uid="uid://d35c0fuugsy34" path="res://assets/enemies/queen_ant/queen_right.png" id="6_o5303"]
+[ext_resource type="Texture2D" uid="uid://cj2yd0s5oem5e" path="res://assets/chests_items/items1.png" id="8_o5303"]
 [ext_resource type="FontFile" uid="uid://c33ivdot7yug6" path="res://assets/Pixeled.ttf" id="8_uw26s"]
 
 [sub_resource type="Animation" id="Animation_wne1h"]
@@ -1036,16 +1037,23 @@ shape = SubResource("CapsuleShape2D_qq41e")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
+[node name="Sprite2D" type="Sprite2D" parent="CanvasLayer"]
+position = Vector2(240, 253)
+scale = Vector2(404, 12)
+texture = ExtResource("8_o5303")
+region_enabled = true
+region_rect = Rect2(8, 11, 1, 1)
+
 [node name="ProgressBar" type="ProgressBar" parent="CanvasLayer"]
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -200.0
-offset_top = 111.0
-offset_right = 197.0
-offset_bottom = 125.0
+offset_left = -201.0
+offset_top = 113.0
+offset_right = 201.0
+offset_bottom = 123.0
 grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 6
@@ -1060,9 +1068,9 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -38.0
+offset_left = -38.5
 offset_top = 110.0
-offset_right = 39.0
+offset_right = 38.5
 offset_bottom = 126.0
 grow_horizontal = 2
 grow_vertical = 2

@@ -24,7 +24,6 @@ const SPAWN = ["spawn_ants", "spawn_fire_ants"]
 var idle_count = 0
 var hand_just_used = "left"
 var attack_set = HANDS
-var soldier_count = 0
 
 var last_bullets = []
 
@@ -37,12 +36,8 @@ func _ready():
 	anim_tree = $AnimationTree
 	mod_anim_player = $ModulateAnimPlayer
 	health_bar = $CanvasLayer/ProgressBar
-	health_bar.value = 100
+	health_bar.value = 10.0
 	randomize() # may be unnecessary?
-
-func _input(_event):
-	if Input.is_action_just_pressed("test"):
-		take_damage(null)
 
 # ------------- STATE-RELATED -------------
 func increase_idle_count():
@@ -54,6 +49,9 @@ func increase_idle_count():
 		return
 
 func attack():
+	if health_bar.value <= 0.0: # TODO: Temporarily Queen will just idle after death
+		return
+
 	var next_attack = attack_set.pick_random() # next possible attacks switch
 	anim_tree.set_condition(next_attack, true)
 	if next_attack == "left_hand":
@@ -70,10 +68,8 @@ func attack():
 		attack_set = HANDS
 	else:
 		attack_set = HANDS
-	#print(attack)
-	### Look at 19:24 for how to set condition to false
 
-# ---------- HEALTH & SLIGHT INVINCIBILITY ----------
+# ------------- HEALTH RELATED ----------------
 func take_damage(bullet):
 	if bullet != null and bullet in last_bullets: # No double damage for our player
 		return 
@@ -84,18 +80,22 @@ func take_damage(bullet):
 		mod_anim_player.play("RESET")
 		mod_anim_player.play("Damaged")
 		health_bar.value = health_bar.value - bullet.get_damage()
-		print("Queen damaged down to: ", health_bar.value)
+		if health_bar.value <= 0.0:
+			die()
+
+func die():
+	pass # TODO: Change animated sprite, at least for the head
 
 # ----------- INTERACTING WITH PLAYER -------------
 func _on_area_2d_body_entered(body):
 	var player = get_tree().get_first_node_in_group("player")
 	if body.is_in_group("player") \
-	and health_bar.value > 0 \
+	and health_bar.value > 0.0 \
 	and player != null \
 	and player.dead == false:
 		player.damage_player()
 
 func _on_center_area_2d_area_entered(area): # bullet hits the center collision shape
-	if area.is_in_group("player_weapon") and health_bar.value > 0:
+	if area.is_in_group("player_weapon") and health_bar.value > 0.0:
 		if "get_damage" in area and area.hitbox_activated:
 			take_damage(area)
