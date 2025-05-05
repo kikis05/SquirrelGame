@@ -79,3 +79,6 @@ texture = ExtResource("7_d64x4")
 z_index = 1
 position = Vector2(-271, 37)
 texture = ExtResource("7_d64x4")
+
+[node name="SpawnPoint" type="Node2D" parent="."]
+position = Vector2(240, 136)

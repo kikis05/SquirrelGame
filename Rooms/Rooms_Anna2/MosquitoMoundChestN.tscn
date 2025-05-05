@@ -221,3 +221,6 @@ position = Vector2(129, 214)
 
 [node name="Mosquito Baby Enemy2" parent="." instance=ExtResource("4_ha8pa")]
 position = Vector2(333, 213)
+
+[node name="SpawnPoint" type="Node2D" parent="."]
+position = Vector2(240, 136)

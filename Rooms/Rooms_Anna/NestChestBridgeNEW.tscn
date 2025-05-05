@@ -66,3 +66,6 @@ position = Vector2(12, -2)
 [node name="Grass" parent="Grass/Grass/Grass/Grass" instance=ExtResource("8_csb5d")]
 z_index = 1
 position = Vector2(-47, -5)
+
+[node name="SpawnPoint" type="Node2D" parent="."]
+position = Vector2(258, 168)

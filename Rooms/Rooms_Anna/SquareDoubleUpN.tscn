@@ -39,3 +39,6 @@ texture = ExtResource("4_ivpyy")
 z_index = 1
 position = Vector2(-122, -22)
 texture = ExtResource("4_ivpyy")
+
+[node name="SpawnPoint" type="Node2D" parent="."]
+position = Vector2(226, 145)

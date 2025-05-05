@@ -94,3 +94,6 @@ position = Vector2(-38, 27)
 
 [node name="DoorW" parent="." instance=ExtResource("4_1xmvb")]
 position = Vector2(26, -21)
+
+[node name="SpawnPoint" type="Node2D" parent="."]
+position = Vector2(240, 136)
