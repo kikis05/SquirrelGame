@@ -1,14 +1,14 @@
 TileMapLayer
+RichTextLabel
+CanvasLayer
+Node2D
 AnimationPlayer
 AnimationTree
 CollisionShape2D
 Area2D
 Timer
 Node
-Node2D
 ProgressBar
 AnimatedSprite2D
 Sprite2D
 Player
-AntEnemy
-HBoxContainer

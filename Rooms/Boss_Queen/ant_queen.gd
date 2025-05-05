@@ -11,7 +11,7 @@ extends Node
 - Dead when 0 health
 """
 
-const ATTACK_THRESHOLD = 2
+const ATTACK_THRESHOLD = 1
 const HANDS = ["left_hand", "right_hand"]
 const AFTER_RIGHT_HAND = ["left_hand", "pheromones"]
 const AFTER_LEFT_HAND = ["right_hand", "pheromones"]
@@ -22,15 +22,18 @@ var hand_just_used = "left"
 var attack_set = HANDS
 var soldier_count = 0
 
-var last_bullet = null
+var last_bullets = []
 
 @onready var anim_tree: AnimationTree
 @onready var mod_anim_player: AnimationPlayer
+@onready var health_bar: ProgressBar
 
 
 func _ready():
 	anim_tree = $AnimationTree
 	mod_anim_player = $ModulateAnimPlayer
+	health_bar = $CanvasLayer/ProgressBar
+	health_bar.value = 100
 	randomize() # may be unnecessary?
 
 func _input(_event):
@@ -41,36 +44,50 @@ func _input(_event):
 func increase_idle_count():
 	idle_count += 1
 	
-	if idle_count >= ATTACK_THRESHOLD:
+	if idle_count > ATTACK_THRESHOLD:
 		idle_count = 0
 		attack()
-	### Look at 14min to see when he's calling it
+		return
 
 func attack():
-	var next_attack = attack_set.pick_random()
+	var next_attack = attack_set.pick_random() # next possible attacks switch
 	anim_tree.set_condition(next_attack, true)
-	if next_attack == "left_hand":
-		attack_set = AFTER_LEFT_HAND
-	elif next_attack == "right_hand":
-		attack_set = AFTER_RIGHT_HAND
-	elif next_attack == "pheromones":
-		attack_set = SPAWN
-	elif next_attack == "spawn_ants" || next_attack == "spawn_fire_ants":
-		attack_set = HANDS
-	else:
-		attack_set = HANDS
-	print(attack)
+	#if next_attack == "left_hand":
+		#attack_set = AFTER_LEFT_HAND
+	#elif next_attack == "right_hand":
+		#attack_set = AFTER_RIGHT_HAND
+	#elif next_attack == "pheromones":
+		#attack_set = SPAWN
+	#elif next_attack == "spawn_ants" || next_attack == "spawn_fire_ants":
+		#attack_set = HANDS
+	#else:
+		#attack_set = HANDS
+	#print(attack)
 	### Look at 19:24 for how to set condition to false
 
 # ---------- HEALTH & SLIGHT INVINCIBILITY ----------
 func take_damage(bullet):
-	if bullet != null and last_bullet == bullet: # No double damage for our player
+	if bullet != null and bullet in last_bullets: # No double damage for our player
 		return 
 	else:
+		last_bullets.append(bullet)
+		if len(last_bullets) > 5:
+			last_bullets.pop_front()
 		mod_anim_player.play("RESET")
 		mod_anim_player.play("Damaged")
+		health_bar.value = health_bar.value - bullet.get_damage()
+		print("Queen damaged down to: ", health_bar.value)
 
+# ----------- INTERACTING WITH PLAYER -------------
+func _on_area_2d_body_entered(body):
+	var player = get_tree().get_first_node_in_group("player")
+	if body.is_in_group("player") \
+	and health_bar.value > 0 \
+	and player != null \
+	and player.dead == false:
+		player.damage_player()
 
-
-func give_damage(): #?
-	pass 
+func _on_center_area_2d_area_entered(area): # bullet hits the center collision shape
+	if area.is_in_group("player_weapon") and health_bar.value > 0:
+		if "get_damage" in area and area.hitbox_activated:
+			take_damage(area)
