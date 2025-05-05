@@ -28,6 +28,5 @@ position = Vector2(241, 206)
 [node name="Ladder" parent="." instance=ExtResource("5_g04tc")]
 position = Vector2(224, 128)
 next_scene = ExtResource("6_wg3y1")
-interact_action = "interact"
 
 [node name="UILayer" type="CanvasLayer" parent="."]
