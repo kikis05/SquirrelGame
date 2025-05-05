@@ -13,8 +13,10 @@ extends Node
 
 const ATTACK_THRESHOLD = 1
 const HANDS = ["left_hand", "right_hand"]
-const AFTER_RIGHT_HAND = ["left_hand", "pheromones"]
-const AFTER_LEFT_HAND = ["right_hand", "pheromones"]
+const AFTER_RIGHT_HAND = ["left_hand", "spawn_ants"]
+const AFTER_LEFT_HAND = ["right_hand", "spawn_ants"]
+#const AFTER_RIGHT_HAND = ["left_hand", "pheromones"]
+#const AFTER_LEFT_HAND = ["right_hand", "pheromones"]
 const SPAWN = ["spawn_ants", "spawn_fire_ants"]
 
 var idle_count = 0
@@ -52,16 +54,16 @@ func increase_idle_count():
 func attack():
 	var next_attack = attack_set.pick_random() # next possible attacks switch
 	anim_tree.set_condition(next_attack, true)
-	#if next_attack == "left_hand":
-		#attack_set = AFTER_LEFT_HAND
-	#elif next_attack == "right_hand":
-		#attack_set = AFTER_RIGHT_HAND
+	if next_attack == "left_hand":
+		attack_set = AFTER_LEFT_HAND
+	elif next_attack == "right_hand":
+		attack_set = AFTER_RIGHT_HAND
 	#elif next_attack == "pheromones":
 		#attack_set = SPAWN
-	#elif next_attack == "spawn_ants" || next_attack == "spawn_fire_ants":
-		#attack_set = HANDS
-	#else:
-		#attack_set = HANDS
+	elif next_attack == "spawn_ants" || next_attack == "spawn_fire_ants":
+		attack_set = HANDS
+	else:
+		attack_set = HANDS
 	#print(attack)
 	### Look at 19:24 for how to set condition to false
 

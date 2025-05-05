@@ -1,7 +1,8 @@
+Marker2D
+Node2D
 TileMapLayer
 RichTextLabel
 CanvasLayer
-Node2D
 AnimationPlayer
 AnimationTree
 CollisionShape2D

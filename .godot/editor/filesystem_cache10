@@ -1,5 +1,5 @@
 ea4bc82a6ad023ab7ee23ee620429895
-::res://::1746411484
+::res://::1746420296
 bullet.gd::GDScript/GDScript::2304997660688105147::1746237035::0::1::::<>Area2D<><>0<>0<><>::
 bullet.tscn::PackedScene/PackedScene::1732501824914031346::1746225826::0::1::::<><><>0<>0<><>::uid://73s8e05jdqcp::::res://bullet.gd<>uid://5ubv3ttytk60::::res://art/SquirrelGame_Planning3.png
 coin.gd::GDScript/GDScript::7206091320089563611::1745547790::0::1::::<>Area2D<><>0<>0<><>::
@@ -79,8 +79,8 @@ Greenery.png::CompressedTexture2D/CompressedTexture2D::4900901462584412716::1746
 sunflower.gd::GDScript/GDScript::3970168582288666235::1746260965::0::1::::<>Area2D<><>0<>0<><>::
 Sunflower.png::CompressedTexture2D/CompressedTexture2D::2258472465787341234::1746260965::1746292601::1::::<><><>0<>0<>869c2015e6ca236886a1b74765bdd632<>res://.godot/imported/Sunflower.png-75917e31e4a01689a1567708056ecd7b.ctex::
 sunflower.tscn::PackedScene/PackedScene::5241330227028500430::1746260965::0::1::::<><><>0<>0<><>::uid://bwtgdjs5ki24v::::res://assets/interactables/sunflower.gd<>uid://7gaygssu2t11::::res://assets/interactables/Sunflower.png
-::res://assets/tiles/::1746407410
-RoomTileset.tres::TileSet::7739507965868503946::1746407410::0::1::::<><><>0<>0<><>::uid://ct5rm6fgeven2::::res://Rooms/DungeonAssets.png
+::res://assets/tiles/::1746411523
+RoomTileset.tres::TileSet::7739507965868503946::1746411523::0::1::::<><><>0<>0<><>::uid://ct5rm6fgeven2::::res://Rooms/DungeonAssets.png
 ::res://entities/::1746045773
 ::res://entities/chests/::1746382535
 chest.gd::GDScript/GDScript::8101383578872045616::1746381643::0::1::::<>Node2D<><>0<>0<><>::
@@ -101,9 +101,9 @@ mosquito_baby_enemy.tscn::PackedScene/PackedScene::6353449129499566037::17463821
 ::res://entities/enemies/mosquito_enemy/::1746292173
 mosquito_enemy.gd::GDScript/GDScript::7177166954038807072::1746292173::0::1::::MosquitoEnemy<>AntEnemy<><>0<>0<><>::
 mosquito_enemy.tscn::PackedScene/PackedScene::7462214751504246880::1745805590::0::1::::<><><>0<>0<><>::uid://daiw5kfg4dhxo::::res://entities/enemies/mosquito_enemy/mosquito_enemy.gd<>uid://cwrwm5a1gb2nh::::res://entities/enemies/mosquito_baby_enemy/mosquito_baby_enemy.tscn<>uid://cvymypq17y0d7::::res://assets/enemies/mosquito_mom_anims1.png<>uid://drc32dbyt45eh::::res://entities/enemies/states/state_machine.gd<>uid://8jg436ppnko::::res://entities/enemies/states/idle_state.gd<>uid://b0u3qvmt58th8::::res://entities/enemies/states/linear_chase_state.gd<>uid://cji0ts0qst0sl::::res://entities/enemies/states/attack_state.gd<>uid://bnm6cr87jsjaw::::res://entities/enemies/states/stun_tolinear_state.gd<>uid://c7yfvis6uphlt::::res://entities/enemies/states/death_state.gd<>uid://fhaxlu632pt::::res://entities/enemies/states/escape_state.gd
-::res://entities/enemies/states/::1746411451
+::res://entities/enemies/states/::1746419750
 attack_state.gd::GDScript/GDScript::5422608821856536523::1745805590::0::1::::Attack_State<>State<><>0<>0<><>::
-chase_state.gd::GDScript::2284118536822836847::1746411451::0::1::::Chase_State<>State<><>0<>0<><>::
+chase_state.gd::GDScript::2284118536822836847::1746419750::0::1::::Chase_State<>State<><>0<>0<><>::
 death_state.gd::GDScript/GDScript::7068770965965611709::1746381658::0::1::::Death_State<>State<><>0<>0<><>::
 escape_state.gd::GDScript/GDScript::10748133700833165::1745520227::0::1::::Escape_State<>State<><>0<>0<><>::
 idle_state.gd::GDScript/GDScript::68683201443126110::1745805590::0::1::::Idle_State<>State<><>0<>0<><>::
@@ -127,11 +127,11 @@ Door_Slam-Sheet.png::CompressedTexture2D/CompressedTexture2D::247659583334561195
 DungeonAssets.png::CompressedTexture2D/CompressedTexture2D::6169415983761164237::1746318403::1746304784::1::::<><><>0<>0<>63671138cb1118ebaf903dcb59109816<>res://.godot/imported/DungeonAssets.png-c082733c921a291add0147c87167bb92.ctex::
 SquirrelGame_tutorial1.png::CompressedTexture2D/CompressedTexture2D::6096725564335693401::1746228096::1746228409::1::::<><><>0<>0<>de416fa6ace11674ed844531285082e3<>res://.godot/imported/SquirrelGame_tutorial1.png-a28ce586bf214ae933aa00c9212a3942.ctex::
 SquirrelGame_tutorial2.png::CompressedTexture2D/CompressedTexture2D::7302782255734173875::1746318403::1746318403::1::::<><><>0<>0<>e0bee96aea8a44511f315cae00618fae<>res://.godot/imported/SquirrelGame_tutorial2.png-4dbf4274487f653c5e14eaf6282c4ad9.ctex::
-::res://Rooms/Boss_Queen/::1746411451
-animation_tree.gd::GDScript::1625008484389590621::1746409913::0::1::::<>AnimationTree<><>0<>0<><>::
-ant_queen.gd::GDScript::1150371017591521232::1746411038::0::1::::<>Node<><>0<>0<><>::
-ant_queen.tscn::PackedScene::286007766123037989::1746411451::0::1::::<><><>0<>0<><>::uid://xffwgc3jwl06::::res://Rooms/Boss_Queen/animation_tree.gd<>uid://qnipbvq3w0fs::::res://Rooms/Boss_Queen/ant_queen.gd<>uid://dm8d1wncdr68e::::res://Rooms/Boss_Queen/xcurve.tres<>uid://cylf3012ymv8h::::res://assets/enemies/queen_ant/queen_head.png<>uid://bwv4tlcifvsot::::res://assets/enemies/queen_ant/queen_body.png<>uid://ss0sks3hf0eu::::res://assets/enemies/queen_ant/queen_left.png<>uid://d35c0fuugsy34::::res://assets/enemies/queen_ant/queen_right.png<>uid://c33ivdot7yug6::::res://assets/Pixeled.ttf
-boss_room_queen.tscn::PackedScene::7235693126392232988::1746411451::0::1::::<><><>0<>0<><>::uid://dijcthwd7lyow::::res://assets/tiles/RoomTileset.tres<>uid://ecsrhcu1cpjh::::res://Rooms/Boss_Queen/ant_queen.tscn<>uid://ctdj7k4cwb4f6::::res://Player/player.tscn
+::res://Rooms/Boss_Queen/::1746419750
+animation_tree.gd::GDScript::1625008484389590621::1746412088::0::1::::<>AnimationTree<><>0<>0<><>::
+ant_queen.gd::GDScript::1150371017591521232::1746412100::0::1::::<>Node<><>0<>0<><>::
+ant_queen.tscn::PackedScene::286007766123037989::1746419750::0::1::::<><><>0<>0<><>::uid://xffwgc3jwl06::::res://Rooms/Boss_Queen/animation_tree.gd<>uid://qnipbvq3w0fs::::res://Rooms/Boss_Queen/ant_queen.gd<>uid://dm8d1wncdr68e::::res://Rooms/Boss_Queen/xcurve.tres<>uid://cylf3012ymv8h::::res://assets/enemies/queen_ant/queen_head.png<>uid://bwv4tlcifvsot::::res://assets/enemies/queen_ant/queen_body.png<>uid://ss0sks3hf0eu::::res://assets/enemies/queen_ant/queen_left.png<>uid://d35c0fuugsy34::::res://assets/enemies/queen_ant/queen_right.png<>uid://c33ivdot7yug6::::res://assets/Pixeled.ttf
+boss_room_queen.tscn::PackedScene::7235693126392232988::1746413425::0::1::::<><><>0<>0<><>::uid://dijcthwd7lyow::::res://assets/tiles/RoomTileset.tres<>uid://ecsrhcu1cpjh::::res://Rooms/Boss_Queen/ant_queen.tscn<>uid://ctdj7k4cwb4f6::::res://Player/player.tscn
 xcurve.tres::Curve/Curve::8069882397931236634::1746407362::0::1::::<><><>0<>0<><>::
 ::res://Rooms/Doors/::1746322318
 DoorE.tscn::PackedScene/PackedScene::5541973982767220652::1746322292::0::1::::<><><>0<>0<><>::uid://cip7l1do06wqa::::res://Rooms/Door.gd<>uid://cnx2b8og4so1b::::res://Rooms/door_open.png<>uid://bbgknbhqbls14::::res://Rooms/door_close.png

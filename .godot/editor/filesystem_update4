@@ -1,6 +1,5 @@
 res://Rooms/Boss_Queen/ant_queen.tscn
 res://assets/tiles/RoomTileset.tres
-res://Rooms/Boss_Queen/boss_room_queen.tscn
 res://Rooms/Boss_Queen/ant_queen.gd
+res://Rooms/Boss_Queen/boss_room_queen.tscn
 res://entities/enemies/states/chase_state.gd
-res://Rooms/Boss_Queen/animation_tree.gd
