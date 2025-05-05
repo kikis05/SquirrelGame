@@ -1,11 +1,17 @@
-[gd_scene load_steps=4 format=4 uid="uid://dbda2q16wwfxk"]
+[gd_scene load_steps=7 format=4 uid="uid://dbda2q16wwfxk"]
 
+[ext_resource type="Script" uid="uid://bla4geumqepmg" path="res://Rooms/Boss_Queen/boss_room_queen.gd" id="1_5rcbc"]
 [ext_resource type="TileSet" uid="uid://dijcthwd7lyow" path="res://assets/tiles/RoomTileset.tres" id="1_w87dd"]
+[ext_resource type="PackedScene" uid="uid://dhsd6cxjrxhtj" path="res://entities/enemies/ant_enemy/ant_enemy.tscn" id="2_dlqxs"]
 [ext_resource type="PackedScene" uid="uid://ecsrhcu1cpjh" path="res://Rooms/Boss_Queen/ant_queen.tscn" id="2_y8dbk"]
+[ext_resource type="PackedScene" uid="uid://xhg08ovbav64" path="res://entities/enemies/fire_ant_enemy/fire_ant_enemy.tscn" id="3_pp1ap"]
 [ext_resource type="PackedScene" uid="uid://ctdj7k4cwb4f6" path="res://Player/player.tscn" id="3_y8dbk"]
 
 [node name="BossRoomQueen" type="Node2D"]
 y_sort_enabled = true
+script = ExtResource("1_5rcbc")
+ant_scene = ExtResource("2_dlqxs")
+fire_ant_scene = ExtResource("3_pp1ap")
 
 [node name="TileMapLayer" type="TileMapLayer" parent="."]
 position = Vector2(0, -29)
@@ -23,16 +29,16 @@ position = Vector2(239, 174)
 [node name="Player" parent="." instance=ExtResource("3_y8dbk")]
 position = Vector2(243, 250)
 
-[node name="Markers" type="Node2D" parent="."]
+[node name="Land Markers" type="Node2D" parent="."]
 
-[node name="Marker2D" type="Marker2D" parent="Markers"]
+[node name="Marker2D" type="Marker2D" parent="Land Markers"]
 position = Vector2(64, 78)
 
-[node name="Marker2D2" type="Marker2D" parent="Markers"]
+[node name="Marker2D2" type="Marker2D" parent="Land Markers"]
 position = Vector2(43, 101)
 
-[node name="Marker2D5" type="Marker2D" parent="Markers"]
+[node name="Marker2D5" type="Marker2D" parent="Land Markers"]
 position = Vector2(412, 79)
 
-[node name="Marker2D6" type="Marker2D" parent="Markers"]
+[node name="Marker2D6" type="Marker2D" parent="Land Markers"]
 position = Vector2(434, 102)

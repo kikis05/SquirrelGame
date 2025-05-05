@@ -11,6 +11,8 @@ extends Node
 - Dead when 0 health
 """
 
+signal spawn_soldiers(type: String)
+
 const ATTACK_THRESHOLD = 1
 const HANDS = ["left_hand", "right_hand"]
 const AFTER_RIGHT_HAND = ["left_hand", "spawn_ants"]
@@ -60,7 +62,11 @@ func attack():
 		attack_set = AFTER_RIGHT_HAND
 	#elif next_attack == "pheromones":
 		#attack_set = SPAWN
-	elif next_attack == "spawn_ants" || next_attack == "spawn_fire_ants":
+	elif next_attack == "spawn_ants":
+		spawn_soldiers.emit("ants")
+		attack_set = HANDS
+	elif next_attack == "spawn_fire_ants":
+		spawn_soldiers.emit("fire_ants")
 		attack_set = HANDS
 	else:
 		attack_set = HANDS
