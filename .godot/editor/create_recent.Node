@@ -1,9 +1,9 @@
+TileMapLayer
 Sprite2D
 TextureRect
 CollisionPolygon2D
 Marker2D
 Node2D
-TileMapLayer
 RichTextLabel
 CanvasLayer
 AnimationPlayer
@@ -12,4 +12,3 @@ CollisionShape2D
 Area2D
 Timer
 Node
-ProgressBar

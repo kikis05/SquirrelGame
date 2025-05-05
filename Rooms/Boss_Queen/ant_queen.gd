@@ -13,10 +13,11 @@ extends Node
 
 signal spawn_soldiers(type: String)
 
-const ATTACK_THRESHOLD = 1
+const ATTACK_THRESHOLD = 2
 const HANDS = ["left_hand", "right_hand"]
 const AFTER_RIGHT_HAND = ["left_hand", "spawn_ants"]
 const AFTER_LEFT_HAND = ["right_hand", "spawn_ants"]
+const AFTER_ANTS = ["left_hand", "right_hand", "spawn_fire_ants"]
 #const AFTER_RIGHT_HAND = ["left_hand", "pheromones"]
 #const AFTER_LEFT_HAND = ["right_hand", "pheromones"]
 const SPAWN = ["spawn_ants", "spawn_fire_ants"]
@@ -36,7 +37,7 @@ func _ready():
 	anim_tree = $AnimationTree
 	mod_anim_player = $ModulateAnimPlayer
 	health_bar = $CanvasLayer/ProgressBar
-	health_bar.value = 10.0
+	health_bar.value = 100.0
 	randomize() # may be unnecessary?
 
 # ------------- STATE-RELATED -------------
@@ -62,7 +63,7 @@ func attack():
 		#attack_set = SPAWN
 	elif next_attack == "spawn_ants":
 		spawn_soldiers.emit("ants")
-		attack_set = HANDS
+		attack_set = AFTER_ANTS
 	elif next_attack == "spawn_fire_ants":
 		spawn_soldiers.emit("fire_ants")
 		attack_set = HANDS
@@ -84,7 +85,9 @@ func take_damage(bullet):
 			die()
 
 func die():
-	pass # TODO: Change animated sprite, at least for the head
+	var head_animation: AnimatedSprite2D = $Node2D/Head/AnimatedSprite2D
+	head_animation.play("death")
+	anim_tree.set_condition("death", true)
 
 # ----------- INTERACTING WITH PLAYER -------------
 func _on_area_2d_body_entered(body):
