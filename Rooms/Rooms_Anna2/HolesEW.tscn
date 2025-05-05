@@ -1,9 +1,11 @@
-[gd_scene load_steps=5 format=4 uid="uid://dkbphj04ywfyd"]
+[gd_scene load_steps=7 format=4 uid="uid://dkbphj04ywfyd"]
 
 [ext_resource type="TileSet" uid="uid://dijcthwd7lyow" path="res://assets/tiles/RoomTileset.tres" id="1_usj8x"]
 [ext_resource type="PackedScene" uid="uid://cwrwm5a1gb2nh" path="res://entities/enemies/mosquito_baby_enemy/mosquito_baby_enemy.tscn" id="2_ldysq"]
 [ext_resource type="PackedScene" uid="uid://dek0t7ihd4vxg" path="res://entities/enemies/mosquito_enemy/mosquito_enemy.tscn" id="3_a5jxy"]
 [ext_resource type="Texture2D" uid="uid://cws2vdp61uowe" path="res://art/DirtMound.png" id="5_a5jxy"]
+[ext_resource type="PackedScene" uid="uid://3bwfjlqsm6b4" path="res://Rooms/Doors/DoorW.tscn" id="5_t7r7y"]
+[ext_resource type="PackedScene" uid="uid://ck7trcc5jld8w" path="res://Rooms/Doors/DoorE.tscn" id="6_t7r7y"]
 
 [node name="HolesNESW" type="Node2D"]
 y_sort_enabled = true
@@ -57,3 +59,9 @@ texture = ExtResource("5_a5jxy")
 z_index = 1
 position = Vector2(189, 204)
 texture = ExtResource("5_a5jxy")
+
+[node name="DoorW" parent="." instance=ExtResource("5_t7r7y")]
+position = Vector2(15, 14)
+
+[node name="DoorE" parent="." instance=ExtResource("6_t7r7y")]
+position = Vector2(15, 14)

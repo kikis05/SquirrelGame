@@ -1,10 +1,12 @@
-[gd_scene load_steps=6 format=4 uid="uid://bmkdrrlhoh5a3"]
+[gd_scene load_steps=8 format=4 uid="uid://bmkdrrlhoh5a3"]
 
 [ext_resource type="TileSet" uid="uid://dijcthwd7lyow" path="res://assets/tiles/RoomTileset.tres" id="1_m63fl"]
 [ext_resource type="PackedScene" uid="uid://btvi3ex8vchv6" path="res://entities/chests/chest.tscn" id="2_ha8pa"]
 [ext_resource type="PackedScene" uid="uid://dek0t7ihd4vxg" path="res://entities/enemies/mosquito_enemy/mosquito_enemy.tscn" id="3_4v8bk"]
 [ext_resource type="PackedScene" uid="uid://cwrwm5a1gb2nh" path="res://entities/enemies/mosquito_baby_enemy/mosquito_baby_enemy.tscn" id="4_ha8pa"]
+[ext_resource type="Texture2D" uid="uid://cws2vdp61uowe" path="res://art/DirtMound.png" id="4_mpigp"]
 [ext_resource type="PackedScene" uid="uid://dcto22f6ba3gm" path="res://assets/interactables/DirtMound.tscn" id="5_fsl60"]
+[ext_resource type="PackedScene" uid="uid://bv1hwr4j0auc7" path="res://Rooms/Doors/DoorN.tscn" id="6_ptr5f"]
 
 [node name="MosquitoMoundN" type="Node2D"]
 
@@ -24,37 +26,13 @@ tile_set = ExtResource("1_m63fl")
 [node name="Chest" parent="." instance=ExtResource("2_ha8pa")]
 position = Vector2(231, 247)
 
-[node name="Mosquito Enemy" parent="." instance=ExtResource("3_4v8bk")]
-position = Vector2(229, 271)
-
-[node name="Mosquito Enemy2" parent="." instance=ExtResource("3_4v8bk")]
-position = Vector2(310, 250)
-
-[node name="Mosquito Enemy3" parent="." instance=ExtResource("3_4v8bk")]
-position = Vector2(294, 203)
-
-[node name="Mosquito Enemy4" parent="." instance=ExtResource("3_4v8bk")]
-position = Vector2(230, 183)
-
-[node name="Mosquito Enemy5" parent="." instance=ExtResource("3_4v8bk")]
-position = Vector2(168, 201)
-
-[node name="Mosquito Enemy6" parent="." instance=ExtResource("3_4v8bk")]
-position = Vector2(149, 247)
-
-[node name="Mosquito Baby Enemy" parent="." instance=ExtResource("4_ha8pa")]
-position = Vector2(129, 214)
-
-[node name="Mosquito Baby Enemy2" parent="." instance=ExtResource("4_ha8pa")]
-position = Vector2(338, 213)
-
 [node name="DirtMound11" parent="." instance=ExtResource("5_fsl60")]
 z_index = 1
-position = Vector2(202, 123)
+position = Vector2(196, 126)
 
 [node name="DirtMound14" parent="." instance=ExtResource("5_fsl60")]
 z_index = 1
-position = Vector2(171, 132)
+position = Vector2(163, 132)
 
 [node name="DirtMound15" parent="." instance=ExtResource("5_fsl60")]
 z_index = 1
@@ -70,11 +48,11 @@ position = Vector2(318, 133)
 
 [node name="DirtMound5" parent="." instance=ExtResource("5_fsl60")]
 z_index = 1
-position = Vector2(351, 142)
+position = Vector2(354, 142)
 
 [node name="DirtMound6" parent="." instance=ExtResource("5_fsl60")]
 z_index = 1
-position = Vector2(375, 162)
+position = Vector2(363, 162)
 
 [node name="DirtMound7" parent="." instance=ExtResource("5_fsl60")]
 z_index = 1
@@ -82,11 +60,11 @@ position = Vector2(389, 176)
 
 [node name="DirtMound10" parent="." instance=ExtResource("5_fsl60")]
 z_index = 1
-position = Vector2(400, 196)
+position = Vector2(409, 196)
 
 [node name="DirtMound9" parent="." instance=ExtResource("5_fsl60")]
 z_index = 1
-position = Vector2(410, 213)
+position = Vector2(399, 214)
 
 [node name="DirtMound3" parent="." instance=ExtResource("5_fsl60")]
 z_index = 1
@@ -94,11 +72,11 @@ position = Vector2(420, 228)
 
 [node name="DirtMound12" parent="." instance=ExtResource("5_fsl60")]
 z_index = 1
-position = Vector2(425, 238)
+position = Vector2(435, 237)
 
 [node name="DirtMound13" parent="." instance=ExtResource("5_fsl60")]
 z_index = 1
-position = Vector2(431, 252)
+position = Vector2(412, 252)
 
 [node name="DirtMound19" parent="." instance=ExtResource("5_fsl60")]
 z_index = 1
@@ -130,7 +108,7 @@ position = Vector2(32, 106)
 
 [node name="DirtMound23" parent="." instance=ExtResource("5_fsl60")]
 z_index = 1
-position = Vector2(103, 173)
+position = Vector2(109, 173)
 
 [node name="DirtMound18" parent="." instance=ExtResource("5_fsl60")]
 z_index = 1
@@ -142,12 +120,104 @@ position = Vector2(398, 71)
 
 [node name="DirtMound16" parent="." instance=ExtResource("5_fsl60")]
 z_index = 1
-position = Vector2(74, 210)
+position = Vector2(64, 210)
 
 [node name="DirtMound2" parent="." instance=ExtResource("5_fsl60")]
 z_index = 1
-position = Vector2(71, 231)
+position = Vector2(79, 231)
 
 [node name="DirtMound" parent="." instance=ExtResource("5_fsl60")]
 z_index = 1
 position = Vector2(55, 249)
+
+[node name="dirt6" type="Sprite2D" parent="."]
+z_index = 1
+position = Vector2(51, 101)
+texture = ExtResource("4_mpigp")
+
+[node name="dirt7" type="Sprite2D" parent="."]
+z_index = 1
+position = Vector2(103, 94)
+texture = ExtResource("4_mpigp")
+
+[node name="dirt7" type="Sprite2D" parent="dirt7"]
+z_index = 1
+position = Vector2(207, -29)
+texture = ExtResource("4_mpigp")
+
+[node name="dirt7" type="Sprite2D" parent="dirt7/dirt7"]
+z_index = 1
+position = Vector2(16, 194)
+texture = ExtResource("4_mpigp")
+
+[node name="dirt7" type="Sprite2D" parent="dirt7/dirt7/dirt7"]
+z_index = 1
+position = Vector2(-122, -67)
+texture = ExtResource("4_mpigp")
+
+[node name="dirt7" type="Sprite2D" parent="dirt7/dirt7/dirt7/dirt7"]
+z_index = 1
+position = Vector2(-65, -21)
+texture = ExtResource("4_mpigp")
+
+[node name="dirt7" type="Sprite2D" parent="dirt7/dirt7/dirt7/dirt7/dirt7"]
+z_index = 1
+position = Vector2(176, 8)
+texture = ExtResource("4_mpigp")
+
+[node name="dirt5" type="Sprite2D" parent="."]
+z_index = 1
+position = Vector2(361, 174)
+texture = ExtResource("4_mpigp")
+
+[node name="dirt8" type="Sprite2D" parent="."]
+z_index = 1
+position = Vector2(130, 233)
+texture = ExtResource("4_mpigp")
+
+[node name="dirt4" type="Sprite2D" parent="."]
+z_index = 1
+position = Vector2(160, 137)
+texture = ExtResource("4_mpigp")
+
+[node name="dirt3" type="Sprite2D" parent="."]
+z_index = 1
+position = Vector2(425, 96)
+texture = ExtResource("4_mpigp")
+
+[node name="dirt2" type="Sprite2D" parent="."]
+z_index = 1
+position = Vector2(314, 133)
+texture = ExtResource("4_mpigp")
+
+[node name="dirt" type="Sprite2D" parent="."]
+z_index = 1
+position = Vector2(85, 245)
+texture = ExtResource("4_mpigp")
+
+[node name="DoorN" parent="." instance=ExtResource("6_ptr5f")]
+position = Vector2(-81, -2)
+
+[node name="Mosquito Enemy" parent="." instance=ExtResource("3_4v8bk")]
+position = Vector2(229, 271)
+
+[node name="Mosquito Enemy2" parent="." instance=ExtResource("3_4v8bk")]
+position = Vector2(310, 250)
+
+[node name="Mosquito Enemy3" parent="." instance=ExtResource("3_4v8bk")]
+position = Vector2(294, 203)
+
+[node name="Mosquito Enemy4" parent="." instance=ExtResource("3_4v8bk")]
+position = Vector2(230, 183)
+
+[node name="Mosquito Enemy5" parent="." instance=ExtResource("3_4v8bk")]
+position = Vector2(168, 201)
+
+[node name="Mosquito Enemy6" parent="." instance=ExtResource("3_4v8bk")]
+position = Vector2(149, 247)
+
+[node name="Mosquito Baby Enemy" parent="." instance=ExtResource("4_ha8pa")]
+position = Vector2(129, 214)
+
+[node name="Mosquito Baby Enemy2" parent="." instance=ExtResource("4_ha8pa")]
+position = Vector2(333, 213)

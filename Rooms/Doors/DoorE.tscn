@@ -106,6 +106,7 @@ animations = [{
 size = Vector2(32, 32)
 
 [node name="DoorE" type="Node2D"]
+z_index = 1
 
 [node name="DoorE" type="Area2D" parent="." groups=["door"]]
 script = ExtResource("1_ckq06")

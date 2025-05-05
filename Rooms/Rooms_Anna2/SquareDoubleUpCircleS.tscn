@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=4 uid="uid://jmwvmgyycmmd"]
+[gd_scene load_steps=5 format=4 uid="uid://jmwvmgyycmmd"]
 
 [ext_resource type="TileSet" uid="uid://dijcthwd7lyow" path="res://assets/tiles/RoomTileset.tres" id="1_8kvvx"]
 [ext_resource type="PackedScene" uid="uid://xhg08ovbav64" path="res://entities/enemies/fire_ant_enemy/fire_ant_enemy.tscn" id="2_o7f23"]
 [ext_resource type="PackedScene" uid="uid://dhsd6cxjrxhtj" path="res://entities/enemies/ant_enemy/ant_enemy.tscn" id="3_f6540"]
+[ext_resource type="PackedScene" uid="uid://bv1hwr4j0auc7" path="res://Rooms/Doors/DoorN.tscn" id="4_ml0yu"]
 
 [node name="SquareDoubleUpN" type="Node2D"]
 y_sort_enabled = true
@@ -20,3 +21,6 @@ position = Vector2(220, 130)
 
 [node name="Ant Enemy2" parent="." instance=ExtResource("3_f6540")]
 position = Vector2(91, 128)
+
+[node name="DoorN" parent="." instance=ExtResource("4_ml0yu")]
+position = Vector2(-85, 24)

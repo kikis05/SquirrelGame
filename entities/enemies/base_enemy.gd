@@ -53,6 +53,11 @@ func change_animation(_name: String):
 
 func get_nav_agent():
 	pass
+func get_speed():
+	return chase_speed
+
+func set_speed(spd):
+	chase_speed = spd
 
 func start_moving():
 	pass

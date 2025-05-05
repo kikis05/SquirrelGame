@@ -106,6 +106,7 @@ animations = [{
 size = Vector2(32, 32)
 
 [node name="DoorS" type="Node2D"]
+z_index = 1
 
 [node name="DoorS" type="Area2D" parent="." groups=["door"]]
 script = ExtResource("1_ottf0")
