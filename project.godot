@@ -15,6 +15,11 @@ run/main_scene="uid://df3pjjjqdan63"
 config/features=PackedStringArray("4.4", "GL Compatibility")
 config/icon="res://icon.svg"
 
+[autoload]
+
+TransitionScreen="*res://Rooms/Ladder/transition_screen.tscn"
+GameState="*res://scenes/GameState.gd"
+
 [display]
 
 window/size/viewport_width=480

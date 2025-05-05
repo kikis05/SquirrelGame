@@ -13,7 +13,7 @@ func _ready() -> void:
 	exit_btn.mouse_entered.connect(exit_hover_s.play)
 
 func _on_start_pressed() -> void:
-	get_tree().change_scene_to_file("res://Rooms/Tutorial/TutorialLevel.tscn")
+	get_tree().change_scene_to_file("res://scenes/TutorialLevel.tscn")
 
 func _on_exit_pressed() -> void:
 	get_tree().quit()

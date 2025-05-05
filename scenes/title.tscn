@@ -1,11 +1,12 @@
-[gd_scene load_steps=7 format=3 uid="uid://d2fjoqrty8s11"]
+[gd_scene load_steps=8 format=3 uid="uid://d2fjoqrty8s11"]
 
 [ext_resource type="Texture2D" uid="uid://djhhbuftdhspm" path="res://scenes/Title_Screen.png" id="1_4ignj"]
 [ext_resource type="Script" uid="uid://bxds3xgo3bogk" path="res://scenes/TitleScreen.gd" id="1_wosw1"]
 [ext_resource type="Texture2D" uid="uid://dr4arywab33g5" path="res://scenes/start_button.png" id="3_pyl7j"]
 [ext_resource type="AudioStream" uid="uid://dvwybkoru1wy0" path="res://scenes/zapsplat_industrial_switch_plastic_drill_reverse_toggle_click_003_110099.mp3" id="4_4rr2b"]
 [ext_resource type="Texture2D" uid="uid://dnd4otuj1oghw" path="res://scenes/exit_button.png" id="4_b3w7a"]
-[ext_resource type="AudioStream" uid="uid://c0tho7is8j2lj" path="res://scenes/One Man Symphony - A New Day's Hurry (Free) - 01 A New Day Begins (General Background Music).mp3" id="6_4rr2b"]
+[ext_resource type="AudioStream" uid="uid://c4xwcw13rjh2v" path="res://scenes/Origami Repetika - Frantic Remedy.mp3" id="6_4rr2b"]
+[ext_resource type="Script" uid="uid://dvi35r7pmbve2" path="res://scenes/Loop.gd" id="7_yql1r"]
 
 [node name="Title" type="Node2D"]
 
@@ -45,3 +46,4 @@ stream = ExtResource("4_4rr2b")
 [node name="Music" type="AudioStreamPlayer2D" parent="Control"]
 stream = ExtResource("6_4rr2b")
 autoplay = true
+script = ExtResource("7_yql1r")

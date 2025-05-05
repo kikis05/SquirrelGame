@@ -60,9 +60,12 @@ func _wire_doors_in(room: Node, room_pos: Vector2i) -> void:
 				door.connect("door_entered", _on_door_entered)
 
 func _on_door_entered(room_pos : Vector2i, dir : String, body : Node) -> void:
-	if body.name != "Player": return
-	_switch_to_room(room_pos + DIR_OFF[dir], dir)
+	if body.name != "Player":
+		return                                      # ignore NPCs, bullets, …
 
+	# do NOT jump rooms in the same physics step – defer it
+	var next = room_pos + DIR_OFF[dir]
+	call_deferred("_deferred_switch", next, dir)
 # ───────────────────── player management ───────────────────────
 func _spawn_or_move_player(from_dir : String) -> void:
 	if _player == null:
@@ -100,3 +103,13 @@ func _find_real_door(holder : Node) -> Door:
 func _inject_player_into_enemies(room : Node) -> void:
 	for e in room.get_tree().get_nodes_in_group("enemy"):
 		e.player = _player
+
+
+# runs one idle‑frame later, when physics is finished flushing queries
+func _deferred_switch(pos : Vector2i, entered_from_dir : String) -> void:
+
+	# ─── clean up transient objects left in the *old* room ───
+	get_tree().call_group("room_deletables", "queue_free")
+
+	# now it is safe to blast the previous room and build the next
+	_switch_to_room(pos, entered_from_dir)
