@@ -6,6 +6,7 @@ var damage = 15
 @onready var landingTimer = $DestroyBullet
 @onready var fadeTimer = $FadeTimer
 @onready var sprite = $AnimatedSprite2D #change to Animation
+@export var damage_type : String = "gun"
 
 var fading = 0
 
@@ -58,6 +59,8 @@ func set_damage(damage_):
 	damage = damage_
 func get_damage():
 	return damage
+func get_damage_type():
+	return damage_type
 
 
 func _on_area_entered(area: Area2D) -> void:

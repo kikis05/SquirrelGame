@@ -1,10 +1,3 @@
-# Door.gd  ──────────────────────────────────────────────────────────────
-# One-stop script for every doorway in the dungeon.
-# • Joins the **"door"** group at runtime (for DungeonGenerator wiring)
-# • Emits `door_entered(room_pos, direction, body)` when the player walks in
-# • Offers `slam()` and `open()` helpers that play the matching animation
-# ----------------------------------------------------------------------
-
 extends Area2D
 class_name Door                       # optional but still handy for the editor
 

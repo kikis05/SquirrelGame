@@ -3,6 +3,7 @@ extends Area2D
 @export var speed = 500
 @export var fade = 3 #how fast the slash effect fades
 @export var damage = 5
+@onready var damage_type = "sword"
 
 @onready var sprite = $Sprite2D
 
@@ -38,6 +39,9 @@ func set_fade(fade_):
 	
 func set_damage(damage_):
 	damage = damage_
+
+func get_damage_type():
+	return damage_type
 
 func get_damage():
 	return damage * sprite.modulate.a

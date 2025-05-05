@@ -1,0 +1,110 @@
+[gd_scene load_steps=14 format=3 uid="uid://p6ykfm7n7oe1"]
+
+[ext_resource type="Texture2D" uid="uid://baobt6unobju3" path="res://NPCs/squirrel_anims1.png" id="1_c2q1t"]
+[ext_resource type="Script" uid="uid://1hje1lm3xh7e" path="res://NPCs/Nutsworth.gd" id="1_uu0g8"]
+[ext_resource type="FontFile" uid="uid://ch5tibw7yghdt" path="res://assets/MinecraftStandard.otf" id="2_dystu"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dystu"]
+atlas = ExtResource("1_c2q1t")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_uu0g8"]
+atlas = ExtResource("1_c2q1t")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sek2n"]
+atlas = ExtResource("1_c2q1t")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hkmot"]
+atlas = ExtResource("1_c2q1t")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_p33sp"]
+atlas = ExtResource("1_c2q1t")
+region = Rect2(0, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2d5q0"]
+atlas = ExtResource("1_c2q1t")
+region = Rect2(32, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_10s6f"]
+atlas = ExtResource("1_c2q1t")
+region = Rect2(64, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hy4w7"]
+atlas = ExtResource("1_c2q1t")
+region = Rect2(96, 32, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_p33sp"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dystu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_uu0g8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sek2n")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hkmot")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_p33sp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2d5q0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_10s6f")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hy4w7")
+}],
+"loop": true,
+"name": &"idle_outline",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_c2q1t"]
+size = Vector2(32, 32)
+
+[node name="Nutsworth" type="Node2D"]
+script = ExtResource("1_uu0g8")
+
+[node name="UILayer" type="CanvasLayer" parent="."]
+layer = 100
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+z_index = 1
+position = Vector2(0, -14.5)
+sprite_frames = SubResource("SpriteFrames_p33sp")
+animation = &"idle"
+frame_progress = 0.732081
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(0, -9)
+shape = SubResource("RectangleShape2D_c2q1t")
+
+[node name="Prompt" type="RichTextLabel" parent="."]
+offset_left = -36.0
+offset_top = -38.0
+offset_right = 36.0
+offset_bottom = -25.0
+size_flags_horizontal = 0
+size_flags_vertical = 4
+theme_override_fonts/normal_font = ExtResource("2_dystu")
+theme_override_font_sizes/normal_font_size = 6
+text = "E to TALK"
+horizontal_alignment = 1
+
+[node name="DialogSpawn" type="Marker2D" parent="."]

@@ -1,0 +1,50 @@
+[gd_scene load_steps=4 format=3 uid="uid://dsw2hwd2u076u"]
+
+[ext_resource type="Script" uid="uid://bfdub7tu68bdr" path="res://NPCs/DialogueBox.gd" id="1_pmfib"]
+[ext_resource type="Texture2D" uid="uid://cu7seqhqxycfl" path="res://NPCs/textbox.png" id="2_txpso"]
+[ext_resource type="FontFile" uid="uid://c8lof5dqwwsev" path="res://NPCs/superstar_memesbruh03.ttf" id="3_r4w04"]
+
+[node name="Dialog" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 8.0
+offset_top = 160.0
+offset_right = 8.0
+offset_bottom = 160.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_pmfib")
+
+[node name="NinePatchRect" type="NinePatchRect" parent="."]
+layout_mode = 0
+offset_top = 40.0
+offset_right = 464.0
+offset_bottom = 104.0
+texture = ExtResource("2_txpso")
+region_rect = Rect2(0, 0, 48, 48)
+patch_margin_left = 16
+patch_margin_top = 16
+patch_margin_right = 16
+patch_margin_bottom = 16
+
+[node name="Line" type="Label" parent="NinePatchRect"]
+layout_mode = 2
+offset_left = 8.0
+offset_right = 456.0
+offset_bottom = 56.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("3_r4w04")
+autowrap_mode = 3
+clip_text = true
+
+[node name="ContinueHint" type="Label" parent="NinePatchRect"]
+layout_mode = 0
+offset_left = 312.0
+offset_top = 40.0
+offset_right = 452.0
+offset_bottom = 72.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("3_r4w04")
+text = "Press E to Continue"

@@ -76,3 +76,8 @@ func _remove_from_enemy_group_recursive(node: Node) -> void:
 		node.call_deferred("remove_from_group", "enemy")  # safer with deferred call
 	for child in node.get_children():
 		_remove_from_enemy_group_recursive(child)
+
+func _is_damage_allowed(area : Area2D) -> bool:
+	# By default every enemy accepts every damage type.
+	# Sub‑classes can override this for special rules.
+	return true

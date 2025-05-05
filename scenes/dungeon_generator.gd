@@ -50,6 +50,7 @@ var player : Node = null
 var rng : RandomNumberGenerator = RandomNumberGenerator.new()
 
 func _ready() -> void:
+	TransitionScreen.fade_in()
 	rng.randomize()
 	print("\n=== DungeonGenerator READY ===")
 	if _generate_dungeon():
@@ -284,8 +285,18 @@ func _switch_to_room(pos : Vector2i, entered_from_dir : String) -> void:
 	if player == null:
 		player = player_scene.instantiate()
 		player.name = "Player"
-		add_child(player)
-		emit_signal("player_spawned", player)
+
+		var stats = GameState.player_stats
+		player.set_health(stats["current_health"])
+		player.set_speed(stats["speed"])
+		player.set_coins(stats["coins"])
+		player.set_gun_attack(stats["gun_attack"])
+		player.set_gun_speed(stats["gun_speed"])
+		player.set_sword_attack(stats["sword_attack"])
+
+
+	add_child(player)
+	emit_signal("player_spawned", player)
 
 	move_child(player, get_child_count() - 1)
 	player.global_position = spawn
