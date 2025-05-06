@@ -55,6 +55,11 @@ func change_animation(_name: String):
 
 func get_nav_agent():
 	pass
+func get_speed():
+	return chase_speed
+
+func set_speed(spd):
+	chase_speed = spd
 
 func start_moving():
 	pass
@@ -73,3 +78,8 @@ func _remove_from_enemy_group_recursive(node: Node) -> void:
 		node.call_deferred("remove_from_group", "enemy")  # safer with deferred call
 	for child in node.get_children():
 		_remove_from_enemy_group_recursive(child)
+
+func _is_damage_allowed(area : Area2D) -> bool:
+	# By default every enemy accepts every damage type.
+	# Sub‑classes can override this for special rules.
+	return true

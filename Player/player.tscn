@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=3 uid="uid://ctdj7k4cwb4f6"]
+[gd_scene load_steps=27 format=3 uid="uid://ctdj7k4cwb4f6"]
 
 [ext_resource type="Script" uid="uid://wpgykegedrya" path="res://Player/player.gd" id="1_abrql"]
 [ext_resource type="Texture2D" uid="uid://d04jfatr1u7pf" path="res://assets/squirrel_anims1 (1).png" id="2_fkugw"]
@@ -47,6 +47,7 @@ _data = {
 &"Damaged": SubResource("Animation_x3vf3"),
 &"RESET": SubResource("Animation_apopc")
 }
+[ext_resource type="FontFile" uid="uid://c33ivdot7yug6" path="res://assets/Pixeled.ttf" id="11_apopc"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_8fjmc"]
 atlas = ExtResource("2_fkugw")
@@ -223,10 +224,23 @@ visible = false
 visible = false
 position = Vector2(135, 85)
 
+[node name="Label" type="Label" parent="CanvasLayer"]
+offset_left = 1.0
+offset_top = 225.0
+offset_right = 351.0
+offset_bottom = 271.0
+theme_override_fonts/font = ExtResource("11_apopc")
+theme_override_font_sizes/font_size = 5
+text = "Upgrade!!"
+
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(0, 1.5)
 offset = Vector2(0.5, 0.5)
 
+[node name="PowerupTextTimer" type="Timer" parent="."]
+wait_time = 4.0
+
 [connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]
 [connection signal="area_entered" from="PlayerHitBox" to="." method="_on_player_hit_box_area_entered"]
 [connection signal="timeout" from="InvincibleTimer" to="." method="_on_invincible_timer_timeout"]
+[connection signal="timeout" from="PowerupTextTimer" to="." method="_on_powerup_text_timer_timeout"]

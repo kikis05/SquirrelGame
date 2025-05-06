@@ -1,0 +1,458 @@
+[gd_scene load_steps=5 format=4 uid="uid://coklprwvfwy2p"]
+
+[ext_resource type="TileSet" uid="uid://dijcthwd7lyow" path="res://assets/tiles/RoomTileset.tres" id="1_hxhgm"]
+[ext_resource type="PackedScene" uid="uid://c1fbc6lvy2bai" path="res://assets/interactables/grass.tscn" id="2_f16t7"]
+[ext_resource type="PackedScene" uid="uid://ck7trcc5jld8w" path="res://Rooms/Doors/DoorE.tscn" id="3_3g2g8"]
+[ext_resource type="PackedScene" uid="uid://dsg31ult7idkb" path="res://Shops/ShopB/shopB.tscn" id="4_f16t7"]
+
+[node name="StandardRoomS" type="Node2D"]
+
+[node name="Tilemap" type="TileMapLayer" parent="."]
+texture_filter = 1
+tile_map_data = PackedByteArray("AAAHAAIAAAAAAAIAAAAIAAIAAAABAAIAAAAJAAIAAAACAAIAAAAKAAIAAAAEAAIAAAALAAIAAAADAAIAAAAMAAIAAAAEAAIAAAANAAIAAAADAAIAAAAOAAIAAAAEAAIAAAAPAAIAAAADAAIAAAAQAAIAAAADAAIAAAARAAIAAAAEAAIAAAASAAIAAAADAAIAAAATAAIAAAAEAAIAAAAUAAIAAAADAAIAAAAVAAIAAAAEAAIAAAAWAAIAAAADAAIAAAAXAAIAAAAEAAIAAAAYAAIAAAADAAIAAAAZAAIAAAAEAAIAAAAaAAIAAAADAAIAAAAbAAIAAAAFAAIAAAAbAA4AAAAFAAUAAAAHAA4AAAAAAAIAAAAIAA4AAAABAAMAAAAJAA4AAAACAAUAAAAKAA4AAAAEAAUAAAALAA4AAAADAAUAAAAMAA4AAAAEAAUAAAANAA4AAAADAAUAAAAOAA4AAAAEAAUAAAAPAA4AAAADAAUAAAAQAA4AAAAEAAUAAAARAA4AAAADAAUAAAASAA4AAAAEAAUAAAATAA4AAAADAAUAAAAUAA4AAAAEAAUAAAAVAA4AAAADAAUAAAAWAA4AAAAEAAUAAAAXAA4AAAADAAUAAAAYAA4AAAAEAAUAAAAZAA4AAAADAAUAAAAaAA4AAAAEAAUAAAAbAAMAAAAFAAMAAAAbAAQAAAAFAAQAAAAbAAUAAAAFAAMAAAAbAAYAAAAFAAQAAAAbAAcAAAAFAAMAAAAbAAgAAAAFAAQAAAAbAAkAAAAFAAMAAAAbAAoAAAAFAAQAAAAbAAsAAAAFAAMAAAAbAAwAAAAFAAQAAAAbAA0AAAAFAAMAAAAHAAcAAAAAAAMAAAAHAAkAAAAAAAMAAAAaAA0AAAAEAAQAAAAZAAwAAAADAAMAAAAYAAsAAAAEAAQAAAAXAAoAAAAEAAQAAAAWAAkAAAADAAMAAAAaAAMAAAAEAAMAAAAZAAQAAAADAAQAAAAYAAUAAAAEAAMAAAAXAAYAAAAEAAQAAAAWAAcAAAAJAAEAAAAHAAMAAAAAAAMAAAAIAAMAAAABAAMAAAAJAAMAAAACAAMAAAAKAAMAAAADAAMAAAALAAMAAAAEAAMAAAAMAAMAAAAJAAAAAAANAAMAAAAJAAAAAAAOAAMAAAAJAAAAAAAPAAMAAAAJAAAAAAAQAAMAAAAJAAAAAAARAAMAAAAJAAAAAAASAAMAAAADAAMAAAATAAMAAAAEAAMAAAAUAAMAAAAJAAAAAAAVAAMAAAAJAAAAAAAWAAMAAAAJAAAAAAAXAAMAAAAJAAAAAAAYAAMAAAAJAAAAAAAZAAMAAAADAAMAAAAHAAQAAAAAAAMAAAAIAAQAAAABAAMAAAAJAAQAAAACAAMAAAAKAAQAAAADAAQAAAALAAQAAAAEAAQAAAAMAAQAAAAJAAAAAAANAAQAAAAJAAAAAAAOAAQAAAAJAAAAAAAPAAQAAAAJAAAAAAAQAAQAAAAJAAAAAAARAAQAAAAJAAAAAAASAAQAAAADAAQAAAATAAQAAAAEAAQAAAAUAAQAAAAJAAAAAAAVAAQAAAAJAAAAAAAWAAQAAAAJAAAAAAAXAAQAAAAJAAAAAAAYAAQAAAAJAAAAAAAHAAUAAAAAAAMAAAAIAAUAAAABAAMAAAAJAAUAAAACAAMAAAAKAAUAAAAIAAEAAAALAAUAAAAIAAEAAAAMAAUAAAAIAAAAAAANAAUAAAADAAMAAAAOAAUAAAAEAAMAAAAPAAUAAAAJAAAAAAAQAAUAAAAJAAAAAAARAAUAAAAJAAAAAAASAAUAAAAJAAAAAAATAAUAAAAJAAAAAAAUAAUAAAAJAAAAAAAVAAUAAAAJAAAAAAAWAAUAAAADAAMAAAAXAAUAAAAEAAMAAAAHAAYAAAAAAAMAAAAIAAYAAAABAAMAAAAJAAYAAAACAAMAAAAKAAYAAAAIAAEAAAAMAAYAAAAIAAEAAAANAAYAAAADAAQAAAAOAAYAAAAEAAQAAAAPAAYAAAAJAAEAAAAQAAYAAAAJAAEAAAARAAYAAAAJAAEAAAASAAYAAAAJAAEAAAATAAYAAAAJAAEAAAAUAAYAAAAJAAEAAAAVAAYAAAAJAAEAAAAWAAYAAAADAAQAAAAIAAcAAAABAAMAAAAJAAcAAAACAAMAAAAKAAcAAAADAAMAAAAMAAcAAAAIAAEAAAANAAcAAAAJAAEAAAAOAAcAAAAJAAEAAAAPAAcAAAAJAAEAAAAQAAcAAAAJAAEAAAARAAcAAAAJAAEAAAASAAcAAAAJAAEAAAATAAcAAAAJAAEAAAAUAAcAAAAJAAEAAAAVAAcAAAAJAAEAAAAaAAQAAAAEAAQAAAAaAAUAAAAKAAEAAAAaAAYAAAAKAAEAAAAaAAcAAAAEAAMAAAAaAAgAAAAEAAQAAAAaAAkAAAAKAAEAAAAaAAoAAAAKAAEAAAAaAAsAAAAKAAEAAAAaAAwAAAAEAAMAAAAZAA0AAAADAAQAAAAYAA0AAAAJAAIAAAAXAA0AAAAJAAIAAAAWAA0AAAAJAAIAAAAVAA0AAAAJAAIAAAAUAA0AAAAJAAIAAAATAA0AAAAJAAIAAAASAA0AAAAEAAQAAAARAA0AAAADAAQAAAAQAA0AAAAJAAIAAAAPAA0AAAAJAAIAAAAOAA0AAAAJAAIAAAANAA0AAAAJAAIAAAAMAA0AAAAJAAIAAAALAA0AAAAEAAQAAAAKAA0AAAADAAQAAAAJAA0AAAACAAMAAAAIAA0AAAABAAMAAAAHAA0AAAAAAAIAAAAHAAgAAAAAAAMAAAAHAAwAAAAAAAMAAAAIAAwAAAABAAMAAAAJAAwAAAACAAMAAAAKAAwAAAADAAMAAAALAAwAAAAEAAMAAAAMAAwAAAAJAAIAAAANAAwAAAAJAAIAAAAOAAwAAAAJAAIAAAAPAAwAAAAJAAIAAAAQAAwAAAAJAAIAAAAQAAsAAAAJAAIAAAARAAsAAAAJAAIAAAARAAwAAAADAAMAAAASAAwAAAAEAAMAAAATAAwAAAAJAAIAAAAUAAwAAAAJAAIAAAAVAAwAAAAJAAIAAAAWAAwAAAAJAAIAAAAXAAwAAAAJAAIAAAAYAAwAAAAJAAIAAAAHAAsAAAAAAAMAAAAIAAsAAAABAAMAAAAJAAsAAAACAAMAAAAKAAsAAAAIAAEAAAALAAsAAAAIAAEAAAAMAAsAAAAIAAIAAAANAAsAAAAJAAIAAAAOAAsAAAAJAAIAAAAPAAsAAAAJAAIAAAASAAsAAAAJAAIAAAATAAsAAAAJAAIAAAAUAAsAAAAJAAIAAAAVAAsAAAAJAAIAAAAWAAsAAAAJAAIAAAAXAAsAAAAJAAIAAAAZAAsAAAAKAAEAAAAZAAoAAAAKAAEAAAAZAAkAAAAKAAEAAAAZAAgAAAADAAQAAAAZAAcAAAADAAMAAAAZAAYAAAAKAAEAAAAZAAUAAAAKAAEAAAAYAAYAAAAKAAEAAAAYAAcAAAAKAAEAAAAYAAgAAAAKAAEAAAAYAAkAAAAKAAEAAAAYAAoAAAAKAAEAAAAXAAkAAAAEAAMAAAAXAAgAAAAJAAEAAAAXAAcAAAAJAAEAAAAWAAgAAAAJAAEAAAAWAAoAAAADAAQAAAAVAAoAAAAJAAEAAAAUAAoAAAAJAAEAAAATAAoAAAAJAAEAAAASAAoAAAAJAAEAAAARAAoAAAAJAAEAAAAQAAoAAAAJAAEAAAAPAAoAAAAJAAEAAAAOAAoAAAAEAAQAAAANAAoAAAADAAQAAAAMAAoAAAAIAAEAAAAKAAoAAAAIAAEAAAAJAAoAAAACAAMAAAAIAAoAAAABAAMAAAAHAAoAAAAAAAMAAAAIAAkAAAABAAMAAAAJAAkAAAACAAMAAAAKAAkAAAAIAAEAAAAMAAkAAAAIAAEAAAANAAkAAAADAAMAAAAOAAkAAAAEAAMAAAAPAAkAAAAJAAEAAAAQAAkAAAAJAAEAAAARAAkAAAAJAAEAAAASAAkAAAAJAAEAAAATAAkAAAAJAAEAAAAUAAkAAAAJAAEAAAAVAAkAAAAJAAEAAAAIAAgAAAABAAMAAAAJAAgAAAACAAMAAAAKAAgAAAADAAQAAAAMAAgAAAAIAAEAAAANAAgAAAAJAAEAAAAOAAgAAAAJAAEAAAAPAAgAAAAJAAEAAAAQAAgAAAAJAAEAAAARAAgAAAAJAAEAAAASAAgAAAAJAAEAAAATAAgAAAAJAAEAAAAUAAgAAAAJAAEAAAAVAAgAAAAJAAEAAAAHAAAAAAAAAAAAAAAIAAAAAAABAAAAAAAIAAEAAAABAAEAAAAJAAAAAAACAAAAAAAJAAEAAAACAAEAAAAKAAAAAAACAAAAAAAKAAEAAAACAAEAAAALAAAAAAACAAAAAAALAAEAAAACAAEAAAAMAAAAAAACAAAAAAAMAAEAAAACAAEAAAANAAAAAAADAAAAAAANAAEAAAACAAEAAAAOAAAAAAACAAAAAAAOAAEAAAACAAEAAAAPAAAAAAACAAAAAAAPAAEAAAACAAEAAAAQAAAAAAACAAAAAAAQAAEAAAACAAEAAAARAAAAAAACAAAAAAARAAEAAAACAAEAAAASAAAAAAACAAAAAAASAAEAAAACAAEAAAATAAAAAAACAAAAAAATAAEAAAACAAEAAAAUAAAAAAACAAAAAAAUAAEAAAACAAEAAAAVAAAAAAACAAAAAAAVAAEAAAACAAEAAAAWAAAAAAACAAAAAAAWAAEAAAACAAEAAAAXAAAAAAADAAAAAAAXAAEAAAADAAEAAAAXAA8AAAADAAYAAAAXABAAAAADAAcAAAAHAA8AAAAAAAYAAAAHABAAAAAAAAcAAAAIAA8AAAABAAYAAAAIABAAAAABAAcAAAAJAA8AAAABAAYAAAAJABAAAAACAAcAAAAKAA8AAAACAAYAAAAKABAAAAACAAcAAAALAA8AAAACAAYAAAALABAAAAACAAcAAAAMAA8AAAACAAYAAAAMABAAAAACAAcAAAANAA8AAAACAAYAAAANABAAAAADAAcAAAAOAA8AAAACAAYAAAAOABAAAAACAAcAAAAPAA8AAAACAAYAAAAPABAAAAACAAcAAAAQAA8AAAACAAYAAAAQABAAAAACAAcAAAARAA8AAAACAAYAAAARABAAAAACAAcAAAASAA8AAAACAAYAAAASABAAAAACAAcAAAATAA8AAAACAAYAAAATABAAAAACAAcAAAAUAA8AAAACAAYAAAAUABAAAAACAAcAAAAVAA8AAAACAAYAAAAVABAAAAACAAcAAAAWAA8AAAACAAYAAAAWABAAAAACAAcAAAAYAA8AAAACAAYAAAAYABAAAAACAAcAAAAZAA8AAAACAAYAAAAZABAAAAACAAcAAAAaAA8AAAACAAYAAAAaABAAAAACAAcAAAAbAA8AAAACAAYAAAAbABAAAAACAAcAAAAcAA8AAAAGAAYAAAAcABAAAAAGAAcAAAAdAA8AAAAHAAYAAAAdABAAAAAHAAcAAAAcAA4AAAAGAAIAAAAdAA4AAAAHAAIAAAAcAA0AAAAGAAIAAAAdAA0AAAAHAAIAAAAcAAwAAAAGAAMAAAAdAAwAAAAHAAMAAAAcAAsAAAAGAAIAAAAdAAsAAAAHAAMAAAAcAAoAAAAGAAIAAAAdAAoAAAAHAAMAAAAcAAgAAAAGAAUAAAAcAAkAAAAGAAIAAAAdAAgAAAAHAAUAAAAdAAkAAAAHAAMAAAAcAAcAAAAGAAQAAAAdAAcAAAAHAAQAAAAcAAYAAAAGAAIAAAAdAAYAAAAHAAMAAAAcAAUAAAAGAAMAAAAdAAUAAAAHAAMAAAAcAAQAAAAGAAIAAAAdAAQAAAAHAAMAAAAcAAMAAAAGAAIAAAAdAAMAAAAHAAMAAAAcAAIAAAAGAAIAAAAdAAIAAAAHAAIAAAAcAAAAAAAGAAAAAAAcAAEAAAAGAAEAAAAdAAAAAAAHAAAAAAAdAAEAAAAHAAEAAAAbAAAAAAACAAAAAAAbAAEAAAACAAEAAAAaAAAAAAACAAAAAAAaAAEAAAACAAEAAAAZAAAAAAACAAAAAAAZAAEAAAACAAEAAAAYAAAAAAACAAAAAAAYAAEAAAACAAEAAAAHAAEAAAAAAAEAAAALAAYAAAAIAAEAAAALAAcAAAAEAAMAAAALAAgAAAAEAAQAAAALAAkAAAAIAAEAAAALAAoAAAAIAAEAAAA=")
+tile_set = ExtResource("1_hxhgm")
+
+[node name="TileMapLayer" type="TileMapLayer" parent="."]
+tile_map_data = PackedByteArray("AAALAAEAAAAJAAYAAAAMAAEAAAAKAAYAAAANAAEAAAALAAYAAAAXAAEAAAAJAAYAAAAYAAEAAAAKAAYAAAAZAAEAAAALAAYAAAAOAAEAAAAJAAYAAAAPAAEAAAAKAAYAAAAQAAEAAAALAAYAAAAUAAEAAAAJAAYAAAAVAAEAAAAKAAYAAAAWAAEAAAALAAYAAAAMAAIAAAAKAAcAAAAPAAIAAAAKAAcAAAAVAAIAAAAKAAcAAAAYAAIAAAAKAAcAAAAQAAYAAAALAAQAAAATAAkAAAALAAQAAAAUAAYAAAALAAQAAAARAAkAAAALAAQAAAAPAAsAAAALAAQAAAAXAA4AAAALAAQAAAAaAAMAAAALAAQAAAAKAAQAAAALAAQAAAAVAAwAAAALAAQAAAAKAA0AAAALAAQAAAATAAQAAAALAAQAAAAMAAUAAAALAAIAAAAbAAwAAAALAAIAAAASAAcAAAALAAIAAAAQAAMAAAALAAIAAAAPAA0AAAALAAIAAAAbAAYAAAALAAIAAAAJAAgAAAALAAIAAAA=")
+tile_set = ExtResource("1_hxhgm")
+
+[node name="SpawnPoint" type="Node2D" parent="."]
+position = Vector2(240, 136)
+
+[node name="Grass" parent="." instance=ExtResource("2_f16t7")]
+z_index = 1
+position = Vector2(186, 51)
+
+[node name="Grass" parent="Grass" instance=ExtResource("2_f16t7")]
+z_index = 1
+position = Vector2(3, 8)
+
+[node name="Grass" parent="Grass/Grass" instance=ExtResource("2_f16t7")]
+z_index = 1
+position = Vector2(3, 8)
+
+[node name="Grass" parent="Grass/Grass/Grass" instance=ExtResource("2_f16t7")]
+z_index = 1
+position = Vector2(-7, 7)
+
+[node name="Grass" parent="Grass/Grass/Grass/Grass" instance=ExtResource("2_f16t7")]
+z_index = 1
+position = Vector2(-7, 7)
+
+[node name="Grass" parent="Grass/Grass/Grass/Grass/Grass" instance=ExtResource("2_f16t7")]
+z_index = 1
+position = Vector2(5, 5)
+
+[node name="Grass" parent="Grass/Grass/Grass/Grass/Grass/Grass" instance=ExtResource("2_f16t7")]
+z_index = 1
+position = Vector2(5, 5)
+
+[node name="Grass" parent="Grass/Grass/Grass/Grass/Grass/Grass/Grass" instance=ExtResource("2_f16t7")]
+z_index = 1
+position = Vector2(5, 5)
+
+[node name="Grass" parent="Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass" instance=ExtResource("2_f16t7")]
+z_index = 1
+position = Vector2(-6, 5)
+
+[node name="Grass" parent="Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass" instance=ExtResource("2_f16t7")]
+z_index = 1
+position = Vector2(-6, 5)
+
+[node name="Grass" parent="Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass" instance=ExtResource("2_f16t7")]
+z_index = 1
+position = Vector2(-6, 5)
+
+[node name="Grass" parent="Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass" instance=ExtResource("2_f16t7")]
+z_index = 1
+position = Vector2(7, 5)
+
+[node name="Grass" parent="Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass" instance=ExtResource("2_f16t7")]
+z_index = 1
+position = Vector2(7, 5)
+
+[node name="Grass" parent="Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass" instance=ExtResource("2_f16t7")]
+z_index = 1
+position = Vector2(7, 5)
+
+[node name="Grass" parent="Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass" instance=ExtResource("2_f16t7")]
+z_index = 1
+position = Vector2(-8, 5)
+
+[node name="Grass" parent="Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass" instance=ExtResource("2_f16t7")]
+z_index = 1
+position = Vector2(-8, 5)
+
+[node name="Grass" parent="Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass" instance=ExtResource("2_f16t7")]
+z_index = 1
+position = Vector2(-8, 5)
+
+[node name="Grass" parent="Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass" instance=ExtResource("2_f16t7")]
+z_index = 1
+position = Vector2(6, 5)
+
+[node name="Grass" parent="Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass" instance=ExtResource("2_f16t7")]
+z_index = 1
+position = Vector2(6, 5)
+
+[node name="Grass" parent="Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass" instance=ExtResource("2_f16t7")]
+z_index = 1
+position = Vector2(6, 5)
+
+[node name="Grass" parent="Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass" instance=ExtResource("2_f16t7")]
+z_index = 1
+position = Vector2(6, 5)
+
+[node name="Grass" parent="Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass" instance=ExtResource("2_f16t7")]
+z_index = 1
+position = Vector2(-8, 5)
+
+[node name="Grass" parent="Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass" instance=ExtResource("2_f16t7")]
+z_index = 1
+position = Vector2(-8, 5)
+
+[node name="Grass" parent="Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass" instance=ExtResource("2_f16t7")]
+z_index = 1
+position = Vector2(-8, 5)
+
+[node name="Grass" parent="Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass" instance=ExtResource("2_f16t7")]
+z_index = 1
+position = Vector2(7, 5)
+
+[node name="Grass" parent="Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass" instance=ExtResource("2_f16t7")]
+z_index = 1
+position = Vector2(7, 5)
+
+[node name="Grass" parent="Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass" instance=ExtResource("2_f16t7")]
+z_index = 1
+position = Vector2(7, 5)
+
+[node name="Grass2" parent="." instance=ExtResource("2_f16t7")]
+z_index = 1
+position = Vector2(409, 54)
+
+[node name="Grass" parent="Grass2" instance=ExtResource("2_f16t7")]
+z_index = 1
+position = Vector2(0, 2)
+
+[node name="Grass" parent="Grass2/Grass" instance=ExtResource("2_f16t7")]
+z_index = 1
+position = Vector2(3, 8)
+
+[node name="Grass" parent="Grass2/Grass/Grass" instance=ExtResource("2_f16t7")]
+z_index = 1
+position = Vector2(-7, 7)
+
+[node name="Grass" parent="Grass2/Grass/Grass/Grass" instance=ExtResource("2_f16t7")]
+z_index = 1
+position = Vector2(-7, 7)
+
+[node name="Grass" parent="Grass2/Grass/Grass/Grass/Grass" instance=ExtResource("2_f16t7")]
+z_index = 1
+position = Vector2(5, 5)
+
+[node name="Grass" parent="Grass2/Grass/Grass/Grass/Grass/Grass" instance=ExtResource("2_f16t7")]
+z_index = 1
+position = Vector2(5, 5)
+
+[node name="Grass" parent="Grass2/Grass/Grass/Grass/Grass/Grass/Grass" instance=ExtResource("2_f16t7")]
+z_index = 1
+position = Vector2(5, 5)
+
+[node name="Grass" parent="Grass2/Grass/Grass/Grass/Grass/Grass/Grass/Grass" instance=ExtResource("2_f16t7")]
+z_index = 1
+position = Vector2(-6, 5)
+
+[node name="Grass" parent="Grass2/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass" instance=ExtResource("2_f16t7")]
+z_index = 1
+position = Vector2(-6, 5)
+
+[node name="Grass" parent="Grass2/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass" instance=ExtResource("2_f16t7")]
+z_index = 1
+position = Vector2(-6, 5)
+
+[node name="Grass" parent="Grass2/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass" instance=ExtResource("2_f16t7")]
+z_index = 1
+position = Vector2(7, 5)
+
+[node name="Grass" parent="Grass2/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass" instance=ExtResource("2_f16t7")]
+z_index = 1
+position = Vector2(7, 5)
+
+[node name="Grass" parent="Grass2/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass" instance=ExtResource("2_f16t7")]
+z_index = 1
+position = Vector2(7, 5)
+
+[node name="Grass" parent="Grass2/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass" instance=ExtResource("2_f16t7")]
+z_index = 1
+position = Vector2(-8, 5)
+
+[node name="Grass" parent="Grass2/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass" instance=ExtResource("2_f16t7")]
+z_index = 1
+position = Vector2(-8, 5)
+
+[node name="Grass" parent="Grass2/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass" instance=ExtResource("2_f16t7")]
+z_index = 1
+position = Vector2(-8, 5)
+
+[node name="Grass" parent="Grass2/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass" instance=ExtResource("2_f16t7")]
+z_index = 1
+position = Vector2(6, 5)
+
+[node name="Grass" parent="Grass2/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass" instance=ExtResource("2_f16t7")]
+z_index = 1
+position = Vector2(6, 5)
+
+[node name="Grass" parent="Grass2/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass" instance=ExtResource("2_f16t7")]
+z_index = 1
+position = Vector2(6, 5)
+
+[node name="Grass" parent="Grass2/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass" instance=ExtResource("2_f16t7")]
+z_index = 1
+position = Vector2(6, 5)
+
+[node name="Grass" parent="Grass2/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass" instance=ExtResource("2_f16t7")]
+z_index = 1
+position = Vector2(-8, 5)
+
+[node name="Grass" parent="Grass2/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass" instance=ExtResource("2_f16t7")]
+z_index = 1
+position = Vector2(-8, 5)
+
+[node name="Grass" parent="Grass2/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass" instance=ExtResource("2_f16t7")]
+z_index = 1
+position = Vector2(-8, 5)
+
+[node name="Grass" parent="Grass2/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass" instance=ExtResource("2_f16t7")]
+z_index = 1
+position = Vector2(7, 5)
+
+[node name="Grass" parent="Grass2/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass" instance=ExtResource("2_f16t7")]
+z_index = 1
+position = Vector2(7, 5)
+
+[node name="Grass" parent="Grass2/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass" instance=ExtResource("2_f16t7")]
+z_index = 1
+position = Vector2(7, 5)
+
+[node name="Grass3" parent="." instance=ExtResource("2_f16t7")]
+z_index = 1
+position = Vector2(367, 66)
+
+[node name="Grass" parent="Grass3" instance=ExtResource("2_f16t7")]
+z_index = 1
+position = Vector2(0, 2)
+
+[node name="Grass" parent="Grass3/Grass" instance=ExtResource("2_f16t7")]
+z_index = 1
+position = Vector2(3, 8)
+
+[node name="Grass" parent="Grass3/Grass/Grass" instance=ExtResource("2_f16t7")]
+z_index = 1
+position = Vector2(-7, 7)
+
+[node name="Grass" parent="Grass3/Grass/Grass/Grass" instance=ExtResource("2_f16t7")]
+z_index = 1
+position = Vector2(-7, 7)
+
+[node name="Grass" parent="Grass3/Grass/Grass/Grass/Grass" instance=ExtResource("2_f16t7")]
+z_index = 1
+position = Vector2(5, 5)
+
+[node name="Grass" parent="Grass3/Grass/Grass/Grass/Grass/Grass" instance=ExtResource("2_f16t7")]
+z_index = 1
+position = Vector2(5, 5)
+
+[node name="Grass" parent="Grass3/Grass/Grass/Grass/Grass/Grass/Grass" instance=ExtResource("2_f16t7")]
+z_index = 1
+position = Vector2(5, 5)
+
+[node name="Grass" parent="Grass3/Grass/Grass/Grass/Grass/Grass/Grass/Grass" instance=ExtResource("2_f16t7")]
+z_index = 1
+position = Vector2(-6, 5)
+
+[node name="Grass" parent="Grass3/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass" instance=ExtResource("2_f16t7")]
+z_index = 1
+position = Vector2(-6, 5)
+
+[node name="Grass" parent="Grass3/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass" instance=ExtResource("2_f16t7")]
+z_index = 1
+position = Vector2(-6, 5)
+
+[node name="Grass" parent="Grass3/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass" instance=ExtResource("2_f16t7")]
+z_index = 1
+position = Vector2(7, 5)
+
+[node name="Grass" parent="Grass3/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass" instance=ExtResource("2_f16t7")]
+z_index = 1
+position = Vector2(7, 5)
+
+[node name="Grass" parent="Grass3/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass" instance=ExtResource("2_f16t7")]
+z_index = 1
+position = Vector2(7, 5)
+
+[node name="Grass" parent="Grass3/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass" instance=ExtResource("2_f16t7")]
+z_index = 1
+position = Vector2(-8, 5)
+
+[node name="Grass" parent="Grass3/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass" instance=ExtResource("2_f16t7")]
+z_index = 1
+position = Vector2(-8, 5)
+
+[node name="Grass" parent="Grass3/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass" instance=ExtResource("2_f16t7")]
+z_index = 1
+position = Vector2(-8, 5)
+
+[node name="Grass" parent="Grass3/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass" instance=ExtResource("2_f16t7")]
+z_index = 1
+position = Vector2(6, 5)
+
+[node name="Grass" parent="Grass3/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass" instance=ExtResource("2_f16t7")]
+z_index = 1
+position = Vector2(6, 5)
+
+[node name="Grass" parent="Grass3/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass" instance=ExtResource("2_f16t7")]
+z_index = 1
+position = Vector2(6, 5)
+
+[node name="Grass" parent="Grass3/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass" instance=ExtResource("2_f16t7")]
+z_index = 1
+position = Vector2(6, 5)
+
+[node name="Grass" parent="Grass3/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass" instance=ExtResource("2_f16t7")]
+z_index = 1
+position = Vector2(-8, 5)
+
+[node name="Grass" parent="Grass3/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass" instance=ExtResource("2_f16t7")]
+z_index = 1
+position = Vector2(-8, 5)
+
+[node name="Grass" parent="Grass3/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass" instance=ExtResource("2_f16t7")]
+z_index = 1
+position = Vector2(-8, 5)
+
+[node name="Grass" parent="Grass3/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass" instance=ExtResource("2_f16t7")]
+z_index = 1
+position = Vector2(7, 5)
+
+[node name="Grass" parent="Grass3/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass" instance=ExtResource("2_f16t7")]
+z_index = 1
+position = Vector2(7, 5)
+
+[node name="Grass" parent="Grass3/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass" instance=ExtResource("2_f16t7")]
+z_index = 1
+position = Vector2(7, 5)
+
+[node name="Grass4" parent="." instance=ExtResource("2_f16t7")]
+z_index = 1
+position = Vector2(225, 64)
+
+[node name="Grass" parent="Grass4" instance=ExtResource("2_f16t7")]
+z_index = 1
+position = Vector2(3, 8)
+
+[node name="Grass" parent="Grass4/Grass" instance=ExtResource("2_f16t7")]
+z_index = 1
+position = Vector2(3, 8)
+
+[node name="Grass" parent="Grass4/Grass/Grass" instance=ExtResource("2_f16t7")]
+z_index = 1
+position = Vector2(-7, 7)
+
+[node name="Grass" parent="Grass4/Grass/Grass/Grass" instance=ExtResource("2_f16t7")]
+z_index = 1
+position = Vector2(-7, 7)
+
+[node name="Grass" parent="Grass4/Grass/Grass/Grass/Grass" instance=ExtResource("2_f16t7")]
+z_index = 1
+position = Vector2(5, 5)
+
+[node name="Grass" parent="Grass4/Grass/Grass/Grass/Grass/Grass" instance=ExtResource("2_f16t7")]
+z_index = 1
+position = Vector2(5, 5)
+
+[node name="Grass" parent="Grass4/Grass/Grass/Grass/Grass/Grass/Grass" instance=ExtResource("2_f16t7")]
+z_index = 1
+position = Vector2(5, 5)
+
+[node name="Grass" parent="Grass4/Grass/Grass/Grass/Grass/Grass/Grass/Grass" instance=ExtResource("2_f16t7")]
+z_index = 1
+position = Vector2(-6, 5)
+
+[node name="Grass" parent="Grass4/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass" instance=ExtResource("2_f16t7")]
+z_index = 1
+position = Vector2(-6, 5)
+
+[node name="Grass" parent="Grass4/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass" instance=ExtResource("2_f16t7")]
+z_index = 1
+position = Vector2(-6, 5)
+
+[node name="Grass" parent="Grass4/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass" instance=ExtResource("2_f16t7")]
+z_index = 1
+position = Vector2(7, 5)
+
+[node name="Grass" parent="Grass4/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass" instance=ExtResource("2_f16t7")]
+z_index = 1
+position = Vector2(7, 5)
+
+[node name="Grass" parent="Grass4/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass" instance=ExtResource("2_f16t7")]
+z_index = 1
+position = Vector2(7, 5)
+
+[node name="Grass" parent="Grass4/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass" instance=ExtResource("2_f16t7")]
+z_index = 1
+position = Vector2(-8, 5)
+
+[node name="Grass" parent="Grass4/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass" instance=ExtResource("2_f16t7")]
+z_index = 1
+position = Vector2(-8, 5)
+
+[node name="Grass" parent="Grass4/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass" instance=ExtResource("2_f16t7")]
+z_index = 1
+position = Vector2(-8, 5)
+
+[node name="Grass" parent="Grass4/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass" instance=ExtResource("2_f16t7")]
+z_index = 1
+position = Vector2(6, 5)
+
+[node name="Grass" parent="Grass4/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass" instance=ExtResource("2_f16t7")]
+z_index = 1
+position = Vector2(6, 5)
+
+[node name="Grass" parent="Grass4/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass" instance=ExtResource("2_f16t7")]
+z_index = 1
+position = Vector2(6, 5)
+
+[node name="Grass" parent="Grass4/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass" instance=ExtResource("2_f16t7")]
+z_index = 1
+position = Vector2(6, 5)
+
+[node name="Grass" parent="Grass4/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass" instance=ExtResource("2_f16t7")]
+z_index = 1
+position = Vector2(-8, 5)
+
+[node name="Grass" parent="Grass4/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass" instance=ExtResource("2_f16t7")]
+z_index = 1
+position = Vector2(-8, 5)
+
+[node name="Grass" parent="Grass4/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass" instance=ExtResource("2_f16t7")]
+z_index = 1
+position = Vector2(-8, 5)
+
+[node name="Grass" parent="Grass4/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass" instance=ExtResource("2_f16t7")]
+z_index = 1
+position = Vector2(7, 5)
+
+[node name="Grass" parent="Grass4/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass" instance=ExtResource("2_f16t7")]
+z_index = 1
+position = Vector2(7, 5)
+
+[node name="Grass" parent="Grass4/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass" instance=ExtResource("2_f16t7")]
+z_index = 1
+position = Vector2(7, 5)
+
+[node name="DoorE" parent="." instance=ExtResource("3_3g2g8")]
+position = Vector2(0, -17)
+
+[node name="ShopB" parent="." instance=ExtResource("4_f16t7")]
+position = Vector2(294, 66)

@@ -1,16 +1,21 @@
-[gd_scene load_steps=5 format=4 uid="uid://b170grvrwfcop"]
+[gd_scene load_steps=8 format=4 uid="uid://b170grvrwfcop"]
 
 [ext_resource type="TileSet" uid="uid://dijcthwd7lyow" path="res://assets/tiles/RoomTileset.tres" id="1_c746o"]
 [ext_resource type="PackedScene" uid="uid://xhg08ovbav64" path="res://entities/enemies/fire_ant_enemy/fire_ant_enemy.tscn" id="2_j2dwc"]
 [ext_resource type="PackedScene" uid="uid://dek0t7ihd4vxg" path="res://entities/enemies/mosquito_enemy/mosquito_enemy.tscn" id="3_v0yoa"]
 [ext_resource type="PackedScene" uid="uid://btvi3ex8vchv6" path="res://entities/chests/chest.tscn" id="4_ppk66"]
+[ext_resource type="PackedScene" uid="uid://ck7trcc5jld8w" path="res://Rooms/Doors/DoorE.tscn" id="5_m5h8b"]
+[ext_resource type="PackedScene" uid="uid://3bwfjlqsm6b4" path="res://Rooms/Doors/DoorW.tscn" id="6_87cqe"]
+[ext_resource type="PackedScene" uid="uid://b08n2x4d15s6k" path="res://Rooms/Doors/DoorS.tscn" id="7_2v2uk"]
 
 [node name="NestChestBridgeNEW" type="Node2D"]
 y_sort_enabled = true
 
-[node name="TileMap" type="Node" parent="."]
+[node name="Tilemap" type="TileMapLayer" parent="."]
+tile_map_data = PackedByteArray("AAAOABMAAAALAAAAAAAOABEAAAALAAAAAAAYAAkAAAALAAAAAAAWAAkAAAALAAAAAAAHAAgAAAALAAAAAAALAAsAAAALAAAAAAAFAAoAAAALAAAAAAAbAAYAAAALAAEAAAAQAA8AAAALAAEAAAAIAAkAAAALAAEAAAAQABQAAAALAAEAAAAMAAwAAAALAAEAAAAEAAgAAAALAAUAAAAUAAwAAAALAAUAAAAbAAoAAAALAAUAAAA=")
+tile_set = ExtResource("1_c746o")
 
-[node name="TileMap" type="TileMapLayer" parent="TileMap"]
+[node name="TileMap2" type="TileMapLayer" parent="."]
 texture_filter = 1
 position = Vector2(555, 376)
 rotation = 3.14159
@@ -34,3 +39,15 @@ position = Vector2(256, 84)
 
 [node name="Chest" parent="." instance=ExtResource("4_ppk66")]
 position = Vector2(259, 177)
+
+[node name="DoorE" parent="." instance=ExtResource("5_m5h8b")]
+position = Vector2(11, -8)
+
+[node name="DoorW" parent="." instance=ExtResource("6_87cqe")]
+position = Vector2(11, -8)
+
+[node name="DoorS" parent="." instance=ExtResource("7_2v2uk")]
+position = Vector2(11, 104)
+
+[node name="SpawnPoint" type="Node2D" parent="."]
+position = Vector2(259, 251)

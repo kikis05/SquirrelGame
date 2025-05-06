@@ -1,8 +1,7 @@
-[gd_scene load_steps=4 format=4 uid="uid://ckmpkp2olw6i1"]
+[gd_scene load_steps=3 format=4 uid="uid://ckmpkp2olw6i1"]
 
 [ext_resource type="TileSet" uid="uid://dijcthwd7lyow" path="res://assets/tiles/RoomTileset.tres" id="1_vtmmi"]
 [ext_resource type="PackedScene" uid="uid://3bwfjlqsm6b4" path="res://Rooms/Doors/DoorW.tscn" id="2_8xlwr"]
-[ext_resource type="PackedScene" uid="uid://dsg31ult7idkb" path="res://Shops/ShopB/shopB.tscn" id="3_8xlwr"]
 
 [node name="StandardRoomW" type="Node2D"]
 
@@ -15,6 +14,3 @@ tile_set = ExtResource("1_vtmmi")
 
 [node name="SpawnPoint" type="Node2D" parent="."]
 position = Vector2(240, 136)
-
-[node name="ShopB" parent="." instance=ExtResource("3_8xlwr")]
-position = Vector2(382, 96)

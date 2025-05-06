@@ -9,6 +9,7 @@ const SLASH = preload("res://slash.tscn")
 @onready var marker_2d = $Marker2D
 @onready var slash_speed_timer = $slashSpeedTimer
 @onready var hitbox = $HitBox
+@export var damage_type : String = "melee"
 
 @onready var sprite = $Sprite2D
 

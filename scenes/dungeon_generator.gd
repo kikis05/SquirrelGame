@@ -14,6 +14,20 @@ const TILE_SIZE       = Vector2(160, 64)
 var cleared_rooms := {}  # Dictionary<Vector2i, bool>
 var visited_rooms : Dictionary = {}  
 
+const CUSTOM_ROOMS := {
+	"S":        ["SquareChestS", "SquareDoubleUpS"],
+	"N": 		["SquareDoubleUpCircleN"],
+	"NS":       ["NestLongNS", "SquareFishNS", "NestCircleNS", "SquareBottleneckNS"],
+	"EW":       ["NestBridgeEW", "HolesEW", "MoundsEW", "TightSqueezeEW"],
+	"NE":       ["SquareCornerNE"],
+	"NW":       ["SquareCornerNW"],
+	"SE":       ["SquareCornerSE"],
+	"SW":       ["SquareCornerSW", "NestChestSW"],
+	"ESW":      ["NestChestBridgeESW"],
+	"NESW":     ["SquareFourCornersNESW"],
+	"NEW":      ["NestChestBridgeNEW"],
+}
+
 const ROOM_TYPES = {
 	"EmptyRoom":        [],
 	"StandardRoomN":    ["N"],
@@ -50,6 +64,7 @@ var player : Node = null
 var rng : RandomNumberGenerator = RandomNumberGenerator.new()
 
 func _ready() -> void:
+	TransitionScreen.fade_in()
 	rng.randomize()
 	print("\n=== DungeonGenerator READY ===")
 	if _generate_dungeon():
@@ -196,7 +211,26 @@ func _switch_to_room(pos : Vector2i, entered_from_dir : String) -> void:
 		get_tree().call_group("room_deletables", "queue_free")
 		current_room_instance.queue_free()
 
-	var scene_path : String = "res://Rooms/StandardRoomScenes/%s.tscn" % room_name
+	var directions = ROOM_TYPES[room_name].duplicate()
+	directions.sort() # ensure ordering
+	var dir_key := "".join(directions)
+	var scene_path : String = ""
+
+	if CUSTOM_ROOMS.has(dir_key):
+		var choices = CUSTOM_ROOMS[dir_key]
+		var pick = choices[rng.randi_range(0, choices.size() - 1)]
+		if pick.ends_with(".tscn"):
+			scene_path = "res://Rooms/Rooms_Anna2/%s" % pick
+		else:
+			if pick in ["NestChestBridgeESW", "SquareDoubleUpCircleN", "HolesEW", "MoundsEW", "TightSqueezeEW", "MosquitoMoundChestN"]:
+				scene_path = "res://Rooms/Rooms_Anna2/%s.tscn" % pick
+			else:
+				scene_path = "res://Rooms/Rooms_Anna/%s.tscn" % pick
+	else:
+		scene_path = "res://Rooms/StandardRoomScenes/%s.tscn" % room_name
+
+	print("\u2022 Instancing room:", scene_path)
+	current_room_instance = load(scene_path).instantiate()
 	print("• Instancing room:", scene_path)
 	current_room_instance = load(scene_path).instantiate()
 	current_room_instance.name = "RoomInstance"
@@ -284,8 +318,18 @@ func _switch_to_room(pos : Vector2i, entered_from_dir : String) -> void:
 	if player == null:
 		player = player_scene.instantiate()
 		player.name = "Player"
-		add_child(player)
-		emit_signal("player_spawned", player)
+
+		var stats = GameState.player_stats
+		player.set_health(stats["current_health"])
+		player.set_speed(stats["speed"])
+		player.set_coins(stats["coins"])
+		player.set_gun_attack(stats["gun_attack"])
+		player.set_gun_speed(stats["gun_speed"])
+		player.set_sword_attack(stats["sword_attack"])
+
+
+	add_child(player)
+	emit_signal("player_spawned", player)
 
 	move_child(player, get_child_count() - 1)
 	player.global_position = spawn

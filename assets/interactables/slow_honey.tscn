@@ -1,0 +1,29 @@
+[gd_scene load_steps=4 format=3 uid="uid://dr2f7a7ug123d"]
+
+[ext_resource type="Script" uid="uid://b6vekmav5doyi" path="res://assets/interactables/slow_honey.gd" id="1_5k6ju"]
+[ext_resource type="Texture2D" uid="uid://k883nby5416y" path="res://assets/interactables/wall_honey.png" id="1_rcm28"]
+
+[sub_resource type="ConvexPolygonShape2D" id="ConvexPolygonShape2D_5k6ju"]
+points = PackedVector2Array(-31.2242, 110.001, 36.0279, 110.001, 34.827, -115.001, 20.4158, -125.001, 4.80372, -10.0001, -22.8177, 70.0007)
+
+[node name="SlowHoneyWall" type="Node2D"]
+script = ExtResource("1_5k6ju")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0, -35)
+texture = ExtResource("1_rcm28")
+
+[node name="Area2D" type="Area2D" parent="."]
+y_sort_enabled = true
+collision_layer = 9
+collision_mask = 6
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(-2, -25)
+scale = Vector2(0.832688, 0.199998)
+shape = SubResource("ConvexPolygonShape2D_5k6ju")
+
+[connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
+[connection signal="area_exited" from="Area2D" to="." method="_on_area_2d_area_exited"]
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]

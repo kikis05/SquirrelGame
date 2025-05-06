@@ -1,8 +1,13 @@
-[gd_scene load_steps=8 format=3 uid="uid://x7lotpve1epg"]
+[gd_scene load_steps=13 format=3 uid="uid://x7lotpve1epg"]
 
 [ext_resource type="Script" uid="uid://cw26uq4goishx" path="res://entities/items/upgrade_item.gd" id="1_0ej0c"]
 [ext_resource type="Texture2D" uid="uid://cj2yd0s5oem5e" path="res://assets/chests_items/items1.png" id="1_j2fwf"]
 [ext_resource type="FontFile" uid="uid://ch5tibw7yghdt" path="res://assets/MinecraftStandard.otf" id="1_q1bvq"]
+[ext_resource type="Texture2D" uid="uid://c8ijhs7xk85fa" path="res://art/shop_items/Blueberry.png" id="2_1fbjh"]
+[ext_resource type="Texture2D" uid="uid://br3v313wpg1mi" path="res://art/shop_items/Pebbles.png" id="4_jtotu"]
+[ext_resource type="Texture2D" uid="uid://dioq7qpvd7ixk" path="res://art/shop_items/SpicySap.png" id="5_d4ilx"]
+[ext_resource type="Texture2D" uid="uid://dqf0bqh4rxlvx" path="res://art/shop_items/SunflowerSeed.png" id="6_0gbiu"]
+[ext_resource type="Texture2D" uid="uid://c7ukgj4wd752" path="res://art/shop_items/Thorn.png" id="7_iyojc"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_25oe7"]
 radius = 40.0
@@ -19,6 +24,14 @@ region = Rect2(32, 0, 32, 32)
 animations = [{
 "frames": [{
 "duration": 1.0,
+"texture": ExtResource("2_1fbjh")
+}],
+"loop": true,
+"name": &"blueberry",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_hbcpy")
 }],
 "loop": true,
@@ -27,10 +40,42 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
+"texture": ExtResource("4_jtotu")
+}],
+"loop": true,
+"name": &"pebbles",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("5_d4ilx")
+}],
+"loop": true,
+"name": &"spicy_sap",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("6_0gbiu")
+}],
+"loop": true,
+"name": &"sunflower_seed",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_0ej0c")
 }],
 "loop": true,
 "name": &"sword attack",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("7_iyojc")
+}],
+"loop": true,
+"name": &"thorn",
 "speed": 5.0
 }]
 
@@ -50,7 +95,7 @@ shape = SubResource("CircleShape2D_25oe7")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(0, -30)
 sprite_frames = SubResource("SpriteFrames_erwyd")
-animation = &"health"
+animation = &"thorn"
 
 [node name="RichTextLabel" type="RichTextLabel" parent="."]
 anchors_preset = 8
