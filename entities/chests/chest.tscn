@@ -52,7 +52,7 @@ size = Vector2(30, 8)
 [sub_resource type="CircleShape2D" id="CircleShape2D_54opg"]
 radius = 40.0
 
-[node name="Chest" type="StaticBody2D" groups=["change_on_complete", "room_deletables"]]
+[node name="Chest" type="StaticBody2D" groups=["change_on_complete", "chest", "room_deletables"]]
 z_index = 1
 y_sort_enabled = true
 collision_mask = 4
