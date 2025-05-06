@@ -15,7 +15,7 @@ var cleared_rooms := {}  # Dictionary<Vector2i, bool>
 var visited_rooms : Dictionary = {}  
 
 const CUSTOM_ROOMS := {
-	"S":        ["SquareChestS", "SquareDoubleUpCircleS", "SquareDoubleUpS"],
+	"S":        ["SquareChestS", "SquareDoubleUpS"],
 	"N": 		["SquareDoubleUpCircleN"],
 	"NS":       ["NestLongNS", "SquareFishNS", "NestCircleNS", "SquareBottleneckNS"],
 	"EW":       ["NestBridgeEW", "HolesEW", "MoundsEW", "TightSqueezeEW"],
