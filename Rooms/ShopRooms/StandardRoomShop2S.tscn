@@ -1,4 +1,4 @@
-[gd_scene load_steps=4 format=4 uid="uid://coklprwvfwy2p"]
+[gd_scene load_steps=4 format=4 uid="uid://ls54npxisd2q"]
 
 [ext_resource type="TileSet" uid="uid://dijcthwd7lyow" path="res://assets/tiles/RoomTileset.tres" id="1_upeut"]
 [ext_resource type="PackedScene" uid="uid://b08n2x4d15s6k" path="res://Rooms/Doors/DoorS.tscn" id="2_b701o"]

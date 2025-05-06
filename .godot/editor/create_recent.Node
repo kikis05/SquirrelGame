@@ -1,3 +1,5 @@
+Timer
+AnimationPlayer
 TileMapLayer
 Sprite2D
 TextureRect
@@ -6,9 +8,7 @@ Marker2D
 Node2D
 RichTextLabel
 CanvasLayer
-AnimationPlayer
 AnimationTree
 CollisionShape2D
 Area2D
-Timer
 Node

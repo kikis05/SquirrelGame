@@ -22,7 +22,7 @@ tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
 "handle_modes": PackedInt32Array(0, 0, 0),
-"points": PackedFloat32Array(1, -0.25, 0, 0.25, 0, 1.49009, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0),
+"points": PackedFloat32Array(1, -0.25, 0, 0.25, 0, 2.06, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0),
 "times": PackedFloat32Array(0, 0.124223, 0.503109)
 }
 tracks/1/type = "bezier"
@@ -34,7 +34,7 @@ tracks/1/loop_wrap = true
 tracks/1/keys = {
 "handle_modes": PackedInt32Array(0, 0, 0),
 "points": PackedFloat32Array(1, -0.25, 0, 0.25, 0, 1.24504, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0),
-"times": PackedFloat32Array(0, 0.124223, 0.503109)
+"times": PackedFloat32Array(0, 0.133333, 0.503109)
 }
 tracks/2/type = "bezier"
 tracks/2/imported = false
@@ -262,6 +262,97 @@ states/Idle/position = Vector2(564.099, 78.8716)
 states/Start/position = Vector2(165, 80.2787)
 transitions = ["Idle", "Left Hand", SubResource("AnimationNodeStateMachineTransition_uw26s"), "Left Hand", "Idle", SubResource("AnimationNodeStateMachineTransition_du80b"), "Idle", "Right Hand", SubResource("AnimationNodeStateMachineTransition_o5303"), "Right Hand", "Idle", SubResource("AnimationNodeStateMachineTransition_s5xob"), "Idle", "Spawn Soldiers", SubResource("AnimationNodeStateMachineTransition_wne1h"), "Spawn Soldiers", "Idle", SubResource("AnimationNodeStateMachineTransition_uugic"), "Idle", "Spawn Fire Soldiers", SubResource("AnimationNodeStateMachineTransition_26k4f"), "Spawn Fire Soldiers", "Idle", SubResource("AnimationNodeStateMachineTransition_v4yb7"), "Start", "Extra Intro Idle", SubResource("AnimationNodeStateMachineTransition_ya08v"), "Extra Intro Idle", "Idle", SubResource("AnimationNodeStateMachineTransition_vlf88"), "Idle", "Death", SubResource("AnimationNodeStateMachineTransition_x1gpy"), "Spawn Fire Soldiers", "Death", SubResource("AnimationNodeStateMachineTransition_ygl30"), "Spawn Soldiers", "Death", SubResource("AnimationNodeStateMachineTransition_vfcdr"), "Right Hand", "Death", SubResource("AnimationNodeStateMachineTransition_h40m1"), "Left Hand", "Death", SubResource("AnimationNodeStateMachineTransition_cjve3")]
 graph_offset = Vector2(-42.5, -203.997)
+
+[sub_resource type="Animation" id="Animation_v4yb7"]
+resource_name = "Death"
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Node2D/Head:position:x")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(3, 3, 3),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0, -12, -0.113478, 14, 0.113478, -14, -36, -0.0816864, -4, 0.0816864, 4),
+"times": PackedFloat32Array(0, 0.633333, 0.953188)
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Node2D/Head:position:y")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(3, 3, 3),
+"points": PackedFloat32Array(17, -0.25, 0, 0.25, 0, 44, -0.0865216, -9, 0.0865216, 9, 95, -0.048353, -24, 0.048353, 24),
+"times": PackedFloat32Array(0, 0.613478, 0.848353)
+}
+tracks/2/type = "bezier"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Node2D/Body:position:x")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"handle_modes": PackedInt32Array(3, 3),
+"points": PackedFloat32Array(6, -0.123119, 25, 0.123119, -25, -10, -0.133333, 1, 0.133333, -1),
+"times": PackedFloat32Array(0.343548, 1)
+}
+tracks/3/type = "bezier"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Node2D/Body:position:y")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(-1, -0.25, 0, 0.25, 0, 45, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0.343548, 1)
+}
+tracks/4/type = "bezier"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Node2D/Left Arm:position:x")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"handle_modes": PackedInt32Array(3, 3, 3, 3),
+"points": PackedFloat32Array(0, -0.0666667, -5, 0.0666667, 5, 4, -0.1, 8, 0.1, -8, -28, -0.0536439, 4, 0.0536439, -4, -38, -0.133333, 3, 0.133333, -3),
+"times": PackedFloat32Array(0, 0.233333, 0.633333, 1)
+}
+tracks/5/type = "bezier"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Node2D/Left Arm:position:y")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"handle_modes": PackedInt32Array(3, 3, 3, 3),
+"points": PackedFloat32Array(0, -0.0666667, -2, 0.0666667, 2, 12, -0.0666667, -4, 0.0666667, 4, 52, -0.0796894, -1, 0.0796894, 1, 60, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.133333, 0.653644, 1)
+}
+tracks/6/type = "bezier"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("Node2D/Right Arm:position:x")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"handle_modes": PackedInt32Array(3, 3, 3, 3),
+"points": PackedFloat32Array(0, -0.133333, 7, 0.133333, -7, -34, -0.0599142, 5, 0.0599142, -5, -65, -0.100533, 2, 0.100533, -2, -44, -0.1, -4, 0.1, 4),
+"times": PackedFloat32Array(0, 0.240086, 0.666134, 1)
+}
+tracks/7/type = "bezier"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("Node2D/Right Arm:position:y")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"handle_modes": PackedInt32Array(3, 3, 3, 3),
+"points": PackedFloat32Array(0, -0.1, -2, 0.1, 2, 12, -0.0932476, -6, 0.0932476, 6, 58, -0.100533, -12, 0.100533, 12, 66, -0.0666667, 2, 0.0666667, -2),
+"times": PackedFloat32Array(0, 0.3, 0.666134, 1)
+}
 
 [sub_resource type="Animation" id="Animation_ox8v1"]
 resource_name = "Idle"
@@ -927,97 +1018,6 @@ tracks/8/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [false]
-}
-
-[sub_resource type="Animation" id="Animation_v4yb7"]
-resource_name = "Death"
-tracks/0/type = "bezier"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Node2D/Head:position:x")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"handle_modes": PackedInt32Array(3, 3, 3),
-"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0, -12, -0.113478, 14, 0.113478, -14, -36, -0.0816864, -4, 0.0816864, 4),
-"times": PackedFloat32Array(0, 0.633333, 0.953188)
-}
-tracks/1/type = "bezier"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Node2D/Head:position:y")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"handle_modes": PackedInt32Array(3, 3, 3),
-"points": PackedFloat32Array(17, -0.25, 0, 0.25, 0, 44, -0.0865216, -9, 0.0865216, 9, 95, -0.048353, -24, 0.048353, 24),
-"times": PackedFloat32Array(0, 0.613478, 0.848353)
-}
-tracks/2/type = "bezier"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("Node2D/Body:position:x")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"handle_modes": PackedInt32Array(3, 3),
-"points": PackedFloat32Array(6, -0.123119, 25, 0.123119, -25, -10, -0.133333, 1, 0.133333, -1),
-"times": PackedFloat32Array(0.343548, 1)
-}
-tracks/3/type = "bezier"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("Node2D/Body:position:y")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"handle_modes": PackedInt32Array(0, 0),
-"points": PackedFloat32Array(-1, -0.25, 0, 0.25, 0, 45, -0.25, 0, 0.25, 0),
-"times": PackedFloat32Array(0.343548, 1)
-}
-tracks/4/type = "bezier"
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/path = NodePath("Node2D/Left Arm:position:x")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/keys = {
-"handle_modes": PackedInt32Array(3, 3, 3, 3),
-"points": PackedFloat32Array(0, -0.0666667, -5, 0.0666667, 5, 4, -0.1, 8, 0.1, -8, -28, -0.0536439, 4, 0.0536439, -4, -38, -0.133333, 3, 0.133333, -3),
-"times": PackedFloat32Array(0, 0.233333, 0.633333, 1)
-}
-tracks/5/type = "bezier"
-tracks/5/imported = false
-tracks/5/enabled = true
-tracks/5/path = NodePath("Node2D/Left Arm:position:y")
-tracks/5/interp = 1
-tracks/5/loop_wrap = true
-tracks/5/keys = {
-"handle_modes": PackedInt32Array(3, 3, 3, 3),
-"points": PackedFloat32Array(0, -0.0666667, -2, 0.0666667, 2, 12, -0.0666667, -4, 0.0666667, 4, 52, -0.0796894, -1, 0.0796894, 1, 60, -0.25, 0, 0.25, 0),
-"times": PackedFloat32Array(0, 0.133333, 0.653644, 1)
-}
-tracks/6/type = "bezier"
-tracks/6/imported = false
-tracks/6/enabled = true
-tracks/6/path = NodePath("Node2D/Right Arm:position:x")
-tracks/6/interp = 1
-tracks/6/loop_wrap = true
-tracks/6/keys = {
-"handle_modes": PackedInt32Array(3, 3, 3, 3),
-"points": PackedFloat32Array(0, -0.133333, 7, 0.133333, -7, -34, -0.0599142, 5, 0.0599142, -5, -65, -0.100533, 2, 0.100533, -2, -44, -0.1, -4, 0.1, 4),
-"times": PackedFloat32Array(0, 0.240086, 0.666134, 1)
-}
-tracks/7/type = "bezier"
-tracks/7/imported = false
-tracks/7/enabled = true
-tracks/7/path = NodePath("Node2D/Right Arm:position:y")
-tracks/7/interp = 1
-tracks/7/loop_wrap = true
-tracks/7/keys = {
-"handle_modes": PackedInt32Array(3, 3, 3, 3),
-"points": PackedFloat32Array(0, -0.1, -2, 0.1, 2, 12, -0.0932476, -6, 0.0932476, 6, 58, -0.100533, -12, 0.100533, 12, 66, -0.0666667, 2, 0.0666667, -2),
-"times": PackedFloat32Array(0, 0.3, 0.666134, 1)
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_s5xob"]
