@@ -39,6 +39,9 @@ func heal(_damage: int):
 	pass
 
 func die():
+	queue_free()
+
+func emit_death():
 	print("🛑 BaseEnemy.die() called — emitting signal and queue_free()")
 	emit_signal("enemy_defeated")
 	_remove_from_enemy_group_recursive(self)
@@ -46,7 +49,6 @@ func die():
 	await get_tree().process_frame
 	for e in get_tree().get_nodes_in_group("enemy"):
 		print("🧾 Still in 'enemy' group:", e.name)
-	queue_free()
 
 func change_animation(_name: String):
 	pass

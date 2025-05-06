@@ -45,7 +45,6 @@ func _on_shop_item_2_pressed() -> void:
 	print("pressed item 2")
 	shop_item_pressed(1)
 
-
 func _on_shop_item_3_pressed() -> void:
 	current_item_selected = items[2]
 	print("pressed item 3")

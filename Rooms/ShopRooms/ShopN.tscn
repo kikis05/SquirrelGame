@@ -7,6 +7,8 @@
 [ext_resource type="PackedScene" uid="uid://yo8c4alnkdc5" path="res://assets/interactables/slow_honey_floor.tscn" id="6_sucom"]
 
 [node name="StandardRoomN" type="Node2D"]
+z_as_relative = false
+y_sort_enabled = true
 
 [node name="Tilemap" type="TileMapLayer" parent="."]
 texture_filter = 1

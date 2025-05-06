@@ -46,6 +46,8 @@ radius = 159.301
 height = 372.384
 
 [node name="ShopB" type="CharacterBody2D"]
+z_index = 1
+y_sort_enabled = true
 collision_mask = 4
 script = ExtResource("1_bhapu")
 
