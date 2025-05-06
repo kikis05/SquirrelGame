@@ -1,4 +1,5 @@
-res://sword.tscn
+res://Rooms/Tutorial/RoomHole.tscn
+res://scenes/main.gd
 res://assets/tiles/RoomTileset.tres
 res://entities/enemies/states/chase_state.gd
 res://scenes/main.gd
