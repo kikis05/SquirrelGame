@@ -399,6 +399,11 @@ func _check_if_room_cleared(room_pos: Vector2i):
 
 func _clear_room(room_pos: Vector2i):
 	print("✅✅✅ All enemies gone — unlocking doors in room:", room_pos)
+	for c in get_tree().get_nodes_in_group("chest"):
+		print("Looking for chests")
+		if c.is_inside_tree() and current_room_instance.is_ancestor_of(c):
+			"Opening Chest"
+			c.room_completed()
 	cleared_rooms[room_pos] = true
 	for door in get_tree().get_nodes_in_group("door"):
 		if door.is_inside_tree() and current_room_instance.is_ancestor_of(door):

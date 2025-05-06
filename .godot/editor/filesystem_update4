@@ -1,7 +1,9 @@
-res://sword.tscn
+res://entities/chests/chest.tscn
 res://assets/tiles/RoomTileset.tres
 res://entities/enemies/states/chase_state.gd
 res://scenes/main.gd
+res://scenes/dungeon_generator.gd
+res://sword.tscn
 res://Rooms/Tutorial/RoomSword.tscn
 res://entities/enemies/tutorial_ant_sword/ant_sword.tscn
 res://scenes/title.tscn
@@ -10,7 +12,6 @@ res://Rooms/StandardRoomScenes/StandardRoomS.tscn
 res://Rooms/StandardRoomScenes/StandardRoomNSW.tscn
 res://scenes/TutorialLevel.tscn
 res://Rooms/Ladder/Ladder.tscn
-res://entities/chests/chest.tscn
 res://NPCs/Nutsworth.tscn
 res://Rooms/Ladder/transition_screen.tscn
 res://scenes/main.tscn
@@ -56,4 +57,3 @@ res://Rooms/Rooms_Anna/SquareDoubleUpS.tscn
 res://Rooms/Rooms_Anna/SquareFishNS.tscn
 res://Rooms/Rooms_Anna/SquareFourCornersNESW.tscn
 res://Rooms/Rooms_Anna2/TightSqueezeEW.tscn
-res://scenes/dungeon_generator.gd
