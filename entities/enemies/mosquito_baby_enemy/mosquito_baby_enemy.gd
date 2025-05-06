@@ -43,6 +43,12 @@ func _physics_process(delta):
 		enemy_body.rotation = -1 * rotation
 
 func die():
+	emit_signal("enemy_defeated")
+	_remove_from_enemy_group_recursive(self)
+	await get_tree().process_frame
+	await get_tree().process_frame
+	for e in get_tree().get_nodes_in_group("enemy"):
+		print("🧾 Still in 'enemy' group:", e.name)
 	change_animation("death")
 	
 	# Different hitbox locations (from the ant) due to the rotation method

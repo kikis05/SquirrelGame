@@ -15,22 +15,17 @@ var cleared_rooms := {}  # Dictionary<Vector2i, bool>
 var visited_rooms : Dictionary = {}  
 
 const CUSTOM_ROOMS := {
-	"N":        ["NestLongNS", "SquareFishNS"],
-	"E":        ["SquareCornerNE", "SquareCornerES"],
-	"S":        ["SquareChestS"],
-	"W":        ["SquareCornerNW", "SquareCornerSW"],
-	"NS":       ["NestLongNS", "SquareFishNS"],
-	"EW":       ["NestBridgeEW", "SquareBottleneckEW", "HolesEW", "MoundsEW", "TightSqueezeEW"],
+	"S":        ["SquareChestS", "SquareDoubleUpCircleS", "SquareDoubleUpS"],
+	"N": 		["SquareDoubleUpCircleN"],
+	"NS":       ["NestLongNS", "SquareFishNS", "NestCircleNS", "SquareBottleneckNS"],
+	"EW":       ["NestBridgeEW", "HolesEW", "MoundsEW", "TightSqueezeEW"],
 	"NE":       ["SquareCornerNE"],
 	"NW":       ["SquareCornerNW"],
 	"SE":       ["SquareCornerSE"],
-	"SW":       ["SquareCornerSW"],
+	"SW":       ["SquareCornerSW", "NestChestSW"],
 	"ESW":      ["NestChestBridgeESW"],
-	"NESW":     ["NestCircleNESW", "SquareFourCornersNESW"],
+	"NESW":     ["SquareFourCornersNESW"],
 	"NEW":      ["NestChestBridgeNEW"],
-	"NSW":      ["NestChestSW"],
-	"NES":      ["SquareDoubleUpCircleS"],
-	"SINGLE":   ["SquareChestS", "SquareDoubleUpN"] # optional fallback or single-entry
 }
 
 const ROOM_TYPES = {
@@ -227,7 +222,7 @@ func _switch_to_room(pos : Vector2i, entered_from_dir : String) -> void:
 		if pick.ends_with(".tscn"):
 			scene_path = "res://Rooms/Rooms_Anna2/%s" % pick
 		else:
-			if pick in ["NestChestBridgeESW", "SquareDoubleUpCircleS", "HolesEW", "MoundsEW", "TightSqueezeEW", "MosquitoMoundChestN"]:
+			if pick in ["NestChestBridgeESW", "SquareDoubleUpCircleN", "HolesEW", "MoundsEW", "TightSqueezeEW", "MosquitoMoundChestN"]:
 				scene_path = "res://Rooms/Rooms_Anna2/%s.tscn" % pick
 			else:
 				scene_path = "res://Rooms/Rooms_Anna/%s.tscn" % pick

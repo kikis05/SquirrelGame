@@ -57,3 +57,10 @@ res://Rooms/Rooms_Anna/SquareFishNS.tscn
 res://Rooms/Rooms_Anna/SquareFourCornersNESW.tscn
 res://Rooms/Rooms_Anna2/TightSqueezeEW.tscn
 res://scenes/dungeon_generator.gd
+res://entities/enemies/mosquito_baby_enemy/mosquito_baby_enemy.gd
+res://entities/enemies/mosquito_enemy/mosquito_enemy.gd
+res://Rooms/Rooms_Anna/SquareDoubleUpS.tscn
+res://Rooms/Rooms_Anna/NestCircleNS.tscn
+res://Rooms/Rooms_Anna/SquareBottleneckNW.tscn
+res://Rooms/Rooms_Anna/SquareBottleneckNS.tscn
+res://Rooms/Rooms_Anna2/SquareDoubleUpCircleN.tscn
