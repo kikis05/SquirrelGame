@@ -16,7 +16,7 @@ var visited_rooms : Dictionary = {}
 
 const CUSTOM_ROOMS := {
 	"N":        ["NestLongNS", "SquareFishNS"],
-	"E":        ["SquareCornerNE", "SquareCornerSE"],
+	"E":        ["SquareCornerNE", "SquareCornerES"],
 	"S":        ["SquareChestS"],
 	"W":        ["SquareCornerNW", "SquareCornerSW"],
 	"NS":       ["NestLongNS", "SquareFishNS"],

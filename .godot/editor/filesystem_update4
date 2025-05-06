@@ -1,9 +1,7 @@
-res://Rooms/StandardRoomScenes/StandardRoomE.tscn
+res://sword.tscn
 res://assets/tiles/RoomTileset.tres
 res://entities/enemies/states/chase_state.gd
 res://scenes/main.gd
-res://scenes/dungeon_generator.gd
-res://sword.tscn
 res://Rooms/Tutorial/RoomSword.tscn
 res://entities/enemies/tutorial_ant_sword/ant_sword.tscn
 res://scenes/title.tscn
@@ -20,6 +18,7 @@ res://scenes/test.tscn
 res://Player/player.tscn
 res://Rooms/Tutorial/RoomIntro.tscn
 res://Rooms/ShopRooms/StandardRoomShopS.tscn
+res://Rooms/StandardRoomScenes/StandardRoomE.tscn
 res://Rooms/StandardRoomScenes/StandardRoomESW.tscn
 res://Rooms/StandardRoomScenes/StandardRoomES.tscn
 res://Rooms/StandardRoomScenes/StandardRoomEW.tscn
@@ -43,7 +42,6 @@ res://Rooms/StandardRoomScenes/StandardRoomNES.tscn
 res://Rooms/StandardRoomScenes/StandardRoomNE.tscn
 res://Rooms/StandardRoomScenes/StandardRoomN.tscn
 res://Rooms/Rooms_Anna2/MosquitoMoundChestN.tscn
-res://Rooms/Rooms_Anna2/TightSqueezeEW.tscn
 res://Rooms/Rooms_Anna/NestChestSW.tscn
 res://Rooms/Rooms_Anna/NestChestBridgeNEW.tscn
 res://Rooms/Rooms_Anna/NestCircleNESW.tscn
@@ -57,3 +55,5 @@ res://Rooms/Rooms_Anna/SquareCornerSW.tscn
 res://Rooms/Rooms_Anna/SquareDoubleUpN.tscn
 res://Rooms/Rooms_Anna/SquareFishNS.tscn
 res://Rooms/Rooms_Anna/SquareFourCornersNESW.tscn
+res://Rooms/Rooms_Anna2/TightSqueezeEW.tscn
+res://scenes/dungeon_generator.gd

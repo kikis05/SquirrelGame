@@ -8,9 +8,7 @@
 [node name="SquareCornerNW" type="Node2D"]
 y_sort_enabled = true
 
-[node name="TileMap" type="Node" parent="."]
-
-[node name="Wall" type="TileMapLayer" parent="TileMap"]
+[node name="Tilemap" type="TileMapLayer" parent="."]
 texture_filter = 1
 position = Vector2(506, 283)
 rotation = 3.14159
@@ -96,4 +94,4 @@ position = Vector2(-38, 27)
 position = Vector2(26, -21)
 
 [node name="SpawnPoint" type="Node2D" parent="."]
-position = Vector2(240, 136)
+position = Vector2(149, 123)
