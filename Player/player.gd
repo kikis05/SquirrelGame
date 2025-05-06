@@ -19,7 +19,6 @@ signal coins_changed
 #animation
 @onready var sprite = $AnimatedSprite2D
 @onready var invincible_timer = $InvincibleTimer
-@onready var anim_player = $AnimationPlayer
 var flipped = false
 var invincible = false
 var dead = false
@@ -176,8 +175,6 @@ func damage_player():
 		current_health -=1
 		health_changed.emit(current_health)
 		invincible_timer.start()
-		anim_player.play("RESET")
-		anim_player.play("Damaged")
 
 func _on_invincible_timer_timeout():
 	print("meep")
