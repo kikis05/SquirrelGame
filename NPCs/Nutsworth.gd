@@ -21,6 +21,7 @@ signal talk_finished         # emitted when all lines are done
 @onready var _prompt : RichTextLabel      = $Prompt
 @export var ui_layer : CanvasLayer
 @onready var _door :  = get_parent().get_node("DoorN/DoorN")
+@onready var _doorE :  = get_parent().get_node("DoorE/DoorE")
 var _player_in_range := false
 var _dialog_open     := false
 var _cool_timer : Timer                     
@@ -28,6 +29,7 @@ var _can_talk    := true
 
 
 func _ready():
+	_doorE.open()
 	_sprite.play("idle")
 	$Area2D.body_entered.connect(_on_entered)
 	$Area2D.body_exited.connect(_on_exited)
