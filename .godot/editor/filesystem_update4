@@ -1,8 +1,1 @@
-res://scenes/main.tscn
-res://scenes/main.gd
-res://assets/tiles/RoomTileset.tres
-res://entities/enemies/states/chase_state.gd
-res://Rooms/Boss_Queen/ant_queen.tscn
-res://Rooms/Boss_Queen/boss_room_queen.tscn
-res://scenes/title.tscn
-res://Rooms/Boss_Queen/boss_room_queen.gd
+res://shop_modal.tscn
