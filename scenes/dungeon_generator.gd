@@ -403,6 +403,10 @@ func _switch_to_room(pos : Vector2i, entered_from_dir : String) -> void:
 				if e.is_inside_tree() and current_room_instance.is_ancestor_of(e):
 					print("💀 Removing residual enemy from cleared room:", e.name)
 					e.queue_free()
+			for c in get_tree().get_nodes_in_group("chest"):
+				if c.is_inside_tree() and current_room_instance.is_ancestor_of(c):
+					print("Re-opening chest")
+					c.set_chest(null)
 	else:
 		print("⚠ Room has enemies, slamming doors:", pos)
 		for door in get_tree().get_nodes_in_group("door"):
