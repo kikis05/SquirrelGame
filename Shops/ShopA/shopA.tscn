@@ -1,40 +1,66 @@
-[gd_scene load_steps=9 format=3 uid="uid://cw6doj3joo6p7"]
+[gd_scene load_steps=12 format=3 uid="uid://cw6doj3joo6p7"]
 
 [ext_resource type="Script" uid="uid://b15ije4c8yin4" path="res://Shops/ShopA/shop_a.gd" id="1_wqobf"]
-[ext_resource type="Texture2D" uid="uid://cn0r5ch4vd5w2" path="res://art/ShopPurple.png" id="2_onoif"]
-[ext_resource type="PackedScene" uid="uid://biwrg4k20l68n" path="res://Shops/shop_modal.tscn" id="3_lafmt"]
+[ext_resource type="Texture2D" uid="uid://dwrs7xa1d3hs6" path="res://assets/Shop (1).png" id="2_gaqcb"]
+[ext_resource type="Texture2D" uid="uid://5nmk1gafu3tu" path="res://assets/ShopOutline.png" id="3_1ghpq"]
+[ext_resource type="PackedScene" uid="uid://biwrg4k20l68n" path="res://shop_modal.tscn" id="3_lafmt"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_fgaav"]
-atlas = ExtResource("2_onoif")
+[sub_resource type="AtlasTexture" id="AtlasTexture_0fv0m"]
+atlas = ExtResource("2_gaqcb")
 region = Rect2(0, 0, 120, 100)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_6lah5"]
-atlas = ExtResource("2_onoif")
+[sub_resource type="AtlasTexture" id="AtlasTexture_th002"]
+atlas = ExtResource("2_gaqcb")
+region = Rect2(120, 0, 120, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vkx63"]
+atlas = ExtResource("3_1ghpq")
+region = Rect2(0, 0, 120, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1k0fm"]
+atlas = ExtResource("3_1ghpq")
 region = Rect2(120, 0, 120, 100)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_e7rdd"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_fgaav")
+"texture": SubResource("AtlasTexture_0fv0m")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_fgaav")
+"texture": SubResource("AtlasTexture_0fv0m")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_fgaav")
+"texture": SubResource("AtlasTexture_0fv0m")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_fgaav")
+"texture": SubResource("AtlasTexture_0fv0m")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_6lah5")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_fgaav")
+"texture": SubResource("AtlasTexture_th002")
 }],
 "loop": true,
 "name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vkx63")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vkx63")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vkx63")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vkx63")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1k0fm")
+}],
+"loop": true,
+"name": &"highlighted",
 "speed": 5.0
 }]
 
@@ -52,6 +78,7 @@ script = ExtResource("1_wqobf")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(3.20513, -50)
 sprite_frames = SubResource("SpriteFrames_e7rdd")
+animation = &"highlighted"
 autoplay = "default"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -70,7 +97,6 @@ scale = Vector2(0.351873, 0.380727)
 shape = SubResource("CapsuleShape2D_fgaav")
 
 [node name="ShopModal" parent="." instance=ExtResource("3_lafmt")]
-visible = false
 
 [connection signal="area_entered" from="ActivationArea" to="." method="_on_activation_area_area_entered"]
 [connection signal="area_exited" from="ActivationArea" to="." method="_on_activation_area_area_exited"]

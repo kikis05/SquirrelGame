@@ -21,10 +21,10 @@ func pause ():
 	get_tree().paused = true
 	
 func _physics_process(_delta):
-	if Input.is_action_just_pressed("Escape") and get_tree().paused == false:
+	if Input.is_action_just_pressed("Escape") and get_tree().paused == false and not player.shop_open:
 		print("here")
 		pause()
-	elif  Input.is_action_just_pressed("Escape") and get_tree().paused == false:
+	elif  Input.is_action_just_pressed("Escape") and get_tree().paused == false and not player.shop_open:
 		print("unpaused")
 		resume()
 		

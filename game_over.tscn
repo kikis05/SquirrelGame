@@ -1,32 +1,62 @@
-[gd_scene load_steps=2 format=3 uid="uid://c16cshvswxjjx"]
+[gd_scene load_steps=5 format=3 uid="uid://c16cshvswxjjx"]
 
 [ext_resource type="Script" uid="uid://cm2j3yagfyhs" path="res://game_over.gd" id="1_y26ei"]
+[ext_resource type="Texture2D" uid="uid://e2hvv6ixgq8h" path="res://Untitled_Artwork (14).png" id="2_8u835"]
+[ext_resource type="Texture2D" uid="uid://bihsvtkaghnqb" path="res://Untitled_Artwork (13).png" id="3_ftari"]
+[ext_resource type="Texture2D" uid="uid://b26rudclqcjmb" path="res://Untitled_Artwork (12).png" id="4_28vn7"]
 
 [node name="Game Over" type="Node2D"]
 script = ExtResource("1_y26ei")
 
-[node name="Panel" type="Panel" parent="."]
-modulate = Color(0.524627, 0.293513, 0.185675, 1)
-self_modulate = Color(0.340637, 0.256189, 0.118984, 1)
-offset_right = 201.0
-offset_bottom = 92.0
+[node name="Blur" type="ColorRect" parent="."]
+self_modulate = Color(1, 1, 1, 0.392157)
+offset_right = 40.0
+offset_bottom = 40.0
+scale = Vector2(12.028, 6.79419)
+color = Color(0, 0, 0, 1)
 
-[node name="Button" type="Button" parent="Panel"]
+[node name="TextureRect" type="TextureRect" parent="."]
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("2_8u835")
+
+[node name="Exit" type="Button" parent="."]
+self_modulate = Color(1, 1, 1, 0)
+offset_left = 186.0
+offset_top = 126.0
+offset_right = 286.0
+offset_bottom = 157.0
+scale = Vector2(1.00228, 1.00444)
+text = "Exit
+"
+
+[node name="TextureRect" type="TextureRect" parent="Exit"]
+self_modulate = Color(0.813169, 0.843116, 0.85502, 1)
 layout_mode = 0
-offset_left = 55.0
-offset_top = 40.0
-offset_right = 135.0
-offset_bottom = 71.0
-scale = Vector2(1.09999, 0.953761)
-theme_override_font_sizes/font_size = 21
-text = "Restart"
+offset_left = -0.997726
+offset_top = -0.995571
+offset_right = 99.0023
+offset_bottom = 24.0044
+scale = Vector2(0.996137, 1)
+texture = ExtResource("3_ftari")
 
-[node name="Label" type="Label" parent="."]
-offset_left = 50.0
-offset_top = 6.0
-offset_right = 142.0
-offset_bottom = 30.0
-scale = Vector2(1.08608, 1.02371)
-text = "Game Over"
+[node name="Resume" type="Button" parent="."]
+self_modulate = Color(1, 1, 1, 0)
+offset_left = 183.0
+offset_top = 162.0
+offset_right = 283.0
+offset_bottom = 193.0
+scale = Vector2(0.997987, 1)
+text = "Resume"
 
-[connection signal="pressed" from="Panel/Button" to="." method="_on_button_pressed"]
+[node name="TextureRect" type="TextureRect" parent="Resume"]
+self_modulate = Color(0.811765, 0.843137, 0.854902, 1)
+layout_mode = 0
+offset_left = 2.00404
+offset_top = 1.478
+offset_right = 102.004
+offset_bottom = 26.478
+texture = ExtResource("4_28vn7")
+
+[connection signal="pressed" from="Exit" to="." method="_on_exit_pressed"]
+[connection signal="pressed" from="Resume" to="." method="_on_resume_pressed"]

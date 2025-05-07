@@ -78,6 +78,10 @@ func flip():
 	sprite.flip_h = !sprite.flip_h
 	flipped = !flipped
 	
+func reset():
+	bullet_damage = original_bullet_damage
+	bullet_speed = original_bullet_speed
+	
 # TODO: handle bullet damage linkage to gun damage
 func get_bullet_damage():
 	return bullet_damage

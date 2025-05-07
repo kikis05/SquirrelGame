@@ -69,10 +69,8 @@ func _on_slash_speed_timer_timeout() -> void:
 	canSlash = true 
 	rotation_degrees = 0
 	
-#func set_direction(direction):
-	#if direction[0] != 0:
-		#if direction.x < 0:	
-		#if direction.x > 0:
+func reset():
+	damage = original_damage
 		
 	
 func is_attacking():

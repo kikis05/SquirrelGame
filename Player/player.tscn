@@ -174,11 +174,8 @@ offset_bottom = 5.0
 [node name="CoinsContainer" parent="CanvasLayer" instance=ExtResource("7_00tjw")]
 
 [node name="Menu" parent="CanvasLayer" instance=ExtResource("8_x3vf3")]
-visible = false
 
 [node name="Game Over" parent="CanvasLayer" instance=ExtResource("10_x3vf3")]
-visible = false
-position = Vector2(135, 85)
 
 [node name="Label" type="Label" parent="CanvasLayer"]
 offset_left = 1.0

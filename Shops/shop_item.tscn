@@ -15,6 +15,7 @@ layout_mode = 0
 offset_right = 40.0
 offset_bottom = 40.0
 texture = ExtResource("2_wxfep")
+stretch_mode = 3
 
 [node name="Item" type="Sprite2D" parent="TextureRect"]
 z_index = 1

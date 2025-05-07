@@ -3,6 +3,7 @@ extends shop
 func _ready():
 	modal.set_item(0, 
 				   "res://art/shop_items/SunflowerSeed.png",
+					"res://art/shop_items/SunflowerSeedOutline.png",
 				   "Sunflower Seed",
 					5,
 				   "a small but reasonable energy boost!" ,
@@ -10,6 +11,7 @@ func _ready():
 					20 )
 	modal.set_item(1, 
 				   "res://art/shop_items/HalfAcorn.png",
+					"res://art/shop_items/HalfAcornOutline.png",
 				   "half-eaten acorn",
 					10,
 				   "you can never have too much health!" ,
@@ -17,6 +19,7 @@ func _ready():
 					1 )
 	modal.set_item(2, 
 				   "res://art/shop_items/SpicySap.png",
+				 "res://art/shop_items/SpicySapOutline.png",
 				   "sap",
 					7,
 				   "spicy sap! tasty and painful" ,
@@ -24,6 +27,7 @@ func _ready():
 					3 )
 	modal.set_item(3, 
 				   "res://art/shop_items/Thorn.png",
+				"res://art/shop_items/ThornOutline.png",
 				   "thorn",
 					5,
 				   "Makes your sword look cool!" ,
