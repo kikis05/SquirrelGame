@@ -44,10 +44,6 @@ func attack():
 				rotation_degrees = 90
 			else:
 				rotation_degrees = -90
-		if bullet_dir.x > 0 and not flipped:
-			flip()
-		if bullet_dir.x < 0 and flipped:
-			flip()
 			
 		var bulletNode = BULLET.instantiate()
 		bulletNode.set_origin(global_position)

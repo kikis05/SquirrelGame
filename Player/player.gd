@@ -131,6 +131,7 @@ func flip():
 	sprite.flip_h = !sprite.flip_h
 	$Gun.position.x = -1 * $Gun.position.x
 	$Gun.flip()
+	print ("gun flipped", $Gun.flipped)
 	$Sword.flipped = !$Sword.flipped
 	flipped = !flipped
 		
@@ -138,7 +139,6 @@ func set_weapon(weapon_):
 	weapon = weapon_
 
 func _on_player_hit_box_area_entered(area):
-	print("player area", area.name)
 	if area.is_in_group("coin"):
 		_sfx_coin.play() 
 		coins += 1
@@ -191,7 +191,6 @@ func damage_player():
 	sprite.modulate = Color(1, 1, 1) # White
 
 func _on_invincible_timer_timeout():
-	print("meep")
 	invincible = false
 	# TODO: Will be replaced by an animation
 

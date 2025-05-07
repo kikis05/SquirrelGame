@@ -40,10 +40,10 @@ position = Vector2(61, 1)
 position = Vector2(63, 0)
 
 [node name="SlowHoneyFloor" parent="SlowHoneyFloor1/SlowHoneyFloor/SlowHoneyFloor/SlowHoneyFloor/SlowHoneyFloor" instance=ExtResource("5_ugrjr")]
-position = Vector2(29, -1)
+position = Vector2(64, 0)
 
 [node name="SlowHoneyFloor2" parent="." instance=ExtResource("5_ugrjr")]
-position = Vector2(136, 139)
+position = Vector2(127, 139)
 
 [node name="SlowHoneyFloor" parent="SlowHoneyFloor2" instance=ExtResource("5_ugrjr")]
 position = Vector2(61, 1)
@@ -55,10 +55,10 @@ position = Vector2(61, 1)
 position = Vector2(61, 1)
 
 [node name="SlowHoneyFloor" parent="SlowHoneyFloor2/SlowHoneyFloor/SlowHoneyFloor/SlowHoneyFloor" instance=ExtResource("5_ugrjr")]
-position = Vector2(63, 0)
+position = Vector2(56, 0)
 
 [node name="SlowHoneyFloor" parent="SlowHoneyFloor2/SlowHoneyFloor/SlowHoneyFloor/SlowHoneyFloor/SlowHoneyFloor" instance=ExtResource("5_ugrjr")]
-position = Vector2(29, -1)
+position = Vector2(54, 0)
 
 [node name="SlowHoneyFloor3" parent="." instance=ExtResource("5_ugrjr")]
 position = Vector2(66, 200)
@@ -73,10 +73,10 @@ position = Vector2(60, 0)
 position = Vector2(61, 1)
 
 [node name="SlowHoneyFloor" parent="SlowHoneyFloor3/SlowHoneyFloor/SlowHoneyFloor/SlowHoneyFloor" instance=ExtResource("5_ugrjr")]
-position = Vector2(63, 0)
+position = Vector2(58, 0)
 
 [node name="SlowHoneyFloor" parent="SlowHoneyFloor3/SlowHoneyFloor/SlowHoneyFloor/SlowHoneyFloor/SlowHoneyFloor" instance=ExtResource("5_ugrjr")]
-position = Vector2(29, -1)
+position = Vector2(54, 0)
 
 [node name="Fire Ant Enemy" parent="." instance=ExtResource("6_5bh6g")]
 position = Vector2(53, 56)
@@ -88,7 +88,7 @@ position = Vector2(72, 57)
 position = Vector2(417, 129)
 
 [node name="Fire Ant Enemy3" parent="." instance=ExtResource("6_5bh6g")]
-position = Vector2(391, 129)
+position = Vector2(390, 126)
 
 [node name="Fire Ant Enemy5" parent="." instance=ExtResource("6_5bh6g")]
 position = Vector2(90, 225)
