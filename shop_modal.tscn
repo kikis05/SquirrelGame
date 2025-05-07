@@ -111,6 +111,34 @@ autowrap_mode = 3
 [node name="Click" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("6_bygo8")
 
+[node name="instruc1" type="Label" parent="."]
+offset_left = 289.0
+offset_top = 221.0
+offset_right = 333.0
+offset_bottom = 240.0
+theme_override_fonts/font = ExtResource("4_5yeww")
+text = "<A  D>"
+autowrap_mode = 2
+
+[node name="instruc2" type="Label" parent="."]
+offset_left = 398.0
+offset_top = 221.0
+offset_right = 452.0
+offset_bottom = 236.0
+theme_override_fonts/font = ExtResource("4_5yeww")
+text = "ENTER"
+autowrap_mode = 2
+
+[node name="instruc3" type="Label" parent="."]
+offset_left = 404.0
+offset_top = 248.0
+offset_right = 458.0
+offset_bottom = 267.0
+theme_override_colors/font_color = Color(0.619608, 0.270588, 0.223529, 1)
+theme_override_fonts/font = ExtResource("4_5yeww")
+text = "E/esc"
+autowrap_mode = 2
+
 [connection signal="pressed" from="Buy" to="." method="_on_buy_pressed"]
 [connection signal="pressed" from="ShopItem" to="." method="_on_shop_item_pressed"]
 [connection signal="pressed" from="ShopItem2" to="." method="_on_shop_item_2_pressed"]
