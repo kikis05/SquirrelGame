@@ -1,0 +1,176 @@
+[gd_scene load_steps=23 format=3 uid="uid://cmigogm5tsuwv"]
+
+[ext_resource type="Script" uid="uid://cjdrhq38jovsn" path="res://Rooms/Doors/BossDoor.gd" id="1_cgf23"]
+[ext_resource type="Texture2D" uid="uid://b2exmj05n5jns" path="res://Rooms/Doors/BossDoorOpen.png" id="2_7f5ly"]
+[ext_resource type="Texture2D" uid="uid://bjc2w22xfwwf2" path="res://Rooms/Doors/BossDoorOutline.png" id="2_7gedk"]
+[ext_resource type="Texture2D" uid="uid://cv66lyf6ovcqw" path="res://Rooms/Doors/BossDoorSlam.png" id="3_cgf23"]
+[ext_resource type="FontFile" uid="uid://ch5tibw7yghdt" path="res://assets/MinecraftStandard.otf" id="5_43csk"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_43csk"]
+size = Vector2(32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cgf23"]
+atlas = ExtResource("3_cgf23")
+region = Rect2(192, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8b67v"]
+atlas = ExtResource("2_7f5ly")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_j6r7c"]
+atlas = ExtResource("2_7f5ly")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_10mo6"]
+atlas = ExtResource("2_7f5ly")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_egjdl"]
+atlas = ExtResource("2_7f5ly")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7f5ly"]
+atlas = ExtResource("2_7gedk")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_o85pf"]
+atlas = ExtResource("3_cgf23")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tgnr6"]
+atlas = ExtResource("3_cgf23")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_se734"]
+atlas = ExtResource("3_cgf23")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_oqwr4"]
+atlas = ExtResource("3_cgf23")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_khbul"]
+atlas = ExtResource("3_cgf23")
+region = Rect2(128, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_c1f5b"]
+atlas = ExtResource("3_cgf23")
+region = Rect2(160, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2ds0u"]
+atlas = ExtResource("3_cgf23")
+region = Rect2(192, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_oxpa5"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cgf23")
+}],
+"loop": true,
+"name": &"closed",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8b67v")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_j6r7c")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_10mo6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_egjdl")
+}],
+"loop": false,
+"name": &"open",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7f5ly")
+}],
+"loop": true,
+"name": &"outline",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_o85pf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tgnr6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_se734")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_oqwr4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_khbul")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_c1f5b")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2ds0u")
+}],
+"loop": false,
+"name": &"slam",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7gc74"]
+size = Vector2(32, 32)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_cgf23"]
+size = Vector2(48, 24)
+
+[node name="BossDoor" type="Node2D"]
+
+[node name="DoorN" type="Area2D" parent="."]
+script = ExtResource("1_cgf23")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DoorN"]
+position = Vector2(240, 16)
+shape = SubResource("RectangleShape2D_43csk")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="DoorN"]
+texture_filter = 1
+position = Vector2(240, 16)
+sprite_frames = SubResource("SpriteFrames_oxpa5")
+animation = &"closed"
+
+[node name="StaticBody2D" type="StaticBody2D" parent="DoorN"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DoorN/StaticBody2D"]
+position = Vector2(240, 16)
+shape = SubResource("RectangleShape2D_7gc74")
+
+[node name="DetectPlayer" type="Area2D" parent="DoorN"]
+position = Vector2(240, 32)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DoorN/DetectPlayer"]
+position = Vector2(0, 12)
+shape = SubResource("RectangleShape2D_cgf23")
+
+[node name="Prompt" type="RichTextLabel" parent="."]
+offset_left = 208.0
+offset_top = -16.0
+offset_right = 280.0
+offset_bottom = -3.0
+size_flags_horizontal = 0
+size_flags_vertical = 4
+theme_override_fonts/normal_font = ExtResource("5_43csk")
+theme_override_font_sizes/normal_font_size = 6
+text = "E to OPEN"
+horizontal_alignment = 1
+
+[node name="SpawnPoint" type="Node2D" parent="."]
+position = Vector2(240, 72)
+
+[node name="DialogSpawn" type="Marker2D" parent="."]
+position = Vector2(16, 0)

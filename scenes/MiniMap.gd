@@ -13,6 +13,7 @@ const BACK_CLR    = Color.BLACK
 const ROOM_CLR    = Color(0.8, 0.8, 0.8)     # visited room
 const PLAYER_CLR  = Color(1, 0.2, 0.2)       # current room
 const SHOP_CLR    = Color(0.2, 1.0, 0.4)     # shop room (green)
+const BOSS_CLR    = Color(0.576471, 0.439216, 0.858824) # boss room (purple)
 const CHEST_CLR   = Color(1.0, 0.8, 0.2)     # chest room (gold)
 
 # ───────── state ──────────────────────────────────────────
@@ -38,6 +39,8 @@ func _get_room_exits(room_name: String) -> Array:
 		return room_name.replace("SHOP_", "").split("")
 	if room_name.begins_with("CHEST_"):
 		return room_name.replace("CHEST_", "").split("")
+	if room_name.begins_with("BOSS_"):
+		return room_name.replace("BOSS_", "").split("")
 	for exits in dungeon.CUSTOM_ROOMS:
 		if room_name in dungeon.CUSTOM_ROOMS[exits]:
 			return exits.split("")
@@ -63,6 +66,8 @@ func _draw() -> void:
 			room_color = SHOP_CLR
 		elif room_name.begins_with("CHEST_"):
 			room_color = CHEST_CLR
+		elif room_name.begins_with("BOSS_"):
+			room_color = BOSS_CLR
 		
 		draw_rect(Rect2(pos, inner_size), room_color)
 

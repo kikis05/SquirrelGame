@@ -1,3 +1,5 @@
+CollisionShape2D
+Area2D
 AudioStreamPlayer2D
 AnimationPlayer
 ColorRect
@@ -10,5 +12,3 @@ Node
 MarginContainer
 Control
 NinePatchRect
-CollisionShape2D
-Area2D

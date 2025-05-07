@@ -15,6 +15,7 @@ var cleared_rooms := {}
 var visited_rooms : Dictionary = {}  
 var shop_room_pos : Vector2i = Vector2i(-1, -1)
 var chest_rooms_pos : Array[Vector2i] = []
+var boss_room_pos : Vector2i = Vector2i(-1, -1)
 
 const CUSTOM_ROOMS := {
 	"S":        ["SquareChestS", "SquareDoubleUpS"],
@@ -41,6 +42,16 @@ const SHOP_ROOMS := {
 	"N": ["ShopN"],
 	"S": ["ShopS"],
 	"W": ["ShopW"]
+}
+
+const BOSS_ROOMS := {
+	"E": 	["BossRoomE"],
+	"ES": 	["BossRoomES"],
+	"ESW": 	["BossRoomESW"],
+	"EW": 	["BossRoomEW"],
+	"S":	["BossRoomS"],
+	"W":	["BossRoomW"],
+	"WS":	["BossRoomWS"]
 }
 
 const ROOM_TYPES = {
@@ -116,10 +127,12 @@ func _generate_dungeon() -> bool:
 		var connected := _count_connected_rooms(centre)
 		print("→ Reachable from centre:", connected)
 
-		if nonempty >= MIN_NONEMPTY and connected >= MIN_NONEMPTY:
-			# Find and replace rooms with special rooms
+		# Ensure all non-empty rooms are connected
+		if nonempty >= MIN_NONEMPTY and connected == nonempty:
+			# Place special rooms and check success
 			if _place_special_rooms():
 				print("✅ Grid accepted with special rooms")
+				# Fill remaining cells with EmptyRoom
 				for y in range(GRID_HEIGHT):
 					for x in range(GRID_WIDTH):
 						if collapsed[y][x] == null:
@@ -143,15 +156,16 @@ func _place_special_rooms() -> bool:
 			var exits = ROOM_TYPES[collapsed[y][x]]
 			var dir_key := "".join(exits)
 			
-			# Check if this could be any special room type
-			if SHOP_ROOMS.has(dir_key) || CHEST_ROOMS.has(dir_key):
+			# Update condition to include BOSS_ROOMS
+			if SHOP_ROOMS.has(dir_key) || CHEST_ROOMS.has(dir_key) || BOSS_ROOMS.has(dir_key):
 				candidate_positions.append({
 					"pos": pos,
 					"exits": exits,
 					"dir_key": dir_key
 				})
 	
-	if candidate_positions.size() < 3:
+	# Update minimum candidate check
+	if candidate_positions.size() < 4:  # Changed from 3 to 4 to account for boss room
 		print("❌ Not enough candidate positions for special rooms")
 		return false
 	
@@ -195,6 +209,20 @@ func _place_special_rooms() -> bool:
 		print("❌ Only placed", chests_placed, "chest rooms (needed 2)")
 		return false
 	
+	var boss_placed := false
+	# Filter remaining candidates for boss-compatible rooms
+	var boss_candidates = candidate_positions.filter(func(data): return BOSS_ROOMS.has(data.dir_key))
+	if boss_candidates.size() > 0:
+		var boss_data = boss_candidates[0]
+		collapsed[boss_data.pos.y][boss_data.pos.x] = "BOSS_" + boss_data.dir_key
+		boss_room_pos = boss_data.pos
+		print("👑 Boss room placed at:", boss_data.pos, " with exits:", boss_data.dir_key)
+		boss_placed = true
+	
+	if not boss_placed:
+		print("❌ Failed to place boss room")
+		return false
+	
 	# Print final room layout
 	print("\n=== FINAL ROOM LAYOUT ===")
 	_print_grid_layout()
@@ -209,7 +237,9 @@ func _print_grid_layout() -> void:
 			var pos := Vector2i(x, y)
 			var room = collapsed[y][x]
 			if pos == shop_room_pos:
-				row += "[S]"
+				row += "[$]"
+			elif pos == boss_room_pos:
+				row += "[B]"
 			elif chest_rooms_pos.has(pos):
 				row += "[C]"
 			elif room == "EmptyRoom":
@@ -220,11 +250,13 @@ func _print_grid_layout() -> void:
 		grid_display += row + "\n"
 	
 	print("Grid Key:")
-	print("S = Shop Room")
+	print("$ = Shop Room")
+	print("B = Boss Room")
 	print("C = Chest Room")
 	print("X = Regular Room")
 	print(" = Empty Room\n")
 	print(grid_display)
+
 
 func _init_grid() -> void:
 	grid.clear()
@@ -348,6 +380,13 @@ func _switch_to_room(pos : Vector2i, entered_from_dir : String) -> void:
 			var options = CHEST_ROOMS[dir_key]
 			var pick = options[rng.randi_range(0, options.size() - 1)]
 			scene_path = "res://Rooms/Rooms_Anna/%s.tscn" % pick
+	
+	elif room_name.begins_with("BOSS_"):
+		room_type = "boss"
+		var dir_key = room_name.replace("BOSS_", "")
+		directions = _get_directions_from_key(dir_key)
+		if BOSS_ROOMS.has(dir_key):
+			scene_path = "res://Rooms/Boss_Queen/%s.tscn" % BOSS_ROOMS[dir_key][0]
 	
 	# Then custom rooms
 	if scene_path.is_empty():
@@ -557,6 +596,8 @@ func _count_connected_rooms(start : Vector2i) -> int:
 			cur_exits = _get_directions_from_key(cur_room.replace("SHOP_", ""))
 		elif cur_room.begins_with("CHEST_"):
 			cur_exits = _get_directions_from_key(cur_room.replace("CHEST_", ""))
+		elif cur_room.begins_with("BOSS_"):  # New condition
+			cur_exits = _get_directions_from_key(cur_room.replace("BOSS_", ""))
 		else:
 			cur_exits = ROOM_TYPES[cur_room]
 
