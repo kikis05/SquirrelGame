@@ -8,24 +8,39 @@ signal room_loaded(pos : Vector2i)
 
 const GRID_WIDTH      = 5
 const GRID_HEIGHT     = 5
-const MIN_NONEMPTY    = 10
-const MAX_ATTEMPTS    = 100
+const MIN_NONEMPTY    = 13  # Increased to account for special rooms
+const MAX_ATTEMPTS    = 200 # Increased to handle additional constraints
 const TILE_SIZE       = Vector2(160, 64)
-var cleared_rooms := {}  # Dictionary<Vector2i, bool>
+var cleared_rooms := {}
 var visited_rooms : Dictionary = {}  
+var shop_room_pos : Vector2i = Vector2i(-1, -1)
+var chest_rooms_pos : Array[Vector2i] = []
 
 const CUSTOM_ROOMS := {
 	"S":        ["SquareChestS", "SquareDoubleUpS"],
 	"N": 		["SquareDoubleUpCircleN"],
 	"NS":       ["NestLongNS", "SquareFishNS", "NestCircleNS", "SquareBottleneckNS"],
-	"EW":       ["NestBridgeEW", "HolesEW", "MoundsEW", "TightSqueezeEW"],
+	"EW":       ["HolesEW", "MoundsEW", "TightSqueezeEW"],
 	"NE":       ["SquareCornerNE"],
 	"NW":       ["SquareCornerNW"],
 	"SE":       ["SquareCornerSE"],
-	"SW":       ["SquareCornerSW", "NestChestSW"],
-	"ESW":      ["NestChestBridgeESW"],
+	"SW":       ["SquareCornerSW"],
 	"NESW":     ["SquareFourCornersNESW"],
+}
+
+const CHEST_ROOMS := {
 	"NEW":      ["NestChestBridgeNEW"],
+	"ESW":      ["NestChestBridgeESW"],
+	"EW":       ["NestBridgeEW"],
+	"SW":		["NestChestSW"],
+	"N":		["MosquitoMoundChestN"]
+}
+
+const SHOP_ROOMS := {
+	"E": ["ShopE"],
+	"N": ["ShopN"],
+	"S": ["ShopS"],
+	"W": ["ShopW"]
 }
 
 const ROOM_TYPES = {
@@ -79,6 +94,8 @@ func _generate_dungeon() -> bool:
 	for attempt in range(MAX_ATTEMPTS):
 		print("--- Attempt", attempt, "of", MAX_ATTEMPTS, "---")
 		_init_grid()
+		shop_room_pos = Vector2i(-1, -1)
+		chest_rooms_pos.clear()
 
 		var centre : Vector2i = Vector2i(GRID_WIDTH / 2, GRID_HEIGHT / 2)
 		var first_index : int = rng.randi_range(0, ROOM_TYPES.size() - 1)
@@ -91,24 +108,123 @@ func _generate_dungeon() -> bool:
 		_collapse_all()
 
 		var nonempty : int = 0
-		for row in collapsed:
-			for cell in row:
-				if cell != null and cell != "EmptyRoom":
+		for y in range(GRID_HEIGHT):
+			for x in range(GRID_WIDTH):
+				if collapsed[y][x] != null and collapsed[y][x] != "EmptyRoom":
 					nonempty += 1
 		print("→ Non‑empty rooms:", nonempty)
 		var connected := _count_connected_rooms(centre)
 		print("→ Reachable from centre:", connected)
 
 		if nonempty >= MIN_NONEMPTY and connected >= MIN_NONEMPTY:
-			print("✅ Grid accepted")
-			for y in range(GRID_HEIGHT):
-				for x in range(GRID_WIDTH):
-					if collapsed[y][x] == null:
-						collapsed[y][x] = "EmptyRoom"
-			return true
+			# Find and replace rooms with special rooms
+			if _place_special_rooms():
+				print("✅ Grid accepted with special rooms")
+				for y in range(GRID_HEIGHT):
+					for x in range(GRID_WIDTH):
+						if collapsed[y][x] == null:
+							collapsed[y][x] = "EmptyRoom"
+				return true
 
 	print("❌ Could not satisfy WFC constraints")
 	return false
+
+func _place_special_rooms() -> bool:
+	var candidate_positions := []
+	var center := Vector2i(GRID_WIDTH / 2, GRID_HEIGHT / 2)
+	
+	# Collect valid candidate positions (non-center, non-empty, with matching exit patterns)
+	for y in range(GRID_HEIGHT):
+		for x in range(GRID_WIDTH):
+			var pos = Vector2i(x, y)
+			if pos == center || collapsed[y][x] == "EmptyRoom":
+				continue
+				
+			var exits = ROOM_TYPES[collapsed[y][x]]
+			var dir_key := "".join(exits)
+			
+			# Check if this could be any special room type
+			if SHOP_ROOMS.has(dir_key) || CHEST_ROOMS.has(dir_key):
+				candidate_positions.append({
+					"pos": pos,
+					"exits": exits,
+					"dir_key": dir_key
+				})
+	
+	if candidate_positions.size() < 3:
+		print("❌ Not enough candidate positions for special rooms")
+		return false
+	
+	# Shuffle while keeping room data
+	candidate_positions.shuffle()
+	
+	# Place shop room first
+	var shop_placed := false
+	for i in range(candidate_positions.size()):
+		var data = candidate_positions[i]
+		if SHOP_ROOMS.has(data.dir_key):
+			collapsed[data.pos.y][data.pos.x] = "SHOP_" + data.dir_key
+			shop_room_pos = data.pos
+			candidate_positions.remove_at(i)
+			shop_placed = true
+			print("🏪 Shop room placed at:", data.pos, " with exits:", data.dir_key)
+			break
+			
+	if not shop_placed:
+		print("❌ Failed to place shop room")
+		return false
+	
+	# Place chest rooms (need 2)
+	var chests_placed := 0
+	var to_remove := []
+	for data in candidate_positions:
+		if chests_placed >= 2:
+			break
+		if CHEST_ROOMS.has(data.dir_key):
+			collapsed[data.pos.y][data.pos.x] = "CHEST_" + data.dir_key
+			chest_rooms_pos.append(data.pos)
+			chests_placed += 1
+			to_remove.append(data)
+			print("💰 Chest room placed at:", data.pos, " with exits:", data.dir_key)
+	
+	# Remove placed chest rooms from candidates
+	for data in to_remove:
+		candidate_positions.erase(data)
+	
+	if chests_placed < 2:
+		print("❌ Only placed", chests_placed, "chest rooms (needed 2)")
+		return false
+	
+	# Print final room layout
+	print("\n=== FINAL ROOM LAYOUT ===")
+	_print_grid_layout()
+	
+	return true
+
+func _print_grid_layout() -> void:
+	var grid_display := ""
+	for y in range(GRID_HEIGHT):
+		var row := ""
+		for x in range(GRID_WIDTH):
+			var pos := Vector2i(x, y)
+			var room = collapsed[y][x]
+			if pos == shop_room_pos:
+				row += "[S]"
+			elif chest_rooms_pos.has(pos):
+				row += "[C]"
+			elif room == "EmptyRoom":
+				row += "[ ]"
+			else:
+				row += "[X]"
+			row += " "  # Add spacing between cells
+		grid_display += row + "\n"
+	
+	print("Grid Key:")
+	print("S = Shop Room")
+	print("C = Chest Room")
+	print("X = Regular Room")
+	print(" = Empty Room\n")
+	print(grid_display)
 
 func _init_grid() -> void:
 	grid.clear()
@@ -211,30 +327,55 @@ func _switch_to_room(pos : Vector2i, entered_from_dir : String) -> void:
 		get_tree().call_group("room_deletables", "queue_free")
 		current_room_instance.queue_free()
 
-	var directions = ROOM_TYPES[room_name].duplicate()
-	directions.sort() # ensure ordering
-	var dir_key := "".join(directions)
-	var scene_path : String = ""
-
-	if CUSTOM_ROOMS.has(dir_key):
-		var choices = CUSTOM_ROOMS[dir_key]
-		var pick = choices[rng.randi_range(0, choices.size() - 1)]
-		if pick.ends_with(".tscn"):
-			scene_path = "res://Rooms/Rooms_Anna2/%s" % pick
-		else:
-			if pick in ["NestChestBridgeESW", "SquareDoubleUpCircleN", "HolesEW", "MoundsEW", "TightSqueezeEW", "MosquitoMoundChestN"]:
-				scene_path = "res://Rooms/Rooms_Anna2/%s.tscn" % pick
-			else:
-				scene_path = "res://Rooms/Rooms_Anna/%s.tscn" % pick
-	else:
+	var directions := []
+	var scene_path := ""
+	var room_type := "standard"
+	
+	# Check for shop room first
+	if room_name.begins_with("SHOP_"):
+		room_type = "shop"
+		var dir_key = room_name.replace("SHOP_", "")
+		directions = _get_directions_from_key(dir_key)
+		if SHOP_ROOMS.has(dir_key):
+			scene_path = "res://Rooms/ShopRooms/%s.tscn" % SHOP_ROOMS[dir_key][0]
+	
+	# Then check for chest room
+	elif room_name.begins_with("CHEST_"):
+		room_type = "chest" 
+		var dir_key = room_name.replace("CHEST_", "")
+		directions = _get_directions_from_key(dir_key)
+		if CHEST_ROOMS.has(dir_key):
+			var options = CHEST_ROOMS[dir_key]
+			var pick = options[rng.randi_range(0, options.size() - 1)]
+			scene_path = "res://Rooms/Rooms_Anna/%s.tscn" % pick
+	
+	# Then custom rooms
+	if scene_path.is_empty():
+		for exits in CUSTOM_ROOMS:
+			if room_name in CUSTOM_ROOMS[exits]:
+				directions = _get_directions_from_key(exits)
+				var pick = CUSTOM_ROOMS[exits][rng.randi_range(0, CUSTOM_ROOMS[exits].size() - 1)]
+				# Special cases for Anna2 folder
+				if pick in ["SquareDoubleUpCircleN", "HolesEW", "MoundsEW", "TightSqueezeEW"]:
+					scene_path = "res://Rooms/Rooms_Anna2/%s.tscn" % pick
+				else:
+					scene_path = "res://Rooms/Rooms_Anna/%s.tscn" % pick
+				break
+	
+	# Fallback to standard rooms
+	if scene_path.is_empty() and ROOM_TYPES.has(room_name):
+		directions = ROOM_TYPES[room_name].duplicate()
 		scene_path = "res://Rooms/StandardRoomScenes/%s.tscn" % room_name
+	
+	# Error handling
+	if scene_path.is_empty():
+		push_error("Unknown room type: " + room_name)
+		return
+
 
 	print("\u2022 Instancing room:", scene_path)
 	current_room_instance = load(scene_path).instantiate()
-	print("• Instancing room:", scene_path)
-	current_room_instance = load(scene_path).instantiate()
 	current_room_instance.name = "RoomInstance"
-
 	current_room_instance.position = Vector2(pos.x, pos.y) * TILE_SIZE
 	add_child(current_room_instance)
 
@@ -253,7 +394,6 @@ func _switch_to_room(pos : Vector2i, entered_from_dir : String) -> void:
 
 	await get_tree().process_frame
 
-	# 🔓 Open or 🔒 slam doors based on clearance
 	if is_cleared:
 		print("✅ Room was previously cleared:", pos)
 		for door in get_tree().get_nodes_in_group("door"):
@@ -271,26 +411,8 @@ func _switch_to_room(pos : Vector2i, entered_from_dir : String) -> void:
 		await get_tree().process_frame
 		_check_for_enemies(pos)
 
-	await get_tree().process_frame
-
-	_wire_doors_recursive(current_room_instance, pos)
-
-	if is_cleared:
-		print("✅ Room was previously cleared:", pos)
-		for door in get_tree().get_nodes_in_group("door"):
-			if door.is_inside_tree() and current_room_instance.is_ancestor_of(door):
-				door.open()
-	else:
-		print("⚠ Room has enemies, slamming doors:", pos)
-		for door in get_tree().get_nodes_in_group("door"):
-			if door.is_inside_tree() and current_room_instance.is_ancestor_of(door):
-				door.slam()
-		await get_tree().process_frame
-		_check_for_enemies(pos)
-
-	# ───────── Player Spawn Logic ─────────
+	# Player spawn logic
 	var spawn : Vector2
-
 	if entered_from_dir == "":
 		var room_spawn := current_room_instance.get_node_or_null("SpawnPoint")
 		if room_spawn:
@@ -314,11 +436,9 @@ func _switch_to_room(pos : Vector2i, entered_from_dir : String) -> void:
 			spawn = Vector2(320, 180)
 			print("⚠ Couldn't find door spawn, using fallback position")
 
-	# ───────── Spawn or reuse Player ─────────
 	if player == null:
 		player = player_scene.instantiate()
 		player.name = "Player"
-
 		var stats = GameState.player_stats
 		player.set_health(stats["current_health"])
 		player.set_speed(stats["speed"])
@@ -326,10 +446,8 @@ func _switch_to_room(pos : Vector2i, entered_from_dir : String) -> void:
 		player.set_gun_attack(stats["gun_attack"])
 		player.set_gun_speed(stats["gun_speed"])
 		player.set_sword_attack(stats["sword_attack"])
-
-
-	add_child(player)
-	emit_signal("player_spawned", player)
+		add_child(player)
+		emit_signal("player_spawned", player)
 
 	move_child(player, get_child_count() - 1)
 	player.global_position = spawn
@@ -337,10 +455,16 @@ func _switch_to_room(pos : Vector2i, entered_from_dir : String) -> void:
 
 	current_room_pos = pos
 	print("=== Room ready ===\n")
-	visited_rooms[pos] = true                    # mark visited
+	visited_rooms[pos] = true
 
 	await get_tree().process_frame
 	emit_signal("room_loaded", pos)
+
+func _get_directions_from_key(key: String) -> Array:
+	var dirs := []
+	for c in key:
+		dirs.append(c)
+	return dirs
 
 func _wire_doors_recursive(node : Node, room_pos : Vector2i) -> void:
 	for child in node.get_children():
@@ -389,20 +513,20 @@ func _check_for_enemies(room_pos: Vector2i):
 func _check_if_room_cleared(room_pos: Vector2i):
 	print("🧪 Checking if room is cleared:", room_pos)
 	var remaining_enemies := 0
+	await get_tree().create_timer(0.5).timeout
 	for e in get_tree().get_nodes_in_group("enemy"):
 		if e is BaseEnemy and e.is_inside_tree() and current_room_instance.is_ancestor_of(e):
 			print("🚫 Enemy still alive:", e.name)
 			remaining_enemies += 1
 	print("🔍 Total remaining enemies:", remaining_enemies)
-	if remaining_enemies == 1:
+	if remaining_enemies == 0:
 		_clear_room(room_pos)
 
 func _clear_room(room_pos: Vector2i):
 	print("✅✅✅ All enemies gone — unlocking doors in room:", room_pos)
 	for c in get_tree().get_nodes_in_group("chest"):
-		print("Looking for chests")
 		if c.is_inside_tree() and current_room_instance.is_ancestor_of(c):
-			"Opening Chest"
+			print("Opening Chest")
 			c.room_completed()
 	cleared_rooms[room_pos] = true
 	for door in get_tree().get_nodes_in_group("door"):
@@ -410,8 +534,6 @@ func _clear_room(room_pos: Vector2i):
 			print("→ Opening door:", door.name)
 			door.open()
 
-# Returns how many non-empty rooms can be reached from `start`
-# by walking only through door pairs that correctly face each other.
 func _count_connected_rooms(start : Vector2i) -> int:
 	var visited : Dictionary = {}
 	var stack : Array       = [start]
@@ -424,21 +546,35 @@ func _count_connected_rooms(start : Vector2i) -> int:
 
 		var cur_room : String = collapsed[cur.y][cur.x]
 		if cur_room == "EmptyRoom":
-			continue                       # shouldn’t happen, but be safe
-		var cur_exits : Array = ROOM_TYPES[cur_room]
+			continue
+		
+		var cur_exits : Array
+		if cur_room.begins_with("SHOP_"):
+			cur_exits = _get_directions_from_key(cur_room.replace("SHOP_", ""))
+		elif cur_room.begins_with("CHEST_"):
+			cur_exits = _get_directions_from_key(cur_room.replace("CHEST_", ""))
+		else:
+			cur_exits = ROOM_TYPES[cur_room]
 
 		for dir in DIRS:
-			if dir not in cur_exits:       # no door that way
+			if dir not in cur_exits:
 				continue
 			var nxt : Vector2i = cur + DIR_OFFSET[dir]
-			if nxt.x < 0 or nxt.x >= GRID_WIDTH \
-			or nxt.y < 0 or nxt.y >= GRID_HEIGHT:
-				continue                   # off the grid
+			if nxt.x < 0 or nxt.x >= GRID_WIDTH or nxt.y < 0 or nxt.y >= GRID_HEIGHT:
+				continue
 			var nxt_room : String = collapsed[nxt.y][nxt.x]
 			if nxt_room == "EmptyRoom":
 				continue
-			# Only traverse if BOTH rooms’ doors face each other
-			if OPPOSITE[dir] in ROOM_TYPES[nxt_room]:
+			
+			var nxt_exits : Array
+			if nxt_room.begins_with("SHOP_"):
+				nxt_exits = _get_directions_from_key(nxt_room.replace("SHOP_", ""))
+			elif nxt_room.begins_with("CHEST_"):
+				nxt_exits = _get_directions_from_key(nxt_room.replace("CHEST_", ""))
+			else:
+				nxt_exits = ROOM_TYPES[nxt_room]
+			
+			if OPPOSITE[dir] in nxt_exits:
 				stack.append(nxt)
 
 	return visited.size()
