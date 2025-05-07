@@ -1,5 +1,5 @@
 extends Node2D
-class_name NutsworthHole
+class_name NutsworthHole1
 
 signal talk_finished         # emitted when all lines are done
 

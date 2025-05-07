@@ -1,0 +1,18 @@
+[gd_scene load_steps=5 format=3 uid="uid://deygmkaqtn6ll"]
+
+[ext_resource type="Texture2D" uid="uid://dwfw7p2jckf0w" path="res://scenes/SquirrelGame_End.png" id="1_n2wrm"]
+[ext_resource type="Script" uid="uid://cc7faluk8dfyv" path="res://scenes/end_scene.gd" id="1_phuha"]
+[ext_resource type="AudioStream" uid="uid://dnb76w3ifah0b" path="res://scenes/Adventure Awaits LOOP.ogg" id="2_phuha"]
+[ext_resource type="Script" uid="uid://dvi35r7pmbve2" path="res://scenes/Loop.gd" id="3_w05xc"]
+
+[node name="EndScene" type="Node2D"]
+script = ExtResource("1_phuha")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(240, 136)
+texture = ExtResource("1_n2wrm")
+
+[node name="Music" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("2_phuha")
+autoplay = true
+script = ExtResource("3_w05xc")

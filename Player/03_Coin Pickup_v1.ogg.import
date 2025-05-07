@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://baen05da7gcnd"
+path="res://.godot/imported/03_Coin Pickup_v1.ogg-42d897927fa199691ce35b50fdfeb496.oggvorbisstr"
+
+[deps]
+
+source_file="res://Player/03_Coin Pickup_v1.ogg"
+dest_files=["res://.godot/imported/03_Coin Pickup_v1.ogg-42d897927fa199691ce35b50fdfeb496.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

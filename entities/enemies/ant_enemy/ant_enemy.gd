@@ -1,6 +1,8 @@
 extends BaseEnemy
 class_name AntEnemy
 
+@onready var _sfx_hit : AudioStreamPlayer2D = $HitSFX
+
 var state_machine: State_Machine
 var sprite: AnimatedSprite2D
 var attack_box: Area2D
@@ -39,6 +41,7 @@ func _physics_process(_delta):
 		flip()
 
 func take_damage(damage):
+	_sfx_hit.play()
 	health -= damage
 
 func die():

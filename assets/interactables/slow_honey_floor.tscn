@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://v4iflp0rlech" path="res://assets/interactables/floor_honey.png" id="2_yrten"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_5k6ju"]
-radius = 32.4251
+radius = 24.0
 height = 64.8502
 
 [node name="SlowHoneyFloor" type="Node2D"]

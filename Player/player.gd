@@ -10,11 +10,16 @@ var speed = original_speed
 @export var max_health: int = 6 #2 * number of acorns
 var current_health = max_health
 signal health_changed
+
+var reset_time = 0.1
 #coins
 var coins = 0
 signal coins_changed
 #current weapon
 @onready var weapon = get_node("Gun")
+@onready var _sfx_hit  : AudioStreamPlayer2D = $HitSFX
+@onready var _sfx_coin : AudioStreamPlayer2D = $CoinSFX
+@onready var _sfx_death : AudioStreamPlayer2D = $DeathSFX
 
 #animation
 @onready var sprite = $AnimatedSprite2D
@@ -41,6 +46,8 @@ var selected_weapon_type = "RANGED"
 
 @onready var powerup_text = $CanvasLayer/Label
 @onready var powerup_timer = $PowerupTextTimer
+
+var shop_open = false
 
 func _ready():
 	sprite.play("idle")
@@ -74,6 +81,7 @@ func _input(event):
 
 func _physics_process(_delta):
 	if current_health <= 0 and dead == false:
+		_sfx_death.play()
 		sprite.play("death")
 		return # stop taking player inputs when the player dies
 	elif dead == true: # stop taking player inputs when the player dies
@@ -116,12 +124,14 @@ func _physics_process(_delta):
 	else:
 		sprite.play("idle")
 	
-	move_and_slide()
+	if (!shop_open):
+		move_and_slide()
 
 func flip():
 	sprite.flip_h = !sprite.flip_h
 	$Gun.position.x = -1 * $Gun.position.x
 	$Gun.flip()
+	print ("gun flipped", $Gun.flipped)
 	$Sword.flipped = !$Sword.flipped
 	flipped = !flipped
 		
@@ -129,8 +139,8 @@ func set_weapon(weapon_):
 	weapon = weapon_
 
 func _on_player_hit_box_area_entered(area):
-	print("player area", area.name)
 	if area.is_in_group("coin"):
+		_sfx_coin.play() 
 		coins += 1
 		coins_changed.emit(coins)
 
@@ -174,10 +184,13 @@ func damage_player():
 		invincible = true
 		current_health -=1
 		health_changed.emit(current_health)
+		_sfx_hit.play()
 		invincible_timer.start()
+	sprite.modulate = "red"
+	await get_tree().create_timer(reset_time).timeout
+	sprite.modulate = Color(1, 1, 1) # White
 
 func _on_invincible_timer_timeout():
-	print("meep")
 	invincible = false
 	# TODO: Will be replaced by an animation
 
@@ -185,6 +198,7 @@ func _on_animated_sprite_2d_animation_finished() -> void:
 	if sprite.animation == "death":
 		game_over.show()
 		dead = true
+		
 		get_tree().call_group("enemy", "player_has_died")
 	
 	
@@ -221,7 +235,9 @@ func reset():
 	dead = false
 	current_health = max_health
 	coins = 0
-	#TODO: Reset items, attack, etc.
+	speed = original_speed
+	$Gun.reset()
+	$Sword.reset()
 
 func _on_powerup_text_timer_timeout() -> void:
 	powerup_text.hide()

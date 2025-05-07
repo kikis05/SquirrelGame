@@ -5,6 +5,9 @@ class_name TutorialManager
 signal player_spawned(player : Node)
 
 @export var player_scene : PackedScene = preload("res://Player/player.tscn")
+const INTRO_POS      : Vector2i = Vector2i(0,0)                  # RoomIntro
+const INTRO_EAST_SCN : PackedScene = preload("res://scenes/main.tscn")
+
 
 const TILE_SIZE : Vector2 = Vector2(160, 64)            # world‑space units
 const DIR_OFF   : Dictionary = {
@@ -60,12 +63,21 @@ func _wire_doors_in(room: Node, room_pos: Vector2i) -> void:
 				door.connect("door_entered", _on_door_entered)
 
 func _on_door_entered(room_pos : Vector2i, dir : String, body : Node) -> void:
+	# we only care about the player
 	if body.name != "Player":
-		return                                      # ignore NPCs, bullets, …
+		return
 
-	# do NOT jump rooms in the same physics step – defer it
-	var next = room_pos + DIR_OFF[dir]
+	# ───────── special case ─────────
+	# East door in the very first tutorial room -> jump straight to main scene
+	if room_pos == INTRO_POS and dir == "E":
+		get_tree().change_scene_to_packed(INTRO_EAST_SCN)
+		return
+	# ────────────────────────────────
+
+	# normal tutorial‑room hopping (deferred)
+	var next : Vector2i = room_pos + DIR_OFF[dir]
 	call_deferred("_deferred_switch", next, dir)
+
 # ───────────────────── player management ───────────────────────
 func _spawn_or_move_player(from_dir : String) -> void:
 	if _player == null:

@@ -44,10 +44,6 @@ func attack():
 				rotation_degrees = 90
 			else:
 				rotation_degrees = -90
-		if bullet_dir.x > 0 and not flipped:
-			flip()
-		if bullet_dir.x < 0 and flipped:
-			flip()
 			
 		var bulletNode = BULLET.instantiate()
 		bulletNode.set_origin(global_position)
@@ -77,6 +73,10 @@ func set_direction(direction):
 func flip():
 	sprite.flip_h = !sprite.flip_h
 	flipped = !flipped
+	
+func reset():
+	bullet_damage = original_bullet_damage
+	bullet_speed = original_bullet_speed
 	
 # TODO: handle bullet damage linkage to gun damage
 func get_bullet_damage():
