@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://cu7seqhqxycfl"
-path="res://.godot/imported/textbox.png-e74e2f47d7ca10dca06154b3b91e5cdb.ctex"
+path="res://.godot/imported/textbox.png-95c991ef6afef0fe226de71c17bf93e4.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://NPCs/textbox.png"
-dest_files=["res://.godot/imported/textbox.png-e74e2f47d7ca10dca06154b3b91e5cdb.ctex"]
+source_file="res://textbox.png"
+dest_files=["res://.godot/imported/textbox.png-95c991ef6afef0fe226de71c17bf93e4.ctex"]
 
 [params]
 

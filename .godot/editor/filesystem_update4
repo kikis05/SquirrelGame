@@ -71,6 +71,6 @@ res://Rooms/Boss_Queen/BossRoomESW.tscn
 res://Rooms/Boss_Queen/BossRoomES.tscn
 res://Rooms/Boss_Queen/BossRoomE.tscn
 res://Rooms/Boss_Queen/ant_queen.tscn
-res://entities/enemies/fire_ant_enemy/fire_ant_enemy.tscn
 res://Rooms/Doors/TutorialDoorD.tscn
 res://NPCs/Nutsworth.gd
+res://scenes/GameState.gd

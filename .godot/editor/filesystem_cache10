@@ -1,5 +1,5 @@
 ea4bc82a6ad023ab7ee23ee620429895
-::res://::1746611643
+::res://::1746610996
 bullet.gd::GDScript/GDScript::2304997660688105147::1746500746::0::1::::<>Area2D<><>0<>0<><>::
 bullet.tscn::PackedScene/PackedScene::1732501824914031346::1746500654::0::1::::<><><>0<>0<><>::uid://73s8e05jdqcp::::res://bullet.gd<>uid://5ubv3ttytk60::::res://art/SquirrelGame_Planning3.png
 coin.gd::GDScript/GDScript::7206091320089563611::1746224383::0::1::::<>Area2D<><>0<>0<><>::

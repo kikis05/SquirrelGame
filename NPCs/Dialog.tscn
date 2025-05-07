@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://dsw2hwd2u076u"]
 
 [ext_resource type="Script" uid="uid://bfdub7tu68bdr" path="res://NPCs/DialogueBox.gd" id="1_pmfib"]
-[ext_resource type="Texture2D" uid="uid://cu7seqhqxycfl" path="res://NPCs/textbox.png" id="2_txpso"]
+[ext_resource type="Texture2D" uid="uid://cu7seqhqxycfl" path="res://textbox.png" id="2_txpso"]
 [ext_resource type="FontFile" uid="uid://c8lof5dqwwsev" path="res://NPCs/superstar_memesbruh03.ttf" id="3_r4w04"]
 
 [node name="Dialog" type="Control"]

@@ -49,6 +49,8 @@ func powerup_player():
 			player.set_sword_attack(player.get_sword_attack() + 10) 
 		"health":
 			player.set_health(player.get_health() + 1)
+		"half_acorn":
+			player.set_health(player.get_health() + 1)
 
 func _on_area_2d_area_entered(area):
 	if area.is_in_group("player"):
