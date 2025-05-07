@@ -70,3 +70,6 @@ res://Rooms/Boss_Queen/BossRoomE.tscn
 res://Rooms/Boss_Queen/ant_queen.tscn
 res://Rooms/Doors/BossDoor.gd
 res://scenes/dungeon_generator.gd
+res://Player/player.gd
+res://bullet.tscn
+res://bullet.gd

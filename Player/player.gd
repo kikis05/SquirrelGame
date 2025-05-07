@@ -17,6 +17,9 @@ var coins = 0
 signal coins_changed
 #current weapon
 @onready var weapon = get_node("Gun")
+@onready var _sfx_hit  : AudioStreamPlayer2D = $HitSFX
+@onready var _sfx_coin : AudioStreamPlayer2D = $CoinSFX
+@onready var _sfx_death : AudioStreamPlayer2D = $DeathSFX
 
 #animation
 @onready var sprite = $AnimatedSprite2D
@@ -78,6 +81,7 @@ func _input(event):
 
 func _physics_process(_delta):
 	if current_health <= 0 and dead == false:
+		_sfx_death.play()
 		sprite.play("death")
 		return # stop taking player inputs when the player dies
 	elif dead == true: # stop taking player inputs when the player dies
@@ -136,6 +140,7 @@ func set_weapon(weapon_):
 func _on_player_hit_box_area_entered(area):
 	print("player area", area.name)
 	if area.is_in_group("coin"):
+		_sfx_coin.play() 
 		coins += 1
 		coins_changed.emit(coins)
 
@@ -179,6 +184,7 @@ func damage_player():
 		invincible = true
 		current_health -=1
 		health_changed.emit(current_health)
+		_sfx_hit.play()
 		invincible_timer.start()
 	sprite.modulate = "red"
 	await get_tree().create_timer(reset_time).timeout
@@ -193,6 +199,7 @@ func _on_animated_sprite_2d_animation_finished() -> void:
 	if sprite.animation == "death":
 		game_over.show()
 		dead = true
+		
 		get_tree().call_group("enemy", "player_has_died")
 	
 	

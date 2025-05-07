@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=3 uid="uid://ctdj7k4cwb4f6"]
+[gd_scene load_steps=30 format=3 uid="uid://ctdj7k4cwb4f6"]
 
 [ext_resource type="Script" uid="uid://wpgykegedrya" path="res://Player/player.gd" id="1_abrql"]
 [ext_resource type="Texture2D" uid="uid://d04jfatr1u7pf" path="res://assets/squirrel_anims1 (1).png" id="2_fkugw"]
@@ -11,6 +11,9 @@
 [ext_resource type="PackedScene" uid="uid://tfnoonrvjm30" path="res://menu.tscn" id="8_x3vf3"]
 [ext_resource type="PackedScene" uid="uid://c16cshvswxjjx" path="res://game_over.tscn" id="10_x3vf3"]
 [ext_resource type="FontFile" uid="uid://c33ivdot7yug6" path="res://assets/Pixeled.ttf" id="11_apopc"]
+[ext_resource type="AudioStream" uid="uid://baen05da7gcnd" path="res://Player/03_Coin Pickup_v1.ogg" id="12_5htga"]
+[ext_resource type="AudioStream" uid="uid://cxf7axvvlplba" path="res://Player/01_Hurt_v1.ogg" id="12_p5o4e"]
+[ext_resource type="AudioStream" uid="uid://mj8fibida6ub" path="res://Player/01_Death_v4.ogg" id="14_gu6f8"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_8fjmc"]
 atlas = ExtResource("2_fkugw")
@@ -192,6 +195,16 @@ offset = Vector2(0.5, 0.5)
 
 [node name="PowerupTextTimer" type="Timer" parent="."]
 wait_time = 4.0
+
+[node name="HitSFX" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("12_p5o4e")
+
+[node name="CoinSFX" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("12_5htga")
+volume_db = -8.0
+
+[node name="DeathSFX" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("14_gu6f8")
 
 [connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]
 [connection signal="area_entered" from="PlayerHitBox" to="." method="_on_player_hit_box_area_entered"]

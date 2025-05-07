@@ -1,8 +1,8 @@
+AudioStreamPlayer2D
 AudioStreamPlayer
 CollisionShape2D
 Area2D
 TileMapLayer
-AudioStreamPlayer2D
 AnimationPlayer
 ColorRect
 CanvasLayer
@@ -12,4 +12,3 @@ Marker2D
 Label
 Node
 MarginContainer
-Control
