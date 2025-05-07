@@ -1,10 +1,11 @@
-[gd_scene load_steps=7 format=3 uid="uid://biwrg4k20l68n"]
+[gd_scene load_steps=8 format=3 uid="uid://biwrg4k20l68n"]
 
 [ext_resource type="Script" uid="uid://dtjimtxj1mf2f" path="res://Shops/shop_modal.gd" id="1_q8nhw"]
 [ext_resource type="Texture2D" uid="uid://8a3kflhvatkp" path="res://assets/Shop.png" id="2_bygo8"]
 [ext_resource type="Texture2D" uid="uid://mk8pwcc2cwgv" path="res://art/BuyButton.png" id="3_mswy0"]
 [ext_resource type="FontFile" uid="uid://b1u0jrp7i0n3a" path="res://assets/alagard.ttf" id="4_5yeww"]
 [ext_resource type="PackedScene" uid="uid://btffc7vqohcgl" path="res://Shops/shop_item.tscn" id="5_s2hft"]
+[ext_resource type="AudioStream" uid="uid://dvwybkoru1wy0" path="res://scenes/zapsplat_industrial_switch_plastic_drill_reverse_toggle_click_003_110099.mp3" id="6_bygo8"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_3c770"]
 
@@ -106,6 +107,9 @@ text = "
 label_settings = SubResource("LabelSettings_3c770")
 horizontal_alignment = 3
 autowrap_mode = 3
+
+[node name="Click" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("6_bygo8")
 
 [connection signal="pressed" from="Buy" to="." method="_on_buy_pressed"]
 [connection signal="pressed" from="ShopItem" to="." method="_on_shop_item_pressed"]

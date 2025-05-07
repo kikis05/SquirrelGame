@@ -14,6 +14,8 @@ var dialogues = ["Hii, p-please don't eat me! Wait, you're a squirrel?!", "How w
 var modal_time_entered = 0
 var item_view = true
 
+var closed = true
+
 @onready var current_item_selected = 0
 
 func _ready():
@@ -21,24 +23,32 @@ func _ready():
 	item_description.show()
 	powerup_description.show()
 	text.hide()
+	items[current_item_selected].deselect()
 	current_item_selected = 0
 	set_current_item(0)
+	items[current_item_selected].select()
 	#text.text = dialogues[min(time_entered, len(dialogues) - 1)]
 func set_item(index, image, image_outline, item_name, cost, description, powerup_type, powerup_amount):
 	items[index].set_data(image, image_outline, item_name, cost, description, powerup_type, powerup_amount)
 
 func set_current_item(index: int):
-	_sfx_click.play()
+	cost.show()
+	item_description.show()
+	powerup_description.show()
 	cost.text = items[index].get_item_name() + ": $" +  str(items[index].get_cost())
 	item_description.text  = items[index].get_description()
 	powerup_description.text = get_powerup_text(items[index].get_powerup_type()) + str(items[index].get_powerup_value())
 	items[index].select()
 	
 func reopen():
+	items[current_item_selected].deselect()
+	current_item_selected = 0
+	set_current_item(0)
+	items[current_item_selected].select()
 	cost.show()
 	item_description.show()
 	powerup_description.show()
-	text.text = dialogues[min(modal_time_entered, len(dialogues) - 1)]
+	#text.text = dialogues[min(modal_time_entered, len(dialogues) - 1)]
 		
 func set_time_entered(val):
 	modal_time_entered = val
@@ -46,16 +56,19 @@ func set_time_entered(val):
 	text.text = dialogues[min(modal_time_entered, len(dialogues) - 1)]
 
 func _process(delta):
-	if Input.is_action_just_pressed("right"):
+	if Input.is_action_just_pressed("right") and not closed:
 		items[current_item_selected].deselect()
 		current_item_selected = (current_item_selected + 1) % len(items)
 		set_current_item(current_item_selected)
-	if Input.is_action_just_pressed("left"):
+		_sfx_click.play()
+	if Input.is_action_just_pressed("left") and not closed:
 		items[current_item_selected].deselect()
 		current_item_selected = (current_item_selected - 1) % len(items)
 		set_current_item(current_item_selected)
-	if Input.is_action_just_pressed("select"):
+		_sfx_click.play()
+	if Input.is_action_just_pressed("select") and not closed:
 		buy()
+		_sfx_click.play()
 
 #func _on_shop_item_pressed() -> void:
 	#current_item_selected = items[0]
@@ -134,11 +147,12 @@ func buy():
 				print ("has coins??? cost is ", item.get_cost(), "coins are ", player.get_coins())
 				if (powerup_type == "health_increase" and player.get_health() + powerup_amt > player.max_health):
 					print ("maxed out health!")
-					text.show()
+					#text.show()
 					cost.hide()
-					item_description.hide()
+					#item_description.hide()
 					powerup_description.hide()
-					text.text = "I guess you *can* have too much health!"
+					item_description.text = "I guess you *can* have too much health!"
+					#text.text = "I guess you *can* have too much health!"
 					return
 				player.set_coins(player.get_coins() - item.get_cost());
 				
@@ -155,8 +169,9 @@ func buy():
 						player.set_gun_speed(player.get_gun_speedk() + powerup_amt)
 			else:
 				print ("no money!")
-				text.show()
+				#text.show()
 				cost.hide()
-				item_description.hide()
+				#item_description.hide()
 				powerup_description.hide()
-				text.text = "Outta money? Come back next time!"
+				item_description.text = "Outta money? Come back next time!"
+				#text.text = "Outta money? Come back next time!"
