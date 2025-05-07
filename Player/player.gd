@@ -10,6 +10,8 @@ var speed = original_speed
 @export var max_health: int = 6 #2 * number of acorns
 var current_health = max_health
 signal health_changed
+
+var reset_time = 0.1
 #coins
 var coins = 0
 signal coins_changed
@@ -41,6 +43,8 @@ var selected_weapon_type = "RANGED"
 
 @onready var powerup_text = $CanvasLayer/Label
 @onready var powerup_timer = $PowerupTextTimer
+
+var shop_open = false
 
 func _ready():
 	sprite.play("idle")
@@ -116,7 +120,8 @@ func _physics_process(_delta):
 	else:
 		sprite.play("idle")
 	
-	move_and_slide()
+	if (!shop_open):
+		move_and_slide()
 
 func flip():
 	sprite.flip_h = !sprite.flip_h
@@ -175,6 +180,9 @@ func damage_player():
 		current_health -=1
 		health_changed.emit(current_health)
 		invincible_timer.start()
+	sprite.modulate = "red"
+	await get_tree().create_timer(reset_time).timeout
+	sprite.modulate = Color(1, 1, 1) # White
 
 func _on_invincible_timer_timeout():
 	print("meep")
@@ -221,7 +229,9 @@ func reset():
 	dead = false
 	current_health = max_health
 	coins = 0
-	#TODO: Reset items, attack, etc.
+	speed = original_speed
+	$Gun.reset()
+	$Sword.reset()
 
 func _on_powerup_text_timer_timeout() -> void:
 	powerup_text.hide()

@@ -1,16 +1,21 @@
-[gd_scene load_steps=13 format=3 uid="uid://x7lotpve1epg"]
+[gd_scene load_steps=15 format=3 uid="uid://x7lotpve1epg"]
 
 [ext_resource type="Script" uid="uid://cw26uq4goishx" path="res://entities/items/upgrade_item.gd" id="1_0ej0c"]
 [ext_resource type="Texture2D" uid="uid://cj2yd0s5oem5e" path="res://assets/chests_items/items1.png" id="1_j2fwf"]
 [ext_resource type="FontFile" uid="uid://ch5tibw7yghdt" path="res://assets/MinecraftStandard.otf" id="1_q1bvq"]
-[ext_resource type="Texture2D" uid="uid://c8ijhs7xk85fa" path="res://art/shop_items/Blueberry.png" id="2_1fbjh"]
-[ext_resource type="Texture2D" uid="uid://br3v313wpg1mi" path="res://art/shop_items/Pebbles.png" id="4_jtotu"]
-[ext_resource type="Texture2D" uid="uid://dioq7qpvd7ixk" path="res://art/shop_items/SpicySap.png" id="5_d4ilx"]
-[ext_resource type="Texture2D" uid="uid://dqf0bqh4rxlvx" path="res://art/shop_items/SunflowerSeed.png" id="6_0gbiu"]
-[ext_resource type="Texture2D" uid="uid://c7ukgj4wd752" path="res://art/shop_items/Thorn.png" id="7_iyojc"]
+[ext_resource type="Texture2D" uid="uid://l1y78kt15n54" path="res://art/shop_items/BlueberryOutline.png" id="2_jtotu"]
+[ext_resource type="Texture2D" uid="uid://cc8ff6rghvlgg" path="res://art/shop_items/HalfAcornOutline.png" id="3_d4ilx"]
+[ext_resource type="Texture2D" uid="uid://d0a74w2o3dof0" path="res://art/shop_items/PebblesOutline.png" id="5_0gbiu"]
+[ext_resource type="Texture2D" uid="uid://cl7n0nbtfv8nt" path="res://art/shop_items/SpicySapOutline.png" id="6_iyojc"]
+[ext_resource type="Texture2D" uid="uid://wa367vfwog6f" path="res://art/shop_items/SunflowerSeedOutline.png" id="7_3dn55"]
+[ext_resource type="Texture2D" uid="uid://bktcap1fhr6gh" path="res://art/shop_items/ThornOutline.png" id="8_t1py6"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_25oe7"]
 radius = 40.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8twnw"]
+atlas = ExtResource("2_jtotu")
+region = Rect2(0, 0, 25, 25)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_hbcpy"]
 atlas = ExtResource("1_j2fwf")
@@ -24,10 +29,18 @@ region = Rect2(32, 0, 32, 32)
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("2_1fbjh")
+"texture": SubResource("AtlasTexture_8twnw")
 }],
 "loop": true,
 "name": &"blueberry",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_d4ilx")
+}],
+"loop": true,
+"name": &"half_acorn",
 "speed": 5.0
 }, {
 "frames": [{
@@ -40,7 +53,7 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("4_jtotu")
+"texture": ExtResource("5_0gbiu")
 }],
 "loop": true,
 "name": &"pebbles",
@@ -48,7 +61,7 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("5_d4ilx")
+"texture": ExtResource("6_iyojc")
 }],
 "loop": true,
 "name": &"spicy_sap",
@@ -56,7 +69,7 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("6_0gbiu")
+"texture": ExtResource("7_3dn55")
 }],
 "loop": true,
 "name": &"sunflower_seed",
@@ -72,7 +85,7 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("7_iyojc")
+"texture": ExtResource("8_t1py6")
 }],
 "loop": true,
 "name": &"thorn",
@@ -95,7 +108,7 @@ shape = SubResource("CircleShape2D_25oe7")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(0, -30)
 sprite_frames = SubResource("SpriteFrames_erwyd")
-animation = &"thorn"
+animation = &"half_acorn"
 
 [node name="RichTextLabel" type="RichTextLabel" parent="."]
 anchors_preset = 8

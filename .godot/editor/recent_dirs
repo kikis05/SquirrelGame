@@ -1,4 +1,9 @@
+<<<<<<< HEAD
 res://Rooms/Doors
+=======
+res://art/shop_items
+res://assets
+>>>>>>> ks-art
 res://assets/enemies/queen_ant
 res://assets/chests_items
 res://Rooms/Boss_Queen
@@ -7,7 +12,6 @@ res://assets/tiles
 res://
 res://art
 res://entities/items
-res://assets
 res://entities/enemies/mosquito_baby_enemy
 res://entities/enemies/states
 res://assets/enemies

@@ -1,7 +1,12 @@
-[gd_scene load_steps=3 format=4 uid="uid://c0gaqe83sgr8j"]
+[gd_scene load_steps=8 format=4 uid="uid://c0gaqe83sgr8j"]
 
 [ext_resource type="TileSet" uid="uid://dijcthwd7lyow" path="res://assets/tiles/RoomTileset.tres" id="1_qhihl"]
 [ext_resource type="PackedScene" uid="uid://bv1hwr4j0auc7" path="res://Rooms/Doors/DoorN.tscn" id="2_bajs0"]
+[ext_resource type="PackedScene" uid="uid://dr2f7a7ug123d" path="res://assets/interactables/slow_honey.tscn" id="3_bajs0"]
+[ext_resource type="PackedScene" uid="uid://yo8c4alnkdc5" path="res://assets/interactables/slow_honey_floor.tscn" id="4_05eqs"]
+[ext_resource type="PackedScene" uid="uid://cgw67cgqbgfle" path="res://assets/interactables/sunflower.tscn" id="5_2ukq6"]
+[ext_resource type="Texture2D" uid="uid://cws2vdp61uowe" path="res://art/DirtMound.png" id="6_quv7b"]
+[ext_resource type="PackedScene" uid="uid://dek0t7ihd4vxg" path="res://entities/enemies/mosquito_enemy/mosquito_enemy.tscn" id="7_2ukq6"]
 
 [node name="StandardRoomN" type="Node2D"]
 
@@ -14,3 +19,98 @@ tile_set = ExtResource("1_qhihl")
 
 [node name="SpawnPoint" type="Node2D" parent="."]
 position = Vector2(240, 136)
+
+[node name="DirtMound" type="Sprite2D" parent="."]
+position = Vector2(66, 177)
+texture = ExtResource("6_quv7b")
+
+[node name="DirtMound2" type="Sprite2D" parent="."]
+position = Vector2(113, 215)
+texture = ExtResource("6_quv7b")
+
+[node name="DirtMound3" type="Sprite2D" parent="."]
+position = Vector2(179, 181)
+texture = ExtResource("6_quv7b")
+
+[node name="DirtMound4" type="Sprite2D" parent="."]
+position = Vector2(254, 207)
+texture = ExtResource("6_quv7b")
+
+[node name="DirtMound5" type="Sprite2D" parent="."]
+position = Vector2(316, 168)
+texture = ExtResource("6_quv7b")
+
+[node name="DirtMound6" type="Sprite2D" parent="."]
+position = Vector2(359, 209)
+texture = ExtResource("6_quv7b")
+
+[node name="DirtMound7" type="Sprite2D" parent="."]
+position = Vector2(412, 171)
+texture = ExtResource("6_quv7b")
+
+[node name="SlowHoneyWall2" parent="." instance=ExtResource("3_bajs0")]
+position = Vector2(296, 88)
+scale = Vector2(-1, 1)
+
+[node name="SlowHoneyWall" parent="." instance=ExtResource("3_bajs0")]
+position = Vector2(186, 88)
+
+[node name="SlowHoneyFloor" parent="." instance=ExtResource("4_05eqs")]
+position = Vector2(125, 87)
+
+[node name="SlowHoneyFloor" parent="SlowHoneyFloor" instance=ExtResource("4_05eqs")]
+position = Vector2(-64, 0)
+
+[node name="SlowHoneyFloor2" parent="SlowHoneyFloor" instance=ExtResource("4_05eqs")]
+position = Vector2(175, 67)
+
+[node name="SlowHoneyFloor" parent="SlowHoneyFloor/SlowHoneyFloor2" instance=ExtResource("4_05eqs")]
+position = Vector2(-58, 0)
+
+[node name="SlowHoneyFloor2" parent="." instance=ExtResource("4_05eqs")]
+position = Vector2(357, 87)
+
+[node name="SlowHoneyFloor2" parent="SlowHoneyFloor2" instance=ExtResource("4_05eqs")]
+position = Vector2(65, 2)
+
+[node name="SlowHoneyFloor" parent="SlowHoneyFloor2" instance=ExtResource("4_05eqs")]
+position = Vector2(-227, 68)
+
+[node name="SlowHoneyFloor" parent="SlowHoneyFloor2/SlowHoneyFloor" instance=ExtResource("4_05eqs")]
+position = Vector2(-64, 0)
+
+[node name="SlowHoneyFloor3" parent="SlowHoneyFloor2" instance=ExtResource("4_05eqs")]
+position = Vector2(-2, 63)
+
+[node name="SlowHoneyFloor2" parent="SlowHoneyFloor2/SlowHoneyFloor3" instance=ExtResource("4_05eqs")]
+position = Vector2(65, 0)
+
+[node name="SlowHoneyFloor3" parent="." instance=ExtResource("4_05eqs")]
+position = Vector2(179, 153)
+
+[node name="Sunflower2" parent="." instance=ExtResource("5_2ukq6")]
+position = Vector2(294, 35)
+
+[node name="Sunflower" parent="." instance=ExtResource("5_2ukq6")]
+position = Vector2(180, 38)
+
+[node name="Sunflower3" parent="." instance=ExtResource("5_2ukq6")]
+position = Vector2(155, 54)
+
+[node name="Sunflower4" parent="." instance=ExtResource("5_2ukq6")]
+position = Vector2(319, 56)
+
+[node name="Sunflower5" parent="." instance=ExtResource("5_2ukq6")]
+position = Vector2(113, 56)
+
+[node name="Sunflower6" parent="." instance=ExtResource("5_2ukq6")]
+position = Vector2(363, 59)
+
+[node name="Mosquito Enemy" parent="." instance=ExtResource("7_2ukq6")]
+position = Vector2(118, 223)
+
+[node name="Mosquito Enemy2" parent="." instance=ExtResource("7_2ukq6")]
+position = Vector2(252, 220)
+
+[node name="Mosquito Enemy3" parent="." instance=ExtResource("7_2ukq6")]
+position = Vector2(367, 222)
