@@ -29,8 +29,6 @@ func _ready() -> void:
 	# 3) wait for the Queen to die
 	if queen.has_signal("defeated"):
 		queen.connect("defeated", _on_queen_defeated)
-	else:
-		push_warning("AntQueen has no 'defeated' signal – doors stay closed")
 
 	# 4) when the EAST door is walked through, hop to the next scene
 	east_door.door_entered.connect(_on_east_door_entered)
@@ -50,7 +48,7 @@ func _on_east_door_entered(_pos: Vector2i, _dir: String, body: Node) -> void:
 
 # ────────────────────────────────────────────────────────────────
 func spawn_soldiers(kind: String) -> void:
-	if get_tree().get_nodes_in_group("enemy").size() >= 8:
+	if (get_tree().get_nodes_in_group("enemy").size() >= 8*3): # Count attackboxes and hitboxes
 		return
 
 	var markers := $"Land Markers".get_children()
