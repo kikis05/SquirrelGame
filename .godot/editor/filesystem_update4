@@ -1,11 +1,11 @@
-res://Shops/shop_item.tscn
+res://Rooms/ShopRooms/ShopE.tscn
 res://assets/tiles/RoomTileset.tres
 res://entities/enemies/states/chase_state.gd
 res://scenes/main.gd
+res://scenes/title.tscn
 res://sword.tscn
 res://Rooms/Tutorial/RoomSword.tscn
 res://entities/enemies/tutorial_ant_sword/ant_sword.tscn
-res://scenes/title.tscn
 res://Rooms/Tutorial/RoomHole.tscn
 res://Rooms/StandardRoomScenes/StandardRoomS.tscn
 res://Rooms/StandardRoomScenes/StandardRoomNSW.tscn
@@ -29,7 +29,6 @@ res://Rooms/Rooms_Anna2/HolesEW.tscn
 res://Rooms/Rooms_Anna2/MoundsEW.tscn
 res://Rooms/Rooms_Anna/NestChestBridgeESW.tscn
 res://Rooms/Rooms_Anna2/SquareDoubleUpCircleN.tscn
-res://Rooms/ShopRooms/ShopE.tscn
 res://Rooms/Rooms_Anna/NestBridgeEW.tscn
 res://Rooms/StandardRoomScenes/StandardRoomW.tscn
 res://Rooms/StandardRoomScenes/StandardRoomSW.tscn
@@ -77,6 +76,7 @@ res://Shops/ShopA/shopA.tscn
 res://Rooms/IntermissionRooms/RoomHoleLevel1.tscn
 res://scenes/main2.tscn
 res://scenes/EndScene.tscn
+res://Shops/shop_item.tscn
 res://enemy.tscn
 res://entities/enemies/ant_enemy/ant_enemy.tscn
 res://entities/enemies/fire_ant_enemy/fire_ant_enemy.tscn
@@ -84,11 +84,4 @@ res://entities/enemies/mosquito_baby_enemy/mosquito_baby_enemy.tscn
 res://entities/enemies/mosquito_enemy/mosquito_enemy.tscn
 res://assets/interactables/slow_honey_floor.tscn
 res://gun.tscn
-<<<<<<< HEAD
 res://Shops/shop_modal.gd
-res://Shops/shop.gd
-=======
-res://NPCs/NutsworthSword.gd
-res://Shops/shop_modal.gd
-res://Rooms/Doors/BossDoor.gd
->>>>>>> main

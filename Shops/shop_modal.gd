@@ -17,6 +17,8 @@ var closed = true
 
 @onready var current_item_selected = 0
 
+@onready var _sfx_click = $Click
+
 func _ready():
 	cost.show()
 	item_description.show()

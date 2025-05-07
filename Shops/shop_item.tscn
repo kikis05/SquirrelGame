@@ -20,4 +20,5 @@ stretch_mode = 3
 [node name="Item" type="Sprite2D" parent="TextureRect"]
 z_index = 1
 position = Vector2(1.84774e-06, 1.90735e-06)
-offset = Vector2(20, 20)
+scale = Vector2(1.1, 1.1)
+offset = Vector2(18, 18)
