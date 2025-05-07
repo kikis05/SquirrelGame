@@ -345,18 +345,20 @@ func _propagate(start : Vector2i) -> void:
 
 func _switch_to_room(pos : Vector2i, entered_from_dir : String) -> void:
 	print("\n=== Switching to", pos, "from:", entered_from_dir, "===")
-
+	var room_name : String = collapsed[pos.y][pos.x]
+		
 	if pos.x < 0 or pos.x >= GRID_WIDTH or pos.y < 0 or pos.y >= GRID_HEIGHT:
 		print("⚠ Out of bounds – aborting")
 		return
-
-	var room_name : String = collapsed[pos.y][pos.x]
+		
 	if room_name == "EmptyRoom":
 		print("⚠ Target cell is EmptyRoom – aborting")
 		return
 
 	if current_room_instance:
-		get_tree().call_group("room_deletables", "queue_free")
+		var tree = get_tree()
+		if tree:
+			tree.call_group("room_deletables", "queue_free")
 		current_room_instance.queue_free()
 
 	var directions := []

@@ -23,10 +23,10 @@ texture = ExtResource("1_4ignj")
 
 [node name="StartButton" type="TextureButton" parent="Control"]
 layout_mode = 0
-offset_left = 186.0
-offset_top = 84.0
-offset_right = 330.0
-offset_bottom = 148.0
+offset_left = 42.0
+offset_top = 108.0
+offset_right = 186.0
+offset_bottom = 172.0
 texture_hover = ExtResource("3_pyl7j")
 
 [node name="HoverSound" type="AudioStreamPlayer2D" parent="Control/StartButton"]
@@ -34,10 +34,10 @@ stream = ExtResource("4_4rr2b")
 
 [node name="ExitButton" type="TextureButton" parent="Control"]
 layout_mode = 0
-offset_left = 186.0
-offset_top = 139.0
-offset_right = 330.0
-offset_bottom = 203.0
+offset_left = 42.0
+offset_top = 167.0
+offset_right = 186.0
+offset_bottom = 231.0
 texture_hover = ExtResource("4_b3w7a")
 
 [node name="HoverSound" type="AudioStreamPlayer2D" parent="Control/ExitButton"]

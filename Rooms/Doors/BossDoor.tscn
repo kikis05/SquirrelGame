@@ -131,7 +131,7 @@ size = Vector2(48, 24)
 
 [node name="BossDoor" type="Node2D"]
 
-[node name="DoorN" type="Area2D" parent="."]
+[node name="DoorN" type="Area2D" parent="." groups=["boss", "door"]]
 script = ExtResource("1_cgf23")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DoorN"]
@@ -157,6 +157,9 @@ position = Vector2(240, 32)
 position = Vector2(0, 12)
 shape = SubResource("RectangleShape2D_cgf23")
 
+[node name="DialogSpawn" type="Marker2D" parent="."]
+position = Vector2(16, 0)
+
 [node name="Prompt" type="RichTextLabel" parent="."]
 offset_left = 208.0
 offset_top = -16.0
@@ -171,6 +174,3 @@ horizontal_alignment = 1
 
 [node name="SpawnPoint" type="Node2D" parent="."]
 position = Vector2(240, 72)
-
-[node name="DialogSpawn" type="Marker2D" parent="."]
-position = Vector2(16, 0)

@@ -39,6 +39,7 @@ room_deletables=""
 change_on_complete=""
 door=""
 chest=""
+boss=""
 
 [input]
 
