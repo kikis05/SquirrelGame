@@ -22,7 +22,7 @@ tile_set = ExtResource("1_efo3s")
 [node name="Nutsworth" parent="." node_paths=PackedStringArray("ui_layer") instance=ExtResource("4_mi31c")]
 position = Vector2(240, 89)
 script = ExtResource("5_80534")
-ui_layer = NodePath("")
+ui_layer = NodePath("../UILayer")
 ant_scene = ExtResource("6_5lbgc")
 lines_before = ["Now boy, to switch weapons you must press Q! That is how you access your sword!", "I believe there is an even more formidable foe for you to test this newfound knowledge!", "Ah, sapling, behold that nasty ant!", "Your gun won’t even scratch it.", "Equip your sword and show it some REAL bark!"]
 lines_after = ["Phenomenal swordplay!", "The path ahead is clear – it's time for you to venture further down the tree!"]
