@@ -84,6 +84,6 @@ res://entities/enemies/mosquito_baby_enemy/mosquito_baby_enemy.tscn
 res://entities/enemies/mosquito_enemy/mosquito_enemy.tscn
 res://assets/interactables/slow_honey_floor.tscn
 res://gun.tscn
-res://Rooms/Tutorial/RoomSap.tscn
 res://entities/enemies/tutorial_sap_ant/ant_sap.tscn
+res://Rooms/Tutorial/RoomSap.tscn
 res://scenes/TitleScreen.gd
