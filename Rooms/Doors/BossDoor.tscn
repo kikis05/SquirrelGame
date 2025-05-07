@@ -131,6 +131,9 @@ size = Vector2(48, 24)
 
 [node name="BossDoor" type="Node2D"]
 
+[node name="UILayer" type="CanvasLayer" parent="."]
+layer = 100
+
 [node name="DoorN" type="Area2D" parent="." node_paths=PackedStringArray("ui_layer") groups=["boss", "door"]]
 script = ExtResource("1_cgf23")
 ui_layer = NodePath("../UILayer")
@@ -143,7 +146,7 @@ shape = SubResource("RectangleShape2D_43csk")
 texture_filter = 1
 position = Vector2(240, 16)
 sprite_frames = SubResource("SpriteFrames_oxpa5")
-animation = &"closed"
+animation = &"outline"
 
 [node name="StaticBody2D" type="StaticBody2D" parent="DoorN"]
 
@@ -160,9 +163,6 @@ shape = SubResource("RectangleShape2D_cgf23")
 
 [node name="DialogSpawn" type="Marker2D" parent="."]
 position = Vector2(8, 0)
-
-[node name="UILayer" type="CanvasLayer" parent="."]
-layer = 100
 
 [node name="Prompt" type="RichTextLabel" parent="."]
 offset_left = 208.0

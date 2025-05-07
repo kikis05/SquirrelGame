@@ -26,7 +26,7 @@ const CUSTOM_ROOMS := {
 	"S":        ["SquareChestS", "SquareDoubleUpS"],
 	"N": 		["SquareDoubleUpCircleN"],
 	"NS":       ["NestLongNS", "SquareFishNS", "NestCircleNS", "SquareBottleneckNS"],
-	"EW":       ["HolesEW", "MoundsEW", "TightSqueezeEW"],
+	"EW":       ["HolesEW", "MoundsEW", "TightSqueezeEW", "NestBridgeEW"],
 	"NE":       ["SquareCornerNE"],
 	"NW":       ["SquareCornerNW"],
 	"SE":       ["SquareCornerSE"],
@@ -37,7 +37,6 @@ const CUSTOM_ROOMS := {
 const CHEST_ROOMS := {
 	"NEW":      ["NestChestBridgeNEW"],
 	"ESW":      ["NestChestBridgeESW"],
-	"EW":       ["NestBridgeEW"],
 	"SW":		["NestChestSW"],
 	"N":		["MosquitoMoundChestN"]
 }
@@ -398,16 +397,17 @@ func _switch_to_room(pos : Vector2i, entered_from_dir : String) -> void:
 	_update_music(room_type)
 	# Then custom rooms
 	if scene_path.is_empty():
-		for exits in CUSTOM_ROOMS:
-			if room_name in CUSTOM_ROOMS[exits]:
-				directions = _get_directions_from_key(exits)
-				var pick = CUSTOM_ROOMS[exits][rng.randi_range(0, CUSTOM_ROOMS[exits].size() - 1)]
-				# Special cases for Anna2 folder
-				if pick in ["SquareDoubleUpCircleN", "HolesEW", "MoundsEW", "TightSqueezeEW"]:
-					scene_path = "res://Rooms/Rooms_Anna2/%s.tscn" % pick
-				else:
-					scene_path = "res://Rooms/Rooms_Anna/%s.tscn" % pick
-				break
+		var exits_key := "".join(ROOM_TYPES.get(room_name, []))  # "NS", "EW", …
+		if CUSTOM_ROOMS.has(exits_key):
+			directions = ROOM_TYPES[room_name].duplicate()
+			var list = CUSTOM_ROOMS[exits_key]
+			var pick = list[rng.randi_range(0, list.size() - 1)]
+			# scenes that live in the “Rooms_Anna2” folder
+			if pick in ["SquareDoubleUpCircleN", "HolesEW",
+						"MoundsEW", "TightSqueezeEW"]:
+				scene_path = "res://Rooms/Rooms_Anna2/%s.tscn" % pick
+			else:
+				scene_path = "res://Rooms/Rooms_Anna/%s.tscn"  % pick
 	
 	# Fallback to standard rooms
 	if scene_path.is_empty() and ROOM_TYPES.has(room_name):
