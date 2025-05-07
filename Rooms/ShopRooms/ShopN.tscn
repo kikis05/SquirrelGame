@@ -7,6 +7,8 @@
 [ext_resource type="PackedScene" uid="uid://yo8c4alnkdc5" path="res://assets/interactables/slow_honey_floor.tscn" id="6_sucom"]
 
 [node name="StandardRoomN" type="Node2D"]
+z_as_relative = false
+y_sort_enabled = true
 
 [node name="Tilemap" type="TileMapLayer" parent="."]
 texture_filter = 1
@@ -28,7 +30,6 @@ tile_set = ExtResource("1_qhihl")
 position = Vector2(240, 136)
 
 [node name="ShopB" parent="." instance=ExtResource("2_8m38s")]
-z_index = 1
 position = Vector2(90, 165)
 
 [node name="SlowHoneyWall" parent="." instance=ExtResource("4_aiql1")]

@@ -7,6 +7,7 @@ class_name Death_State
 @export var enemy: CharacterBody2D
 
 func enter():
+	enemy.emit_death()
 	enemy.die()
 
 func physics_process(_delta):
