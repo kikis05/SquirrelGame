@@ -1,16 +1,14 @@
-res://Rooms/Tutorial/RoomIntro.tscn
+res://sword.tscn
 res://assets/tiles/RoomTileset.tres
 res://entities/enemies/states/chase_state.gd
 res://scenes/main.gd
-res://scenes/TutorialLevel.tscn
-res://Rooms/Tutorial/TutorialManager.gd
-res://sword.tscn
 res://Rooms/Tutorial/RoomSword.tscn
 res://entities/enemies/tutorial_ant_sword/ant_sword.tscn
 res://scenes/title.tscn
 res://Rooms/Tutorial/RoomHole.tscn
 res://Rooms/StandardRoomScenes/StandardRoomS.tscn
 res://Rooms/StandardRoomScenes/StandardRoomNSW.tscn
+res://scenes/TutorialLevel.tscn
 res://Rooms/Ladder/Ladder.tscn
 res://entities/chests/chest.tscn
 res://NPCs/Nutsworth.tscn
@@ -18,7 +16,7 @@ res://Rooms/Ladder/transition_screen.tscn
 res://scenes/main.tscn
 res://scenes/test.tscn
 res://Player/player.tscn
-res://Rooms/ShopRooms/StandardRoomShopS.tscn
+res://Rooms/Tutorial/RoomIntro.tscn
 res://Rooms/StandardRoomScenes/StandardRoomE.tscn
 res://Rooms/StandardRoomScenes/StandardRoomESW.tscn
 res://Rooms/StandardRoomScenes/StandardRoomES.tscn
@@ -30,7 +28,6 @@ res://Rooms/Rooms_Anna2/HolesEW.tscn
 res://Rooms/Rooms_Anna2/MoundsEW.tscn
 res://Rooms/Rooms_Anna/NestChestBridgeESW.tscn
 res://Rooms/Rooms_Anna2/SquareDoubleUpCircleN.tscn
-res://Rooms/ShopRooms/StandardRoomShopE.tscn
 res://Rooms/ShopRooms/ShopE.tscn
 res://Rooms/Rooms_Anna/NestBridgeEW.tscn
 res://Rooms/StandardRoomScenes/StandardRoomW.tscn
@@ -71,6 +68,5 @@ res://Rooms/Boss_Queen/BossRoomESW.tscn
 res://Rooms/Boss_Queen/BossRoomES.tscn
 res://Rooms/Boss_Queen/BossRoomE.tscn
 res://Rooms/Boss_Queen/ant_queen.tscn
-res://Rooms/Doors/TutorialDoorD.tscn
-res://NPCs/Nutsworth.gd
-res://scenes/GameState.gd
+res://Rooms/Doors/BossDoor.gd
+res://scenes/dungeon_generator.gd

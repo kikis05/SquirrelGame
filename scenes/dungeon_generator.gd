@@ -5,6 +5,11 @@ signal player_spawned(player : Node)
 signal room_loaded(pos : Vector2i)  
 
 @export var player_scene : PackedScene = preload("res://Player/player.tscn")
+@export var dungeon_music : AudioStream        # drag your default BG track here
+@export var shop_music    : AudioStream        # drag the “shop” jingle here
+@onready var _music : AudioStreamPlayer2D = $"Music"
+var _music_state : String = "dungeon"   # "dungeon"  |  "shop"
+
 
 const GRID_WIDTH      = 5
 const GRID_HEIGHT     = 5
@@ -390,6 +395,7 @@ func _switch_to_room(pos : Vector2i, entered_from_dir : String) -> void:
 		if BOSS_ROOMS.has(dir_key):
 			scene_path = "res://Rooms/Boss_Queen/%s.tscn" % BOSS_ROOMS[dir_key][0]
 	
+	_update_music(room_type)
 	# Then custom rooms
 	if scene_path.is_empty():
 		for exits in CUSTOM_ROOMS:
@@ -625,3 +631,15 @@ func _count_connected_rooms(start : Vector2i) -> int:
 				stack.append(nxt)
 
 	return visited.size()
+
+func _update_music(room_type : String) -> void:
+	# room_type is "shop"  or anything else ("dungeon"/"boss"/"chest"/…)
+	if room_type == "shop" and _music_state != "shop":
+		_music.stream = shop_music
+		_music.play()
+		_music_state  = "shop"
+
+	elif room_type != "shop" and _music_state != "dungeon":
+		_music.stream = dungeon_music
+		_music.play()
+		_music_state  = "dungeon"
