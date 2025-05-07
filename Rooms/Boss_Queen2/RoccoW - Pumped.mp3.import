@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://clxc27d6evxhp"
+path="res://.godot/imported/RoccoW - Pumped.mp3-93b0dd4dd7ae3bb52ab4655ef223d283.mp3str"
+
+[deps]
+
+source_file="res://Rooms/Boss_Queen2/RoccoW - Pumped.mp3"
+dest_files=["res://.godot/imported/RoccoW - Pumped.mp3-93b0dd4dd7ae3bb52ab4655ef223d283.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

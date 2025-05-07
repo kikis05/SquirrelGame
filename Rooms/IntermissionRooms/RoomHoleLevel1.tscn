@@ -6,7 +6,7 @@
 [ext_resource type="Script" uid="uid://c6flreb5q6bkl" path="res://Rooms/IntermissionRooms/NutsLevel1.gd" id="4_5t16t"]
 [ext_resource type="PackedScene" uid="uid://buv3y1q5q5tjm" path="res://Rooms/Ladder/Ladder.tscn" id="5_0x6kk"]
 [ext_resource type="PackedScene" uid="uid://3bwfjlqsm6b4" path="res://Rooms/Doors/DoorW.tscn" id="6_5t16t"]
-[ext_resource type="PackedScene" uid="uid://deygmkaqtn6ll" path="res://scenes/EndScene.tscn" id="6_t0yia"]
+[ext_resource type="PackedScene" uid="uid://cyaqh4352s42m" path="res://scenes/main2.tscn" id="6_t0yia"]
 [ext_resource type="PackedScene" uid="uid://ctdj7k4cwb4f6" path="res://Player/player.tscn" id="7_lxtqr"]
 [ext_resource type="AudioStream" uid="uid://cn2nossjoys6o" path="res://scenes/Time Is Near LOOP.ogg" id="8_vesj6"]
 [ext_resource type="Script" uid="uid://dvi35r7pmbve2" path="res://scenes/Loop.gd" id="9_t0yia"]
@@ -29,7 +29,7 @@ tile_set = ExtResource("1_uudde")
 [node name="Nutsworth" parent="." node_paths=PackedStringArray("ui_layer") instance=ExtResource("3_pvhm7")]
 position = Vector2(339, 138)
 script = ExtResource("4_5t16t")
-lines = ["Great work my boy!", "I was witnessing your incredible ambition every step of the way!", "What you have accomplished is nothing short of spectacular!", "Now let's get out of here!"]
+lines = ["Incredible! Simply Incredible!", "We still have one more level to go though...", "But after seeing what you are capable of, I have not doubts in your capability to succeed!"]
 ui_layer = NodePath("../UILayer")
 
 [node name="SpawnPoint" type="Node2D" parent="."]

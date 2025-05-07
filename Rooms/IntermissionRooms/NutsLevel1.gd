@@ -4,10 +4,9 @@ class_name NutsworthHole
 signal talk_finished         # emitted when all lines are done
 
 @export var lines := [
-	"Great work my boy!",
-	"I was witnessing your incredible ambition every step of the way!",
-	"What you have accomplished is nothing short of spectacular!",
-	"Now let's get out of here!"
+	"Incredible! Simply Incredible!",
+	"We still have one more level to go though...",
+	"But after seeing what you are capable of, I have not doubts in your capability to succeed!"
 ]
 
 @onready var _sprite : AnimatedSprite2D   = $AnimatedSprite2D

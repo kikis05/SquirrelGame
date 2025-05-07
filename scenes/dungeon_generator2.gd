@@ -396,7 +396,7 @@ func _switch_to_room(pos : Vector2i, entered_from_dir : String) -> void:
 		var dir_key = room_name.replace("BOSS_", "")
 		directions = _get_directions_from_key(dir_key)
 		if BOSS_ROOMS.has(dir_key):
-			scene_path = "res://Rooms/Boss_Queen/%s.tscn" % BOSS_ROOMS[dir_key][0]
+			scene_path = "res://Rooms/Boss_Queen2/%s.tscn" % BOSS_ROOMS[dir_key][0]
 	
 	_update_music(room_type)
 	# Then custom rooms
@@ -427,8 +427,8 @@ func _switch_to_room(pos : Vector2i, entered_from_dir : String) -> void:
 	current_room_instance = load(scene_path).instantiate()
 	current_room_instance.name = "RoomInstance"
 	current_room_instance.position = Vector2(pos.x, pos.y) * TILE_SIZE
-	(current_room_instance as CanvasItem).modulate = _tint_color
 	add_child(current_room_instance)
+	(current_room_instance as CanvasItem).modulate = _tint_color
 
 	_wire_doors_recursive(current_room_instance, pos)
 

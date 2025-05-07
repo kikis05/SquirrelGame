@@ -1,7 +1,7 @@
 extends Door
 class_name BossDoor
 
-@export var next_scene: PackedScene = preload("res://Rooms/Boss_Queen/boss_room_queen.tscn")
+@export var next_scene: PackedScene = preload("res://Rooms/Boss_Queen2/boss_room_queen.tscn")
 @export var interact_action: String = "interact"
 @export var dialogue_box: PackedScene = preload("res://NPCs/Dialog.tscn")
 @export var ui_layer : CanvasLayer
