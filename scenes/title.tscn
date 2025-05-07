@@ -45,5 +45,6 @@ stream = ExtResource("4_4rr2b")
 
 [node name="Music" type="AudioStreamPlayer2D" parent="Control"]
 stream = ExtResource("6_4rr2b")
+volume_db = -15.0
 autoplay = true
 script = ExtResource("7_yql1r")

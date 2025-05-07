@@ -15,12 +15,9 @@ signal spawn_soldiers(type: String)
 
 const ATTACK_THRESHOLD = 2
 const HANDS = ["left_hand", "right_hand"]
-const AFTER_RIGHT_HAND = ["left_hand", "spawn_ants"]
-const AFTER_LEFT_HAND = ["right_hand", "spawn_ants"]
-const AFTER_ANTS = ["left_hand", "right_hand", "spawn_fire_ants"]
-#const AFTER_RIGHT_HAND = ["left_hand", "pheromones"]
-#const AFTER_LEFT_HAND = ["right_hand", "pheromones"]
-const SPAWN = ["spawn_ants", "spawn_fire_ants"]
+const AFTER_RIGHT_HAND = ["left_hand", "spawn_ants", "spawn_fire_ants"]
+const AFTER_LEFT_HAND = ["right_hand", "spawn_ants", "spawn_fire_ants"]
+const AFTER_ANTS = ["left_hand", "right_hand", "spawn_ants", "spawn_fire_ants"]
 
 var idle_count = 0
 var hand_just_used = "left"
@@ -37,7 +34,8 @@ func _ready():
 	anim_tree = $AnimationTree
 	mod_anim_player = $ModulateAnimPlayer
 	health_bar = $CanvasLayer/ProgressBar
-	health_bar.value = 200.0
+	health_bar.max_value = 500.0
+	health_bar.value = 500.0
 	randomize() # may be unnecessary?
 
 # ------------- STATE-RELATED -------------
@@ -59,14 +57,12 @@ func attack():
 		attack_set = AFTER_LEFT_HAND
 	elif next_attack == "right_hand":
 		attack_set = AFTER_RIGHT_HAND
-	#elif next_attack == "pheromones":
-		#attack_set = SPAWN
 	elif next_attack == "spawn_ants":
 		spawn_soldiers.emit("ants")
 		attack_set = AFTER_ANTS
 	elif next_attack == "spawn_fire_ants":
 		spawn_soldiers.emit("fire_ants")
-		attack_set = HANDS
+		attack_set = AFTER_ANTS
 	else:
 		attack_set = HANDS
 

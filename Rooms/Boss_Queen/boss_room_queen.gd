@@ -10,7 +10,7 @@ func _ready():
 func spawn_soldiers(type):
 	# TODO: Test limits, keep in mind that players will have upgrades
 	# Unlike me, the tester
-	if (get_tree().get_nodes_in_group("enemy").size() >= 8):
+	if (get_tree().get_nodes_in_group("enemy").size() >= 8*3): # Count attackboxes and hitboxes
 		return
 		
 	if (type == "ants"):
