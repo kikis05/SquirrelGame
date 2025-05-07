@@ -4,7 +4,6 @@ extends CanvasLayer
 @onready var cost = $Cost
 @onready var item_description = $"Item Description"
 @onready var powerup_description = $"Powerup Description"
-@onready var _sfx_click : AudioStreamPlayer2D = $Click
 
 @onready var items = [$ShopItem, $ShopItem2, $ShopItem3, $ShopItem4]
 

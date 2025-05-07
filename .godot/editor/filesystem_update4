@@ -84,5 +84,11 @@ res://entities/enemies/mosquito_baby_enemy/mosquito_baby_enemy.tscn
 res://entities/enemies/mosquito_enemy/mosquito_enemy.tscn
 res://assets/interactables/slow_honey_floor.tscn
 res://gun.tscn
+<<<<<<< HEAD
 res://Shops/shop_modal.gd
 res://Shops/shop.gd
+=======
+res://NPCs/NutsworthSword.gd
+res://Shops/shop_modal.gd
+res://Rooms/Doors/BossDoor.gd
+>>>>>>> main
