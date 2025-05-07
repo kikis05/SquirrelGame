@@ -1,9 +1,8 @@
-[gd_scene load_steps=11 format=4 uid="uid://cyaqh4352s42m"]
+[gd_scene load_steps=10 format=4 uid="uid://cyaqh4352s42m"]
 
+[ext_resource type="Script" uid="uid://djinnnl2c7xs5" path="res://scenes/main.gd" id="1_f17eg"]
 [ext_resource type="Script" uid="uid://wbuky36r0mu" path="res://scenes/dungeon_generator2.gd" id="1_kxs5y"]
-[ext_resource type="Script" uid="uid://doyrnsmawccn1" path="res://scenes/dungeon_generator.gd" id="2_f31b2"]
 [ext_resource type="AudioStream" uid="uid://cv30bbkp4arr7" path="res://scenes/Prepare For Battle LOOP.ogg" id="3_lhxgd"]
-[ext_resource type="AudioStream" uid="uid://c8fxf7j6vd58c" path="res://scenes/Visager - In the Branches [Loop].mp3" id="4_r8a5h"]
 [ext_resource type="Script" uid="uid://dvi35r7pmbve2" path="res://scenes/Loop.gd" id="5_pmkxm"]
 [ext_resource type="Script" uid="uid://tm3cwovednyy" path="res://scenes/MiniMap.gd" id="6_ueikh"]
 [ext_resource type="PackedScene" uid="uid://c1x03uf7p3bj1" path="res://health_container.tscn" id="7_1fhlo"]
@@ -13,12 +12,10 @@
 
 [node name="Main" type="Node2D"]
 y_sort_enabled = true
-script = ExtResource("1_kxs5y")
+script = ExtResource("1_f17eg")
 
 [node name="DungeonGenerator" type="Node" parent="."]
-script = ExtResource("2_f31b2")
-dungeon_music = ExtResource("3_lhxgd")
-shop_music = ExtResource("4_r8a5h")
+script = ExtResource("1_kxs5y")
 
 [node name="Music" type="AudioStreamPlayer2D" parent="DungeonGenerator"]
 stream = ExtResource("3_lhxgd")

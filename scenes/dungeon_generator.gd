@@ -8,7 +8,6 @@ signal room_loaded(pos : Vector2i)
 @export var dungeon_music : AudioStream        # drag your default BG track here
 @export var shop_music    : AudioStream        # drag the “shop” jingle here
 @onready var _music : AudioStreamPlayer2D = $"Music"
-var _tint_color : Color                        # stored for all rooms
 var _music_state : String = "dungeon"   # "dungeon"  |  "shop"
 
 
@@ -98,8 +97,6 @@ var rng : RandomNumberGenerator = RandomNumberGenerator.new()
 func _ready() -> void:
 	TransitionScreen.fade_in()
 	rng.randomize()
-	var hue := randf()                      # 0‒1
-	_tint_color = Color.from_hsv(hue, 1.0, 1.0)   # full‑sat/value tint
 	print("\n=== DungeonGenerator READY ===")
 	if _generate_dungeon():
 		current_room_pos = Vector2i(GRID_WIDTH / 2, GRID_HEIGHT / 2)
@@ -427,7 +424,6 @@ func _switch_to_room(pos : Vector2i, entered_from_dir : String) -> void:
 	current_room_instance = load(scene_path).instantiate()
 	current_room_instance.name = "RoomInstance"
 	current_room_instance.position = Vector2(pos.x, pos.y) * TILE_SIZE
-	(current_room_instance as CanvasItem).modulate = _tint_color
 	add_child(current_room_instance)
 
 	_wire_doors_recursive(current_room_instance, pos)

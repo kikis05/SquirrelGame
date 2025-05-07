@@ -98,7 +98,5 @@ shape = SubResource("CapsuleShape2D_fgaav")
 
 [node name="ShopModal" parent="." instance=ExtResource("3_lafmt")]
 
-[node name="Click" type="AudioStreamPlayer2D" parent="ShopModal"]
-
 [connection signal="area_entered" from="ActivationArea" to="." method="_on_activation_area_area_entered"]
 [connection signal="area_exited" from="ActivationArea" to="." method="_on_activation_area_area_exited"]

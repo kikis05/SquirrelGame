@@ -1,4 +1,4 @@
-[gd_scene load_steps=32 format=3 uid="uid://cwrwm5a1gb2nh"]
+[gd_scene load_steps=33 format=3 uid="uid://cwrwm5a1gb2nh"]
 
 [ext_resource type="Script" uid="uid://drc32dbyt45eh" path="res://entities/enemies/states/state_machine.gd" id="1_svt0h"]
 [ext_resource type="Script" uid="uid://bednidx6sx8rn" path="res://entities/enemies/mosquito_baby_enemy/mosquito_baby_enemy.gd" id="1_uqm2f"]
@@ -9,6 +9,7 @@
 [ext_resource type="Script" uid="uid://cji0ts0qst0sl" path="res://entities/enemies/states/attack_state.gd" id="5_ro4yc"]
 [ext_resource type="Script" uid="uid://bnm6cr87jsjaw" path="res://entities/enemies/states/stun_tolinear_state.gd" id="6_qdd20"]
 [ext_resource type="Script" uid="uid://c7yfvis6uphlt" path="res://entities/enemies/states/death_state.gd" id="6_yrbmr"]
+[ext_resource type="AudioStream" uid="uid://5kgien5158h1" path="res://entities/enemies/458867__raclure__damage-sound-effect.mp3" id="10_ro4yc"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_yrbmr"]
 atlas = ExtResource("2_qdd20")
@@ -242,6 +243,10 @@ metadata/_custom_type_script = "uid://cji0ts0qst0sl"
 script = ExtResource("6_yrbmr")
 enemy = NodePath("../..")
 metadata/_custom_type_script = "uid://c7yfvis6uphlt"
+
+[node name="HitSFX" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("10_ro4yc")
+volume_db = -3.0
 
 [connection signal="animation_finished" from="EnemyBody/AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]
 [connection signal="body_entered" from="EnemyBody/AttackBox" to="." method="_on_attack_box_body_entered"]
