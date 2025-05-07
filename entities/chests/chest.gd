@@ -39,9 +39,6 @@ func _input(event):
 		outline.visible = false
 		label.visible = false
 		spawn_item()
-	elif Input.is_action_just_pressed("test"): # TODO remove when signal implemented
-		room_completed() # TODO remove when signal implemented
-
 
 func room_completed():
 	label.text = "E to OPEN"

@@ -37,7 +37,7 @@ func _ready():
 	anim_tree = $AnimationTree
 	mod_anim_player = $ModulateAnimPlayer
 	health_bar = $CanvasLayer/ProgressBar
-	health_bar.value = 100.0
+	health_bar.value = 200.0
 	randomize() # may be unnecessary?
 
 # ------------- STATE-RELATED -------------
