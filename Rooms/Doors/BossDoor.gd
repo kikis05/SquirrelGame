@@ -4,7 +4,7 @@ class_name BossDoor
 @export var next_scene: PackedScene = preload("res://Rooms/Boss_Queen/boss_room_queen.tscn")
 @export var interact_action: String = "interact"
 @export var dialogue_box: PackedScene = preload("res://NPCs/Dialog.tscn")
-@export var ui_layer : CanvasLayer
+@export var ui_layer      : CanvasLayer
 
 @onready var _sensor: Area2D = $DetectPlayer
 @onready var _prompt: RichTextLabel = $"../Prompt"
@@ -57,10 +57,9 @@ func _show_dialogue() -> void:
 	_dialog_open = true
 	_prompt.visible = false
 	var dlg: Control = dialogue_box.instantiate()
-	ui_layer.add_child(dlg)
 	dlg.position = _dlg_sp.global_position
 	_tree.current_scene.add_child(dlg)
-
+	ui_layer.add_child(dlg)
 	dlg.start([
 		"Beyond this door lies the boss",
 		"Once you go through, there is no coming back",
