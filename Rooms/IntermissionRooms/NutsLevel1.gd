@@ -1,16 +1,19 @@
 extends Node2D
-class_name NutsworthHole1
+class_name NutsworthHole
 
 signal talk_finished         # emitted when all lines are done
 
 @export var lines := [
-	"Welp... Off you go young sapling!",
-	"I'll be right behind you!"
+	"Great work my boy!",
+	"I was witnessing your incredible ambition every step of the way!",
+	"What you have accomplished is nothing short of spectacular!",
+	"Now let's get out of here!"
 ]
 
 @onready var _sprite : AnimatedSprite2D   = $AnimatedSprite2D
 @onready var _prompt : RichTextLabel      = $Prompt
 @export var ui_layer : CanvasLayer
+@onready var _doorW :  = get_parent().get_node("DoorW/DoorW")
 var _player_in_range := false
 var _dialog_open     := false
 var _cool_timer : Timer                     
@@ -18,7 +21,6 @@ var _can_talk    := true
 
 
 func _ready():
-	_sprite.play("idle")
 	$Area2D.body_entered.connect(_on_entered)
 	$Area2D.body_exited.connect(_on_exited)
 	_prompt.visible = false

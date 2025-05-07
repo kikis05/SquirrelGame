@@ -4,6 +4,7 @@ extends CanvasLayer
 @onready var cost = $Cost
 @onready var item_description = $"Item Description"
 @onready var powerup_description = $"Powerup Description"
+@onready var _sfx_click : AudioStreamPlayer2D = $Click
 
 @onready var items = [$ShopItem, $ShopItem2, $ShopItem3, $ShopItem4]
 
@@ -27,6 +28,7 @@ func set_item(index, image, image_outline, item_name, cost, description, powerup
 	items[index].set_data(image, image_outline, item_name, cost, description, powerup_type, powerup_amount)
 
 func set_current_item(index: int):
+	_sfx_click.play()
 	cost.text = items[index].get_item_name() + ": $" +  str(items[index].get_cost())
 	item_description.text  = items[index].get_description()
 	powerup_description.text = get_powerup_text(items[index].get_powerup_type()) + str(items[index].get_powerup_value())

@@ -11,6 +11,8 @@ extends Node
 - Dead when 0 health
 """
 
+signal defeated          # <── add this on top
+
 signal spawn_soldiers(type: String)
 
 const ATTACK_THRESHOLD = 2
@@ -83,11 +85,16 @@ func take_damage(bullet):
 		health_bar.value = health_bar.value - bullet.get_damage()
 		if health_bar.value <= 0.0:
 			die()
-
-func die():
+	
+func die() -> void:
 	var head_animation: AnimatedSprite2D = $Node2D/Head/AnimatedSprite2D
 	head_animation.play("death")
 	anim_tree.set_condition("death", true)
+
+	# optional: wait until the death anim is over
+	await head_animation.animation_finished
+
+	defeated.emit()       # <── notify the room controller
 
 # ----------- INTERACTING WITH PLAYER -------------
 func _on_area_2d_body_entered(body):

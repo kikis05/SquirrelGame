@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://dnb76w3ifah0b"
+path="res://.godot/imported/Adventure Awaits LOOP.ogg-051d9ccdc85df53dce34958a10e4cf69.oggvorbisstr"
+
+[deps]
+
+source_file="res://scenes/Adventure Awaits LOOP.ogg"
+dest_files=["res://.godot/imported/Adventure Awaits LOOP.ogg-051d9ccdc85df53dce34958a10e4cf69.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4
