@@ -83,6 +83,5 @@ res://entities/enemies/fire_ant_enemy/fire_ant_enemy.tscn
 res://entities/enemies/mosquito_baby_enemy/mosquito_baby_enemy.tscn
 res://entities/enemies/mosquito_enemy/mosquito_enemy.tscn
 res://assets/interactables/slow_honey_floor.tscn
-res://Player/player.gd
 res://gun.tscn
-res://gun.gd
+res://NPCs/NutsworthSword.gd

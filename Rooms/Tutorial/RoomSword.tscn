@@ -19,15 +19,14 @@ tile_set = ExtResource("1_efo3s")
 
 [node name="TutorialDoorS" parent="." groups=["door"] instance=ExtResource("3_rocb4")]
 
-[node name="Nutsworth" parent="." instance=ExtResource("4_mi31c")]
+[node name="Nutsworth" parent="." node_paths=PackedStringArray("ui_layer") instance=ExtResource("4_mi31c")]
 position = Vector2(240, 89)
 script = ExtResource("5_80534")
-ui_layer = Object(CanvasLayer,"_import_path":NodePath(""),"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","layer":1,"visible":true,"offset":Vector2(0, 0),"rotation":0.0,"scale":Vector2(1, 1),"transform":Transform2D(1, 0, 0, 1, 0, 0),"follow_viewport_enabled":false,"follow_viewport_scale":1.0,"script":null)
-
+ui_layer = NodePath("")
 ant_scene = ExtResource("6_5lbgc")
-lines_before = null
-lines_after = null
-lines_during = null
+lines_before = ["Now boy, to switch weapons you must press Q! That is how you access your sword!", "I believe there is an even more formidable foe for you to test this newfound knowledge!", "Ah, sapling, behold that nasty ant!", "Your gun won’t even scratch it.", "Equip your sword and show it some REAL bark!"]
+lines_after = ["Phenomenal swordplay!", "The path ahead is clear – it's time for you to venture further down the tree!"]
+lines_during = ["Remember: only sharp swings harm that pest!", "Give it some slashing fury!"]
 
 [node name="AntSpawnPoint" type="Marker2D" parent="."]
 position = Vector2(241, 206)

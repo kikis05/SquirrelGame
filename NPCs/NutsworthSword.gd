@@ -30,6 +30,7 @@ const COOLDOWN := 0.25        # seconds before you can re‑press “E”
 # ───────────── cached nodes ────────────────────────────────
 @onready var _sprite : AnimatedSprite2D = $AnimatedSprite2D
 @onready var _prompt : RichTextLabel    = $Prompt
+@onready var _door : Door            = get_parent().get_node("DoorN/DoorN")
 @onready var ant_spawn_pt : Node2D   = get_parent().get_node("AntSpawnPoint")
 
 # ───────────── internal state ──────────────────────────────
