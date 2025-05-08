@@ -18,8 +18,8 @@ signal door_entered(room_pos : Vector2i, direction : String, body : Node)
 # ──────────────────────────────────────────────────────────────
 func _ready() -> void:
 	# 1) Ensure the node is tagged so the generator can find it quickly
-	if !is_in_group("door"):
-		add_to_group("door")          # no persistence needed
+	#if !is_in_group("door"):
+		#add_to_group("door")          # no persistence needed
 
 	# 2) Auto-derive the direction from the node name ("DoorN", "DoorE", …)
 	if direction.is_empty() and name.begins_with("Door"):

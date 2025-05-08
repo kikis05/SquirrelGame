@@ -1,4 +1,4 @@
-[gd_scene load_steps=54 format=3 uid="uid://ecsrhcu1cpjh"]
+[gd_scene load_steps=55 format=3 uid="uid://ecsrhcu1cpjh"]
 
 [ext_resource type="Script" uid="uid://xffwgc3jwl06" path="res://Rooms/Boss_Queen/animation_tree.gd" id="1_5jl46"]
 [ext_resource type="Script" uid="uid://qnipbvq3w0fs" path="res://Rooms/Boss_Queen/ant_queen.gd" id="1_k6nnh"]
@@ -10,6 +10,7 @@
 [ext_resource type="Texture2D" uid="uid://jjmsvp1rk2n4" path="res://assets/enemies/queen_ant/queen_head2.png" id="7_s5xob"]
 [ext_resource type="Texture2D" uid="uid://cj2yd0s5oem5e" path="res://assets/chests_items/items1.png" id="8_o5303"]
 [ext_resource type="FontFile" uid="uid://c33ivdot7yug6" path="res://assets/Pixeled.ttf" id="8_uw26s"]
+[ext_resource type="AudioStream" uid="uid://5kgien5158h1" path="res://entities/enemies/458867__raclure__damage-sound-effect.mp3" id="11_wne1h"]
 
 [sub_resource type="Animation" id="Animation_wne1h"]
 resource_name = "Damaged"
@@ -1232,6 +1233,10 @@ text = "THE ANT QUEEN"
 horizontal_alignment = 1
 
 [node name="PheromoneTimer" type="Timer" parent="."]
+
+[node name="HitSFX" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("11_wne1h")
+volume_db = -3.0
 
 [connection signal="body_entered" from="Node2D/Left Arm/Area2D" to="." method="_on_area_2d_body_entered"]
 [connection signal="body_entered" from="Node2D/Right Arm/Area2D" to="." method="_on_area_2d_body_entered"]

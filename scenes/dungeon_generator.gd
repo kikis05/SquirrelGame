@@ -9,7 +9,7 @@ signal room_loaded(pos : Vector2i)
 @export var shop_music    : AudioStream        # drag the “shop” jingle here
 @onready var _music : AudioStreamPlayer2D = $"Music"
 var _music_state : String = "dungeon"   # "dungeon"  |  "shop"
-
+var scene_cache : Dictionary = {}
 
 const GRID_WIDTH      = 5
 const GRID_HEIGHT     = 5
@@ -397,29 +397,32 @@ func _switch_to_room(pos : Vector2i, entered_from_dir : String) -> void:
 	
 	_update_music(room_type)
 	# Then custom rooms
-	if scene_path.is_empty():
+	if [room_name, pos[0], pos[1]]  in scene_cache:
+		scene_path = scene_cache[[room_name, pos[0], pos[1]]]
+	elif scene_path.is_empty():
 		var exits_key := "".join(ROOM_TYPES.get(room_name, []))  # "NS", "EW", …
 		if CUSTOM_ROOMS.has(exits_key):
 			directions = ROOM_TYPES[room_name].duplicate()
 			var list = CUSTOM_ROOMS[exits_key]
-			var pick = list[rng.randi_range(0, list.size() - 1)]
+			var pick: String = list[rng.randi_range(0, list.size() - 1)]
 			# scenes that live in the “Rooms_Anna2” folder
 			if pick in ["SquareDoubleUpCircleN", "HolesEW",
 						"MoundsEW", "TightSqueezeEW"]:
 				scene_path = "res://Rooms/Rooms_Anna2/%s.tscn" % pick
+				scene_cache[[room_name, pos[0], pos[1]]] = scene_path
 			else:
 				scene_path = "res://Rooms/Rooms_Anna/%s.tscn"  % pick
-	
+				scene_cache[[room_name, pos[0], pos[1]]] = scene_path
+				
 	# Fallback to standard rooms
 	if scene_path.is_empty() and ROOM_TYPES.has(room_name):
 		directions = ROOM_TYPES[room_name].duplicate()
 		scene_path = "res://Rooms/StandardRoomScenes/%s.tscn" % room_name
-	
+
 	# Error handling
 	if scene_path.is_empty():
 		push_error("Unknown room type: " + room_name)
 		return
-
 
 	print("\u2022 Instancing room:", scene_path)
 	current_room_instance = load(scene_path).instantiate()
@@ -533,6 +536,8 @@ func _on_door_entered(room_pos : Vector2i, dir : String, body : Node) -> void:
 	print("\n>>> DOOR TRIGGER  room_pos:", room_pos, " dir:", dir, " <<<")
 	var target : Vector2i = room_pos + DIR_OFFSET[dir]
 	print("    Target room:", target)
+	if room_pos == boss_room_pos and dir == "N":
+		return
 	_switch_to_room(target, dir)
 
 func start_game():
@@ -584,6 +589,8 @@ func _clear_room(room_pos: Vector2i):
 	for door in get_tree().get_nodes_in_group("door"):
 		if door.is_inside_tree() and current_room_instance.is_ancestor_of(door):
 			print("→ Opening door:", door.name)
+			if door.is_in_group("boss"):
+				continue
 			door.open()
 
 func _count_connected_rooms(start : Vector2i) -> int:

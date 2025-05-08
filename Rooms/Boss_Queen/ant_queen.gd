@@ -15,6 +15,8 @@ signal defeated          # <── add this on top
 
 signal spawn_soldiers(type: String)
 
+@onready var _sfx_hit : AudioStreamPlayer2D = $HitSFX
+
 const ATTACK_THRESHOLD = 2
 const HANDS = ["left_hand", "right_hand"]
 const AFTER_RIGHT_HAND = ["left_hand", "spawn_ants", "spawn_fire_ants"]
@@ -79,6 +81,7 @@ func take_damage(bullet):
 		mod_anim_player.play("RESET")
 		mod_anim_player.play("Damaged")
 		health_bar.value = health_bar.value - bullet.get_damage()
+		_sfx_hit.play()
 		if health_bar.value <= 0.0:
 			die()
 	

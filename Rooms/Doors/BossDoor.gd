@@ -17,9 +17,9 @@ var _dialog_open: bool = false
 var _confirmed: bool = false
 
 func _ready() -> void:
-	super()
 	_prompt.visible = false
 	slam()
+	sprite.play("closed")
 	
 	# Connect signals
 	_sensor.body_entered.connect(_on_sensor_enter)
@@ -58,7 +58,9 @@ func _show_dialogue() -> void:
 	_prompt.visible = false
 	var dlg: Control = dialogue_box.instantiate()
 	dlg.position = _dlg_sp.global_position
+	_tree.current_scene.add_child(dlg)
 	ui_layer.add_child(dlg)
+	dlg.z_index = 2
 
 	dlg.start([
 		"Beyond this door lies the boss",

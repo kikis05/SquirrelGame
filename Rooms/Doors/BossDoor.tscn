@@ -137,6 +137,7 @@ layer = 100
 [node name="DoorN" type="Area2D" parent="." node_paths=PackedStringArray("ui_layer") groups=["boss", "door"]]
 script = ExtResource("1_cgf23")
 ui_layer = NodePath("../UILayer")
+direction = "Boss"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DoorN"]
 position = Vector2(240, 16)
@@ -146,7 +147,7 @@ shape = SubResource("RectangleShape2D_43csk")
 texture_filter = 1
 position = Vector2(240, 16)
 sprite_frames = SubResource("SpriteFrames_oxpa5")
-animation = &"outline"
+animation = &"closed"
 
 [node name="StaticBody2D" type="StaticBody2D" parent="DoorN"]
 
