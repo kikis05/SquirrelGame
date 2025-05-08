@@ -53,7 +53,7 @@ func reopen():
 		
 func set_time_entered(val):
 	modal_time_entered = val
-	print("modal time entered", modal_time_entered)
+	#print("modal time entered", modal_time_entered)
 	text.text = dialogues[min(modal_time_entered, len(dialogues) - 1)]
 
 func _process(delta):

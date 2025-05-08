@@ -90,24 +90,6 @@ offset_right = 350.0
 offset_bottom = 219.0
 scale = Vector2(1, 1)
 
-[node name="ShopText" type="Label" parent="."]
-visible = false
-offset_left = 333.0
-offset_top = 15.0
-offset_right = 460.0
-offset_bottom = 131.0
-size_flags_horizontal = 8
-theme_override_colors/font_color = Color(0.311984, 0.252107, 0.477726, 1)
-theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
-theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
-theme_override_fonts/font = ExtResource("4_5yeww")
-theme_override_font_sizes/font_size = 16
-text = "
-"
-label_settings = SubResource("LabelSettings_3c770")
-horizontal_alignment = 3
-autowrap_mode = 3
-
 [node name="Click" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("6_bygo8")
 
@@ -130,14 +112,32 @@ text = "Enter"
 autowrap_mode = 2
 
 [node name="Item Description4" type="Label" parent="."]
-offset_left = 404.0
+offset_left = 379.0
 offset_top = 248.0
-offset_right = 453.0
+offset_right = 456.0
 offset_bottom = 263.0
 theme_override_colors/font_color = Color(0.619608, 0.270588, 0.223529, 1)
 theme_override_fonts/font = ExtResource("4_5yeww")
-text = "E/esc"
+text = "E to leave"
 autowrap_mode = 2
+
+[node name="ShopText" type="Label" parent="."]
+visible = false
+offset_left = 361.0
+offset_top = 46.0
+offset_right = 462.0
+offset_bottom = 145.0
+size_flags_horizontal = 8
+theme_override_colors/font_color = Color(0.311984, 0.252107, 0.477726, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("4_5yeww")
+theme_override_font_sizes/font_size = 16
+text = "
+"
+label_settings = SubResource("LabelSettings_3c770")
+horizontal_alignment = 3
+autowrap_mode = 3
 
 [connection signal="pressed" from="Buy" to="." method="_on_buy_pressed"]
 [connection signal="pressed" from="ShopItem" to="." method="_on_shop_item_pressed"]

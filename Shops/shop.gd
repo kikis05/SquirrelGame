@@ -37,12 +37,6 @@ func _process(delta : float) -> void:
 			modal_open = false
 			modal.closed = true
 			get_tree().get_first_node_in_group("player").shop_open = false
-			
-	if (Input.is_action_just_pressed("Escape") and modal_open):
-		modal.hide()
-		modal_open = false
-		modal.closed = true
-		get_tree().get_first_node_in_group("player").shop_open = false
 	
 func _on_activation_area_area_entered(area: Area2D) -> void:
 	
