@@ -16,9 +16,6 @@ tile_set = ExtResource("1_hxhgm")
 tile_map_data = PackedByteArray("AAALAAEAAAAJAAYAAAAMAAEAAAAKAAYAAAANAAEAAAALAAYAAAAXAAEAAAAJAAYAAAAYAAEAAAAKAAYAAAAZAAEAAAALAAYAAAAOAAEAAAAJAAYAAAAPAAEAAAAKAAYAAAAQAAEAAAALAAYAAAAUAAEAAAAJAAYAAAAVAAEAAAAKAAYAAAAWAAEAAAALAAYAAAAMAAIAAAAKAAcAAAAPAAIAAAAKAAcAAAAVAAIAAAAKAAcAAAAYAAIAAAAKAAcAAAAQAAYAAAALAAQAAAATAAkAAAALAAQAAAAUAAYAAAALAAQAAAARAAkAAAALAAQAAAAPAAsAAAALAAQAAAAXAA4AAAALAAQAAAAaAAMAAAALAAQAAAAKAAQAAAALAAQAAAAVAAwAAAALAAQAAAAKAA0AAAALAAQAAAATAAQAAAALAAQAAAAMAAUAAAALAAIAAAAbAAwAAAALAAIAAAASAAcAAAALAAIAAAAQAAMAAAALAAIAAAAPAA0AAAALAAIAAAAbAAYAAAALAAIAAAAJAAgAAAALAAIAAAA=")
 tile_set = ExtResource("1_hxhgm")
 
-[node name="SpawnPoint" type="Node2D" parent="."]
-position = Vector2(240, 136)
-
 [node name="Grass" parent="." instance=ExtResource("2_f16t7")]
 z_index = 1
 position = Vector2(186, 51)
@@ -450,6 +447,9 @@ position = Vector2(7, 5)
 [node name="Grass" parent="Grass4/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass/Grass" instance=ExtResource("2_f16t7")]
 z_index = 1
 position = Vector2(7, 5)
+
+[node name="SpawnPoint" type="Node2D" parent="."]
+position = Vector2(240, 136)
 
 [node name="DoorE" parent="." instance=ExtResource("3_3g2g8")]
 position = Vector2(0, -17)

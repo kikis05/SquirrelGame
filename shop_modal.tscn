@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://biwrg4k20l68n"]
+[gd_scene load_steps=9 format=3 uid="uid://biwrg4k20l68n"]
 
 [ext_resource type="Script" uid="uid://dtjimtxj1mf2f" path="res://Shops/shop_modal.gd" id="1_q8nhw"]
 [ext_resource type="Texture2D" uid="uid://8a3kflhvatkp" path="res://assets/Shop.png" id="2_bygo8"]
@@ -6,6 +6,7 @@
 [ext_resource type="FontFile" uid="uid://b1u0jrp7i0n3a" path="res://assets/alagard.ttf" id="4_5yeww"]
 [ext_resource type="PackedScene" uid="uid://btffc7vqohcgl" path="res://Shops/shop_item.tscn" id="5_s2hft"]
 [ext_resource type="AudioStream" uid="uid://dvwybkoru1wy0" path="res://scenes/zapsplat_industrial_switch_plastic_drill_reverse_toggle_click_003_110099.mp3" id="6_bygo8"]
+[ext_resource type="Texture2D" uid="uid://bgikxb835j5cv" path="res://textbox.png" id="7_mswy0"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_3c770"]
 
@@ -121,22 +122,27 @@ theme_override_fonts/font = ExtResource("4_5yeww")
 text = "E to leave"
 autowrap_mode = 2
 
+[node name="Textbox" type="Sprite2D" parent="."]
+self_modulate = Color(0.397117, 0.489944, 0.372526, 1)
+position = Vector2(402, 86)
+scale = Vector2(2.54167, 3.08333)
+texture = ExtResource("7_mswy0")
+
 [node name="ShopText" type="Label" parent="."]
-visible = false
-offset_left = 361.0
-offset_top = 46.0
-offset_right = 462.0
-offset_bottom = 145.0
+offset_left = 346.0
+offset_top = 19.0
+offset_right = 459.0
+offset_bottom = 148.0
 size_flags_horizontal = 8
-theme_override_colors/font_color = Color(0.311984, 0.252107, 0.477726, 1)
+theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("4_5yeww")
 theme_override_font_sizes/font_size = 16
-text = "
+text = "Nice costume mr. ant! P-please refer to the sign above: no eat!!
+Wait....
 "
 label_settings = SubResource("LabelSettings_3c770")
-horizontal_alignment = 3
 autowrap_mode = 3
 
 [connection signal="pressed" from="Buy" to="." method="_on_buy_pressed"]

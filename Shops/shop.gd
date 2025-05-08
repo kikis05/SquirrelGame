@@ -11,7 +11,7 @@ var player_in_range = false
 
 var player = null
 
-static var time_entered = 0
+static var time_entered = -1
 
 func _ready():
 	modal.hide()

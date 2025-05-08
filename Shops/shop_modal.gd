@@ -9,7 +9,7 @@ extends CanvasLayer
 
 var player = null
 
-var dialogues = ["Hii, p-please don't eat me! Wait, you're a squirrel?!", "How were you not eaten already? Do you also own a shop........ competitor?!", "Wow, you're still alive! Store up!", "Hey, these ants aren't so bad, but...their mama on the other hand...", "My twin sister was also brought here...it's been a while since I've seen her.", "Oh, my foot? Funny story, it was bitten off! HAHAHAhahaa...", "My only joy is swindling my customers...oh...not you of course! Hehe...", "Wanna hear me sing a song...?", "Oh my darling nut...we will be united soooon...", "...in the Queen ant's stomach, we'll have lots of room...", "Maybe I should have gone into music instead of farming...", "Oh my name?? It's Shawp Keypor.",  "I'll wait riiight here until it's safe to leave!"]
+var dialogues = ["H-hello, please refer to the sign above: no eat! Wait...you're a squirrel?!", "How were you not eaten already? Do you also own a shop........ competitor?!", "The others were taken by a swarm when we were all dropped here...", "I love my sunflowers. I talk to them when I have no company. It's totally normal.","They miss the sunlight, and so do I." , "Wow, you're still alive! Store up!", "Y'know, these ants aren't so bad, but...their mama on the other hand...", "My twin sister was also brought here...it's been a while since I've seen her.", "Oh, my foot? Funny story, it was bitten off! HAHAHAhahaa...", "My only joy is swindling my customers...oh...not you of course! Hehe...", "Wanna hear me sing a song...?", "Oh my darling nut...we will be united soooon...", "...in the Queen ant's stomach, we'll have lots of room...", "Maybe I should have gone into music instead of farming...", "Oh my name?? It's Shawp Keypor.", "I'll wait riiight here until it's safe to leave!"]
 var modal_time_entered = 0
 var item_view = true
 
@@ -23,7 +23,7 @@ func _ready():
 	cost.show()
 	item_description.show()
 	powerup_description.show()
-	text.hide()
+	#text.hide()
 	items[current_item_selected].deselect()
 	current_item_selected = 0
 	set_current_item(0)
@@ -49,7 +49,7 @@ func reopen():
 	cost.show()
 	item_description.show()
 	powerup_description.show()
-	#text.text = dialogues[min(modal_time_entered, len(dialogues) - 1)]
+	text.text = dialogues[min(modal_time_entered, len(dialogues) - 1)]
 		
 func set_time_entered(val):
 	modal_time_entered = val
