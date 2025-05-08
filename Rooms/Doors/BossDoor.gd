@@ -1,110 +1,108 @@
 extends Door
 class_name BossDoor
 
-@export var next_scene    : PackedScene = preload("res://Rooms/Boss_Queen/boss_room_queen.tscn")
-@export var interact_action : String = "interact"
-@export var dialogue_box  : PackedScene = preload("res://NPCs/Dialog.tscn")
-@export var ui_layer      : CanvasLayer      # drag your UI CanvasLayer here
+@export var next_scene: PackedScene = preload("res://Rooms/Boss_Queen/boss_room_queen.tscn")
+@export var interact_action: String = "interact"
+@export var dialogue_box: PackedScene = preload("res://NPCs/Dialog.tscn")
+@export var ui_layer: CanvasLayer
 
-@onready var _sensor : Area2D        = $DetectPlayer
-@onready var _prompt : RichTextLabel = $"../Prompt"
-@onready var _dlg_sp : Marker2D      = $"../DialogSpawn"
-@onready var _tree   : SceneTree     = get_tree()
+@onready var _sensor: Area2D = $DetectPlayer
+@onready var _prompt: RichTextLabel = $"../Prompt"
+@onready var _dlg_sp: Marker2D = $"../DialogSpawn"
+@onready var _tree: SceneTree = get_tree()
 
-var _player_in_sensor := false
-var _dialog_open      := false
-var _confirmed        := false     # player pressed E once, read the warning
-var _opening          := false     # door animation now playing
+var _player_in_sensor: bool = false
+var _opened: bool = false
+var _dialog_open: bool = false
+var _confirmed: bool = false
 
-# ────────────────────────────────────────────────────────────────
 func _ready() -> void:
-	slam()                       # play “slam” once and freeze on the last frame
-	sprite.frame = sprite.sprite_frames.get_frame_count("slam") - 1
+	super()
 	_prompt.visible = false
-
+	slam()
+	
+	# Connect signals
 	_sensor.body_entered.connect(_on_sensor_enter)
-	_sensor.body_exited .connect(_on_sensor_exit)
-
+	_sensor.body_exited.connect(_on_sensor_exit)
+	door_entered.connect(_on_door_entered)
+	
+	# Ensure we process input
 	set_process_unhandled_input(true)
 
-# ────────────────────────────────────────────────────────────────
-func _on_sensor_enter(body : Node) -> void:
-	if body.name != "Player" or _opening:
-		return
+func _on_sensor_enter(body: Node) -> void:
+	if _opened or body.name != "Player": return
 	_player_in_sensor = true
-	_prompt.visible   = true       # sprite stays on “slam” frame – no animation
+	_prompt.visible = true
+	sprite.play("outline")
 
-func _on_sensor_exit(body : Node) -> void:
-	if body.name != "Player" or _opening:
-		return
+func _on_sensor_exit(body: Node) -> void:
+	if _opened or body.name != "Player": return
 	_player_in_sensor = false
-	_prompt.visible   = false
+	_prompt.visible = false
+	sprite.play("closed")
+	await sprite.animation_finished
+	sprite.frame = sprite.sprite_frames.get_frame_count("slam") - 1
 
-# ────────────────────────────────────────────────────────────────
-func _unhandled_input(event : InputEvent) -> void:
-	if !_player_in_sensor or _opening or _dialog_open:
+func _unhandled_input(event: InputEvent) -> void:
+	if not _player_in_sensor or _opened or _dialog_open:
 		return
 
 	if event.is_action_pressed(interact_action):
-		if !_confirmed:
+		if not _confirmed:
 			_show_dialogue()
 		else:
 			await _open_sequence()
 
-# ────────────────────────────────────────────────────────────────
 func _show_dialogue() -> void:
-	_dialog_open    = true
+	_dialog_open = true
 	_prompt.visible = false
-
-	var dlg : Control = dialogue_box.instantiate()
-	dlg.global_position = _dlg_sp.global_position   # world‑space pos
-	ui_layer.add_child(dlg)                         # on top of everything
+	var dlg: Control = dialogue_box.instantiate()
+	dlg.position = _dlg_sp.global_position
+	ui_layer.add_child(dlg)
 
 	dlg.start([
-		"Beyond this door lies the boss.",
-		"Once you go through, there is no coming back.",
+		"Beyond this door lies the boss",
+		"Once you go through, there is no coming back",
 		"Press E again to enter…",
 	])
 
 	dlg.talk_finished.connect(func() -> void:
-		_dialog_open    = false
-		_confirmed      = true
+		_dialog_open = false
+		_confirmed = true
 		_prompt.visible = true
+		sprite.play("outline")
 	)
 
-# ────────────────────────────────────────────────────────────────
 func _open_sequence() -> void:
-	_opening        = true
+	_opened = true
 	_prompt.visible = false
-	await open()                       # play “open” animation (from Door.gd)
+	await open()
 
-	var player := get_tree().get_first_node_in_group("player")
-	if player:
-		_save_stats(player)
-		_go_to_boss(player)
+func _on_door_entered(_rp: Vector2i, _dir: String, body: Node) -> void:
+	if not _opened or body.name != "Player": return
+	if not next_scene: return
 
-# ────────────────────────────────────────────────────────────────
-func _save_stats(p : Node) -> void:
-	GameState.player_stats.max_health     = p.max_health
-	GameState.player_stats.current_health = p.current_health
-	GameState.player_stats.coins          = p.coins
-	GameState.player_stats.gun_attack     = p.get_gun_attack()
-	GameState.player_stats.gun_speed      = p.get_gun_speed()
-	GameState.player_stats.sword_attack   = p.get_sword_attack()
-	GameState.player_stats.speed          = p.speed
-
-# ────────────────────────────────────────────────────────────────
-func _go_to_boss(player : Node) -> void:
-	if not next_scene:
-		push_error("BossDoor: next_scene not set!")
-		return
-
+	# Immediately transition to boss scene
+	var player: Node = body
+	_save_stats(player)
 	_tree.change_scene_to_packed(next_scene)
-
-	# wait until the new scene is ready
+	
+	# Wait for scene to load
 	await _tree.process_frame
 	while _tree.current_scene == null:
 		await _tree.process_frame
-
+	
+	# Reparent player
 	_tree.current_scene.add_child(player)
-	player.global_position = $SpawnPoint.global_position
+	player.global_position = $Spawnpoint.global_position
+
+func _save_stats(p: Node):
+	GameState.player_stats = {
+		"max_health": p.max_health,
+		"current_health": p.current_health,
+		"coins": p.coins,
+		"gun_attack": p.get_gun_attack(),
+		"gun_speed": p.get_gun_speed(),
+		"sword_attack": p.get_sword_attack(),
+		"speed": p.speed
+	}

@@ -23,7 +23,7 @@ var chest_rooms_pos : Array[Vector2i] = []
 var boss_room_pos : Vector2i = Vector2i(-1, -1)
 
 const CUSTOM_ROOMS := {
-	"S":        ["SquareChestS", "SquareDoubleUpS"],
+	"S":        ["SquareDoubleUpS"],
 	"N": 		["SquareDoubleUpCircleN"],
 	"NS":       ["NestLongNS", "SquareFishNS", "NestCircleNS", "SquareBottleneckNS"],
 	"EW":       ["HolesEW", "MoundsEW", "TightSqueezeEW", "NestBridgeEW"],
@@ -35,6 +35,7 @@ const CUSTOM_ROOMS := {
 }
 
 const CHEST_ROOMS := {
+	"S":		["SquareChestS"],
 	"NEW":      ["NestChestBridgeNEW"],
 	"ESW":      ["NestChestBridgeESW"],
 	"SW":		["NestChestSW"],
